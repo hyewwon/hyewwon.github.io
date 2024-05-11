@@ -5,7 +5,7 @@
   "prettier.trailingComma": "none",
   // Shopify Liquid
   "files.associations": {
-    "*.html": "liquid"
+    "*.html": "django-html"
   },
   // Formatter
   "[html][liquid]": {
