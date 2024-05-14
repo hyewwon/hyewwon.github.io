@@ -1,0 +1,185 @@
+---
+layout: compress
+---
+
+<!doctype html>
+<link href="/assets/css/custom/about_me.css" rel="stylesheet">
+{% include origin-type.html %}
+
+{% include lang.html %}
+
+{% if site.theme_mode %}
+  {% capture prefer_mode %}data-mode="{{ site.theme_mode }}"{% endcapture %}
+{% endif %}
+
+<!-- `site.alt_lang` can specify a language different from the UI -->
+<html lang="{{ site.alt_lang | default: site.lang }}" {{ prefer_mode }}>
+  {% include head.html %}
+
+  <body>
+    {% include sidebar.html lang=lang %}
+
+    <div id="main-wrapper" class="d-flex justify-content-center">
+      <div class="container d-flex flex-column px-xxl-5">
+        {% include topbar.html lang=lang %}
+
+        <div class="row flex-grow-1">
+          <main aria-label="Main Content" class="col-12 col-lg-11 col-xl-12 px-md-4">
+              {{ content }}
+              <h1>My Skills</h1>
+              <div class="row">
+                <div class="col-12" style="margin-top:10px;">
+                  <h3 class="title">Backend</h3>
+                  <div class="skill-container">
+                    <div class="skill-content">
+                      <img class="skill-icon" src="/assets/img/skills_icon/python.png"><br>
+                      <h5 class="skill-name">Python</h5>
+                    </div>
+                  </div>
+                  <div class="skill-container">
+                    <div class="skill-content">
+                      <img class="skill-icon" src="/assets/img/skills_icon/Django.png"><br>
+                      <h5 class="skill-name">Django</h5>
+                    </div>
+                  </div>
+                  <div class="skill-container">
+                    <div class="skill-content">
+                      <img class="skill-icon" src="/assets/img/skills_icon/drf.png"><br>
+                      <h5 class="skill-name">DRF</h5>
+                    </div>
+                  </div>
+                  <div class="skill-container">
+                    <div class="skill-content">
+                      <img class="skill-icon" src="/assets/img/skills_icon/graphql.png"><br>
+                      <h5 class="skill-name">GraphQL</h5>
+                    </div>
+                  </div>
+                  <div class="skill-container">
+                    <div class="skill-content">
+                      <img class="skill-icon" src="/assets/img/skills_icon/celery.png"><br>
+                      <h5 class="skill-name">Celery</h5>
+                    </div>
+                  </div>
+                  <div class="skill-container">
+                    <div class="skill-content">
+                      <img class="skill-icon" src="/assets/img/skills_icon/swagger.png"><br>
+                      <h5 class="skill-name">Swagger</h5>
+                    </div>
+                  </div>
+                  <div class="skill-container">
+                    <div class="skill-content">
+                      <img class="skill-icon" src="/assets/img/skills_icon/linux.png"><br>
+                      <h5 class="skill-name">Linux</h5>
+                    </div>
+                  </div>
+                  <div class="skill-container">
+                    <div class="skill-content">
+                      <img class="skill-icon" src="/assets/img/skills_icon/ngnix.png"><br>
+                      <h5 class="skill-name">Nginx</h5>
+                    </div>
+                  </div>
+                  <div class="skill-container">
+                    <div class="skill-content">
+                      <img class="skill-icon" src="/assets/img/skills_icon/gunicorn.png"><br>
+                      <h5 class="skill-name">Gunicorn</h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12" style="margin-top:5px;">
+                  <h3 class="title">Frontend</h3>
+                  <div class="skill-container">
+                    <div class="skill-content">
+                      <img class="skill-icon" src="/assets/img/skills_icon/javascript.png"><br>
+                      <h5 class="skill-name">Vanilla</h5>
+                    </div>
+                  </div>
+                  <div class="skill-container">
+                    <div class="skill-content">
+                      <img class="skill-icon" src="/assets/img/skills_icon/jquery.png"><br>
+                      <h5 class="skill-name">jQuery</h5>
+                    </div>
+                  </div>
+                  <div class="skill-container">
+                    <div class="skill-content">
+                      <img class="skill-icon" src="/assets/img/skills_icon/html5.png"><br>
+                      <h5 class="skill-name">HTML5</h5>
+                    </div>
+                  </div>
+                  <div class="skill-container">
+                    <div class="skill-content">
+                      <img class="skill-icon" src="/assets/img/skills_icon/css3.png"><br>
+                      <h5 class="skill-name">CSS3</h5>
+                    </div>
+                  </div>
+                  <div class="skill-container">
+                    <div class="skill-content">
+                      <img class="skill-icon" src="/assets/img/skills_icon/bootstrap.png"><br>
+                      <h5 class="skill-name">BS</h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12" style="margin-top:5px;">
+                  <h3 class="title">Tools</h3>
+                  <div class="skill-container">
+                    <div class="skill-content">
+                      <img class="skill-icon" src="/assets/img/skills_icon/github.png"><br>
+                      <h5 class="skill-name">Github</h5>
+                    </div>
+                  </div>
+                  <div class="skill-container">
+                    <div class="skill-content">
+                      <img class="skill-icon" src="/assets/img/skills_icon/vscode.png"><br>
+                      <h5 class="skill-name">VSCode</h5>
+                    </div>
+                  </div>
+                  <div class="skill-container">
+                    <div class="skill-content">
+                      <img class="skill-icon" src="/assets/img/skills_icon/dbeaver.png"><br>
+                      <h5 class="skill-name">dBeaver</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </main>
+
+        </div>
+
+        <div class="row">
+          <!-- tail -->
+          <div id="tail-wrapper" class="col-12 col-lg-11 col-xl-9 px-md-4">
+            {% for _include in layout.tail_includes %}
+              {% assign _include_path = _include | append: '.html' %}
+              {% include {{ _include_path }} lang=lang %}
+            {% endfor %}
+
+            {% include_cached footer.html lang=lang %}
+          </div>
+        </div>
+
+        {% include_cached search-results.html lang=lang %}
+      </div>
+
+      <aside aria-label="Scroll to Top">
+        <button id="back-to-top" type="button" class="btn btn-lg btn-box-shadow">
+          <i class="fas fa-angle-up"></i>
+        </button>
+      </aside>
+    </div>
+
+    <div id="mask"></div>
+
+    {% if site.pwa.enabled %}
+      {% include_cached notification.html lang=lang %}
+    {% endif %}
+
+    <!-- JavaScripts -->
+
+    {% include js-selector.html %}
+
+    {% if page.mermaid %}
+      {% include mermaid.html %}
+    {% endif %}
+
+    {% include_cached search-loader.html %}
+  </body>
+</html>
