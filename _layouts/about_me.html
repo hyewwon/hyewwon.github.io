@@ -24,14 +24,17 @@ layout: compress
         {% include topbar.html lang=lang %}
 
         <div class="row flex-grow-1">
+
           <main aria-label="Main Content" class="col-12 col-lg-11 col-xl-12 px-md-4">
               {{ content }}
               <h1>My Skills</h1>
+              
+              <h4 class="using-title">현재 사용하고 있어요!</h4>
+                <a href="" class="button btnFloat btnBlueGreen"></a>
+              
               <div class="row">
+                {% comment %} backend {% endcomment %}
                 <div class="col-12">
-                  <h4 style="margin:0px;;">현재 사용하고 있어요!</h4>
-                </div>
-                <div class="col-4">
                   <h3 class="title">Backend</h3>
                   <div class="skill-container using">
                     <div class="skill-content">
@@ -96,7 +99,7 @@ layout: compress
                   <div class="skill-container using">
                     <div class="skill-content">
                       <img class="skill-icon" src="/assets/img/skills_icon/gunicorn.png" alt="gunicorn"><br>
-                      <h6 class="skill-name">nicorn</h6>
+                      <div style="font-size:92%; margin-top:7px;">Gunicorn</div>
                     </div>
                   </div>
                   <div class="skill-container">
@@ -108,14 +111,13 @@ layout: compress
                   <div class="skill-container">
                     <div class="skill-content">
                       <img class="skill-icon" src="/assets/img/skills_icon/springboot.png" alt="springboot3"><br>
-                      <p>Spring<br>Boot3</p>
-                      {% comment %} <h6 class="skill-name"></h6> {% endcomment %}
+                      <div style="font-size:85%;line-height:135%;margin-top:3px;">Spring<br>Boot3</div>
                     </div>
                   </div>
                   <div class="skill-container">
                     <div class="skill-content">
                       <img class="skill-icon" src="/assets/img/skills_icon/spring_framework.png" alt="spring_framework"><br>
-                      <h6 class="skill-name">Spring</h6>
+                      <div style="font-size:77%;line-height:135%;margin-top:3px;">Spring<br>Framework</div>
                     </div>
                   </div>
                   <div class="skill-container">
@@ -131,8 +133,10 @@ layout: compress
                     </div>
                   </div>
                 </div>
-                <div class="col-4" style="margin-top:5px;">
-                  <h3 class="title">Frontend</h3>
+              
+                <div class="col-6">
+                  {% comment %} Frontend {% endcomment %}
+                  <h3 class="title" >Frontend</h3>
                   <div class="skill-container using">
                     <div class="skill-content">
                       <img class="skill-icon" src="/assets/img/skills_icon/javascript.png" alt="javascript"><br>
@@ -160,11 +164,13 @@ layout: compress
                   <div class="skill-container using">
                     <div class="skill-content">
                       <img class="skill-icon" src="/assets/img/skills_icon/bootstrap.png" alt="bootstrap"><br>
-                      <h6 class="skill-name">BS</h6>
+                      <div style="font-size:88%;margin-top:8px;">Bootstrap</div>
                     </div>
                   </div>
                 </div>
-                <div class="col-4" style="margin-top:5px;">
+
+                <div class="col-6">
+                  {% comment %} Tools {% endcomment %}
                   <h3 class="title">Tools</h3>
                   <div class="skill-container using">
                     <div class="skill-content">
@@ -204,6 +210,7 @@ layout: compress
                   </div>
                 </div>
               </div>
+
           </main>
         </div>
 

@@ -5,7 +5,7 @@
   -o-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
   }
-  
+
   .skill-container{
     -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
@@ -30,9 +30,8 @@
   }
   
   .using{
-    /* background-color: rgb(60, 179, 113) */
-    border-color: rgb(60, 179, 113);
-    border-style: solid;
+    background-color: rgb(255, 255, 255);
+    border: solid 2px rgb(60, 179, 113);
   }
 
   .skill-content{
@@ -51,3 +50,23 @@
   .skill-name{
     margin:11px 0 0 0;
   }
+
+  .using-circle{
+    width: 20px;
+    height: 30px;
+    border-radius: 30%;
+    border-style:solid;
+    border-color : rgb(60, 179, 113);
+    background-color: rgb(255, 255, 255);
+    margin:0px;
+  }
+
+  .using-title{
+    width: 400px;
+    height: px;
+    border-radius: 30%;
+    border-style: solid;
+    border-color: rgb(60, 179, 113);
+  }
+
+  
