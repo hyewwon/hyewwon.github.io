@@ -1,39 +1,24 @@
-.skill-container:hover {
-  -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
-  -moz-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
-  -ms-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
-  -o-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
-  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
-  }
 
   .skill-container{
-    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    -ms-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    -o-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    -webkit-transition: all 0.25s ease-in-out;
-    -moz-transition: all 0.25s ease-in-out;
-    -ms-transition: all 0.25s ease-in-out;
-    -o-transition: all 0.25s ease-in-out;
-    transition: all 0.25s ease-in-out;
-  
-    background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     display: block;
-    float: left;
-    height: 110px;
-    margin: 5px;
     position: relative;
+    background: #fff;
+    height: 110px;
+    margin: 15px;
     width: 90px;
     border-radius: 30px;
-    position: relative;
-  }
-  
-  .using{
-    background-color: rgb(255, 255, 255);
-    border: solid 2px rgb(60, 179, 113);
+    transition: all 0.2s ;
   }
 
+  .skill-container:hover {
+    margin-top: -11px;
+    transform: scale(1.1,1.1);
+    -ms-transform: scale(1.1,1.1);
+    -webkit-transform: scale(1.1,1.1);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  }
+  
   .skill-content{
     text-align : center;
     position : absolute;
@@ -41,7 +26,7 @@
     left : 50%;
     margin : -42px 0 0 -28px;
   }
-  
+
   .skill-icon{
     width:55px; 
     height:auto;
@@ -50,23 +35,32 @@
   .skill-name{
     margin:11px 0 0 0;
   }
-
-  .using-circle{
-    width: 20px;
-    height: 30px;
-    border-radius: 30%;
-    border-style:solid;
-    border-color : rgb(60, 179, 113);
+  
+  .using{
     background-color: rgb(255, 255, 255);
-    margin:0px;
+    border: solid 2px rgb(60, 179, 113);
   }
+
 
   .using-title{
     width: 400px;
-    height: px;
-    border-radius: 30%;
-    border-style: solid;
-    border-color: rgb(60, 179, 113);
+    height: 30px;
+    margin-bottom:20px;
   }
 
+  .using-title:before{
+      content: '';
+      border : solid 2px rgb(60, 179, 113);
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border-radius: 30%;
+      margin-right: 7px;
+  }
   
+
+
+
+
+
+
