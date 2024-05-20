@@ -1,4 +1,6 @@
 
+  /* my skills */
+  
   .skill-container{
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     display: block;
@@ -42,25 +44,139 @@
   }
 
 
-  .using-title{
-    width: 400px;
-    height: 30px;
-    margin-bottom:20px;
+  .chip {
+    display: inline-block;
+    padding: 0 25px;
+    height: 1.8em;
+    font-size: 17px;
+    line-height: 1.75em;
+    border-radius: 0.9em;
+    display: flex;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    min-width: 85px;
   }
-
-  .using-title:before{
-      content: '';
-      border : solid 2px rgb(60, 179, 113);
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      border-radius: 30%;
-      margin-right: 7px;
+  
+  .chip div:first-of-type {
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+    margin: 0 10px 0 -25px;
+    border-radius: 50%;
   }
   
 
+  .chip.done div:first-child {
+    border : 2px solid var(--done-color);
+  }
 
 
+
+
+/* my experiance */
+
+  :root {
+    --bg-dark: black;
+    --done-color: rgb(60, 179, 113);
+    --in-progress-color: #F28705;
+    --todo-color: #5D6B86;
+    --blocked-color: red;
+    --moved-color: #4b2424;
+    --stretch-color: #019FFF;
+    --default-color: black;
+    --white-color: #fff;
+    --chip-bg-color: #f1f1f1;
+  }
+  
+  @media screen and (prefers-color-scheme: dark) {
+    :root {
+      --todo-color: gray;
+      --done-color: rgb(60, 179, 113);;
+      --moved-color: #8d6262;
+      --blocked-color: #ed6363;
+      --stretch-color: #639cd9;
+    }
+  }
+  
+  .content-ul li.done-text:after {
+    content: ' \2714';
+  }
+
+  
+  .content-ul, .total-ol {
+    counter-reset: myCounter;
+    margin-left: 0;
+    padding-left: 5px;
+    font-size: 18px;
+    color: var(--default-color);
+  }
+
+  
+  li {
+    position: relative;
+    padding-left: 3em;
+    padding-top: 4px;
+    margin: 0.45em 0;
+    list-style: none;
+    line-height: 1.8em;
+    font-weight: normal;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .title-li{
+    font-weight: bolder;
+  }
+  
+  .total-ol > li:after {
+    position: absolute;
+    top: 2.1em;
+    left: 0.9em;
+    width: 2px;
+    height: calc(100% - 2em);
+    content: "";
+    background-color: rgb(203, 203, 203);
+    z-index: 0;
+  }
+  
+  .content-ul > li {
+    position: relative;
+    padding-left: 1em;
+    margin: 0.45em 0;
+  }
+  
+  .content-ul > li:before {
+    content: "\2024";
+    font-size: 2em;
+    padding-right: 5px;
+    line-height: 0.42em;
+    position: absolute;
+  }
+  
+  .content-ul > li span {
+    padding-left: 1.5em;
+  }
+  
+  .total-ol > li:before {
+    content: counter(myCounter);
+    counter-increment: myCounter;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1.8em;
+    height: 1.8em;
+    line-height: 2em;
+    padding: 0px;
+    color: var(--white-color);
+    background: var(--done-color);
+    text-align: center;
+    border-radius: 0.9em;
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.3);
+    z-index: 1;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+  }
+  
 
 
 
