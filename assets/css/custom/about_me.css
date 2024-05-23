@@ -65,7 +65,6 @@
     border-radius: 50%;
   }
   
-
   .chip.done div:first-child {
     border : 2px solid var(--done-color);
   }
@@ -98,7 +97,7 @@
     }
   }
   
-  .content-ul li.done-text:after {
+  .content-ul {
     content: ' \2714';
   }
 
@@ -112,7 +111,7 @@
   }
 
   
-  li {
+  .title-li, .content-li {
     position: relative;
     padding-left: 3em;
     padding-top: 4px;
@@ -196,7 +195,6 @@
   }
   
   .card-details {
-    color: rgb(60, 179, 113);
     place-content: center;
   }
   
@@ -223,12 +221,17 @@
   }
   
   .text-body {
-    color: rgb(134, 134, 134);
+    color: black;
   }
   
   .text-title {
+    color: rgb(60, 179, 113);
     font-size: 1.5em;
     font-weight: bold;
+  }
+  
+  .text-period{
+    color: rgb(134, 134, 134);
   }
   
   .card:hover {
@@ -244,3 +247,26 @@
     transform: translate(-50%, 50%);
     opacity: 1;
   }
+
+  
+
+  /* 기여도 */
+  .star-rating {
+    display: flex;
+  }
+
+  .star {
+    appearance: none;
+    padding: 1px;
+  }
+
+  .star::after {
+    content: '☆';
+    color: hsl(60, 80%, 45%);
+    font-size: 20px;
+  }
+
+  .star:checked::after{
+    content: '★';
+  }
+
