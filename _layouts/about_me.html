@@ -7,6 +7,7 @@ layout: compress
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="/assets/js/custom/about_me.js"></script>
+{% include about_modal.html %}
 {% include origin-type.html %}
 
 {% include lang.html %}
@@ -252,17 +253,9 @@ layout: compress
               <div class="card col-md-3" >
                 <div class="card-details">
                   <p class="text-title">Enjo-eat</p>
-                  <p class="text-period">2022.09.20 ~ 2022.10.16</p>
-                  <p class="text-body">크롤링과 카카오 api를 사용한 맛집 뽑기 사이트</p>
-                  <div class="star-rating"> 기여도
-                    <input type="radio" class="star" checked>
-                    <input type="radio" class="star" checked>
-                    <input type="radio" class="star">
-                    <input type="radio" class="star">
-                    <input type="radio" class="star">
-                  </div>
+                  <p class="text-body">크롤링과 카카오 api를 사용한 맛집 뽑기 Django 프로젝트</p>
                 </div>
-                <a class="card-button" href="javascript:;">More info</a>
+                <a class="card-button" id="enjo-eat" href="javascript:;">More info</a>
               </div>
               <div class="card col-md-3">
                 <div class="card-details">

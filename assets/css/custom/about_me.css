@@ -230,11 +230,15 @@
     font-weight: bold;
   }
   
-  .text-period{
-    color: rgb(134, 134, 134);
-  }
   
-  .card:hover {
+  
+  .text-contribute{
+    color: black;
+    margin-top:4px;
+    margin-right:4px;
+  }
+
+    .card:hover {
     cursor: pointer;
     border-color: rgb(60, 179, 113);
     -webkit-box-shadow: 10px 5px 18px 0 rgba(255, 255, 255, 0.877);
@@ -250,23 +254,5 @@
 
   
 
-  /* 기여도 */
-  .star-rating {
-    display: flex;
-  }
-
-  .star {
-    appearance: none;
-    padding: 1px;
-  }
-
-  .star::after {
-    content: '☆';
-    color: hsl(60, 80%, 45%);
-    font-size: 20px;
-  }
-
-  .star:checked::after{
-    content: '★';
-  }
+  
 

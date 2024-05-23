@@ -1,0 +1,30 @@
+.period{
+    color: rgb(134, 134, 134);
+    line-height: 2px;
+  }
+
+  .contributor{
+    line-height: 2px;
+    color: black;
+  }
+
+
+/* 기여도 */
+.star-rating {
+    display: flex;
+  }
+
+  .star {
+    appearance: none;
+    padding: 1px;
+  }
+
+  .star::after {
+    content: '☆';
+    color: hsl(60, 80%, 45%);
+    font-size: 20px;
+  }
+
+  .star:checked::after{
+    content: '★';
+  }
