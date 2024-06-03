@@ -90,7 +90,7 @@
   @media screen and (prefers-color-scheme: dark) {
     :root {
       --todo-color: gray;
-      --done-color: rgb(60, 179, 113);;
+      --done-color: rgb(60, 179, 113);
       --moved-color: #8d6262;
       --blocked-color: #ed6363;
       --stretch-color: #639cd9;

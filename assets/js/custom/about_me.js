@@ -1,10 +1,9 @@
 $().ready(function () {
   $("#enjo-eat").click(function(){
-    var temp = document.createElement("p")
-    temp.innerHTML = "hi"
     Swal.fire({
-      template:"#enjo-eat-modal"
-  
+      template:"#enjo-eat-modal",
+      width: 1300,
+      scrollbarPadding:true
     })
   })
 });
