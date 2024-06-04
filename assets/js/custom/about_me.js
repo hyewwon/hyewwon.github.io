@@ -7,6 +7,13 @@ $().ready(function () {
       confirmButtonText : "Close"
     })
   })
+
+  $("#buildpay").click(function(){
+    Swal.fire({
+      template:"#buildpay-modal",
+      width: 1300,
+      confirmButtonColor: "rgb(60, 179, 113)",
+      confirmButtonText : "Close"
+    })
+  })
 });
-
-

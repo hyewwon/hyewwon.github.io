@@ -31,7 +31,34 @@ layout: compress
           
           <main aria-label="Main Content" class="col-12 col-lg-11 col-xl-12 px-md-4">
             {{ content }}
+            {% comment %} ===== profile ===== {% endcomment %}
+            <div class="row profile-container">
+              <div class="col-md-6 col-sm-6">
+                <div class="profile-card">
+                    <div class="profile-icon">
+                      <i class="fa-solid fa-person-hiking"></i>
+                    </div>
+                    <div class="profile-content">
+                        <h3>개구리</h3>
+                        <p>개구리처럼 폴작 폴짝 뛰어 성장하는 개발자 입니다.</p>
+                    </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <div class="profile-card">
+                    <div class="profile-icon">
+                        <i class="fa fa-globe"></i>
+                    </div>
+                    <div class="profile-content">
+                        <h3>쏼라 쏼라</h3>
+                        <span class="profile-value">671</span>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <hr>
 
+            {% comment %}  ===== skills =====  {% endcomment %}
             <h1>My Skills</h1>
             <div class="chip done" style="margin-top:50px;margin-bottom:30px;">
               <div></div>
@@ -217,7 +244,7 @@ layout: compress
             </div>
 
 
-
+            {% comment %}  ===== experiance =====  {% endcomment %}
             <hr style="margin-top:100px;">
             <h1>My Experiance</h1>
             <ol class="total-ol" style="margin-top:50px;">
@@ -252,38 +279,30 @@ layout: compress
         
             <hr style="margin-top:100px;">
             
+
+            {% comment %}  ===== project =====  {% endcomment %}
             <h1>My Projects</h1>
             <h3 style="margin-top:50px;">Personal Projects</h3>
             <div class="row">
-              <div class="card col-md-3" >
-                <div class="card-details">
-                  <p class="text-title">Enjo-eat</p>
-                  <p class="text-body">이미지 크롤링과 카카오 api를 사용한<br> 맛집 뽑기 Django 프로젝트</p>
+              <div class="project-card col-md-3" >
+                <div class="project-card-details">
+                  <p class="card-text-title">Enjo-eat</p>
+                  <p class="card-text-body">이미지 크롤링과 카카오 api를 사용한<br> 맛집 뽑기 Django 프로젝트</p>
                 </div>
-                <a class="card-button" id="enjo-eat" href="javascript:;">More info</a>
+                <a class="project-card-button" id="enjo-eat" href="javascript:;">More info</a>
               </div>
-              {% comment %} <div class="card col-md-3">
-                <div class="card-details">
-                  <p class="text-title">Short Quiz</p>
-                  <p class="text-body">크롤링과 카카오 api를 사용한 맛집 뽑기 사이트</p>
-                </div>
-                <a class="card-button" href="javascript:;">More info</a>
-              </div> {% endcomment %}
             </div>
             
             <h3 style="margin-top:50px;">Work Projects</h3>
+            <h5 style="margin-top:20px;">GNC Solution Projects (2022.08.18 ~ 현재)</h5>
             <div class="row">
-              <div class="card col-md-3" >
-                <div class="card-details">
-                  <p class="text-title">Buildpay</p>
-                  <p class="text-body">전자 지갑 플랫폼</p>
+              <div class="project-card col-md-3" >
+                <div class="project-card-details">
+                  <p class="card-text-title">Buildpay</p>
+                  <p class="card-text-body">Buildtec 외주 프로젝트</p>
+                  <p class="card-text-body">가상 화폐 전자 지갑 플랫폼</p>
                 </div>
-              </div>
-              <div class="card col-md-3">
-                <div class="card-details">
-                  <p class="text-title">Short Quiz</p>
-                  <p class="text-body">크롤링과 카카오 api를 사용한 맛집 뽑기 사이트</p>
-                </div>
+                <a class="project-card-button" id="buildpay" href="javascript:;">More info</a>
               </div>
             </div>
           </main>

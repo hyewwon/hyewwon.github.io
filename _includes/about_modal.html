@@ -2,6 +2,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
+
+{% comment %} ====== enjo-eat ====== {% endcomment %}
 <template id="enjo-eat-modal">
   <sw al-title>
     <h5></h5>
@@ -16,7 +18,7 @@
       <div class="row">
 
         <div class="col-6">
-          <div id="projectImagesCarousel" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-theme="black">
+          <div id="enjo-eat-projectImagesCarousel" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-theme="black">
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <img src="/assets/img/enjo_eat_project/main2.png" class="d-block w-100" alt="...">
@@ -43,11 +45,11 @@
                 <img src="/assets/img/enjo_eat_project/eatery_detail.png" class="d-block w-100" alt="...">
               </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#projectImagesCarousel" data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#enjo-eat-projectImagesCarousel" data-bs-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
               <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#projectImagesCarousel" data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#enjo-eat-projectImagesCarousel" data-bs-slide="next">
               <span class="carousel-control-next-icon" aria-hidden="true"></span>
               <span class="visually-hidden">Next</span>
             </button>
@@ -77,8 +79,9 @@
               <ul class="info-list">
                 <li class="mb-2"><strong>사용 기술</strong></li>
               </ul>
-              <p>Frontend : HTML5, CSS, Vanilla JS, fetch, Bootstrap<br>
-                Backend: Python, Django, Selenium. MariaDB<br>
+              <p>
+                Backend: Python, Django, MariaDB, Selenium<br>
+                Frontend : HTML5, CSS, Vanilla JS, fetch, Bootstrap<br>
                 Tool: Visual Studio Code, DBeaver, Github<br>
                 API : Kakao map API
               </p>
@@ -99,10 +102,77 @@
   <swal-param name="customClass" value='{ "popup": "my-popup" }' />
   <swal-function-param name="didOpen" value="popup => console.log(popup)" />
 </template>
-<div class="star-rating">
-<input type="radio" class="star" checked>
-<input type="radio" class="star" checked>
-<input type="radio" class="star" checked>
-<input type="radio" class="star" checked>
-<input type="radio" class="star" checked>
-</div>
+
+{% comment %} ===== buildpay ===== {% endcomment %}
+<template id="buildpay-modal">
+  <sw al-title>
+    <h5></h5>
+  </swal-title>
+  <swal-html>
+    <div class="modal-head">
+        <h1>Buildpay
+          <span>가상 화폐 전자 지갑 플랫폼</span>
+        </h1>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+
+        <div class="col-6">
+          <div id="buildpay-image">
+            <img src="/assets/img/buildpay_project/main.png" class="d-block w-100" alt="...">
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="information-container text-start">
+            <div class="info-project">
+              <p>
+                여러 가상 화폐를 간편하게 관리할 수 있는 전자 지갑 앱 입니다.
+                지갑에서 코인 입출금이 가능하고 일부 코인은 포인트로 전환하여
+                BuildPay 전용 쇼핑몰 (Build Mall)에서 사용이 가능합니다.
+              </p>
+              <p>
+                입사 후 업무에 사용되는 <span style="color:#FF9800">Django</span>와 <span style="color:#FF9800">Vanilla JS</span> 에 익숙해지기 위해서 Enjo-Eat 프로젝트를 통해서
+                체화 시켰습니다. 덕분에 프로젝트 투입 시 빠르게 적응이 가능했습니다. 
+              </p>
+              <p>
+                또한 사용자의 편의를 위한 기능을 만들고자 노력했습니다.<br>
+                <span style="color:#FF9800">Kakao Map API</span>를 사용한 지도에 버튼을 직접 추가하여 음식점 위치나 이름을 편하게 설정 할 수 있도록 구현 했습니다.
+                그리고 <span style="color:#FF9800">Chromedrvier</span>와 <span style="color:#FF9800">Selenium</span>을 사용한
+                이미지 크롤링을 통해서 사용자가 원하는 이미지를 자동으로 검색하여 등록할 수 있는 기능을 구현 했습니다. 
+              </p>
+              <hr>
+              <ul class="info-list">
+                <li class="mb-2"><strong>사용 기술</strong></li>
+              </ul>
+              <p>
+                <span class="skill-type">Backend</span> Python, Django, GraphQL, Celery, Ngnix, Linux, MariaDB<br>
+                <span class="skill-type">Frontend</span>  HTML5, CSS, Vanilla JS, fetch, Chart JS, Bootstrap<br>
+                <span class="skill-type">Tool</span>  Visual Studio Code, DBeaver, Github<br>
+              </p>
+            </div>
+            <hr>
+            <ul class="info-list">
+              <li class="mb-2"><strong>개발 기간</strong><span class="list-content">2022.08 ~ 2023.09</span></li>
+              <li class="mb-2"><strong>참여 인원</strong><span class="list-content">4</span></li>
+              <li class="mb-2"><strong>담당 파트</strong><span class="list-content">웹 풀스택, 앱 백엔드</span></li>
+              <li class="mb-2"><strong>기여도</strong><span class="list-content">
+                <div class="star-rating">
+                <input type="radio" class="star" checked>
+                <input type="radio" class="star" checked>
+                <input type="radio" class="star" checked>
+                <input type="radio" class="star" disabled>
+                <input type="radio" class="star" disabled>
+                </div>
+              </span></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </swal-html>
+  <swal-param name="allowEscapeKey" value="false" />
+  <swal-param name="customClass" value='{ "popup": "my-popup" }' />
+  <swal-function-param name="didOpen" value="popup => console.log(popup)" />
+</template>
