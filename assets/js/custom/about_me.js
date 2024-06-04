@@ -3,7 +3,8 @@ $().ready(function () {
     Swal.fire({
       template:"#enjo-eat-modal",
       width: 1300,
-      scrollbarPadding:true
+      confirmButtonColor: "rgb(60, 179, 113)",
+      confirmButtonText : "Close"
     })
   })
 });

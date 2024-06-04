@@ -58,21 +58,20 @@
   border-radius: 5px;
   width:600px;
   margin:30px;
-  
 }
 
 
 /* ==== project information ==== */
-
 .information-container{
   margin: 30px;
-  padding:0 20px 20px 20px;
+  padding:5px 30px 30px 30px;
   font-size: medium;
 }
 
 
 .info-list {
   list-style: none;
+  padding-left:0px;
 }
 
 .info-list li {
@@ -91,14 +90,19 @@
   margin-right: 1rem;
 }
 
-.period{
-  color: rgb(134, 134, 134);
+.list-content{
+  padding-left:10px;
 }
 
-.contributor{
-  line-height: 2px;
-  color: black;
+
+.github-link{
+  color: rgb(60, 179, 113);
+  text-decoration: underline rgb(60, 179, 113);
+
 }
+
+
+
 
 
 /* 기여도 */

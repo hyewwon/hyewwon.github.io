@@ -3,104 +3,106 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
 <template id="enjo-eat-modal">
-    <swal-title>
-      <h5></h5>
-    </swal-title>
-    <swal-html>
-      <div class="modal-head">
-          <h1>Enjo-Eat Project
-            <span>맛집 추천 사이트</span>
-          </h1>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-6">
-            <div id="projectImagesCarousel" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-theme="black">
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img src="/assets/img/enjo_eat_project/main2.png" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                  <img src="/assets/img/enjo_eat_project/group_selection.png" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                  <img src="/assets/img/enjo_eat_project/eatery_selection2.png" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                  <img src="/assets/img/enjo_eat_project/group_all_selection.png" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                  <img src="/assets/img/enjo_eat_project/group_manage.png" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                  <img src="/assets/img/enjo_eat_project/eatery_manage.png" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                  <img src="/assets/img/enjo_eat_project/eatery_create.png" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                  <img src="/assets/img/enjo_eat_project/eatery_detail.png" class="d-block w-100" alt="...">
-                </div>
-              </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#projectImagesCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#projectImagesCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="information-container text-start">
-              <div class="info-project">
-                <strong>식사 메뉴나 음식점을 쉽고 재밌게 선택 할 수 있는 사이트 입니다.</strong><br>
-                또한 지역 혹은 특정 목적 별로 음식점들을 등록하고 사용자들끼리 <br> 정보를 공유할 수 있습니다.
-                평소 회사 점심 시간에 식당이나 메뉴를 정하기<br> 힘들었던 상황들이 떠올라 개발하게 되었습니다.
-                <p>- Frontend : HTML5, CSS, Vanilla JS, fetch, Bootstrap<br>
-                  - Backend: Python, Django, Selenium. MariaDB<br>
-                  - Tool: Visual Studio Code, DBeaver, Github<br>
-                  - API : Kakao map API</p>
-                <p>
-                  - 사용자 회원 가입 및 회원 정보 수정<br>
-                - 음식점 선택 전 음식 조건 filtering, 랜덤 배열 후 카드 선택<br>
-                - KaKao 지도 API를 활용하여 선택 버튼을 추가, 버튼 클릭 시 음식점 이름과 위치를 자동으로 입력 되도록 custom.<br>
-                - Chromedriver와 Selenium을 사용한 이미지 클로링을 통해서 원하는 음식의 이미지 자동 등록<br>
-                - 음식점 정보, 댓글, 후기 등 등록, 조회, 수정, 삭제
-                </p>
-              </div>
-              <hr>
-              <!-- List with bullets -->
-              <ul class="info-list">
-                  <li class="mb-2"><strong>개발 기간</strong><span class="period">2022.09.20 ~ 2022.10.16</span></li>
-                  <li class="mb-2"><strong>참여 인원</strong><span class="period">1 (개인 프로젝트)</span></li>
-                  <li class="mb-2"><strong>Github</strong><span class="period">1 (개인 프로젝트)</span></li>
-              </ul>
-              
-              </div>
-          </div>
-
-        </div>
-
-
-</div>
-          
-        </div>
-      </div>
-      </swal-html>
-      <swal-param name="allowEscapeKey" value="false" />
-      <swal-param
-      name="customClass"
-      value='{ "popup": "my-popup" }' />
-      <swal-function-param
-      name="didOpen"
-      value="popup => console.log(popup)" />
-    </template>
-    <div class="star-rating">
-      <input type="radio" class="star" checked>
-      <input type="radio" class="star" checked>
-      <input type="radio" class="star" checked>
-      <input type="radio" class="star" checked>
-      <input type="radio" class="star" checked>
+  <sw al-title>
+    <h5></h5>
+  </swal-title>
+  <swal-html>
+    <div class="modal-head">
+        <h1>Enjo-Eat Project
+          <span>맛집 추천 사이트</span>
+        </h1>
     </div>
+    <div class="modal-body">
+      <div class="row">
+
+        <div class="col-6">
+          <div id="projectImagesCarousel" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-theme="black">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="/assets/img/enjo_eat_project/main2.png" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="/assets/img/enjo_eat_project/group_selection.png" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="/assets/img/enjo_eat_project/eatery_selection2.png" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="/assets/img/enjo_eat_project/group_all_selection.png" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="/assets/img/enjo_eat_project/group_manage.png" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="/assets/img/enjo_eat_project/eatery_manage.png" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="/assets/img/enjo_eat_project/eatery_create.png" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="/assets/img/enjo_eat_project/eatery_detail.png" class="d-block w-100" alt="...">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#projectImagesCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#projectImagesCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+
+
+        <div class="col-6">
+          <div class="information-container text-start">
+            <div class="info-project">
+              <p>
+                <strong>메뉴나 음식점을 쉽고 재밌게 고를 수 있는 사이트 입니다.</strong><br>
+                또한 지역 혹은 특정 목적 별로 테마를 구분하여 음식점들을 등록하고 사용자들끼리 공유 할 수 있습니다.<br>
+                평소 회사 점심 시간에 식당이나 메뉴를 정하기 힘들었던 상황들이 떠올라 개발하게 되었습니다.
+              </p>
+              <p>
+                입사 후 업무에 사용되는 <span style="color:#FF9800">Django</span>와 <span style="color:#FF9800">Vanilla JS</span> 에 익숙해지기 위해서 Enjo-Eat 프로젝트를 통해서
+                체화 시켰습니다. 덕분에 프로젝트 투입 시 빠르게 적응이 가능했습니다. 
+              </p>
+              <p>
+                또한 사용자의 편의를 위한 기능을 만들고자 노력했습니다.<br>
+                <span style="color:#FF9800">Kakao Map API</span>를 사용한 지도에 버튼을 직접 추가하여 음식점 위치나 이름을 편하게 설정 할 수 있도록 구현 했습니다.
+                그리고 <span style="color:#FF9800">Chromedrvier</span>와 <span style="color:#FF9800">Selenium</span>을 사용한
+                이미지 크롤링을 통해서 사용자가 원하는 이미지를 자동으로 검색하여 등록할 수 있는 기능을 구현 했습니다. 
+              </p>
+              <hr>
+              <ul class="info-list">
+                <li class="mb-2"><strong>사용 기술</strong></li>
+              </ul>
+              <p>Frontend : HTML5, CSS, Vanilla JS, fetch, Bootstrap<br>
+                Backend: Python, Django, Selenium. MariaDB<br>
+                Tool: Visual Studio Code, DBeaver, Github<br>
+                API : Kakao map API
+              </p>
+            </div>
+            <hr>
+            <ul class="info-list">
+              <li class="mb-2"><strong>개발 기간</strong><span class="list-content">2022.09.20 ~ 2022.10.16</span></li>
+              <li class="mb-2"><strong>참여 인원</strong><span class="list-content">1 (개인 프로젝트)</span></li>
+              <li class="mb-2"><strong>Github</strong><a class="github-link list-content" href="https://github.com/hyewwon/Enjo_eat">https://github.com/hyewwon/Enjo_eat</a></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </swal-html>
+  <swal-param name="allowEscapeKey" value="false" />
+  <swal-param name="customClass" value='{ "popup": "my-popup" }' />
+  <swal-function-param name="didOpen" value="popup => console.log(popup)" />
+</template>
+<div class="star-rating">
+<input type="radio" class="star" checked>
+<input type="radio" class="star" checked>
+<input type="radio" class="star" checked>
+<input type="radio" class="star" checked>
+<input type="radio" class="star" checked>
+</div>
