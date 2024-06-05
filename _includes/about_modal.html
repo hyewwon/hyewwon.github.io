@@ -21,28 +21,28 @@
           <div id="enjo-eat-projectImagesCarousel" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-theme="black">
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img src="/assets/img/enjo_eat_project/main2.png" class="d-block w-100" alt="...">
+                <img src="/assets/img/personal_project/enjo_eat/main2.png" class="d-block w-100" alt="...">
               </div>
               <div class="carousel-item">
-                <img src="/assets/img/enjo_eat_project/group_selection.png" class="d-block w-100" alt="...">
+                <img src="/assets/img/personal_project/enjo_eat/group_selection.png" class="d-block w-100" alt="...">
               </div>
               <div class="carousel-item">
-                <img src="/assets/img/enjo_eat_project/eatery_selection2.png" class="d-block w-100" alt="...">
+                <img src="/assets/img/personal_project/enjo_eat/eatery_selection2.png" class="d-block w-100" alt="...">
               </div>
               <div class="carousel-item">
-                <img src="/assets/img/enjo_eat_project/group_all_selection.png" class="d-block w-100" alt="...">
+                <img src="/assets/img/personal_project/enjo_eat/group_all_selection.png" class="d-block w-100" alt="...">
               </div>
               <div class="carousel-item">
-                <img src="/assets/img/enjo_eat_project/group_manage.png" class="d-block w-100" alt="...">
+                <img src="/assets/img/personal_project/enjo_eat/group_manage.png" class="d-block w-100" alt="...">
               </div>
               <div class="carousel-item">
-                <img src="/assets/img/enjo_eat_project/eatery_manage.png" class="d-block w-100" alt="...">
+                <img src="/assets/img/personal_project/enjo_eat/eatery_manage.png" class="d-block w-100" alt="...">
               </div>
               <div class="carousel-item">
-                <img src="/assets/img/enjo_eat_project/eatery_create.png" class="d-block w-100" alt="...">
+                <img src="/assets/img/personal_project/enjo_eat/eatery_create.png" class="d-block w-100" alt="...">
               </div>
               <div class="carousel-item">
-                <img src="/assets/img/enjo_eat_project/eatery_detail.png" class="d-block w-100" alt="...">
+                <img src="/assets/img/personal_project/enjo_eat/eatery_detail.png" class="d-block w-100" alt="...">
               </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#enjo-eat-projectImagesCarousel" data-bs-slide="prev">
@@ -66,13 +66,13 @@
                 평소 회사 점심 시간에 식당이나 메뉴를 정하기 힘들었던 상황들이 떠올라 개발하게 되었습니다.
               </p>
               <p>
-                입사 후 업무에 사용되는 <span style="color:#FF9800">Django</span>와 <span style="color:#FF9800">Vanilla JS</span> 에 익숙해지기 위해서 Enjo-Eat 프로젝트를 통해서
+                입사 후 업무에 사용되는 <span class="emphasis">Django</span>와 <span class="emphasis">Vanilla JS</span> 에 익숙해지기 위해서 Enjo-Eat 프로젝트를 통해서
                 체화 시켰습니다. 덕분에 프로젝트 투입 시 빠르게 적응이 가능했습니다. 
               </p>
               <p>
                 또한 사용자의 편의를 위한 기능을 만들고자 노력했습니다.<br>
-                <span style="color:#FF9800">Kakao Map API</span>를 사용한 지도에 버튼을 직접 추가하여 음식점 위치나 이름을 편하게 설정 할 수 있도록 구현 했습니다.
-                그리고 <span style="color:#FF9800">Chromedrvier</span>와 <span style="color:#FF9800">Selenium</span>을 사용한
+                <span class="emphasis">Kakao Map API</span>를 사용한 지도에 버튼을 직접 추가하여 음식점 위치나 이름을 편하게 설정 할 수 있도록 구현 했습니다.
+                그리고 <span class="emphasis">Chromedrvier</span>와 <span class="emphasis">Selenium</span>을 사용한
                 이미지 크롤링을 통해서 사용자가 원하는 이미지를 자동으로 검색하여 등록할 수 있는 기능을 구현 했습니다. 
               </p>
               <hr>
@@ -103,6 +103,233 @@
   <swal-function-param name="didOpen" value="popup => console.log(popup)" />
 </template>
 
+
+{% comment %} ===== emax ===== {% endcomment %}
+<template id="emax-modal">
+  <sw al-title>
+    <h5></h5>
+  </swal-title>
+  <swal-html>
+    <div class="modal-head">
+        <h1>EMAX
+          <span>시간별 전력 소모량 예측 MLOps</span>
+        </h1>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+
+        <div class="col-6">
+          <div class="project-image">
+            <img src="/assets/img/work_project/emax.png" class="d-block w-100" alt="...">
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="information-container text-start">
+            <div class="info-project">
+              <p>
+                전자 장비의 전력 소모량을 예측하는 AI를 생성하고 데이터를 관리하는 사이트입니다.
+                LSTM이나 Prophet 알고리즘 모델에 장비 전력 소모량을 학습시켜
+                현재부터 시간별, 일별, 월별 예측치 시각화 데이터를 확인할 수 있습니다. 
+                그 외 장비, 알고리즘, 상한선, 학습 데이터, 예측 자동화 등 관리 가능합니다.
+              </p>
+              <hr>
+              <ul class="info-list">
+                <li class="mb-2"><strong>담당 업무</strong></li>
+              </ul>
+              <p>
+                <ul class="work-list">
+                  <li>단독으로 웹 파트를 담당하여 프로젝트 및 테이블을 총괄하였습니다.</li>
+                  <li><span class="emphasis">Django</span>와 <span class="emphasis">Vanilla JS</span>를 사용한 웹 풀스택 개발을 담당했습니다.</li>
+                  <li><span class="emphasis">Maria DB</span>를 사용한 <span class="emphasis">RDBMS</span>를 구현하였습니다.</li>
+                  <li>AI 파트와 협업을 통해서 AI 모듈을 프로젝트에 적용하였습니다.</li>
+                </ul>
+              </p>
+              <hr>
+              <ul class="info-list">
+                <li class="mb-2"><strong>성과</strong></li>
+              </ul>
+              <p>
+                <ul class="work-list">
+                  <li><span class="emphasis">Django-apscheduler</span>를 활용한 Custom Scheduler 모듈을 구축했습니다.</li>
+                  <li>AI 학습 및 추론 데이터 처리 로직을 모듈화 하였습니다.</li>
+                  <li>파일 저장 로직을 모듈화 하였습니다.</li>
+                </ul>
+              </p>
+            </div>
+            <hr>
+            <ul class="info-list">
+              <li class="mb-2"><strong>개발 기간</strong><span class="list-content">2023.11 ~ 2023.12</span></li>
+              <li class="mb-2"><strong>참여 인원</strong><span class="list-content">2</span></li>
+              <li class="mb-2"><strong>담당 파트</strong><span class="list-content">웹 풀스택</span></li>
+              <li class="mb-2"><strong>기여도</strong><span class="list-content">
+                <div class="star-rating">
+                <input type="radio" class="star" checked>
+                <input type="radio" class="star" checked>
+                <input type="radio" class="star" checked>
+                <input type="radio" class="star" checked>
+                <input type="radio" class="star" disabled>
+                </div>
+              </span></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </swal-html>
+  <swal-param name="allowEscapeKey" value="false" />
+  <swal-param name="customClass" value='{ "popup": "my-popup" }' />
+  <swal-function-param name="didOpen" value="popup => console.log(popup)" />
+</template>
+
+
+{% comment %} ===== build performance ===== {% endcomment %}
+<template id="build-performance-modal">
+  <sw al-title>
+    <h5></h5>
+  </swal-title>
+  <swal-html>
+    <div class="modal-head">
+        <h1>Build Performance
+          <span>BuildPay 앱 연동 채굴기 관리 앱</span>
+        </h1>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+
+        <div class="col-6">
+          <div id="buildpay-image">
+            <img src="/assets/img/buildpay_project/main.png" class="d-block w-100" alt="...">
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="information-container text-start">
+            <div class="info-project">
+              <p>
+                전자 지갑 BuildPay의 연동 앱으로 10분에 한 번씩 코인을 채굴하는
+                채굴기 관리 앱 입니다. BuildPay의 전자 지갑을 연동하여 채굴기 입출금이 가능합니다.
+              </p>
+              <hr>
+              <ul class="info-list">
+                <li class="mb-2"><strong>담당 업무</strong></li>
+              </ul>
+              <p>
+                - <span class="emphasis">Django</span>와 <span class="emphasis">Vanilla JS</span>를 사용한 관리자 웹 페이지 풀스택 개발을 담당했습니다.<br>
+                - <span class="emphasis">GraphQL</span>을 사용한 Buildpay 앱 백엔드 파트 API 개발을 담당했습니다.<br> 
+                - <span class="emphasis">Maria DB</span>를 사용한 <span class="emphasis">RDBMS</span>를 구현하였습니다.<br>
+                - <span class="emphasis">Celery</span>의 스케줄링을 사용하여 채굴 기능을 구축했습니다.
+                - <span class="emphasis">Gunicorn</span>과 <span class="emphasis">Nginix</span>를 사용한 웹 서버 관리 및 배포 하였습니다.<br>
+              </p>
+              <hr>
+              <ul class="info-list">
+                <li class="mb-2"><strong>성과</strong></li>
+              </ul>
+              <p>
+                Maria DB Event Scheduler에서 Celery 스케줄링으로 변경
+              </p>
+            </div>
+            <hr>
+            <ul class="info-list">
+              <li class="mb-2"><strong>개발 기간</strong><span class="list-content">2023.08 ~ 2023.10</span></li>
+              <li class="mb-2"><strong>참여 인원</strong><span class="list-content">2</span></li>
+              <li class="mb-2"><strong>담당 파트</strong><span class="list-content">웹 풀스택, 앱 백엔드</span></li>
+              <li class="mb-2"><strong>기여도</strong><span class="list-content">
+                <div class="star-rating">
+                <input type="radio" class="star" checked>
+                <input type="radio" class="star" checked>
+                <input type="radio" class="star" checked>
+                <input type="radio" class="star" disabled>
+                <input type="radio" class="star" disabled>
+                </div>
+              </span></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </swal-html>
+  <swal-param name="allowEscapeKey" value="false" />
+  <swal-param name="customClass" value='{ "popup": "my-popup" }' />
+  <swal-function-param name="didOpen" value="popup => console.log(popup)" />
+</template>
+
+
+{% comment %} ===== envisager ===== {% endcomment %}
+<template id="envisager-modal">
+  <sw al-title>
+    <h5></h5>
+  </swal-title>
+  <swal-html>
+    <div class="modal-head">
+        <h1>Envisager
+          <span>디지털 작품 구매 및 판매 플랫폼</span>
+        </h1>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+
+        <div class="col-6">
+          <div id="buildpay-image">
+            <img src="/assets/img/buildpay_project/main.png" class="d-block w-100" alt="...">
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="information-container text-start">
+            <div class="info-project">
+              <p>
+                작품인증등록, 작품 판매 및 컬렉팅, 굿즈제품화, 전시 등 협업을 통한 예술 작품 생태계를 구축하는 예술 대중화 플랫폼 입니다
+                디지털 작품을 등록, 관리, 판매, 구매가 가능합니다.
+              </p>
+              <hr>
+              <ul class="info-list">
+                <li class="mb-2"><strong>담당 업무</strong></li>
+              </ul>
+              <p>
+                - <span class="emphasis">Django</span>와 <span class="emphasis">Vanilla JS</span>를 사용한 관리자 웹 페이지 풀스택 개발을 담당했습니다.<br>
+                - <span class="emphasis">GraphQL</span>을 사용한 Buildpay 앱 백엔드 파트 API 개발을 담당했습니다.<br> 
+                - <span class="emphasis">Maria DB</span>를 사용한 <span class="emphasis">RDBMS</span>를 구현하였습니다.<br>
+                - <span class="emphasis">Celery</span>의 스케줄링을 사용하여 채굴 기능을 구축했습니다.
+                - <span class="emphasis">Gunicorn</span>과 <span class="emphasis">Nginx</span>를 사용한 웹 서버 관리 및 배포 하였습니다.<br>
+              </p>
+              <hr>
+              <ul class="info-list">
+                <li class="mb-2"><strong>성과</strong></li>
+              </ul>
+              <p>
+                Session 사용자 인증 방식에서 JWT 사용자 인증 방식으로 변경
+              </p>
+            </div>
+            <hr>
+            <ul class="info-list">
+              <li class="mb-2"><strong>개발 기간</strong><span class="list-content">2023.08 ~ 2023.10</span></li>
+              <li class="mb-2"><strong>참여 인원</strong><span class="list-content">2</span></li>
+              <li class="mb-2"><strong>담당 파트</strong><span class="list-content">웹 풀스택, 앱 백엔드</span></li>
+              <li class="mb-2"><strong>기여도</strong><span class="list-content">
+                <div class="star-rating">
+                <input type="radio" class="star" checked>
+                <input type="radio" class="star" checked>
+                <input type="radio" class="star" checked>
+                <input type="radio" class="star" disabled>
+                <input type="radio" class="star" disabled>
+                </div>
+              </span></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </swal-html>
+  <swal-param name="allowEscapeKey" value="false" />
+  <swal-param name="customClass" value='{ "popup": "my-popup" }' />
+  <swal-function-param name="didOpen" value="popup => console.log(popup)" />
+</template>
+
+
 {% comment %} ===== buildpay ===== {% endcomment %}
 <template id="buildpay-modal">
   <sw al-title>
@@ -127,28 +354,31 @@
           <div class="information-container text-start">
             <div class="info-project">
               <p>
-                여러 가상 화폐를 간편하게 관리할 수 있는 전자 지갑 앱 입니다.
-                지갑에서 코인 입출금이 가능하고 일부 코인은 포인트로 전환하여
-                BuildPay 전용 쇼핑몰 (Build Mall)에서 사용이 가능합니다.
-              </p>
-              <p>
-                입사 후 업무에 사용되는 <span style="color:#FF9800">Django</span>와 <span style="color:#FF9800">Vanilla JS</span> 에 익숙해지기 위해서 Enjo-Eat 프로젝트를 통해서
-                체화 시켰습니다. 덕분에 프로젝트 투입 시 빠르게 적응이 가능했습니다. 
-              </p>
-              <p>
-                또한 사용자의 편의를 위한 기능을 만들고자 노력했습니다.<br>
-                <span style="color:#FF9800">Kakao Map API</span>를 사용한 지도에 버튼을 직접 추가하여 음식점 위치나 이름을 편하게 설정 할 수 있도록 구현 했습니다.
-                그리고 <span style="color:#FF9800">Chromedrvier</span>와 <span style="color:#FF9800">Selenium</span>을 사용한
-                이미지 크롤링을 통해서 사용자가 원하는 이미지를 자동으로 검색하여 등록할 수 있는 기능을 구현 했습니다. 
+                <strong>
+                  여러 가상 화폐를 간편하게 관리할 수 있는 전자 지갑 앱 입니다.
+                  지갑에서 코인 입출금이 가능하고 일부 코인은 포인트로 전환하여
+                  BuildPay 전용 쇼핑몰 (Build Mall)에서 사용이 가능합니다.
+                </strong>
               </p>
               <hr>
               <ul class="info-list">
-                <li class="mb-2"><strong>사용 기술</strong></li>
+                <li class="mb-2"><strong>담당 업무</strong></li>
               </ul>
               <p>
-                <span class="skill-type">Backend</span> Python, Django, GraphQL, Celery, Ngnix, Linux, MariaDB<br>
-                <span class="skill-type">Frontend</span>  HTML5, CSS, Vanilla JS, fetch, Chart JS, Bootstrap<br>
-                <span class="skill-type">Tool</span>  Visual Studio Code, DBeaver, Github<br>
+                - <span class="emphasis">Django</span>와 <span class="emphasis">Vanilla JS</span>를 사용한 웹 페이지 풀스택 개발을 담당했습니다.<br>
+                - <span class="emphasis">GraphQL</span>을 사용한 Buildpay 앱 백엔드 파트 API 개발을 담당했습니다.<br> 
+                - 빌드몰 웹 백엔드 파트 <span class="emphasis">REST API</span> 개발을 담당했습니다.<br>
+                - <span class="emphasis">Maria DB</span>를 사용한 <span class="emphasis">RDBMS</span>를 구현하였습니다.<br>
+                - <span class="emphasis">Gunicorn</span>과 <span class="emphasis">Nginix</span>를 사용한 웹 서버 관리 및 배포 하였습니다.<br>
+              </p>
+              <hr>
+              <ul class="info-list">
+                <li class="mb-2"><strong>성과</strong></li>
+              </ul>
+              <p>
+                데이터 목록 엑셀 저장 기능 구축 및 모듈화 :
+                Pandas와 Excelwriter를 사용한 엑셀 저장, 컬럼 추가 및 수정 기능 등을 구축하고 모듈화 하여 사내 전반적인 프로젝트에 활용되었습니다.<br>
+                추천인 스탬프 정립, 쿠폰 발행 로직 개발<br>
               </p>
             </div>
             <hr>
@@ -156,6 +386,7 @@
               <li class="mb-2"><strong>개발 기간</strong><span class="list-content">2022.08 ~ 2023.09</span></li>
               <li class="mb-2"><strong>참여 인원</strong><span class="list-content">4</span></li>
               <li class="mb-2"><strong>담당 파트</strong><span class="list-content">웹 풀스택, 앱 백엔드</span></li>
+              <li class="mb-2"><strong>사용 Tool</strong><span class="list-content">Visual Studio Code, DBeaver, Github</span></li>
               <li class="mb-2"><strong>기여도</strong><span class="list-content">
                 <div class="star-rating">
                 <input type="radio" class="star" checked>

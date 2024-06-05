@@ -54,6 +54,15 @@
   font-style: normal;
 }
 
+/* work project image */
+
+.project-image{
+  border : 2px solid rgb(60, 179, 113);
+  border-radius: 5px;
+  width:600px;
+  margin:30px;
+}
+
 /*  project information  */
 .information-container{
   margin: 30px;
@@ -61,6 +70,10 @@
   font-size: medium;
 }
 
+.emphasis{
+  color: #FF9800;
+  font-weight: 500;
+}
 
 .info-list {
   list-style: none;
@@ -87,7 +100,12 @@
   padding-left:10px;
 }
 
+.work-list{
+  list-style-type: circle;
+}
+
 .skill-type{
+  font-style: italic;
   font-weight: bold;
 }
 
@@ -130,15 +148,6 @@
 
 
 /* =========== buildpay ============ */
-
-/* project image */
-#buildpay-image{
-  border : 2px solid rgb(60, 179, 113);
-  border-radius: 5px;
-  width:600px;
-  margin:30px;
-}
-
 
 
 
