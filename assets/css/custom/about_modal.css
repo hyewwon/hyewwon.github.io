@@ -54,12 +54,18 @@
   font-style: normal;
 }
 
+.project-image-container{
+  display: flex;
+  justify-content: center;
+}
+
+
 /* work project image */
 
 .project-image{
   border : 2px solid rgb(60, 179, 113);
   border-radius: 5px;
-  width:600px;
+  width:500px;
   margin:30px;
 }
 
@@ -100,9 +106,20 @@
   padding-left:10px;
 }
 
+
 .work-list{
   list-style-type: circle;
 }
+  
+.work-title{
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.work-subtitle{
+  font-weight: bold;
+}
+
 
 .skill-type{
   font-style: italic;
@@ -145,9 +162,6 @@
   margin:30px;
 }
 
-
-
-/* =========== buildpay ============ */
 
 
 

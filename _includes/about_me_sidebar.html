@@ -1,0 +1,57 @@
+<!-- The Side Bar -->
+
+<aside aria-label="Sidebar" id="sidebar" class="d-flex flex-column align-items-end">
+    <header class="profile-wrapper">
+      <a href="javascript:;" id="avatar" class="rounded-circle">
+        {%- if site.avatar != empty and site.avatar -%}
+          {%- capture avatar_url -%}
+            {% include img-url.html src=site.avatar %}
+          {%- endcapture -%}
+          <img src="{{- avatar_url -}}" width="112" height="112" alt="avatar" onerror="this.style.display='none'">
+        {%- endif -%}
+      </a>
+  
+      <h1 class="site-title">
+        <a href="javascript:;">김혜원</a>
+      </h1>
+      <p class="site-subtitle fst-italic mb-0">안녕하세요! 김혜원 입니다.</p>
+    </header>
+  
+    <nav class="flex-column flex-grow-1 w-100 ps-0">
+      <ul class="nav">
+        <!-- phone no -->
+        <li class="nav-item">
+          <a href="javascript:;" class="nav-link" onclick="CopyText('phone')">
+            <i class="fa-solid fa-phone"></i> 
+            <span>010 - 8740 - 4841</span>
+          </a>
+        </li>
+        <!-- email -->
+        <li class="nav-item">
+          <a href="javascript:;" class="nav-link" onclick="CopyText('email')">
+            <i class="fa-solid fa-envelope"></i> 
+            <span>rlagp424@gmail.com</span>
+            </a>
+        </li>
+        <!-- github link -->
+        <li class="nav-item">
+          <a href="https://github.com/hyewwon" class="nav-link">
+            <i class="fa-brands fa-github"></i>
+            <span>hyewwon</span>
+            </a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+  <script>
+    function CopyText(type){
+        var text = ''
+        if(type == "phone"){
+            text = '01087404841'
+        }else{
+            text = 'rlagp424@gmail.com'
+        }
+        navigator.clipboard.writeText(text); 
+    }
+  </script>
+ 

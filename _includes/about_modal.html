@@ -3,6 +3,378 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
 
+{% comment %} ===== my career ====== {% endcomment %}
+<template id="my-career-modal">
+  <sw al-title>
+    <h5></h5>
+  </swal-title>
+  <swal-html>
+    <div class="modal-head">
+        <h1>My Career</h1>
+    </div>
+    <div class="modal-body">
+        <div class="information-container text-start">
+          <h2 sytle="font-weight:bold;">GNC Solution</h2>
+          <p style="font-size:16px;">2022.08.18 ~ 현재</p>
+          <div class="info-project">
+            <p>
+              기본적으로는 Django 기반의 풀 스택 개발을 총괄 담당하였으며, 신규 기술 스택(Next.js 등)과 관련한 개발 및 교육까지 전담하였습니다. 또한, 주로 복잡하고 어려운 작업에 관한 기술 검토를 통해 기획을 보조하며, 동료 개발자의 작업에 대한 코드 리뷰나 신입 개발자의 사수 역할과 같은 기타 업무까지 함께 담당하였습니다.
+            </p>
+            <hr>
+            <ul class="info-list">
+              <li class="mb-2">사용 기술</li>
+            </ul>
+            <ul class="work-list">
+              <li>Backend : Python, Django, MariaDB, GraphQL, Django REST Framework, Celery, Linux</li>
+              <li>Frontend : Vanilla JS, jQuery, HTML5, CSS3, Bootstrap</li>
+              <li>IDE : Visual Studio Code, dBeaver</li>
+              <li>Collaboration : Github, Slack</li>
+            </ul>
+            <hr>
+            <ul class="info-list">
+              <li class="mb-2">웹 풀스택, 앱 백엔드 개발 담당</li>
+            </ul>
+            <ul class="work-list">
+              <li>사내 및 외주 프로젝트 개발 : 사용자, 관리자 웹 페이지 풀스택 개발 / 앱 API 백엔드 개발</li>
+              <li>스케줄러 task 로직 개발</li>
+              <li>자주 쓰이는 코드 모듈화를 통한 리펙토링</li>
+              <li>앱 프론트앤드 파트, 블록체인 파트, AI 파트와 협업</li>
+              <li>모듈을 생성하여</li>
+              <li>서버 배포 및 데이터 백업 작업</li>
+              <li>외주 업체 미팅 참여 (프로젝트 기획, 유지 보수, 추가 개발)</li>
+              <li>내부 프로젝트 기획, 설계 참여</li>
+            </ul>
+            <ul class="info-list">
+              <li class="mb-2">개발 이외 기타 업무 담당</li>
+            </ul>
+            <ul class="work-list">
+              <li>내부 프로젝트 팀원 지도 및 피드백</li>
+              <li>mlops 프로젝트 지도 및 피드백</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+  </swal-html>
+  <swal-param name="allowEscapeKey" value="false" />
+  <swal-param name="customClass" value='{ "popup": "my-popup" }' />
+  <swal-function-param name="didOpen" value="popup => console.log(popup)" />
+</template>
+
+
+{% comment %} ===== emax ===== {% endcomment %}
+<template id="emax-modal">
+  <sw al-title>
+    <h5></h5>
+  </swal-title>
+  <swal-html>
+    <div class="modal-head">
+        <h1>EMAX
+          <span>시간별 전력 소모량 예측 MLOps</span>
+        </h1>
+    </div>
+    <div class="modal-body">
+        <div class="project-image-container">
+          <div class="project-image">
+            <img src="/assets/img/work_project/emax.png" alt="...">
+          </div>
+        </div>
+
+        <div class="information-container text-start">
+          <div class="info-project">
+            <p>
+              <strong>전자 장비의 전력 소모량을 예측하는 AI를 생성하고 데이터를 관리하는 사이트입니다.</strong>
+              LSTM이나 Prophet 알고리즘 모델에 장비 전력 소모량을 학습시켜
+              현재부터 시간별, 일별, 월별 예측치 시각화 데이터를 확인할 수 있습니다. 
+              그 외 장비, 알고리즘, 상한선, 학습 데이터, 예측 자동화 등 관리 가능합니다.
+            </p>
+            <hr>
+            <ul class="info-list">
+              <li class="mb-2 work-title">담당 업무</li>
+            </ul>
+            <ul class="work-list">
+              <li>단독으로 웹 파트를 담당하여 프로젝트 및 DB 테이블을 총괄하였습니다.</li>
+              <li><span class="emphasis">Django</span>와 <span class="emphasis">Vanilla JS</span>를 사용한 웹 풀스택 개발을 담당했습니다.</li>
+              <li><span class="emphasis">Maria DB</span>를 사용한 <span class="emphasis">RDBMS</span>를 구현하였습니다.</li>
+              <li><span class="emphasis">Python</span>과 <span class="emphasis">Pandas</span>를 사용하여 모델 학습 및 추론 로직, 모델 파일 저장 로직, 예측 데이터 처리 로직 모듈화 작업을 했습니다.</li>
+              <li>AI 파트와 협업을 통해서 AI 모듈을 프로젝트에 적용하였습니다.</li>
+            </ul>
+            <hr>
+            <ul class="info-list">
+              <li class="mb-2 work-title">성과</li>
+            </ul>
+            <ul class="work-list">
+              <li class="mb-1"><span class="work-subtitle">문제 해결</span><br>
+              Maria DB Event Scheuduler를 통한 기존 스케줄링 방식은 사용자가 직접 스케줄링 시스템을 다룰 수 없고 유지 보수가 힘들었습니다. <br> 이를 해결하기 위해
+              <span class="emphasis">Django-apscheduler</span>를 활용한 Custom Scheduler 모듈을 구축하여 스케줄링 방식을 변경 하였습니다.
+              </li>
+              <li><span class="work-subtitle">결과</span>
+                <p style="margin-bottom:7px;">1. 스케줄러 관리 효율 50% 향상 : Django 프로젝트와 통합 가능하여 관리가 편해지고 유연한 확장과 변경이 용이해졌습니다.</p>
+                <p>2. 사용자 만족도 및 프로젝트 완성도 향상 : 작업 스케줄링을 동적으로 변경 가능하고 사용자가 시스템을 다룰 수 있는 화면 및 인터페이스를 구현할 수 있었습니다.</p>        
+              </li>
+            </ul>
+          </div>
+          <hr>
+          <ul class="info-list">
+            <li class="mb-2"><strong>개발 기간</strong><span class="list-content">2023.11 ~ 2023.12</span></li>
+            <li class="mb-2"><strong>참여 인원</strong><span class="list-content">2</span></li>
+            <li class="mb-2"><strong>담당 파트</strong><span class="list-content">웹 풀스택</span></li>
+            <li class="mb-2"><strong>기여도</strong><span class="list-content">
+              <div class="star-rating">
+              <input type="radio" class="star" checked>
+              <input type="radio" class="star" checked>
+              <input type="radio" class="star" checked>
+              <input type="radio" class="star" checked>
+              <input type="radio" class="star" disabled>
+              </div>
+            </span></li>
+          </ul>
+        </div>
+
+    </div>
+  </swal-html>
+  <swal-param name="allowEscapeKey" value="false" />
+  <swal-param name="customClass" value='{ "popup": "my-popup" }' />
+  <swal-function-param name="didOpen" value="popup => console.log(popup)" />
+</template>
+
+
+{% comment %} ===== build performance ===== {% endcomment %}
+<template id="build-performance-modal">
+  <sw al-title>
+    <h5></h5>
+  </swal-title>
+  <swal-html>
+    <div class="modal-head">
+        <h1>Build Performance
+          <span>BuildPay 앱 연동 채굴기 관리 앱</span>
+        </h1>
+    </div>
+    <div class="modal-body">
+        <div class="project-image-container">
+          <div class="project-image">
+            <img src="/assets/img/work_project/build_performance.png" alt="...">
+          </div>
+        </div>
+        <div class="information-container text-start">
+          <div class="info-project">
+            <p>
+              <strong>전자 지갑 BuildPay의 연동 앱으로 10분에 한 번씩 코인을 채굴하는 채굴기 관리 앱 입니다.</strong>
+              10 분에 한 번씩 채굴기 등급에 따른 채굴량이 축적되며 BuildPay 전자 지갑이 연동되어 이를 통해 채굴기 입출금이 가능합니다.
+            </p>
+            <hr>
+            <ul class="info-list">
+              <li class="mb-2 work-title">담당 업무</li>
+            </ul>
+            <ul class="work-list">
+              <li><span class="emphasis">Django</span>와 <span class="emphasis">Vanilla JS</span>를 사용한 관리자 웹 페이지 풀스택 개발을 담당했습니다.</li>
+              <li>APP Frontend와 협업하여 <span class="emphasis">GraphQL</span>을 사용한 앱 백엔드 파트 API 개발을 담당했습니다.</li>
+              <li><span class="emphasis">Maria DB</span>를 사용한 <span class="emphasis">RDBMS</span>를 구현하였습니다.</li>
+              <li><span class="emphasis">Celery</span> task 로직 생성 : 10분당 등급별 채굴 로직, 추천인 보상 분배 로직</li>
+              <li><span class="emphasis">Gunicorn</span>과 <span class="emphasis">Nginix</span>를 사용한 웹 서버 관리 및 배포 하였습니다.</li>
+            </ul>
+            <hr>
+            <ul class="info-list">
+              <li class="mb-2 work-title">성과</li>
+            </ul>
+            <ul class="work-list">
+              <li class="mb-1"><span class="work-subtitle">문제 해결</span><br>
+              Maria DB Event Scheduler를 통한 기존 스케줄링 방식은 로직이 복잡하고 유지 보수가 힘들었습니다.
+              이를 해결하기 위해 <span class="emphasis">Celery</span>의 <span class="emphasis">Celery Beat</span>를 사용하여 스케줄링 방식을 변경하였습니다.
+              </li>
+              <li><span class="work-subtitle">결과</span>
+                <p style="margin-bottom:7px;">
+                  1. 스케줄러 관리 효율 및 유지 보수성 50% 향상 : SQL 로직을 Python 로직으로 변경하여 가독성을 높히고 단순화 시켰습니다. 그리고
+                  스케줄러 관리 및 스케줄링 로직을 Django 프로젝트와 통합하여 관리할 수 있어 편하고 유연한 시스템 변경과 확장 용이해졌습니다.
+                </p>
+                <p>
+                  2. 오류 발견 및 해결 시간 60% 감소 : 스케줄링 작업 실행 내역과 오류 로그를 체계적으로 기록이 가능하여 이슈 분석 정확도가 향상 되고 신속하게 대응 할 수 있었습니다.        
+                </p>
+              </li>
+            </ul>
+          </div>
+          <hr>
+          <ul class="info-list">
+            <li class="mb-2"><strong>개발 기간</strong><span class="list-content">2023.08 ~ 2023.10</span></li>
+            <li class="mb-2"><strong>참여 인원</strong><span class="list-content">2</span></li>
+            <li class="mb-2"><strong>담당 파트</strong><span class="list-content">웹 풀스택, 앱 백엔드</span></li>
+            <li class="mb-2"><strong>기여도</strong><span class="list-content">
+              <div class="star-rating">
+              <input type="radio" class="star" checked>
+              <input type="radio" class="star" checked>
+              <input type="radio" class="star" checked>
+              <input type="radio" class="star" disabled>
+              <input type="radio" class="star" disabled>
+              </div>
+            </span></li>
+          </ul>
+        </div>
+
+    </div>
+  </swal-html>
+  <swal-param name="allowEscapeKey" value="false" />
+  <swal-param name="customClass" value='{ "popup": "my-popup" }' />
+  <swal-function-param name="didOpen" value="popup => console.log(popup)" />
+</template>
+
+
+{% comment %} ===== envisager ===== {% endcomment %}
+<template id="envisager-modal">
+  <sw al-title>
+    <h5></h5>
+  </swal-title>
+  <swal-html>
+    <div class="modal-head">
+        <h1>Envisager
+          <span>디지털 작품 구매 및 판매 플랫폼</span>
+        </h1>
+    </div>
+    <div class="modal-body">
+        <div class="project-image-container">
+          <div class="project-image">
+            <img src="/assets/img/work_project/envisager.png" alt="...">
+          </div>
+        </div>
+
+        <div class="information-container text-start">
+          <div class="info-project">
+            <p>
+              <strong>작품인증등록, 작품 판매 및 컬렉팅, 굿즈제품화, 전시 등 협업을 통한 예술 작품 생태계를 구축하는 예술 대중화 플랫폼 입니다.</strong>
+              작가 신청을 통해서 디지털 작품을 등록, 판매 및 구매가 가능하고 사용자들은 작품 구매가 가능합니다.
+            </p>
+            <hr>
+            <ul class="info-list">
+              <li class="mb-2 work-title">담당 업무</li>
+            </ul>
+            <ul class="work-list">
+              <li><span class="emphasis">Django</span>와 <span class="emphasis">Vanilla JS</span>를 사용한 웹 페이지 풀스택 개발을 담당했습니다.</li>
+              <li>APP Frontend와 협업하여 <span class="emphasis">Django REST Framework</span>을 사용한 앱 백엔드 파트 API 개발을 담당했습니다.</li>
+              <li><span class="emphasis">Maria DB</span>를 사용한 <span class="emphasis">RDBMS</span>를 구현하였습니다.</li>
+              <li><span class="emphasis">Gunicorn</span>과 <span class="emphasis">Nginix</span>를 사용한 웹 서버 관리 및 배포 하였습니다.</li>
+            </ul>
+            <hr>
+            <ul class="info-list">
+              <li class="mb-2 work-title">성과</li>
+            </ul>
+            <ul class="work-list">
+              <li class=><span class="work-subtitle">문제 해결</span><br>
+              기존의 세션 기반 사용자 인증 방식은 서버에 세션 정보를 저장해야 하는 부담이 있고, 확장성이 떨어졌습니다. 
+              이를 해결하기 위해 <span class="emphasis">DRF</span>의 <span class="emphasis">SimpleJWT</span>를 사용하여 JWT 토큰 인증 방식으로 변경하였습니다.
+              </li>
+              <li><span class="work-subtitle">결과</span>
+                <p style="margin-bottom:7px;">
+                  1. 서버 부하 20% 감소 : 세션 정보를 서버에 저장하지 않고, 클라이언트 측에서 JWT 토큰을 사용하도록 하여 서버 부하를 줄였습니다.
+                </p>
+                <p>
+                  2. 인증 관련 로직 단순화 및 유지 보수성 30% 향상 : APP 인증과 웹 인증 방식 통합이 가능해져 전반적인 코드를 단순화하고 일관성이 향상되어 유지 보수성을 향상 시켰습니다.        
+                </p>
+              </li>
+            </ul>
+          </div>
+          <hr>
+          <ul class="info-list">
+            <li class="mb-2"><strong>개발 기간</strong><span class="list-content">2023.08 ~ 2023.10</span></li>
+            <li class="mb-2"><strong>참여 인원</strong><span class="list-content">2</span></li>
+            <li class="mb-2"><strong>담당 파트</strong><span class="list-content">웹 풀스택, 앱 백엔드</span></li>
+            <li class="mb-2"><strong>기여도</strong><span class="list-content">
+              <div class="star-rating">
+              <input type="radio" class="star" checked>
+              <input type="radio" class="star" checked>
+              <input type="radio" class="star" checked>
+              <input type="radio" class="star" disabled>
+              <input type="radio" class="star" disabled>
+              </div>
+            </span></li>
+          </ul>
+        </div>
+
+    </div>
+  </swal-html>
+  <swal-param name="allowEscapeKey" value="false" />
+  <swal-param name="customClass" value='{ "popup": "my-popup" }' />
+  <swal-function-param name="didOpen" value="popup => console.log(popup)" />
+</template>
+
+
+{% comment %} ===== buildpay ===== {% endcomment %}
+<template id="buildpay-modal">
+  <sw al-title>
+    <h5></h5>
+  </swal-title>
+  <swal-html>
+    <div class="modal-head">
+        <h1>Buildpay
+          <span>가상 화폐 전자 지갑 플랫폼</span>
+        </h1>
+    </div>
+    <div class="modal-body">
+      <div class="project-image-container">
+        <div class="project-image">
+          <img src="/assets/img/work_project/buildpay.png" alt="...">
+        </div>
+      </div>
+      <div class="information-container text-start">
+        <div class="info-project">
+          <p>
+            <strong>여러 가상 화폐를 간편하게 관리할 수 있는 전자 지갑 앱 입니다.</strong>
+              여러 종류의 가상 화폐를 멀티 지갑으로 관리가 가능하며 간편한 코인 입출금이 가능합니다.
+              일부 코인은 포인트로 전환하여 Buildpay 전용 쇼핑몰 (Build Mall)에서 사용이 가능합니다.
+          </p>
+          <hr>
+          <ul class="info-list">
+            <li class="mb-2 work-title">담당 업무</li>
+          </ul>
+          <ul class="work-list">
+            <li><span class="emphasis">Django</span>와 <span class="emphasis">Vanilla JS</span>를 사용한 관리자 웹 페이지 풀스택 개발을 담당했습니다.</li>
+            <li>APP Frontend와 협업하여 <span class="emphasis">GraphQL</span>을 사용한 앱 백엔드 파트 API 개발을 담당했습니다.</li>
+            <li>빌드몰 웹 백엔드 파트 <span class="emphasis">REST API</span> 개발을 담당했습니다.</li>
+            <li><span class="emphasis">Maria DB</span>를 사용한 <span class="emphasis">RDBMS</span>를 구현하였습니다.</li>
+            <li><span class="emphasis">Gunicorn</span>과 <span class="emphasis">Nginix</span>를 사용한 웹 서버 관리 및 배포 하였습니다.</li>
+          </ul>
+          <hr>
+          <ul class="info-list">
+            <li class="mb-2 work-title">성과</li>
+          </ul>
+          <ul class="work-list">
+            <li class="mb-1"><span class="work-subtitle">문제 해결</span><br>
+            여러 프로젝트에서 데이터 목록을 엑셀 파일로 저장하는 기능이 필요했으나, 일관성 없는 구현 방식과 기능 부족으로 인해 비효율적이었습니다.
+            이를 해결하기 위해 <span class="emphasis">Pandas</span>와 <span class="emphasis">Excelwriter</span>를 사용하여 데이터를 엑셀 파일로 저장하는 기능을 구축하고, 이를 모듈화하여 사내 전반적인 프로젝트에서 일관성 있게 활용할 수 있도록 하였습니다.
+            </li>
+            <li><span class="work-subtitle">결과</span>
+              <p style="margin-bottom:7px;">
+                1. 코드 일관성 및 유지 보수성이 40% 향상 : 모듈화를 통해 사내 모든 프로젝트에서 일관된 방식으로 엑셀 저장 기능을 활용할 수 있도록 하였습니다.
+              </p>
+              <p>
+                2. 인증 관련 로직 단순화 및 유지 보수성 30% 향상 : APP 인증과 웹 인증 방식 통합이 가능해져 전반적인 코드를 단순화하고 일관성이 향상되어 유지 보수성을 향상 시켰습니다.        
+              </p>
+            </li>
+          </ul>
+        </div>
+        <hr>
+        <ul class="info-list">
+          <li class="mb-2"><strong>개발 기간</strong><span class="list-content">2022.08 ~ 2023.09</span></li>
+          <li class="mb-2"><strong>참여 인원</strong><span class="list-content">4</span></li>
+          <li class="mb-2"><strong>담당 파트</strong><span class="list-content">웹 풀스택, 앱 백엔드</span></li>
+          <li class="mb-2"><strong>사용 Tool</strong><span class="list-content">Visual Studio Code, DBeaver, Github</span></li>
+          <li class="mb-2"><strong>기여도</strong><span class="list-content">
+            <div class="star-rating">
+            <input type="radio" class="star" checked>
+            <input type="radio" class="star" checked>
+            <input type="radio" class="star" checked>
+            <input type="radio" class="star" disabled>
+            <input type="radio" class="star" disabled>
+            </div>
+          </span></li>
+        </ul>
+      </div>
+    </div>
+  </swal-html>
+  <swal-param name="allowEscapeKey" value="false" />
+  <swal-param name="customClass" value='{ "popup": "my-popup" }' />
+  <swal-function-param name="didOpen" value="popup => console.log(popup)" />
+</template>
+
+
+
 {% comment %} ====== enjo-eat ====== {% endcomment %}
 <template id="enjo-eat-modal">
   <sw al-title>
@@ -15,9 +387,7 @@
         </h1>
     </div>
     <div class="modal-body">
-      <div class="row">
-
-        <div class="col-6">
+        <div class="project-image-container">
           <div id="enjo-eat-projectImagesCarousel" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-theme="black">
             <div class="carousel-inner">
               <div class="carousel-item active">
@@ -56,351 +426,41 @@
           </div>
         </div>
 
-
-        <div class="col-6">
-          <div class="information-container text-start">
-            <div class="info-project">
-              <p>
-                <strong>메뉴나 음식점을 쉽고 재밌게 고를 수 있는 사이트 입니다.</strong><br>
-                또한 지역 혹은 특정 목적 별로 테마를 구분하여 음식점들을 등록하고 사용자들끼리 공유 할 수 있습니다.<br>
-                평소 회사 점심 시간에 식당이나 메뉴를 정하기 힘들었던 상황들이 떠올라 개발하게 되었습니다.
-              </p>
-              <p>
-                입사 후 업무에 사용되는 <span class="emphasis">Django</span>와 <span class="emphasis">Vanilla JS</span> 에 익숙해지기 위해서 Enjo-Eat 프로젝트를 통해서
-                체화 시켰습니다. 덕분에 프로젝트 투입 시 빠르게 적응이 가능했습니다. 
-              </p>
-              <p>
-                또한 사용자의 편의를 위한 기능을 만들고자 노력했습니다.<br>
-                <span class="emphasis">Kakao Map API</span>를 사용한 지도에 버튼을 직접 추가하여 음식점 위치나 이름을 편하게 설정 할 수 있도록 구현 했습니다.
-                그리고 <span class="emphasis">Chromedrvier</span>와 <span class="emphasis">Selenium</span>을 사용한
-                이미지 크롤링을 통해서 사용자가 원하는 이미지를 자동으로 검색하여 등록할 수 있는 기능을 구현 했습니다. 
-              </p>
-              <hr>
-              <ul class="info-list">
-                <li class="mb-2"><strong>사용 기술</strong></li>
-              </ul>
-              <p>
-                Backend: Python, Django, MariaDB, Selenium<br>
-                Frontend : HTML5, CSS, Vanilla JS, fetch, Bootstrap<br>
-                Tool: Visual Studio Code, DBeaver, Github<br>
-                API : Kakao map API
-              </p>
-            </div>
+        <div class="information-container text-start">
+          <div class="info-project">
+            <p>
+              <strong>메뉴나 음식점을 쉽고 재밌게 고를 수 있는 사이트 입니다.</strong><br>
+              또한 지역 혹은 특정 목적 별로 테마를 구분하여 음식점들을 등록하고 사용자들끼리 공유 할 수 있습니다.<br>
+              평소 회사 점심 시간에 식당이나 메뉴를 정하기 힘들었던 상황들이 떠올라 개발하게 되었습니다.
+            </p>
+            <p>
+              입사 후 업무에 사용되는 <span class="emphasis">Django</span>와 <span class="emphasis">Vanilla JS</span> 에 익숙해지기 위해서 Enjo-Eat 프로젝트를 통해서
+              체화 시켰습니다. 덕분에 프로젝트 투입 시 빠르게 적응이 가능했습니다. 
+            </p>
+            <p>
+              또한 사용자의 편의를 위한 기능을 만들고자 노력했습니다.<br>
+              <span class="emphasis">Kakao Map API</span>를 사용한 지도에 버튼을 직접 추가하여 음식점 위치나 이름을 편하게 설정 할 수 있도록 구현 했습니다.
+              그리고 <span class="emphasis">Chromedrvier</span>와 <span class="emphasis">Selenium</span>을 사용한
+              이미지 크롤링을 통해서 사용자가 원하는 이미지를 자동으로 검색하여 등록할 수 있는 기능을 구현 했습니다. 
+            </p>
             <hr>
             <ul class="info-list">
-              <li class="mb-2"><strong>개발 기간</strong><span class="list-content">2022.09.20 ~ 2022.10.16</span></li>
-              <li class="mb-2"><strong>참여 인원</strong><span class="list-content">1 (개인 프로젝트)</span></li>
-              <li class="mb-2"><strong>Github</strong><a class="github-link list-content" href="https://github.com/hyewwon/Enjo_eat">https://github.com/hyewwon/Enjo_eat</a></li>
+              <li class="mb-2"><strong>사용 기술</strong></li>
             </ul>
+            <p>
+              Backend: Python, Django, MariaDB, Selenium<br>
+              Frontend : HTML5, CSS, Vanilla JS, fetch, Bootstrap<br>
+              Tool: Visual Studio Code, DBeaver, Github<br>
+              API : Kakao map API
+            </p>
           </div>
+          <hr>
+          <ul class="info-list">
+            <li class="mb-2"><strong>개발 기간</strong><span class="list-content">2022.09.20 ~ 2022.10.16</span></li>
+            <li class="mb-2"><strong>참여 인원</strong><span class="list-content">1 (개인 프로젝트)</span></li>
+            <li class="mb-2"><strong>Github</strong><a class="github-link list-content" href="https://github.com/hyewwon/Enjo_eat">https://github.com/hyewwon/Enjo_eat</a></li>
+          </ul>
         </div>
-
-      </div>
-    </div>
-  </swal-html>
-  <swal-param name="allowEscapeKey" value="false" />
-  <swal-param name="customClass" value='{ "popup": "my-popup" }' />
-  <swal-function-param name="didOpen" value="popup => console.log(popup)" />
-</template>
-
-
-{% comment %} ===== emax ===== {% endcomment %}
-<template id="emax-modal">
-  <sw al-title>
-    <h5></h5>
-  </swal-title>
-  <swal-html>
-    <div class="modal-head">
-        <h1>EMAX
-          <span>시간별 전력 소모량 예측 MLOps</span>
-        </h1>
-    </div>
-    <div class="modal-body">
-      <div class="row">
-
-        <div class="col-6">
-          <div class="project-image">
-            <img src="/assets/img/work_project/emax.png" class="d-block w-100" alt="...">
-          </div>
-        </div>
-
-        <div class="col-6">
-          <div class="information-container text-start">
-            <div class="info-project">
-              <p>
-                전자 장비의 전력 소모량을 예측하는 AI를 생성하고 데이터를 관리하는 사이트입니다.
-                LSTM이나 Prophet 알고리즘 모델에 장비 전력 소모량을 학습시켜
-                현재부터 시간별, 일별, 월별 예측치 시각화 데이터를 확인할 수 있습니다. 
-                그 외 장비, 알고리즘, 상한선, 학습 데이터, 예측 자동화 등 관리 가능합니다.
-              </p>
-              <hr>
-              <ul class="info-list">
-                <li class="mb-2"><strong>담당 업무</strong></li>
-              </ul>
-              <p>
-                <ul class="work-list">
-                  <li>단독으로 웹 파트를 담당하여 프로젝트 및 테이블을 총괄하였습니다.</li>
-                  <li><span class="emphasis">Django</span>와 <span class="emphasis">Vanilla JS</span>를 사용한 웹 풀스택 개발을 담당했습니다.</li>
-                  <li><span class="emphasis">Maria DB</span>를 사용한 <span class="emphasis">RDBMS</span>를 구현하였습니다.</li>
-                  <li>AI 파트와 협업을 통해서 AI 모듈을 프로젝트에 적용하였습니다.</li>
-                </ul>
-              </p>
-              <hr>
-              <ul class="info-list">
-                <li class="mb-2"><strong>성과</strong></li>
-              </ul>
-              <p>
-                <ul class="work-list">
-                  <li><span class="emphasis">Django-apscheduler</span>를 활용한 Custom Scheduler 모듈을 구축했습니다.</li>
-                  <li>AI 학습 및 추론 데이터 처리 로직을 모듈화 하였습니다.</li>
-                  <li>파일 저장 로직을 모듈화 하였습니다.</li>
-                </ul>
-              </p>
-            </div>
-            <hr>
-            <ul class="info-list">
-              <li class="mb-2"><strong>개발 기간</strong><span class="list-content">2023.11 ~ 2023.12</span></li>
-              <li class="mb-2"><strong>참여 인원</strong><span class="list-content">2</span></li>
-              <li class="mb-2"><strong>담당 파트</strong><span class="list-content">웹 풀스택</span></li>
-              <li class="mb-2"><strong>기여도</strong><span class="list-content">
-                <div class="star-rating">
-                <input type="radio" class="star" checked>
-                <input type="radio" class="star" checked>
-                <input type="radio" class="star" checked>
-                <input type="radio" class="star" checked>
-                <input type="radio" class="star" disabled>
-                </div>
-              </span></li>
-            </ul>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </swal-html>
-  <swal-param name="allowEscapeKey" value="false" />
-  <swal-param name="customClass" value='{ "popup": "my-popup" }' />
-  <swal-function-param name="didOpen" value="popup => console.log(popup)" />
-</template>
-
-
-{% comment %} ===== build performance ===== {% endcomment %}
-<template id="build-performance-modal">
-  <sw al-title>
-    <h5></h5>
-  </swal-title>
-  <swal-html>
-    <div class="modal-head">
-        <h1>Build Performance
-          <span>BuildPay 앱 연동 채굴기 관리 앱</span>
-        </h1>
-    </div>
-    <div class="modal-body">
-      <div class="row">
-
-        <div class="col-6">
-          <div id="buildpay-image">
-            <img src="/assets/img/buildpay_project/main.png" class="d-block w-100" alt="...">
-          </div>
-        </div>
-
-        <div class="col-6">
-          <div class="information-container text-start">
-            <div class="info-project">
-              <p>
-                전자 지갑 BuildPay의 연동 앱으로 10분에 한 번씩 코인을 채굴하는
-                채굴기 관리 앱 입니다. BuildPay의 전자 지갑을 연동하여 채굴기 입출금이 가능합니다.
-              </p>
-              <hr>
-              <ul class="info-list">
-                <li class="mb-2"><strong>담당 업무</strong></li>
-              </ul>
-              <p>
-                - <span class="emphasis">Django</span>와 <span class="emphasis">Vanilla JS</span>를 사용한 관리자 웹 페이지 풀스택 개발을 담당했습니다.<br>
-                - <span class="emphasis">GraphQL</span>을 사용한 Buildpay 앱 백엔드 파트 API 개발을 담당했습니다.<br> 
-                - <span class="emphasis">Maria DB</span>를 사용한 <span class="emphasis">RDBMS</span>를 구현하였습니다.<br>
-                - <span class="emphasis">Celery</span>의 스케줄링을 사용하여 채굴 기능을 구축했습니다.
-                - <span class="emphasis">Gunicorn</span>과 <span class="emphasis">Nginix</span>를 사용한 웹 서버 관리 및 배포 하였습니다.<br>
-              </p>
-              <hr>
-              <ul class="info-list">
-                <li class="mb-2"><strong>성과</strong></li>
-              </ul>
-              <p>
-                Maria DB Event Scheduler에서 Celery 스케줄링으로 변경
-              </p>
-            </div>
-            <hr>
-            <ul class="info-list">
-              <li class="mb-2"><strong>개발 기간</strong><span class="list-content">2023.08 ~ 2023.10</span></li>
-              <li class="mb-2"><strong>참여 인원</strong><span class="list-content">2</span></li>
-              <li class="mb-2"><strong>담당 파트</strong><span class="list-content">웹 풀스택, 앱 백엔드</span></li>
-              <li class="mb-2"><strong>기여도</strong><span class="list-content">
-                <div class="star-rating">
-                <input type="radio" class="star" checked>
-                <input type="radio" class="star" checked>
-                <input type="radio" class="star" checked>
-                <input type="radio" class="star" disabled>
-                <input type="radio" class="star" disabled>
-                </div>
-              </span></li>
-            </ul>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </swal-html>
-  <swal-param name="allowEscapeKey" value="false" />
-  <swal-param name="customClass" value='{ "popup": "my-popup" }' />
-  <swal-function-param name="didOpen" value="popup => console.log(popup)" />
-</template>
-
-
-{% comment %} ===== envisager ===== {% endcomment %}
-<template id="envisager-modal">
-  <sw al-title>
-    <h5></h5>
-  </swal-title>
-  <swal-html>
-    <div class="modal-head">
-        <h1>Envisager
-          <span>디지털 작품 구매 및 판매 플랫폼</span>
-        </h1>
-    </div>
-    <div class="modal-body">
-      <div class="row">
-
-        <div class="col-6">
-          <div id="buildpay-image">
-            <img src="/assets/img/buildpay_project/main.png" class="d-block w-100" alt="...">
-          </div>
-        </div>
-
-        <div class="col-6">
-          <div class="information-container text-start">
-            <div class="info-project">
-              <p>
-                작품인증등록, 작품 판매 및 컬렉팅, 굿즈제품화, 전시 등 협업을 통한 예술 작품 생태계를 구축하는 예술 대중화 플랫폼 입니다
-                디지털 작품을 등록, 관리, 판매, 구매가 가능합니다.
-              </p>
-              <hr>
-              <ul class="info-list">
-                <li class="mb-2"><strong>담당 업무</strong></li>
-              </ul>
-              <p>
-                - <span class="emphasis">Django</span>와 <span class="emphasis">Vanilla JS</span>를 사용한 관리자 웹 페이지 풀스택 개발을 담당했습니다.<br>
-                - <span class="emphasis">GraphQL</span>을 사용한 Buildpay 앱 백엔드 파트 API 개발을 담당했습니다.<br> 
-                - <span class="emphasis">Maria DB</span>를 사용한 <span class="emphasis">RDBMS</span>를 구현하였습니다.<br>
-                - <span class="emphasis">Celery</span>의 스케줄링을 사용하여 채굴 기능을 구축했습니다.
-                - <span class="emphasis">Gunicorn</span>과 <span class="emphasis">Nginx</span>를 사용한 웹 서버 관리 및 배포 하였습니다.<br>
-              </p>
-              <hr>
-              <ul class="info-list">
-                <li class="mb-2"><strong>성과</strong></li>
-              </ul>
-              <p>
-                Session 사용자 인증 방식에서 JWT 사용자 인증 방식으로 변경
-              </p>
-            </div>
-            <hr>
-            <ul class="info-list">
-              <li class="mb-2"><strong>개발 기간</strong><span class="list-content">2023.08 ~ 2023.10</span></li>
-              <li class="mb-2"><strong>참여 인원</strong><span class="list-content">2</span></li>
-              <li class="mb-2"><strong>담당 파트</strong><span class="list-content">웹 풀스택, 앱 백엔드</span></li>
-              <li class="mb-2"><strong>기여도</strong><span class="list-content">
-                <div class="star-rating">
-                <input type="radio" class="star" checked>
-                <input type="radio" class="star" checked>
-                <input type="radio" class="star" checked>
-                <input type="radio" class="star" disabled>
-                <input type="radio" class="star" disabled>
-                </div>
-              </span></li>
-            </ul>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </swal-html>
-  <swal-param name="allowEscapeKey" value="false" />
-  <swal-param name="customClass" value='{ "popup": "my-popup" }' />
-  <swal-function-param name="didOpen" value="popup => console.log(popup)" />
-</template>
-
-
-{% comment %} ===== buildpay ===== {% endcomment %}
-<template id="buildpay-modal">
-  <sw al-title>
-    <h5></h5>
-  </swal-title>
-  <swal-html>
-    <div class="modal-head">
-        <h1>Buildpay
-          <span>가상 화폐 전자 지갑 플랫폼</span>
-        </h1>
-    </div>
-    <div class="modal-body">
-      <div class="row">
-
-        <div class="col-6">
-          <div id="buildpay-image">
-            <img src="/assets/img/buildpay_project/main.png" class="d-block w-100" alt="...">
-          </div>
-        </div>
-
-        <div class="col-6">
-          <div class="information-container text-start">
-            <div class="info-project">
-              <p>
-                <strong>
-                  여러 가상 화폐를 간편하게 관리할 수 있는 전자 지갑 앱 입니다.
-                  지갑에서 코인 입출금이 가능하고 일부 코인은 포인트로 전환하여
-                  BuildPay 전용 쇼핑몰 (Build Mall)에서 사용이 가능합니다.
-                </strong>
-              </p>
-              <hr>
-              <ul class="info-list">
-                <li class="mb-2"><strong>담당 업무</strong></li>
-              </ul>
-              <p>
-                - <span class="emphasis">Django</span>와 <span class="emphasis">Vanilla JS</span>를 사용한 웹 페이지 풀스택 개발을 담당했습니다.<br>
-                - <span class="emphasis">GraphQL</span>을 사용한 Buildpay 앱 백엔드 파트 API 개발을 담당했습니다.<br> 
-                - 빌드몰 웹 백엔드 파트 <span class="emphasis">REST API</span> 개발을 담당했습니다.<br>
-                - <span class="emphasis">Maria DB</span>를 사용한 <span class="emphasis">RDBMS</span>를 구현하였습니다.<br>
-                - <span class="emphasis">Gunicorn</span>과 <span class="emphasis">Nginix</span>를 사용한 웹 서버 관리 및 배포 하였습니다.<br>
-              </p>
-              <hr>
-              <ul class="info-list">
-                <li class="mb-2"><strong>성과</strong></li>
-              </ul>
-              <p>
-                데이터 목록 엑셀 저장 기능 구축 및 모듈화 :
-                Pandas와 Excelwriter를 사용한 엑셀 저장, 컬럼 추가 및 수정 기능 등을 구축하고 모듈화 하여 사내 전반적인 프로젝트에 활용되었습니다.<br>
-                추천인 스탬프 정립, 쿠폰 발행 로직 개발<br>
-              </p>
-            </div>
-            <hr>
-            <ul class="info-list">
-              <li class="mb-2"><strong>개발 기간</strong><span class="list-content">2022.08 ~ 2023.09</span></li>
-              <li class="mb-2"><strong>참여 인원</strong><span class="list-content">4</span></li>
-              <li class="mb-2"><strong>담당 파트</strong><span class="list-content">웹 풀스택, 앱 백엔드</span></li>
-              <li class="mb-2"><strong>사용 Tool</strong><span class="list-content">Visual Studio Code, DBeaver, Github</span></li>
-              <li class="mb-2"><strong>기여도</strong><span class="list-content">
-                <div class="star-rating">
-                <input type="radio" class="star" checked>
-                <input type="radio" class="star" checked>
-                <input type="radio" class="star" checked>
-                <input type="radio" class="star" disabled>
-                <input type="radio" class="star" disabled>
-                </div>
-              </span></li>
-            </ul>
-          </div>
-        </div>
-
-      </div>
     </div>
   </swal-html>
   <swal-param name="allowEscapeKey" value="false" />

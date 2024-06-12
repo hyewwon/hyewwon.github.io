@@ -21,12 +21,11 @@ layout: compress
   {% include head.html %}
 
   <body>
-    {% include sidebar.html lang=lang %}
+    {% include about_me_sidebar.html lang=lang %}
 
     <div id="main-wrapper" class="d-flex justify-content-center">
       <div class="container d-flex flex-column px-xxl-5">
-        {% include topbar.html lang=lang %}
-        
+     
         <div class="row flex-grow-1">
           
           <main aria-label="Main Content" class="col-12 col-lg-11 col-xl-12 px-md-4">
@@ -50,7 +49,7 @@ layout: compress
                       <i class="fa-solid fa-hand-fist"></i>
                     </div>
                     <div class="profile-content">
-                        <h3>강한 집념이 해결 방법이라고 생각합니다.</h3>
+                        <h3>강한 집념으로 해결 방법을 찾아냅니다.</h3>
                         <span class="profile-value">671</span>
                     </div>
                 </div>
@@ -250,7 +249,14 @@ layout: compress
             <ol class="total-ol" style="margin-top:50px;">
               <li class="title-li">GNC Solution 입사 (2022.08.18 ~ 현재 : 약 1년 9개월)
                 <ul class="content-ul">
-                  <li class="content-li"><span>Devops 팀 백엔드 파트 👩‍💻</span></li>
+                  <li class="content-li">
+                    <span>Devops 팀 백엔드 파트 👩‍💻</span>
+                    <button class="btn-profile-more" id="my-career">More info
+                      <div class="btn-icon-container">
+                        <i class="fa-solid fa-arrow-right"></i>
+                      </div>
+                    </button>
+                  </li>
                 </ul>
               </li>
               <li class="title-li">
@@ -282,16 +288,6 @@ layout: compress
 
             {% comment %}  ===== project =====  {% endcomment %}
             <h1>My Projects</h1>
-            <h3 style="margin-top:50px;">Personal Projects</h3>
-            <div class="row">
-              <div class="project-card col-md-3" >
-                <div class="project-card-details">
-                  <p class="card-text-title">Enjo-eat</p>
-                  <p class="card-text-body">이미지 크롤링과 카카오 api를 사용한<br> 맛집 뽑기 Django 프로젝트</p>
-                </div>
-                <a class="project-card-button" id="enjo-eat" href="javascript:;">More info</a>
-              </div>
-            </div>
             
             <h3 style="margin-top:50px;">Work Projects</h3>
             <h5 style="margin-top:20px;">GNC Solution Projects (2022.08.18 ~ 현재)</h5>
@@ -327,6 +323,17 @@ layout: compress
                   <p class="card-text-body">가상 화폐 통합 전자 지갑 플랫폼</p>
                 </div>
                 <a class="project-card-button" id="buildpay" href="javascript:;">More info</a>
+              </div>
+            </div>
+
+            <h3 style="margin-top:50px;">Personal Projects</h3>
+            <div class="row">
+              <div class="project-card col-md-3" >
+                <div class="project-card-details">
+                  <p class="card-text-title">Enjo-eat</p>
+                  <p class="card-text-body">이미지 크롤링과 카카오 api를 사용한<br> 맛집 뽑기 Django 프로젝트</p>
+                </div>
+                <a class="project-card-button" id="enjo-eat" href="javascript:;">More info</a>
               </div>
             </div>
           </main>
