@@ -51,6 +51,7 @@
 
 .modal-body{
   font-family: "IBM Plex Sans KR", sans-serif;
+  font-weight: 400;
   font-style: normal;
 }
 
@@ -77,8 +78,11 @@
 }
 
 .emphasis{
-  color: #FF9800;
   font-weight: 500;
+}
+  
+.emphasis-skill{
+    color: #FF9800;
 }
 
 .info-list {
@@ -106,13 +110,12 @@
   padding-left:10px;
 }
 
-
 .work-list{
   list-style-type: circle;
 }
   
 .work-title{
-  font-size: 17px;
+  font-size: 17.5px;
   font-weight: bold;
 }
 
@@ -120,6 +123,31 @@
   font-weight: bold;
 }
 
+.skill-tag {
+  color: white;
+  display: inline-block;
+  padding : 3px 5px 3px 5px;
+  border-radius: 4px;
+  position: relative;
+  margin: 0 6px 6px 0;
+  font-size: 14.5px;
+  font-weight: 400;
+}
+
+.backend{
+  background-color: #FF9800;
+}
+.frontend{
+  background-color: #FF675B;
+}
+
+.ide{
+  background-color: #D6568B;
+}
+
+.collaboration{
+  background-color: #2F4858;
+}
 
 .skill-type{
   font-style: italic;
@@ -129,7 +157,6 @@
 .github-link{
   color: rgb(60, 179, 113);
   text-decoration: underline rgb(60, 179, 113);
-
 }
 
 .star-rating {
