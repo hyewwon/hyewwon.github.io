@@ -64,10 +64,7 @@
 /* work project image */
 
 .project-image{
-  border : 2px solid rgb(60, 179, 113);
-  border-radius: 5px;
-  width:500px;
-  margin:30px;
+  
 }
 
 /*  project information  */
@@ -183,10 +180,10 @@
 
 /* ==== carousel ==== */
 #enjo-eat-projectImagesCarousel{
-  border : 2px solid rgb(60, 179, 113);
-  border-radius: 5px;
+  border : 2px solid lightgray;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23); 
   width:600px;
-  margin:30px;
+  margin:25px;
 }
 
 
