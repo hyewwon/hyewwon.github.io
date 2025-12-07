@@ -1,4 +1,300 @@
----
-layout: home
-# Index page
----
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hyewwon | Backend Developer</title>
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/index.css" />
+  </head>
+  <body>
+    <div class="app-window">
+      <header class="command-bar">
+        <div class="window-controls">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+        </div>
+        <div class="command-badge">~/hyewwon</div>
+        <div class="command-status">VS Code · backend</div>
+      </header>
+
+      <div class="file-tabs" role="tablist">
+        <a href="#intro" class="file-tab active" role="tab"
+          >about.md</a
+        >
+        <a href="#skills" class="file-tab" role="tab">skills.py</a>
+        <a href="#portfolio" class="file-tab" role="tab">portfolio.json</a>
+        <a href="#experience" class="file-tab" role="tab">track.log</a>
+      </div>
+
+      <main class="page-shell">
+        <section id="intro" class="page-section hero" data-file="about.md">
+        <div class="hero-copy">
+          <p class="eyebrow">Backend Developer</p>
+          <h1>안녕하세요, 김혜원입니다.</h1>
+          <p class="lead">
+            안정적인 서버 구조와 데이터 중심의 문제 해결을 좋아하는 백엔드
+            개발자입니다. 서비스의 성장 단계에 맞춘 확장성과 운영 효율을
+            고민하며, 코드를 통해 제품 팀과 사용자 사이를 이어주는 역할을
+            수행합니다.
+          </p>
+          <div class="hero-meta">
+            <div>
+              <span class="meta-label">현재</span>
+              <span class="meta-value">핀테크 백엔드 엔지니어</span>
+            </div>
+            <div>
+              <span class="meta-label">스택</span>
+              <span class="meta-value">Java · Spring · Kotlin · AWS · Redis</span>
+            </div>
+            <div>
+              <span class="meta-label">연락</span>
+              <span class="meta-value">kimhyewon.dev@gmail.com</span>
+            </div>
+          </div>
+          <div class="hero-actions">
+            <a class="btn primary" href="mailto:kimhyewon.dev@gmail.com"
+              >Contact</a
+            >
+            <a class="btn ghost" href="#portfolio">View Work</a>
+          </div>
+        </div>
+        <div class="hero-terminal">
+          <div class="terminal-title">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="terminal-path">kimhyewon@server ~/now</span>
+          </div>
+          <div class="terminal-body">
+            <pre>
+> whoami
+  senior backend engineer
+
+> focus
+  - distributed transaction safe APIs
+  - observability & automation
+  - developer experience improvement
+
+> motto
+  ship smart, monitor smarter
+            </pre>
+          </div>
+        </div>
+      </section>
+
+        <section
+          id="skills"
+          class="page-section section-card"
+          data-file="skills.py"
+        >
+        <header>
+          <p class="eyebrow">Capabilities</p>
+          <h2>Tech Stack &amp; Toolbelt</h2>
+        </header>
+        <div class="grid skills-grid">
+          <article>
+            <h3>Languages</h3>
+            <ul>
+              <li>Java / Kotlin / Python</li>
+              <li>TypeScript for tool automation</li>
+              <li>SQL, PL/pgSQL</li>
+            </ul>
+          </article>
+          <article>
+            <h3>Frameworks</h3>
+            <ul>
+              <li>Spring Boot · Spring Cloud</li>
+              <li>Micronaut · Ktor</li>
+              <li>Serverless Lambda</li>
+            </ul>
+          </article>
+          <article>
+            <h3>Infrastructure</h3>
+            <ul>
+              <li>AWS (EKS, RDS, SQS, MSK)</li>
+              <li>Docker · Terraform</li>
+              <li>GitHub Actions · ArgoCD</li>
+            </ul>
+          </article>
+          <article>
+            <h3>Practices</h3>
+            <ul>
+              <li>Domain Driven Design</li>
+              <li>Observability (Prometheus, Grafana)</li>
+              <li>TDD &amp; Contract Testing</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+        <section
+          id="portfolio"
+          class="page-section portfolio"
+          data-file="portfolio.json"
+        >
+        <header>
+          <p class="eyebrow">Selected Work</p>
+          <h2>Portfolio</h2>
+        </header>
+        <div class="grid portfolio-grid">
+          <article
+            class="portfolio-card"
+            data-project='{
+              "title": "Realtime Settlement Gateway",
+              "period": "2023.01 - 2023.10",
+              "role": "Backend Lead, 4인 팀",
+              "stack": "Kotlin, Spring Cloud, Kafka, Redis, AWS MSK",
+              "summary": "PG사와 제휴하여 거래 정산을 실시간으로 처리하는 게이트웨이. 이벤트 기반 메시징을 활용해 5분 이내 정산 데이터를 확보했고, 장애 대응을 위한 서킷 브레이커와 재처리 파이프라인을 구축했습니다.",
+              "impact": [
+                "정산 지연 SLA를 24시간 → 5분으로 단축",
+                "거래 실패 재처리율 98% 자동화",
+                "CloudWatch 기반 실시간 대시보드 도입"
+              ]
+            }'
+          >
+            <h3>Realtime Settlement</h3>
+            <p>실시간 거래 정산 파이프라인</p>
+            <span>Kafka · Kotlin · Redis</span>
+          </article>
+          <article
+            class="portfolio-card"
+            data-project='{
+              "title": "Usage-based Billing Platform",
+              "period": "2022.03 - 2022.12",
+              "role": "Backend Engineer",
+              "stack": "Java, Spring Boot, MySQL, Redis, AWS Batch",
+              "summary": "사용량 기반 요금제를 운영하는 구독 플랫폼을 설계하고 구축했습니다. 복잡한 청구 로직을 DSL로 추상화하고, 배치 분산처리를 통해 월 1억 건 데이터를 안정적으로 처리했습니다.",
+              "impact": [
+                "요금 오류율 0.02% 이하 유지",
+                "운영 배치 수행시간 3시간 → 40분",
+                "실시간 요금 알림 API 제공"
+              ]
+            }'
+          >
+            <h3>Usage Billing</h3>
+            <p>사용량 기반 청구 시스템</p>
+            <span>Spring Boot · Batch</span>
+          </article>
+          <article
+            class="portfolio-card"
+            data-project='{
+              "title": "DevOps Observability Suite",
+              "period": "2021.05 - 2021.12",
+              "role": "Platform Engineer",
+              "stack": "Python, FastAPI, Grafana, Prometheus, Loki",
+              "summary": "서비스 헬스체크, 로그 수집, 알람 라우팅을 단일 대시보드에서 관리할 수 있는 내부용 플랫폼을 개발했습니다.",
+              "impact": [
+                "인시던트 탐지 평균 15분 → 2분",
+                "SRE 온콜 대응 시간 40% 단축",
+                "사후 분석 리포트 자동화"
+              ]
+            }'
+          >
+            <h3>Observability Suite</h3>
+            <p>모니터링·알림 플랫폼</p>
+            <span>FastAPI · Grafana</span>
+          </article>
+        </div>
+      </section>
+
+        <section
+          id="experience"
+          class="page-section section-card"
+          data-file="track.log"
+        >
+        <header>
+          <p class="eyebrow">Career Path</p>
+          <h2>Experience Tree</h2>
+        </header>
+        <div class="timeline">
+          <article>
+            <div class="timeline-point"></div>
+            <div class="timeline-body">
+              <h3>핀테크 스타트업 · 백엔드 리드</h3>
+              <p class="timeline-period">2022.10 - 현재</p>
+              <p>
+                정산/정책 도메인 총괄. 시스템 리디자인, 데이터 파이프라인, MSA
+                전환을 이끌고 플랫폼 안정성을 높였습니다.
+              </p>
+              <ul>
+                <li>스트레스 테스트 자동화로 배포 결함률 30% 감소</li>
+                <li>개발 조직 온보딩 프로그램 및 코드 가이드 구축</li>
+              </ul>
+            </div>
+          </article>
+          <article>
+            <div class="timeline-point"></div>
+            <div class="timeline-body">
+              <h3>커머스 기업 · 서버 개발자</h3>
+              <p class="timeline-period">2020.02 - 2022.09</p>
+              <p>
+                멀티 리전에 걸친 주문/결제 시스템을 설계하며 확장 가능한 마이크로
+                서비스 구조를 만들었습니다.
+              </p>
+              <ul>
+                <li>주문 처리량을 4배 늘리는 CQRS 구조 도입</li>
+                <li>데이터 마이그레이션 무중단 전환 성공</li>
+              </ul>
+            </div>
+          </article>
+          <article>
+            <div class="timeline-point"></div>
+            <div class="timeline-body">
+              <h3>백엔드 인턴십</h3>
+              <p class="timeline-period">2019.06 - 2020.01</p>
+              <p>
+                사내 배포 자동화와 모니터링 도구를 구현하며 DevOps 마인드를
+                다졌습니다.
+              </p>
+              <ul>
+                <li>사내 CLI 배포 도구로 배포 속도 50% 향상</li>
+                <li>Slack 기반 알림 플로우로 CS 대응 시간 개선</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+        </section>
+      </main>
+
+      <div class="modal" id="projectModal" aria-hidden="true">
+        <div class="modal-backdrop" data-modal-close></div>
+        <div class="modal-panel" role="dialog" aria-modal="true">
+          <button class="modal-close" data-modal-close aria-label="close modal">
+            ×
+          </button>
+          <div class="modal-content">
+            <p class="eyebrow" id="modal-period"></p>
+            <h3 id="modal-title"></h3>
+            <p class="modal-role" id="modal-role"></p>
+            <p class="modal-stack" id="modal-stack"></p>
+            <p id="modal-summary"></p>
+            <ul id="modal-impact"></ul>
+          </div>
+        </div>
+      </div>
+
+      <footer class="status-bar">
+        <div>UTF-8 | Spaces: 2</div>
+        <div>Hyewwon Kim © <span id="year"></span></div>
+        <div>Last deploy: stable</div>
+      </footer>
+    </div>
+
+    <script src="assets/js/index.js" defer></script>
+  </body>
+</html>

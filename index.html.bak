@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hyewwon Park · Backend Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="assets/css/index.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="logo">
+      <span class="dot"></span>
+      <span>Hyewwon Park</span>
+    </div>
+    <nav class="main-nav" aria-label="주요 섹션">
+      <a class="nav-link active" href="#intro">소개</a>
+      <a class="nav-link" href="#skills">스킬</a>
+      <a class="nav-link" href="#portfolio">포트폴리오</a>
+      <a class="nav-link" href="#timeline">경력</a>
+      <a class="nav-link" href="#contact">정보</a>
+    </nav>
+  </header>
+
+  <main class="snap-container">
+    <section id="intro" class="panel hero" aria-labelledby="intro-title">
+      <div class="hero-content">
+        <p class="eyebrow">Backend Developer · Platform Engineer</p>
+        <h1 id="intro-title">
+          데이터 기반으로 제품의 성장을 이끄는
+          <span>백엔드 개발자 박혜원</span> 입니다.
+        </h1>
+        <p class="hero-copy">
+          대규모 트래픽 환경에서 안정적인 서비스 운영을 돕는 API와 분산 시스템을 설계하고,
+          요구사항을 빠르게 제품으로 전환하는 탄탄한 백엔드 파이프라인을 구축합니다.
+          작은 실험부터 플랫폼 레벨의 개선까지, 사용자가 체감하는 가치를 만드는 일에 집중합니다.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#portfolio">포트폴리오 보기</a>
+          <button class="btn ghost" data-scroll="#contact">연락처 확인</button>
+        </div>
+        <ul class="hero-stats">
+          <li><span>6+</span><p>연차</p></li>
+          <li><span>120%</span><p>트래픽 성장 대응</p></li>
+          <li><span>8</span><p>런칭 프로젝트</p></li>
+        </ul>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="orbit">
+          <div class="planet"></div>
+          <div class="ring"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="panel skills" aria-labelledby="skills-title">
+      <div class="section-heading">
+        <p class="eyebrow">Skill Stack</p>
+        <h2 id="skills-title">경험으로 다져진 기술 역량</h2>
+        <p>
+          서비스 아키텍처 설계부터 운영 자동화까지 백엔드 전 영역을 다룹니다. 필요한 지표를 수집하고, 안정적인 배포와 관측 환경을 만듭니다.
+        </p>
+      </div>
+      <div class="skills-grid">
+        <article class="skill-card">
+          <h3>Languages</h3>
+          <p>Java, Kotlin, TypeScript, Python, Go</p>
+          <ul>
+            <li>도메인 주도 설계</li>
+            <li>Clean Architecture</li>
+          </ul>
+        </article>
+        <article class="skill-card">
+          <h3>Frameworks</h3>
+          <p>Spring Boot, NestJS, Express, Next.js</p>
+          <ul>
+            <li>API / GraphQL Gateway</li>
+            <li>Serverless 기반 서비스</li>
+          </ul>
+        </article>
+        <article class="skill-card">
+          <h3>Infrastructure</h3>
+          <p>AWS, Kubernetes, Terraform, GitHub Actions</p>
+          <ul>
+            <li>Observability &amp; Monitoring</li>
+            <li>CI/CD · 블루/그린 배포</li>
+          </ul>
+        </article>
+        <article class="skill-card">
+          <h3>Collaboration</h3>
+          <p>OKR Planning, Tech Leading, Mentoring</p>
+          <ul>
+            <li>데이터 기반 의사결정</li>
+            <li>크로스 기능 협업 리딩</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="portfolio" class="panel portfolio" aria-labelledby="portfolio-title">
+      <div class="section-heading">
+        <p class="eyebrow">Selected Projects</p>
+        <h2 id="portfolio-title">문제를 제품으로 바꾼 프로젝트</h2>
+        <p>아이디어 단계부터 운영까지 직접 참여했던 대표 프로젝트입니다. 카드를 눌러 상세 내용을 확인하세요.</p>
+      </div>
+      <div class="project-grid">
+        <article class="project-card" data-project="commerce" tabindex="0">
+          <p class="project-chip">Platform</p>
+          <h3>커머스 통합 주문 플랫폼</h3>
+          <p>분산된 주문 흐름을 단일 API로 통합해 처리율 2배 향상.</p>
+          <button class="text-link" data-project-trigger="commerce">자세히 보기 ↗</button>
+        </article>
+        <article class="project-card" data-project="observability" tabindex="0">
+          <p class="project-chip">Infra</p>
+          <h3>실시간 관측/알림 시스템</h3>
+          <p>서비스 메트릭 수집/알람 자동화로 장애 대응 시간을 40% 단축.</p>
+          <button class="text-link" data-project-trigger="observability">자세히 보기 ↗</button>
+        </article>
+        <article class="project-card" data-project="subscription" tabindex="0">
+          <p class="project-chip">Growth</p>
+          <h3>구독형 멤버십 백엔드</h3>
+          <p>실험 주도 개발로 전환율 28% 증가, 고객 세그먼트 자동화.</p>
+          <button class="text-link" data-project-trigger="subscription">자세히 보기 ↗</button>
+        </article>
+        <article class="project-card" data-project="aiops" tabindex="0">
+          <p class="project-chip">AIOps</p>
+          <h3>ML 기반 장애 예측 파이프라인</h3>
+          <p>로그/지표 학습으로 사전 대응률 65% 확보.</p>
+          <button class="text-link" data-project-trigger="aiops">자세히 보기 ↗</button>
+        </article>
+      </div>
+    </section>
+
+    <section id="timeline" class="panel timeline" aria-labelledby="timeline-title">
+      <div class="section-heading">
+        <p class="eyebrow">Career Path</p>
+        <h2 id="timeline-title">경험을 통해 증명한 성장</h2>
+      </div>
+      <ol class="timeline-track">
+        <li>
+          <div class="time">2024 - 현재</div>
+          <div class="content">
+            <h3>Tech Lead · Team Nova</h3>
+            <p>플랫폼 서비스 성능 개선 및 조직의 아키텍처 가이드 수립. 멀티 리전 이중화로 장애 빈도 0건 달성.</p>
+          </div>
+        </li>
+        <li>
+          <div class="time">2021 - 2024</div>
+          <div class="content">
+            <h3>Senior Backend Engineer · HyperPay</h3>
+            <p>결제·정산 시스템 전면 개편. 이벤트소싱 기반으로 데이터 일관성을 높이고 정산 시간을 50% 절감.</p>
+          </div>
+        </li>
+        <li>
+          <div class="time">2019 - 2021</div>
+          <div class="content">
+            <h3>Backend Engineer · SaaS Builder</h3>
+            <p>사용자 맞춤형 레포트 자동 생성 API 출시, 고객 유지율 18% 상승. 온보딩 자동화 파이프라인 구축.</p>
+          </div>
+        </li>
+        <li>
+          <div class="time">2017 - 2019</div>
+          <div class="content">
+            <h3>Software Engineer · StartUp Lab</h3>
+            <p>초기 서비스 MVP를 빠르게 반복 개발하며 성장 지표를 확보. 실험 문화와 코드 베이스를 정착.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section id="contact" class="panel contact" aria-labelledby="contact-title">
+      <div class="section-heading">
+        <p class="eyebrow">Contact</p>
+        <h2 id="contact-title">함께 의미있는 임팩트를 만들고 싶다면</h2>
+        <p>프로덕트 미션과 성장의 여정에 합류할 기회를 기다리고 있습니다.</p>
+      </div>
+      <div class="contact-grid">
+        <article>
+          <h3>연락처</h3>
+          <ul>
+            <li><span>이메일</span><a href="mailto:hello@hyewwon.dev">hello@hyewwon.dev</a></li>
+            <li><span>전화</span><a href="tel:+821012345678">+82 10-1234-5678</a></li>
+            <li><span>GitHub</span><a href="https://github.com/hyewwon" target="_blank" rel="noreferrer">github.com/hyewwon</a></li>
+          </ul>
+        </article>
+        <article>
+          <h3>관심사</h3>
+          <p>데이터 기반 성장 실험, MLOps, 분산 시스템, 개발 문화 개선, 기술 리더십</p>
+          <h3>Keywords</h3>
+          <p>#Platform #Scalability #API #Observability</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="project-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" data-modal-close></div>
+    <div class="modal-content" role="document">
+      <button class="modal-close" data-modal-close aria-label="닫기">×</button>
+      <p class="modal-chip" id="modal-chip"></p>
+      <h3 id="modal-title"></h3>
+      <p id="modal-summary"></p>
+      <ul id="modal-highlights"></ul>
+    </div>
+  </div>
+
+  <script src="assets/js/index.js" defer></script>
+</body>
+</html>
