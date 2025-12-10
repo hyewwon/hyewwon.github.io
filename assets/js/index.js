@@ -8,7 +8,6 @@ const modalImpact = document.getElementById("modal-impact");
 const yearTag = document.getElementById("year");
 const cards = document.querySelectorAll(".portfolio-card");
 const closeTriggers = document.querySelectorAll("[data-modal-close]");
-const navLinks = document.querySelectorAll(".nav-links a");
 const fileTabs = document.querySelectorAll(".file-tab");
 
 const formatText = (label, value) => `${label}: ${value}`;
@@ -74,13 +73,6 @@ if (yearTag) {
 }
 
 const setActiveLink = (hash) => {
-  navLinks.forEach((link) => {
-    if (link.getAttribute("href") === hash) {
-      link.classList.add("active");
-    } else {
-      link.classList.remove("active");
-    }
-  });
   fileTabs.forEach((tab) => {
     if (tab.getAttribute("href") === hash) {
       tab.classList.add("active");
@@ -102,11 +94,5 @@ const observer = new IntersectionObserver(
 );
 
 sections.forEach((section) => observer.observe(section));
-
-[...navLinks, ...fileTabs].forEach((link) => {
-  link.addEventListener("click", () => {
-    setActiveLink(link.getAttribute("href"));
-  });
-});
 
 setActiveLink(window.location.hash || "#intro");

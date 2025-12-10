@@ -36,7 +36,7 @@ a {
 
 .app-window {
   width: 100%;
-  min-height: 100vh;
+  min-height: 84vh;
   background: #111;
   border-radius: 0;
   border: 1px solid #0b0b0b;
@@ -70,30 +70,10 @@ a {
   color: var(--accent);
 }
 
-.nav-links,
 .file-tabs {
   display: flex;
   justify-content: center;
   gap: 22px;
-}
-
-.nav-links {
-  flex: 1;
-}
-
-.nav-links a {
-  color: var(--text);
-  letter-spacing: 0.08em;
-  border-bottom: 2px solid transparent;
-  padding-bottom: 4px;
-  transition: border-color 0.2s ease, color 0.2s ease;
-}
-
-.nav-links a:hover,
-.nav-links a.active,
-.nav-links a:focus-visible {
-  border-color: var(--accent);
-  color: #fff;
 }
 
 .command-status {
@@ -139,24 +119,21 @@ a {
   scroll-snap-type: y mandatory;
   position: relative;
   background: linear-gradient(180deg, #111 0%, #0f0f0f 100%);
-  padding-top: 150px;
 }
 
 .page-section {
   position: relative;
   min-height: 100vh;
   padding: 110px clamp(24px, 6vw, 120px);
-  scroll-snap-align: start;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   gap: 32px;
-  background: rgba(21, 21, 21, 0.95);
+  background: rgba(37, 37, 38, 0.8);
   border: 1px solid #0d0d0d;
   border-radius: 22px;
-  margin: 40px clamp(12px, 4vw, 60px);
+  margin: 15px;
   box-shadow: var(--shadow);
-  scroll-margin-top: 113px;
+  scroll-margin-top: 102px;
 }
 
 .page-section::before {
@@ -168,10 +145,6 @@ a {
   letter-spacing: 0.2em;
   color: var(--muted);
   text-transform: uppercase;
-}
-
-.section-card {
-  background: rgba(37, 37, 38, 0.8);
 }
 
 .hero {
@@ -475,7 +448,4 @@ h3 {
     margin: 24px 12px;
   }
 
-  .page-shell {
-    padding-top: 120px;
-  }
 }
