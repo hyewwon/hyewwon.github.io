@@ -1,104 +1,143 @@
-const modal = document.getElementById("projectModal");
-const modalTitle = document.getElementById("modal-title");
-const modalPeriod = document.getElementById("modal-period");
-const modalRole = document.getElementById("modal-role");
-const modalStack = document.getElementById("modal-stack");
-const modalSummary = document.getElementById("modal-summary");
-const modalImpact = document.getElementById("modal-impact");
-const yearTag = document.getElementById("year");
-const cards = document.querySelectorAll(".portfolio-card");
-const closeTriggers = document.querySelectorAll("[data-modal-close]");
-const fileTabs = document.querySelectorAll(".file-tab");
+/* ==============================
+ *  Base Utils
+ * ============================== */
+const qs = (s, root = document) => root.querySelector(s);
+const qsa = (s, root = document) => Array.from(root.querySelectorAll(s));
+const by = (tag, className) => {
+  const el = document.createElement(tag);
+  if (className) el.className = className;
+  return el;
+};
 
-const formatText = (label, value) => `${label}: ${value}`;
+/* ==============================
+ *  init
+ * ============================== */
+document.addEventListener("DOMContentLoaded", ()=>{
+  new FileTabHandler().init();
+  new ProjectModalHandler().init();
+})
 
-const openModal = (data) => {
-  if (!data) return;
-  modalTitle.textContent = data.title;
-  modalPeriod.textContent = data.period;
-  modalRole.textContent = formatText("Role", data.role);
-  modalStack.textContent = formatText("Stack", data.stack);
-  modalSummary.textContent = data.summary;
-  modalImpact.innerHTML = "";
-  if (Array.isArray(data.impact)) {
-    data.impact.forEach((item) => {
-      const li = document.createElement("li");
-      li.textContent = item;
-      modalImpact.appendChild(li);
+/* ==============================
+ *  handler
+ * ============================== */
+class FileTabHandler {
+  constructor () {
+    this.fileTabs = qsa(".file-tab");
+    this.pages = qsa(".page-section");
+
+    this.observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        this.setActiveLink(`#${entry.target.id}`);
+        });
+      }, { threshold: 0.5 });
+  }
+
+  init() {
+    this.setActiveLink(window.location.hash || "#intro");
+    this.pages.forEach((page) =>{
+      this.observer.observe(page)
+    })
+  }
+
+  setActiveLink(hash) {
+    this.fileTabs.forEach((tab) => {
+      if (tab.getAttribute("href") === hash) {
+        tab.classList.add("active");
+      } else {
+        tab.classList.remove("active");
+      }
     });
   }
-  modal.classList.add("is-visible");
-  modal.setAttribute("aria-hidden", "false");
-  document.body.style.overflow = "hidden";
-};
+}
 
-const closeModal = () => {
-  modal.classList.remove("is-visible");
-  modal.setAttribute("aria-hidden", "true");
-  document.body.style.overflow = "";
-};
-
-cards.forEach((card) => {
-  card.tabIndex = 0;
-  const data = (() => {
-    try {
-      return JSON.parse(card.dataset.project || "{}");
-    } catch (error) {
-      console.warn("Failed to parse project data", error);
-      return null;
-    }
-  })();
-
-  card.addEventListener("click", () => openModal(data));
-  card.addEventListener("keydown", (event) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      openModal(data);
-    }
-  });
-});
-
-closeTriggers.forEach((trigger) =>
-  trigger.addEventListener("click", () => closeModal())
-);
-
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && modal.classList.contains("is-visible")) {
-    closeModal();
+class ProjectModalHandler{
+  constructor () {
+    this.projectCards = qsa(".portfolio-card");
+    
+    this.modal = qs("#projectModal");
+    this.title = qs(".modal-title", this.modal);
+    this.period = qs(".modal-period", this.modal);
+    this.rol = qs(".modal-role", this.modal);
+    this.stack = qs(".modal-stack", this.modal);
+    this.summary = qs(".modal-summary", this.modal);
+    this.impact = qs(".modal-impact", this.modal);
   }
-});
+
+  init() {
+    this.projectCards.forEach((card) => {
+      card.tabIndex = 0;
+      const data = (() => {
+        try {
+          return JSON.parse(card.dataset.project || "{}");
+        } catch (error) {
+          console.warn("Failed to parse project data", error);
+          return null;
+        }
+      })();
+
+      card.addEventListener("click", () => this.openModal(data));
+      card.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          this.openModal(data);
+        }
+      });
+    })
+
+    const closeTriggers = document.querySelectorAll("[data-modal-close]");
+    closeTriggers.forEach((trigger) =>
+      trigger.addEventListener("click", () => closeModal())
+    );
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && modal.classList.contains("is-visible")) {
+        closeModal();
+      }
+    });
+    
+  }
+
+  formatText = (label, value) => `${label}: ${value}`;
+
+  openModal(data) {
+    if(!data) return;
+    this.title.textContent = data.title;
+    // this.period.textContent = data.period;
+    this.rol.textContent = this.formatText("Role", data.role);
+    this.stack.textContent = this.formatText("Stack", data.stack);
+    // this.summary.textContent = data.summary;
+
+    this.impact.innerHTML = "";
+    if (Array.isArray(data.impact)) {
+      data.impact.forEach((item) => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        this.impact.appendChild(li);
+      });
+    }
+    this.modal.classList.add("is-visible");
+    this.modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
+
+  closeModal() {
+    modal.classList.remove("is-visible");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  };
+}
+
+
+
+
+
+const yearTag = document.getElementById("year");
 
 if (yearTag) {
   yearTag.textContent = new Date().getFullYear();
 }
 
-const setActiveLink = (hash) => {
-  fileTabs.forEach((tab) => {
-    if (tab.getAttribute("href") === hash) {
-      tab.classList.add("active");
-    } else {
-      tab.classList.remove("active");
-    }
-  });
-};
-
-const sections = document.querySelectorAll(".page-section");
-// sections.forEach((section) => section.classList.add("section-animatable"));
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      setActiveLink(`#${entry.target.getAttribute("id")}`);
-      // entry.target.classList.add("section-visible");
-      // observer.unobserve(entry.target);
-    });
-  },
-  { threshold: 0.5 }
-);
-
-sections.forEach((section) => observer.observe(section));
-
-setActiveLink(window.location.hash || "#intro");
 
 const terminalLines = Array.from(
   document.querySelectorAll(".hero-terminal .terminal-line")
@@ -233,6 +272,6 @@ const runTerminalIntro = async () => {
   document.body.classList.remove("has-terminal-anim");
 };
 
-window.addEventListener("load", () => {
-  runTerminalIntro();
-});
+// window.addEventListener("load", () => {
+//   runTerminalIntro();
+// });
