@@ -40,7 +40,7 @@ a {
   background: #111;
   border-radius: 0;
   border: 1px solid #0b0b0b;
-  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 25px 80px rgba(143, 142, 142, 0.55);
   overflow: visible;
   position: relative;
 }
@@ -193,7 +193,7 @@ a {
 }
 
 .terminal-line--pending {
-  display: none;
+  opacity: 0;
 }
 
 .terminal-command {
@@ -229,7 +229,7 @@ a {
   }
 }
 
-.terminal-output-block {
+.terminal-output {
   background: #0b0b0b;
   font-family: "Fira Code", "Pretendard", "Apple SD Gothic Neo", Menlo,
     monospace;
@@ -238,16 +238,12 @@ a {
   transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
-.terminal-output-block p {
-  margin: 0;
-}
-
-body.has-terminal-anim [data-terminal-output] {
+body.has-terminal-anim .terminal-output {
   opacity: 0;
   transform: translateY(10px);
 }
 
-body.has-terminal-anim [data-terminal-output].is-visible {
+body.has-terminal-anim .terminal-output.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -258,19 +254,19 @@ body.has-terminal-anim [data-terminal-link] {
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-body.has-terminal-anim [data-terminal-link].is-visible {
+body.has-terminal-anim .terminal-output.is-visible {
   opacity: 1;
   transform: translateX(0);
 }
 
-.hero-terminal a.terminal-line {
+.hero-terminal .has-link.terminal-output {
   text-decoration: none;
   border-radius: 10px;
   /* padding: 6px 8px; */
   transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
-.hero-terminal a.terminal-line:hover {
+.hero-terminal .has-link.terminal-output:hover {
   background: rgba(86, 156, 214, 0.08);
   transform: translateX(4px);
 }

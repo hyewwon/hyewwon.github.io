@@ -15,6 +15,7 @@ const by = (tag, className) => {
 document.addEventListener("DOMContentLoaded", ()=>{
   new FileTabHandler().init();
   new ProjectModalHandler().init();
+  new AboutMeHandler().init();
 })
 
 /* ==============================
@@ -129,149 +130,114 @@ class ProjectModalHandler{
 }
 
 
-
-
-
-const yearTag = document.getElementById("year");
-
-if (yearTag) {
-  yearTag.textContent = new Date().getFullYear();
-}
-
-
-const terminalLines = Array.from(
-  document.querySelectorAll(".hero-terminal .terminal-line")
-);
-const terminalCommands = Array.from(
-  document.querySelectorAll(".terminal-command[data-type-text]")
-);
-const heroTerminal = document.querySelector(".hero-terminal");
-let terminalHeightLocked = false;
-
-const lockTerminalHeight = () => {
-  if (!heroTerminal || terminalHeightLocked) return;
-  const measuredHeight = heroTerminal.scrollHeight;
-  if (!measuredHeight) return;
-  heroTerminal.style.height = `${measuredHeight}px`;
-  terminalHeightLocked = true;
-};
-
-const getCursor = (command) => {
-  if (!command) return null;
-  const sibling = command.nextElementSibling;
-  if (sibling && sibling.classList.contains("terminal-cursor")) {
-    return sibling;
+class AboutMeHandler {
+  constructor() {
+    this.container = qs("#intro");
+    this.terminal = qs(".hero-terminal", this.container);
+    
   }
-  return null;
-};
+  
+  init() {
+    this.runTerminal();
+  }
+  sleep = (duration = 300) => new Promise((resolve) => setTimeout(resolve, duration));
 
-const setCursorActive = (command, isActive) => {
-  const cursor = getCursor(command);
-  if (!cursor) return;
-  cursor.classList.toggle("is-active", Boolean(isActive));
-};
-
-const sleep = (duration = 300) =>
-  new Promise((resolve) => setTimeout(resolve, duration));
-
-const typeText = (element, text, speed = 70) =>
-  new Promise((resolve) => {
-    if (!element || !text) {
-      resolve();
-      return;
+  getCursor(command) {
+    if (!command) return null;
+    const sibling = command.nextElementSibling;
+    if (sibling && sibling.classList.contains("terminal-cursor")) {
+      return sibling;
     }
-    let index = 0;
-    const tick = () => {
-      element.textContent = text.slice(0, index);
-      index += 1;
-      if (index <= text.length) {
-        setTimeout(tick, speed);
-      } else {
+    return null;
+  }
+
+  setCursorActive(command, isActive) {
+    const cursor = this.getCursor(command);
+    if(!cursor) return;
+
+    cursor.classList.toggle("is-active", Boolean(isActive));
+  }
+
+  typeCommand (elem, text, speed = 70) {
+    return new Promise((resolve) => {
+      if(!elem || !text) {
         resolve();
+        return;
       }
-    };
-    tick();
-  });
 
-const runTerminalIntro = async () => {
-  if (!terminalCommands.length) return;
-  // lockTerminalHeight();
-  const outputBlocks = document.querySelectorAll("[data-terminal-output]");
-  const linkOutputs = document.querySelectorAll("[data-terminal-link]");
-  const prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
+      let index = 0;
+      const tick = () =>{
+        elem.textContent = text.slice(0, index);
+        index += 1;
+        if(index <= text.length) {
+          setTimeout(tick, speed);
+        }else {
+          resolve();
+        }
+      };
 
-  if (prefersReducedMotion) {
-    terminalLines.forEach((line) => line.classList.remove("terminal-line--pending"));
-    terminalCommands.forEach((command) => {
-      const text = command.dataset.typeText || "";
-      command.textContent = text;
-      setCursorActive(command, false);
-    });
-    outputBlocks.forEach((block) => block.classList.add("is-visible"));
-    linkOutputs.forEach((link) => link.classList.add("is-visible"));
-    document.body.classList.remove("has-terminal-anim");
-    return;
+      tick();
+    })
   }
 
-  document.body.classList.add("has-terminal-anim");
-  // lockTerminalHeight();
+  async runTerminal() {
+    const lines = Array.from(qsa(".terminal-line", this.terminal));
+    const commands = Array.from(qsa(".terminal-command[data-type-text]"));
 
-  terminalLines.forEach((line, index) => {
-    if (index === 0) {
-      line.classList.remove("terminal-line--pending");
-    } else {
-      line.classList.add("terminal-line--pending");
-    }
-  });
+    if(!commands.length) return;
 
-  outputBlocks.forEach((block) => block.classList.remove("is-visible"));
-  linkOutputs.forEach((link) => link.classList.remove("is-visible"));
-  terminalCommands.forEach((command) => {
-    command.textContent = "";
-    setCursorActive(command, false);
-  });
+    const outputs = qsa(".terminal-output", this.terminal);
 
-  for (const command of terminalCommands) {
+    document.body.classList.add("has-terminal-anim");
+    
+    lines.forEach((line, index) => {
+      if (index === 0) {
+        line.classList.remove("terminal-line--pending");
+      } else {
+        line.classList.add("terminal-line--pending");
+      }
+    });
+
+    outputs.forEach((block) => block.classList.remove("is-visible"));
+
+    commands.forEach((command) => {
+        command.textContent = "";
+        this.setCursorActive(command, false);
+    });
+
+  for (const command of commands) {
     const line = command.closest(".terminal-line");
-    if (line) line.classList.remove("terminal-line--pending");
+    line.classList.remove("terminal-line--pending");
 
     const text = command.dataset.typeText || "";
-    const speed = text.includes("cat intro") ? 55 : 80;
-    setCursorActive(command, true);
-    await typeText(command, text, speed);
-    setCursorActive(command, false);
+    this.setCursorActive(command, true);
 
-    const revealTarget = command.dataset.revealTarget;
-    if (revealTarget) {
-      const block = document.querySelector(revealTarget);
+    await this.typeCommand(command, text, 55);
+    
+    this.setCursorActive(command, false);
+
+    const target = command.dataset.target;
+    if (target) {
+      const block = document.querySelector(target);
       if (block) {
         block.classList.add("is-visible");
       }
     }
 
-    const link = line?.querySelector("[data-terminal-link]");
-    if (link) {
-      link.classList.add("is-visible");
-    }
-
-    await sleep(text.includes("cat intro") ? 600 : 450);
+    await this.sleep(250);
 
     if (line) {
-      const currentIndex = terminalLines.indexOf(line);
-      const nextLine = terminalLines[currentIndex + 1];
+      const currentIndex = lines.indexOf(line);
+      const nextLine = lines[currentIndex + 1];
       if (nextLine) {
         nextLine.classList.remove("terminal-line--pending");
       }
     }
 
-    await sleep(250);
+    await this.sleep(250);
   }
 
   document.body.classList.remove("has-terminal-anim");
 };
 
-// window.addEventListener("load", () => {
-//   runTerminalIntro();
-// });
+}

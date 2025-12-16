@@ -39,32 +39,34 @@
             <p class="eyebrow">About Me</p>
             <h1>안녕하세요, 백엔드 개발자 김혜원입니다.</h1>
             <div class="hero-terminal" aria-label="profile terminal output">
+
               <div class="terminal-line">
                 <span class="terminal-prompt">hyewwon@portfolio:~$</span>
-                <span class="terminal-command" data-type-text="cat intro" data-reveal-target="#introTerminalOutput"></span>
+                <span class="terminal-command" data-type-text="cat intro" data-target="#intro-output"></span>
                 <span class="terminal-cursor" aria-hidden="true"></span>
               </div>
-              <div class="terminal-output-block" id="introTerminalOutput" data-terminal-output>
-                <p>
-                    개구리는 개울가 속 올챙이에서 육지로 나아가기 위해 성장과 변화를 겪고 더 넓은 환경에 적응하게 되는 동물입니다. 저는 이러한 개구리의 성장
-                    과정처럼 나아가고자 합니다. 현재에 안주하지 않고, 더 나은 개발자가 되기 위해 기존 시스템을 개선하는 데 끊임없이 고민하고 적극적으로
-                    다가갑니다. 또한, 새로운 기술을 습득하고 적용해보는 도전을 즐깁니다. 복잡한 문제나 난관을 만나면 그것을 성장의 발판으로 삼아 해결 방법을
-                    모색하며 새로운 환경에 차근차근 적응해 갑니다. 더 넓은 세계를 탐험하기 위한 개구리의 성장처럼, 변화를 두려워하지 않고 끊임없는 학습과 자기
-                    개발을 통해 항상 발전하는 개발자를 목표로 합니다.
-                </p>
+              <div class="terminal-output" id="intro-output">
+                개구리는 개울가 속 올챙이에서 육지로 나아가기 위해 성장과 변화를 겪고 더 넓은 환경에 적응하게 되는 동물입니다. 저는 이러한 개구리의 성장
+                과정처럼 나아가고자 합니다. 현재에 안주하지 않고, 더 나은 개발자가 되기 위해 기존 시스템을 개선하는 데 끊임없이 고민하고 적극적으로
+                다가갑니다. 또한, 새로운 기술을 습득하고 적용해보는 도전을 즐깁니다. 복잡한 문제나 난관을 만나면 그것을 성장의 발판으로 삼아 해결 방법을
+                모색하며 새로운 환경에 차근차근 적응해 갑니다. 더 넓은 세계를 탐험하기 위한 개구리의 성장처럼, 변화를 두려워하지 않고 끊임없는 학습과 자기
+                개발을 통해 항상 발전하는 개발자를 목표로 합니다.
               </div>
-              <a class="terminal-line terminal-line--pending" href="https://github.com/hyewwon" target="_blank" rel="noopener noreferrer">
+
+              <div class="terminal-line terminal-line--pending">
                 <span class="terminal-prompt">hyewwon@portfolio:~$</span>
-                <span class="terminal-command" data-type-text="open github "></span>
+                <span class="terminal-command" data-type-text="open github" data-target="#github-output"></span>
                 <span class="terminal-cursor" aria-hidden="true"></span>
-                <span class="terminal-output terminal-link" data-terminal-link>github.com/hyewwon</span>
-              </a>
-              <a class="terminal-line terminal-line--pending" href="mailto:kimhyewon.dev@gmail.com">
+              </div>
+              <a href="https://github.com/hyewwon" target="_blank" rel="noopener noreferrer" class="terminal-output has-link" id="github-output">test</a>
+
+              <a class="terminal-line terminal-line--pending">
                 <span class="terminal-prompt">hyewwon@portfolio:~$</span>
-                <span class="terminal-command" data-type-text="send email "></span>
+                <span class="terminal-command" data-type-text="copy email" data-target="#email-output"></span>
                 <span class="terminal-cursor" aria-hidden="true"></span>
-                <span class="terminal-output terminal-link" data-terminal-link>kimhyewon.dev@gmail.com</span>
               </a>
+              <span class="terminal-output has-link" id="email-output">kimhyewon.dev@gmail.com</span>
+
             </div>
           </div>
         </section>
