@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
   new FileTabHandler().init();
   new ProjectModalHandler().init();
   new AboutMeHandler().init();
+  new SkillsHandler().init();
 })
 
 /* ==============================
@@ -88,12 +89,12 @@ class ProjectModalHandler{
 
     const closeTriggers = document.querySelectorAll("[data-modal-close]");
     closeTriggers.forEach((trigger) =>
-      trigger.addEventListener("click", () => closeModal())
+      trigger.addEventListener("click", () => this.closeModal())
     );
 
     document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && modal.classList.contains("is-visible")) {
-        closeModal();
+      if (event.key === "Escape" && this.modal?.classList.contains("is-visible")) {
+        this.closeModal();
       }
     });
     
@@ -122,9 +123,10 @@ class ProjectModalHandler{
     document.body.style.overflow = "hidden";
   }
 
-  closeModal() {
-    modal.classList.remove("is-visible");
-    modal.setAttribute("aria-hidden", "true");
+  closeModal = () => {
+    if(!this.modal) return;
+    this.modal.classList.remove("is-visible");
+    this.modal.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
   };
 }
@@ -240,4 +242,51 @@ class AboutMeHandler {
   document.body.classList.remove("has-terminal-anim");
 };
 
+}
+
+class SkillsHandler {
+  constructor() {
+    this.section = qs("#skills");
+    this.filters = this.section ? qsa("[data-skill-filter]", this.section) : [];
+    this.cards = this.section ? qsa("[data-skill-group]", this.section) : [];
+  }
+
+  init() {
+    if (!this.section) return;
+    this.bindFilterEvents();
+  }
+
+  bindFilterEvents() {
+    if (!this.filters.length) return;
+
+    this.filters.forEach((button) => {
+      button.addEventListener("click", () => {
+        this.setActiveFilter(button);
+      });
+    });
+
+    this.setActiveFilter(
+      this.filters.find((button) => button.classList.contains("is-active")) ||
+        this.filters[0]
+    );
+  }
+
+  setActiveFilter(targetButton) {
+    if (!targetButton) return;
+
+    const target = targetButton.dataset.skillFilter || "all";
+    this.filters.forEach((button) => {
+      const isActive = button === targetButton || button.dataset.skillFilter === target;
+      button.classList.toggle("is-active", isActive);
+      button.setAttribute("aria-pressed", String(isActive));
+    });
+
+    if (!this.cards.length) return;
+
+    this.cards.forEach((card) => {
+      const group = card.dataset.skillGroup || "";
+      const shouldMute = target !== "all" && group !== target;
+      card.classList.toggle("is-muted", shouldMute);
+    });
+  }
 }

@@ -61,7 +61,7 @@
                 <span class="terminal-command" data-type-text="copy email" data-target="#email-output"></span>
                 <span class="terminal-cursor" aria-hidden="true"></span>
               </a>
-              <span class="terminal-output has-link" id="email-output">kimhyewon.dev@gmail.com</span>
+              <span class="terminal-output has-link" id="email-output">rlagp424@gmail.com</span>
 
             </div>
           </div>
@@ -71,38 +71,201 @@
           <header>
             <p class="eyebrow">Capabilities</p>
             <h2>Tech Stack &amp; Toolbelt</h2>
+            <p class="lead">
+              백엔드 프로덕션 환경에서 가장 많이 다루는 스택을 역할에 따라 정리했습니다.
+            </p>
           </header>
-          <div class="grid skills-grid">
-            <article>
-              <h3>Languages</h3>
-              <ul>
-                <li>Java / Kotlin / Python</li>
-                <li>TypeScript for tool automation</li>
-                <li>SQL, PL/pgSQL</li>
+          <div class="skills-controls" role="toolbar" aria-label="Skill focus">
+            <button class="skill-filter is-active" type="button" data-skill-filter="all" aria-pressed="true">
+              All
+            </button>
+            <button class="skill-filter" type="button" data-skill-filter="application" aria-pressed="false">
+              Application
+            </button>
+            <button class="skill-filter" type="button" data-skill-filter="data" aria-pressed="false">
+              Data
+            </button>
+            <button class="skill-filter" type="button" data-skill-filter="platform" aria-pressed="false">
+              Platform
+            </button>
+            <button class="skill-filter" type="button" data-skill-filter="ai" aria-pressed="false">
+              AI
+            </button>
+          </div>
+          <div class="grid skills-grid" data-skill-grid>
+            <article class="skill-card" data-skill-group="application">
+              <div class="skill-card__meta">
+                <span class="skill-card__label">Application Layer</span>
+              </div>
+              <p class="skill-card__summary">
+                Python 기반으로 RESTful API, 인증 체계, 관리 도구를 설계하고 Django 생태계를 깊게 활용합니다.
+              </p>
+              <ul class="skill-icon-list">
+                <li class="skill-icon-item">
+                  <div class="skill-icon">
+                    <img src="assets/image/skills_icon/python.png" alt="Python 아이콘" loading="lazy" />
+                  </div>
+                  <div class="skill-info">
+                    <span class="skill-name">Python</span>
+                    <span class="skill-note">애플리케이션 핵심 로직과 자동화 스크립트 개발</span>
+                  </div>
+                </li>
+                <li class="skill-icon-item">
+                  <div class="skill-icon">
+                    <img src="assets/image/skills_icon/django.png" alt="Django 아이콘" loading="lazy" />
+                  </div>
+                  <div class="skill-info">
+                    <span class="skill-name">Django</span>
+                    <span class="skill-note">ORM 튜닝, Admin 확장, 멀티 앱 프로젝트 운영</span>
+                  </div>
+                </li>
+                <li class="skill-icon-item">
+                  <div class="skill-icon">
+                    <img src="assets/image/skills_icon/drf.png" alt="Django REST framework 아이콘" loading="lazy" />
+                  </div>
+                  <div class="skill-info">
+                    <span class="skill-name">Django REST framework</span>
+                    <span class="skill-note">버전 전략, 인증/권한 커스터마이징, API 문서 자동화</span>
+                  </div>
+                </li>
               </ul>
             </article>
-            <article>
-              <h3>Frameworks</h3>
-              <ul>
-                <li>Spring Boot · Spring Cloud</li>
-                <li>Micronaut · Ktor</li>
-                <li>Serverless Lambda</li>
+            <article class="skill-card" data-skill-group="data">
+              <div class="skill-card__meta">
+                <span class="skill-card__label">Data &amp; Cache</span>
+              </div>
+              <p class="skill-card__summary">
+                대규모 트랜잭션을 위해 정규화된 스키마와 캐시 전략을 병행하여 일관성과 속도를 확보합니다.
+              </p>
+              <ul class="skill-icon-list">
+                <li class="skill-icon-item">
+                  <div class="skill-icon">
+                    <img src="assets/image/skills_icon/postgresql.png" alt="Postgresql 아이콘" loading="lazy" />
+                  </div>
+                  <div class="skill-info">
+                    <span class="skill-name">PostgreSQL</span>
+                    <span class="skill-note">PL/pgSQL 함수, 파티셔닝, 분석 쿼리 최적화</span>
+                  </div>
+                </li>
+                <li class="skill-icon-item">
+                  <div class="skill-icon">
+                    <img src="assets/image/skills_icon/mariadb.png" alt="MariaDB 아이콘" loading="lazy" />
+                  </div>
+                  <div class="skill-info">
+                    <span class="skill-name">MariaDB</span>
+                    <span class="skill-note">슬로우 쿼리 모니터링 및 인덱스 전략 수립</span>
+                  </div>
+                </li>
+                <li class="skill-icon-item">
+                  <div class="skill-icon">
+                    <img src="assets/image/skills_icon/redis.png" alt="Redis 아이콘" loading="lazy" />
+                  </div>
+                  <div class="skill-info">
+                    <span class="skill-name">Redis</span>
+                    <span class="skill-note">세션/락/큐 패턴 구성과 TTL 모니터링</span>
+                  </div>
+                </li>
               </ul>
             </article>
-            <article>
-              <h3>Infrastructure</h3>
-              <ul>
-                <li>AWS (EKS, RDS, SQS, MSK)</li>
-                <li>Docker · Terraform</li>
-                <li>GitHub Actions · ArgoCD</li>
+            <article class="skill-card" data-skill-group="platform">
+              <div class="skill-card__meta">
+                <span class="skill-card__label">Platform &amp; Ops</span>
+              </div>
+              <p class="skill-card__summary">
+                운영 자동화와 배포 파이프라인을 구성해 반복 작업을 줄이고, 관측 가능한 환경을 만듭니다.
+              </p>
+              <ul class="skill-icon-list">
+                <li class="skill-icon-item">
+                  <div class="skill-icon">
+                    <img src="assets/image/skills_icon/celery.png" alt="Celery 아이콘" loading="lazy" />
+                  </div>
+                  <div class="skill-info">
+                    <span class="skill-name">Celery</span>
+                    <span class="skill-note">비동기 태스크 큐 설계와 모니터링 파이프라인 구성</span>
+                  </div>
+                </li>
+                <li class="skill-icon-item">
+                  <div class="skill-icon">
+                    <img src="assets/image/skills_icon/docker.png" alt="Redis 아이콘" loading="lazy" />
+                  </div>
+                  <div class="skill-info">
+                    <span class="skill-name">Docker</span>
+                    <span class="skill-note">멀티 스테이지 빌드와 운영/CI 환경 일원화</span>
+                  </div>
+                </li>
+                <li class="skill-icon-item">
+                  <div class="skill-icon">
+                    <img src="assets/image/skills_icon/aws.png" alt="Redis 아이콘" loading="lazy" />
+                  </div>
+                  <div class="skill-info">
+                    <span class="skill-name">AWS</span>
+                    <span class="skill-note">EC2/RDS/ElastiCache 중심의 인프라 설계와 보안 가드레일</span>
+                  </div>
+                </li>
+                <!-- <li class="skill-icon-item">
+                  <div class="skill-icon">
+                    <img src="assets/image/skills_icon/github.png" alt="GitHub 아이콘" loading="lazy" />
+                  </div>
+                  <div class="skill-info">
+                    <span class="skill-name">GitHub · Cursor</span>
+                    <span class="skill-note">GitHub 협업 흐름과 Cursor/AI Agent를 활용한 개발 가속</span>
+                  </div>
+                </li>
+                <li class="skill-icon-item">
+                  <div class="skill-icon is-placeholder" aria-hidden="true">
+                    <span class="skill-icon__initial">SL</span>
+                  </div>
+                  <div class="skill-info">
+                    <span class="skill-name">Slack 연동</span>
+                    <span class="skill-note">웹훅·봇을 활용한 배포/이벤트 알림 및 챗봇 자동화</span>
+                  </div>
+                </li> -->
               </ul>
             </article>
-            <article>
-              <h3>Practices</h3>
-              <ul>
-                <li>Domain Driven Design</li>
-                <li>Observability (Prometheus, Grafana)</li>
-                <li>TDD &amp; Contract Testing</li>
+            <article class="skill-card" data-skill-group="ai">
+              <div class="skill-card__meta">
+                <span class="skill-card__label">AI Workflow</span>
+              </div>
+              <p class="skill-card__summary">
+                텍스트·이미지·멀티모달 모델을 서비스에 녹여내기 위해 파이프라인을 구성하고 프로토타입을 빠르게 검증합니다.
+              </p>
+              <ul class="skill-icon-list">
+                <li class="skill-icon-item">
+                  <div class="skill-icon">
+                    <img src="assets/image/skills_icon/fal.png" alt="Redis 아이콘" loading="lazy" />
+                  </div>
+                  <div class="skill-info">
+                    <span class="skill-name">Fal.ai</span>
+                    <span class="skill-note">서버리스 GPU 런으로 이미지 생성/변환 API 구축</span>
+                  </div>
+                </li>
+                <li class="skill-icon-item">
+                  <div class="skill-icon">
+                    <img src="assets/image/skills_icon/replicate.png" alt="Redis 아이콘" loading="lazy" />
+                  </div>
+                  <div class="skill-info">
+                    <span class="skill-name">Replicate</span>
+                    <span class="skill-note">오픈 소스 모델을 REST API로 감싸 실험/배포</span>
+                  </div>
+                </li>
+                <li class="skill-icon-item">
+                  <div class="skill-icon">
+                    <img src="assets/image/skills_icon/comfyui.png" alt="Redis 아이콘" loading="lazy" />
+                  </div>
+                  <div class="skill-info">
+                    <span class="skill-name">ComfyUI</span>
+                    <span class="skill-note">노드 그래프 기반 파이프라인 설계 및 커스텀 워크플로우 제작</span>
+                  </div>
+                </li>
+                <li class="skill-icon-item">
+                  <div class="skill-icon">
+                    <img src="assets/image/skills_icon/openai.png" alt="Redis 아이콘" loading="lazy" />
+                  </div>
+                  <div class="skill-info">
+                    <span class="skill-name">OpenAI</span>
+                    <span class="skill-note">GPT/밸류 모델을 이용한 텍스트 자동화·에이전트 시나리오 구현</span>
+                  </div>
+                </li>
               </ul>
             </article>
           </div>
