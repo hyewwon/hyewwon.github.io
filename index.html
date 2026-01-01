@@ -24,8 +24,8 @@
       <div class="file-tabs" role="tablist">
         <a href="#intro" class="file-tab active" role="tab">about.md</a>
         <a href="#skills" class="file-tab" role="tab">skills.py</a>
-        <a href="#portfolio" class="file-tab" role="tab">portfolio.py</a>
         <a href="#experience" class="file-tab" role="tab">experience.log</a>
+        <a href="#portfolio" class="file-tab" role="tab">portfolio.py</a>
       </div>
 
       <main class="page-shell">
@@ -92,248 +92,8 @@
               AI
             </button>
           </div>
-          <div class="grid skills-grid" data-skill-grid>
-            <article class="skill-card" data-skill-group="application">
-              <div class="skill-card__meta">
-                <span class="skill-card__label">Application Layer</span>
-              </div>
-              <p class="skill-card__summary">
-                Python 기반으로 RESTful API, 인증 체계, 관리 도구를 설계하고 Django 생태계를 깊게 활용합니다.
-              </p>
-              <ul class="skill-icon-list">
-                <li class="skill-icon-item">
-                  <div class="skill-icon">
-                    <img src="assets/image/skills_icon/python.png" alt="Python 아이콘" loading="lazy" />
-                  </div>
-                  <div class="skill-info">
-                    <span class="skill-name">Python</span>
-                    <span class="skill-note">애플리케이션 핵심 로직과 자동화 스크립트 개발</span>
-                  </div>
-                </li>
-                <li class="skill-icon-item">
-                  <div class="skill-icon">
-                    <img src="assets/image/skills_icon/django.png" alt="Django 아이콘" loading="lazy" />
-                  </div>
-                  <div class="skill-info">
-                    <span class="skill-name">Django</span>
-                    <span class="skill-note">ORM 튜닝, Admin 확장, 멀티 앱 프로젝트 운영</span>
-                  </div>
-                </li>
-                <li class="skill-icon-item">
-                  <div class="skill-icon">
-                    <img src="assets/image/skills_icon/drf.png" alt="Django REST framework 아이콘" loading="lazy" />
-                  </div>
-                  <div class="skill-info">
-                    <span class="skill-name">Django REST framework</span>
-                    <span class="skill-note">버전 전략, 인증/권한 커스터마이징, API 문서 자동화</span>
-                  </div>
-                </li>
-              </ul>
-            </article>
-            <article class="skill-card" data-skill-group="data">
-              <div class="skill-card__meta">
-                <span class="skill-card__label">Data &amp; Cache</span>
-              </div>
-              <p class="skill-card__summary">
-                대규모 트랜잭션을 위해 정규화된 스키마와 캐시 전략을 병행하여 일관성과 속도를 확보합니다.
-              </p>
-              <ul class="skill-icon-list">
-                <li class="skill-icon-item">
-                  <div class="skill-icon">
-                    <img src="assets/image/skills_icon/postgresql.png" alt="Postgresql 아이콘" loading="lazy" />
-                  </div>
-                  <div class="skill-info">
-                    <span class="skill-name">PostgreSQL</span>
-                    <span class="skill-note">PL/pgSQL 함수, 파티셔닝, 분석 쿼리 최적화</span>
-                  </div>
-                </li>
-                <li class="skill-icon-item">
-                  <div class="skill-icon">
-                    <img src="assets/image/skills_icon/mariadb.png" alt="MariaDB 아이콘" loading="lazy" />
-                  </div>
-                  <div class="skill-info">
-                    <span class="skill-name">MariaDB</span>
-                    <span class="skill-note">슬로우 쿼리 모니터링 및 인덱스 전략 수립</span>
-                  </div>
-                </li>
-                <li class="skill-icon-item">
-                  <div class="skill-icon">
-                    <img src="assets/image/skills_icon/redis.png" alt="Redis 아이콘" loading="lazy" />
-                  </div>
-                  <div class="skill-info">
-                    <span class="skill-name">Redis</span>
-                    <span class="skill-note">세션/락/큐 패턴 구성과 TTL 모니터링</span>
-                  </div>
-                </li>
-              </ul>
-            </article>
-            <article class="skill-card" data-skill-group="platform">
-              <div class="skill-card__meta">
-                <span class="skill-card__label">Platform &amp; Ops</span>
-              </div>
-              <p class="skill-card__summary">
-                운영 자동화와 배포 파이프라인을 구성해 반복 작업을 줄이고, 관측 가능한 환경을 만듭니다.
-              </p>
-              <ul class="skill-icon-list">
-                <li class="skill-icon-item">
-                  <div class="skill-icon">
-                    <img src="assets/image/skills_icon/celery.png" alt="Celery 아이콘" loading="lazy" />
-                  </div>
-                  <div class="skill-info">
-                    <span class="skill-name">Celery</span>
-                    <span class="skill-note">비동기 태스크 큐 설계와 모니터링 파이프라인 구성</span>
-                  </div>
-                </li>
-                <li class="skill-icon-item">
-                  <div class="skill-icon">
-                    <img src="assets/image/skills_icon/docker.png" alt="Redis 아이콘" loading="lazy" />
-                  </div>
-                  <div class="skill-info">
-                    <span class="skill-name">Docker</span>
-                    <span class="skill-note">멀티 스테이지 빌드와 운영/CI 환경 일원화</span>
-                  </div>
-                </li>
-                <li class="skill-icon-item">
-                  <div class="skill-icon">
-                    <img src="assets/image/skills_icon/aws.png" alt="Redis 아이콘" loading="lazy" />
-                  </div>
-                  <div class="skill-info">
-                    <span class="skill-name">AWS</span>
-                    <span class="skill-note">EC2/RDS/ElastiCache 중심의 인프라 설계와 보안 가드레일</span>
-                  </div>
-                </li>
-                <!-- <li class="skill-icon-item">
-                  <div class="skill-icon">
-                    <img src="assets/image/skills_icon/github.png" alt="GitHub 아이콘" loading="lazy" />
-                  </div>
-                  <div class="skill-info">
-                    <span class="skill-name">GitHub · Cursor</span>
-                    <span class="skill-note">GitHub 협업 흐름과 Cursor/AI Agent를 활용한 개발 가속</span>
-                  </div>
-                </li>
-                <li class="skill-icon-item">
-                  <div class="skill-icon is-placeholder" aria-hidden="true">
-                    <span class="skill-icon__initial">SL</span>
-                  </div>
-                  <div class="skill-info">
-                    <span class="skill-name">Slack 연동</span>
-                    <span class="skill-note">웹훅·봇을 활용한 배포/이벤트 알림 및 챗봇 자동화</span>
-                  </div>
-                </li> -->
-              </ul>
-            </article>
-            <article class="skill-card" data-skill-group="ai">
-              <div class="skill-card__meta">
-                <span class="skill-card__label">AI Workflow</span>
-              </div>
-              <p class="skill-card__summary">
-                텍스트·이미지·멀티모달 모델을 서비스에 녹여내기 위해 파이프라인을 구성하고 프로토타입을 빠르게 검증합니다.
-              </p>
-              <ul class="skill-icon-list">
-                <li class="skill-icon-item">
-                  <div class="skill-icon">
-                    <img src="assets/image/skills_icon/fal.png" alt="Redis 아이콘" loading="lazy" />
-                  </div>
-                  <div class="skill-info">
-                    <span class="skill-name">Fal.ai</span>
-                    <span class="skill-note">서버리스 GPU 런으로 이미지 생성/변환 API 구축</span>
-                  </div>
-                </li>
-                <li class="skill-icon-item">
-                  <div class="skill-icon">
-                    <img src="assets/image/skills_icon/replicate.png" alt="Redis 아이콘" loading="lazy" />
-                  </div>
-                  <div class="skill-info">
-                    <span class="skill-name">Replicate</span>
-                    <span class="skill-note">오픈 소스 모델을 REST API로 감싸 실험/배포</span>
-                  </div>
-                </li>
-                <li class="skill-icon-item">
-                  <div class="skill-icon">
-                    <img src="assets/image/skills_icon/comfyui.png" alt="Redis 아이콘" loading="lazy" />
-                  </div>
-                  <div class="skill-info">
-                    <span class="skill-name">ComfyUI</span>
-                    <span class="skill-note">노드 그래프 기반 파이프라인 설계 및 커스텀 워크플로우 제작</span>
-                  </div>
-                </li>
-                <li class="skill-icon-item">
-                  <div class="skill-icon">
-                    <img src="assets/image/skills_icon/openai.png" alt="Redis 아이콘" loading="lazy" />
-                  </div>
-                  <div class="skill-info">
-                    <span class="skill-name">OpenAI</span>
-                    <span class="skill-note">GPT/밸류 모델을 이용한 텍스트 자동화·에이전트 시나리오 구현</span>
-                  </div>
-                </li>
-              </ul>
-            </article>
-          </div>
+          <div class="grid skills-grid" data-skill-grid></div>
         </section>
-
-        <section id="portfolio" class="page-section portfolio" data-file="portfolio.json">
-          <header>
-            <p class="eyebrow">Selected Work</p>
-            <h2>Portfolio</h2>
-          </header>
-          <div class="grid portfolio-grid">
-            <article class="portfolio-card"
-              data-project='{
-                "title": "Realtime Settlement Gateway",
-                "period": "2023.01 - 2023.10",
-                "role": "Backend Lead, 4인 팀",
-                "stack": "Kotlin, Spring Cloud, Kafka, Redis, AWS MSK",
-                "summary": "PG사와 제휴하여 거래 정산을 실시간으로 처리하는 게이트웨이. 이벤트 기반 메시징을 활용해 5분 이내 정산 데이터를 확보했고, 장애 대응을 위한 서킷 브레이커와 재처리 파이프라인을 구축했습니다.",
-                "impact": [
-                  "정산 지연 SLA를 24시간 → 5분으로 단축",
-                  "거래 실패 재처리율 98% 자동화",
-                  "CloudWatch 기반 실시간 대시보드 도입"
-                ]
-              }'
-            >
-              <h3>Realtime Settlement</h3>
-              <p>실시간 거래 정산 파이프라인</p>
-              <span>Kafka · Kotlin · Redis</span>
-            </article>
-            <article
-              class="portfolio-card"
-              data-project='{
-                "title": "Usage-based Billing Platform",
-                "period": "2022.03 - 2022.12",
-                "role": "Backend Engineer",
-                "stack": "Java, Spring Boot, MySQL, Redis, AWS Batch",
-                "summary": "사용량 기반 요금제를 운영하는 구독 플랫폼을 설계하고 구축했습니다. 복잡한 청구 로직을 DSL로 추상화하고, 배치 분산처리를 통해 월 1억 건 데이터를 안정적으로 처리했습니다.",
-                "impact": [
-                  "요금 오류율 0.02% 이하 유지",
-                  "운영 배치 수행시간 3시간 → 40분",
-                  "실시간 요금 알림 API 제공"
-                ]
-              }'>
-              <h3>Usage Billing</h3>
-              <p>사용량 기반 청구 시스템</p>
-              <span>Spring Boot · Batch</span>
-            </article>
-            <article
-              class="portfolio-card"
-              data-project='{
-                "title": "DevOps Observability Suite",
-                "period": "2021.05 - 2021.12",
-                "role": "Platform Engineer",
-                "stack": "Python, FastAPI, Grafana, Prometheus, Loki",
-                "summary": "서비스 헬스체크, 로그 수집, 알람 라우팅을 단일 대시보드에서 관리할 수 있는 내부용 플랫폼을 개발했습니다.",
-                "impact": [
-                  "인시던트 탐지 평균 15분 → 2분",
-                  "SRE 온콜 대응 시간 40% 단축",
-                  "사후 분석 리포트 자동화"
-                ]
-              }'>
-              <h3>Observability Suite</h3>
-              <p>모니터링·알림 플랫폼</p>
-              <span>FastAPI · Grafana</span>
-            </article>
-          </div>
-        </section>
-
         <section id="experience" class="page-section section-card" data-file="track.log">
           <header>
             <p class="eyebrow">Career Path</p>
@@ -387,24 +147,151 @@
             </article>
           </div>
         </section>
-      </main>
 
-      <div class="modal" id="projectModal" aria-hidden="true">
-        <div class="modal-backdrop" data-modal-close></div>
-        <div class="modal-panel" role="dialog" aria-modal="true">
-          <button class="modal-close" data-modal-close aria-label="close modal">
-            ×
-          </button>
-          <div class="modal-content">
-            <p class="eyebrow"></p>
-            <h3 class="modal-title"></h3>
-            <p class="modal-role"></p>
-            <p class="modal-stack"></p>
-            <p clas="modal-summary"></p>
-            <ul class="modal-impact"></ul>
+        <section id="portfolio" class="page-section portfolio" data-file="portfolio.json">
+          <header>
+            <p class="eyebrow">Selected Work</p>
+            <h2>Portfolio</h2>
+          </header>
+          <div class="portfolio-market">
+            <aside class="portfolio-sidebar" aria-label="Project list">
+              <div class="portfolio-sidebar__heading">
+                <p class="eyebrow">Extensions</p>
+                <span class="sidebar-count">3 Projects</span>
+              </div>
+              <label class="portfolio-search">
+                <input type="search" placeholder="프로젝트 검색 (준비 중)" disabled />
+                <span class="key-hint">⌘K</span>
+              </label>
+              <div class="portfolio-list" role="listbox">
+                <button
+                  class="portfolio-list-item is-active"
+                  type="button"
+                  aria-selected="true"
+                  data-project='{
+                    "title": "Realtime Settlement Gateway",
+                    "period": "2023.01 - 2023.10",
+                    "role": "Backend Lead, 4인 팀",
+                    "stack": "Kotlin, Spring Cloud, Kafka, Redis, AWS MSK",
+                    "summary": "PG사와 제휴하여 거래 정산을 실시간으로 처리하는 게이트웨이. 이벤트 기반 메시징을 활용해 5분 이내 정산 데이터를 확보했고, 장애 대응을 위한 서킷 브레이커와 재처리 파이프라인을 구축했습니다.",
+                    "impact": [
+                      "정산 지연 SLA를 24시간 → 5분으로 단축",
+                      "거래 실패 재처리율 98% 자동화",
+                      "CloudWatch 기반 실시간 대시보드 도입"
+                    ]
+                  }'
+                >
+                  <div class="portfolio-list-item__icon">RS</div>
+                  <div class="portfolio-list-item__content">
+                    <strong>Realtime Settlement</strong>
+                    <p>실시간 거래 정산 파이프라인</p>
+                    <span>Kafka · Kotlin · Redis</span>
+                  </div>
+                  <span class="portfolio-list-item__period">2023</span>
+                </button>
+                <button
+                  class="portfolio-list-item"
+                  type="button"
+                  aria-selected="false"
+                  data-project='{
+                    "title": "Usage-based Billing Platform",
+                    "period": "2022.03 - 2022.12",
+                    "role": "Backend Engineer",
+                    "stack": "PlusX",
+                    "summary": "사용량 기반 요금제를 운영하는 구독 플랫폼을 설계하고 구축했습니다. 복잡한 청구 로직을 DSL로 추상화하고, 배치 분산처리를 통해 월 1억 건 데이터를 안정적으로 처리했습니다.",
+                    "impact": [
+                      "요금 오류율 0.02% 이하 유지",
+                      "운영 배치 수행시간 3시간 → 40분",
+                      "실시간 요금 알림 API 제공"
+                    ]
+                  }'
+                >
+                  <div class="portfolio-list-item__icon">UB</div>
+                  <div class="portfolio-list-item__content">
+                    <strong>Usage Billing</strong>
+                    <p>사용량 기반 청구 시스템</p>
+                    <span>Spring Boot · Batch</span>
+                  </div>
+                  <span class="portfolio-list-item__period">2022</span>
+                </button>
+                <button
+                  class="portfolio-list-item"
+                  type="button"
+                  aria-selected="false"
+                  data-project='{
+                    "title": "DevOps Observability Suite",
+                    "period": "2021.05 - 2021.12",
+                    "role": "Platform Engineer",
+                    "stack": "Python, FastAPI, Grafana, Prometheus, Loki",
+                    "summary": "서비스 헬스체크, 로그 수집, 알람 라우팅을 단일 대시보드에서 관리할 수 있는 내부용 플랫폼을 개발했습니다.",
+                    "impact": [
+                      "인시던트 탐지 평균 15분 → 2분",
+                      "SRE 온콜 대응 시간 40% 단축",
+                      "사후 분석 리포트 자동화"
+                    ]
+                  }'
+                >
+                  <div class="portfolio-list-item__icon">OS</div>
+                  <div class="portfolio-list-item__content">
+                    <strong>Observability Suite</strong>
+                    <p>모니터링·알림 플랫폼</p>
+                    <span>FastAPI · Grafana</span>
+                  </div>
+                  <span class="portfolio-list-item__period">2021</span>
+                </button>
+              </div>
+            </aside>
+            <div class="portfolio-details" data-portfolio-details>
+              <div class="portfolio-detail-header">
+                <div class="detail-hero">
+                  <div class="detail-hero__icon" aria-hidden="true" data-project-badge>RS</div>
+                  <div class="detail-hero__info">
+                    <h3 data-project-title>프로젝트를 선택하세요</h3>
+                    <p class="detail-stack" data-project-stack>기술 스택 정보가 여기에 표시됩니다.</p>
+                  </div>
+                </div>
+                <div class="detail-actions" aria-label="project actions">
+                  <button class="detail-btn dropdown" type="button">사용 안 함</button>
+                  <button class="detail-btn dropdown" type="button">제거</button>
+                  <label class="detail-autoupdate">
+                    <input type="checkbox" checked disabled />
+                    자동 업데이트
+                  </label>
+                </div>
+                <p class="portfolio-detail-summary" data-project-summary>
+                  프로젝트를 선택하면 개요와 성과가 이 영역에 나타납니다.
+                </p>
+              </div>
+              <div class="portfolio-detail-body">
+                <div class="portfolio-detail-main">
+                  <div class="detail-section">
+                    <h4>Impact</h4>
+                    <ul class="detail-list" data-project-impact>
+                      <li>선택된 프로젝트의 성과가 이곳에 표시됩니다.</li>
+                    </ul>
+                  </div>
+                </div>
+                <aside class="portfolio-detail-side">
+                  <div class="detail-card">
+                    <p class="detail-card__label">기간</p>
+                    <p class="detail-card__value" data-project-period>-</p>
+                  </div>
+                  <div class="detail-card">
+                    <p class="detail-card__label">역할</p>
+                    <p class="detail-card__value" data-project-role>-</p>
+                  </div>
+                  <div class="detail-card">
+                    <p class="detail-card__label">스택</p>
+                    <p class="detail-card__value" data-project-stack-secondary>-</p>
+                  </div>
+                </aside>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </section>
+
+        
+      </main>
 
       <footer class="status-bar">
         <div>UTF-8 | Spaces: 2</div>
@@ -413,6 +300,7 @@
       </footer>
     </div>
 
+    <script src="assets/js/components.js" defer></script>
     <script src="assets/js/index.js" defer></script>
   </body>
 </html>

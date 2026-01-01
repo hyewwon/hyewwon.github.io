@@ -3,24 +3,60 @@
  * ============================== */
 const qs = (s, root = document) => root.querySelector(s);
 const qsa = (s, root = document) => Array.from(root.querySelectorAll(s));
-const by = (tag, className) => {
-  const el = document.createElement(tag);
-  if (className) el.className = className;
-  return el;
-};
-
 /* ==============================
- *  init
+ *  Renderer
  * ============================== */
-document.addEventListener("DOMContentLoaded", ()=>{
-  new FileTabHandler().init();
-  new ProjectModalHandler().init();
-  new AboutMeHandler().init();
-  new SkillsHandler().init();
-})
+class Randerer {
+  constructor() {
+    this.skillGrid = qs("[data-skill-grid]");
+  }
 
+  init() {
+    this.renderSkills();
+  }
+
+  renderSkills() {
+    this.skillGrid.innerHTML = "";
+    Object.entries(SKILLS).forEach(([key, value]) => {
+      this.skillGrid.appendChild(this.createSkillGroup(key, value || {}));
+    });
+  }
+
+  createSkillGroup(key, group) {
+    const article = document.createElement("article");
+    article.className = "skill-card";
+    article.dataset.skillGroup = key;
+    article.innerHTML = `
+      <div class="skill-card__meta">
+        <span class="skill-card__label">${group.label}</span>
+      </div>
+      <p class="skill-card__summary">${group.summary}</p>
+      <ul class="skill-icon-list"></ul>
+    ` 
+    group.items.forEach(item => {
+      qs('.skill-icon-list', article).appendChild(this.createSkillItem(item));
+    });
+    return article;
+  }
+
+  createSkillItem(skill) {
+    const li = document.createElement("li");
+    li.className = "skill-icon-item";
+    li.innerHTML = `
+      <div class="skill-icon">
+        <img src="${skill.img_url}" alt="" loading="lazy" />
+      </div>
+      <div class="skill-info">
+        <span class="skill-name">${skill.name}</span>
+        <span class="skill-note">${skill.note}</span>
+      </div>
+    `
+    return li
+  }
+
+}
 /* ==============================
- *  handler
+ *  Event handler
  * ============================== */
 class FileTabHandler {
   constructor () {
@@ -52,85 +88,6 @@ class FileTabHandler {
     });
   }
 }
-
-class ProjectModalHandler{
-  constructor () {
-    this.projectCards = qsa(".portfolio-card");
-    
-    this.modal = qs("#projectModal");
-    this.title = qs(".modal-title", this.modal);
-    this.period = qs(".modal-period", this.modal);
-    this.rol = qs(".modal-role", this.modal);
-    this.stack = qs(".modal-stack", this.modal);
-    this.summary = qs(".modal-summary", this.modal);
-    this.impact = qs(".modal-impact", this.modal);
-  }
-
-  init() {
-    this.projectCards.forEach((card) => {
-      card.tabIndex = 0;
-      const data = (() => {
-        try {
-          return JSON.parse(card.dataset.project || "{}");
-        } catch (error) {
-          console.warn("Failed to parse project data", error);
-          return null;
-        }
-      })();
-
-      card.addEventListener("click", () => this.openModal(data));
-      card.addEventListener("keydown", (event) => {
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          this.openModal(data);
-        }
-      });
-    })
-
-    const closeTriggers = document.querySelectorAll("[data-modal-close]");
-    closeTriggers.forEach((trigger) =>
-      trigger.addEventListener("click", () => this.closeModal())
-    );
-
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && this.modal?.classList.contains("is-visible")) {
-        this.closeModal();
-      }
-    });
-    
-  }
-
-  formatText = (label, value) => `${label}: ${value}`;
-
-  openModal(data) {
-    if(!data) return;
-    this.title.textContent = data.title;
-    // this.period.textContent = data.period;
-    this.rol.textContent = this.formatText("Role", data.role);
-    this.stack.textContent = this.formatText("Stack", data.stack);
-    // this.summary.textContent = data.summary;
-
-    this.impact.innerHTML = "";
-    if (Array.isArray(data.impact)) {
-      data.impact.forEach((item) => {
-        const li = document.createElement("li");
-        li.textContent = item;
-        this.impact.appendChild(li);
-      });
-    }
-    this.modal.classList.add("is-visible");
-    this.modal.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
-  }
-
-  closeModal = () => {
-    if(!this.modal) return;
-    this.modal.classList.remove("is-visible");
-    this.modal.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
-  };
-}
-
 
 class AboutMeHandler {
   constructor() {
@@ -290,3 +247,133 @@ class SkillsHandler {
     });
   }
 }
+
+class ProjectShowcaseHandler {
+  constructor() {
+    this.section = qs("#portfolio");
+    this.listItems = this.section ? qsa(".portfolio-list-item", this.section) : [];
+    this.title = this.section ? qs("[data-project-title]", this.section) : null;
+    this.stack = this.section ? qs("[data-project-stack]", this.section) : null;
+    this.stackInline = this.section ? qs("[data-project-stack-inline]", this.section) : null;
+    this.stackSecondary = this.section ? qs("[data-project-stack-secondary]", this.section) : null;
+    this.period = this.section ? qs("[data-project-period]", this.section) : null;
+    this.role = this.section ? qs("[data-project-role]", this.section) : null;
+    this.periodInline = this.section ? qs("[data-project-period-inline]", this.section) : null;
+    this.publisher = this.section ? qs("[data-project-publisher]", this.section) : null;
+    this.badge = this.section ? qs("[data-project-badge]", this.section) : null;
+    this.impactCount = this.section ? qs("[data-project-impact-count]", this.section) : null;
+    this.summary = this.section ? qs("[data-project-summary]", this.section) : null;
+    this.impact = this.section ? qs("[data-project-impact]", this.section) : null;
+  }
+
+  init() {
+    if (!this.section || !this.listItems.length) return;
+
+    this.listItems.forEach((item) => {
+      item.addEventListener("click", () => this.selectItem(item));
+      item.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          this.selectItem(item);
+        }
+      });
+    });
+
+    this.selectItem(this.listItems[0], { silent: true });
+  }
+
+  parseData(item) {
+    try {
+      return JSON.parse(item.dataset.project || "{}");
+    } catch (error) {
+      console.warn("Failed to parse project data", error);
+      return null;
+    }
+  }
+
+  selectItem(target, options = {}) {
+    if (!target) return;
+    const data = this.parseData(target);
+    if (!data) return;
+
+    this.listItems.forEach((item) => {
+      const isActive = item === target;
+      item.classList.toggle("is-active", isActive);
+      item.setAttribute("aria-selected", String(isActive));
+    });
+
+    this.renderDetails(data);
+
+    if (!options.silent) {
+      target.focus();
+    }
+  }
+
+  renderDetails(data) {
+    const fallback = "-";
+    if (this.title) this.title.textContent = data.title || "프로젝트를 선택하세요";
+
+    const stackText = data.stack || "Stack 정보가 곧 업데이트됩니다.";
+    if (this.stack) this.stack.textContent = stackText;
+    if (this.stackInline) this.stackInline.textContent = stackText;
+    if (this.stackSecondary) this.stackSecondary.textContent = stackText;
+
+    const periodText = data.period || fallback;
+    if (this.period) this.period.textContent = periodText;
+    if (this.periodInline) this.periodInline.textContent = periodText;
+
+    const roleText = data.role || fallback;
+    if (this.role) this.role.textContent = roleText;
+    if (this.publisher) this.publisher.textContent = roleText;
+
+    if (this.badge) this.badge.textContent = this.createBadge(data.title);
+
+    if (this.summary) {
+      this.summary.textContent =
+        data.summary || "프로젝트 설명이 준비되는 대로 업데이트할 예정입니다.";
+    }
+
+    if (!this.impact) return;
+    this.impact.innerHTML = "";
+
+    if (Array.isArray(data.impact) && data.impact.length) {
+      if (this.impactCount) {
+        this.impactCount.textContent = `Impact ${data.impact.length}`;
+      }
+      data.impact.forEach((entry) => {
+        const li = document.createElement("li");
+        li.textContent = entry;
+        this.impact.appendChild(li);
+      });
+    } else {
+      if (this.impactCount) {
+        this.impactCount.textContent = "Impact 0";
+      }
+      const li = document.createElement("li");
+      li.textContent = "성과 정보가 곧 추가됩니다.";
+      this.impact.appendChild(li);
+    }
+  }
+
+  createBadge(title = "") {
+    if (!title) return "PR";
+    const words = title.split(" ").filter(Boolean);
+    if (!words.length) return title.slice(0, 2).toUpperCase();
+    const initials = words.slice(0, 2).map((word) => word[0]);
+    return initials.join("").toUpperCase();
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const renderer = new Randerer();
+  try {
+    renderer.init();
+  } catch (error) {
+    console.error(error);
+  }
+
+  new FileTabHandler().init();
+  new ProjectShowcaseHandler().init();
+  new AboutMeHandler().init();
+  new SkillsHandler().init();
+});
