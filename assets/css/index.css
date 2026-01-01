@@ -685,38 +685,109 @@ body.has-terminal-anim .terminal-output.is-visible {
   color: var(--accent);
 }
 
-.timeline {
+.experience-track {
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  padding-left: 24px;
-  border-left: 2px solid var(--border);
+  gap: 36px;
 }
 
-.timeline article {
-  position: relative;
-  padding-left: 24px;
+.experience-item {
+  display: grid;
+  grid-template-columns: minmax(140px, 180px) 1fr;
+  gap: 32px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.timeline-point {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--accent);
-  position: absolute;
-  left: -32px;
-  top: 6px;
+.experience-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
 }
 
-.timeline-period {
+.experience-item__period {
+  font-size: 0.9rem;
   color: var(--muted);
-  font-size: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
-.timeline ul {
+.experience-item__period strong {
+  color: #fff;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+}
+
+.experience-item__content h3 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.experience-item__subtitle {
+  margin: 8px 0 0;
+  color: #bcbcbc;
+  line-height: 1.7;
+}
+
+.experience-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+}
+
+.experience-skills li {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.experience-skills img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+}
+
+.experience-details {
+  margin-top: 18px;
+}
+
+.experience-details summary {
+  list-style: none;
+  cursor: pointer;
+  color: var(--accent);
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.experience-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.experience-details summary::after {
+  content: "›";
+  transform: translateY(1px);
+  transition: transform 0.2s ease;
+}
+
+.experience-details[open] summary::after {
+  transform: rotate(90deg);
+}
+
+.experience-detail-list {
   margin: 12px 0 0;
-  padding-left: 20px;
+  padding-left: 18px;
   color: var(--muted);
+  line-height: 1.7;
 }
 
 .status-bar {
@@ -826,6 +897,17 @@ body.has-terminal-anim .terminal-output.is-visible {
     min-width: 140px;
   }
 
+  .experience-item {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .experience-item__period {
+    order: 2;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 12px;
+  }
 }
 
 /* ==========================================================
