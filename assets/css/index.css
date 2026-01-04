@@ -34,6 +34,76 @@ a {
   text-decoration: none;
 }
 
+/* ==========================================================
+  tooltip
+========================================================== */
+.tooltip-bubble {
+  position: absolute;
+  max-width: 260px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  --tooltip-bg: rgba(12, 12, 12, 0.95);
+  --tooltip-border: rgba(255, 255, 255, 0.12);
+  background: var(--tooltip-bg);
+  border: 1px solid var(--tooltip-border);
+  color: var(--text);
+  font-size: 0.8rem;
+  line-height: 1.4;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+  opacity: 0;
+  transform: translate3d(0, 6px, 0);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 999;
+}
+
+.tooltip-bubble.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.tooltip-bubble::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: var(--tooltip-bg);
+  border: 1px solid var(--tooltip-border);
+  transform: rotate(45deg);
+}
+
+.tooltip-bubble[data-placement="top"]::after {
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  border-top: none;
+  border-left: none;
+}
+
+.tooltip-bubble[data-placement="bottom"]::after {
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  border-bottom: none;
+  border-right: none;
+}
+
+.tooltip-bubble[data-placement="left"]::after {
+  top: 50%;
+  right: -5px;
+  transform: translateY(-50%) rotate(45deg);
+  border-left: none;
+  border-bottom: none;
+}
+
+.tooltip-bubble[data-placement="right"]::after {
+  top: 50%;
+  left: -5px;
+  transform: translateY(-50%) rotate(45deg);
+  border-top: none;
+  border-right: none;
+}
+
 .app-window {
   width: 100%;
   min-height: 84vh;

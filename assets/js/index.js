@@ -364,6 +364,134 @@ class ProjectShowcaseHandler {
   }
 }
 
+/* ==============================
+ *  Tooltip manager
+ * ============================== */
+class TooltipManager {
+  constructor() {
+    this.tooltip = document.createElement("div");
+    this.tooltip.className = "tooltip-bubble";
+    this.tooltip.setAttribute("role", "tooltip");
+    document.body.appendChild(this.tooltip);
+
+    this.currentTarget = null;
+    this.hideTimer = null;
+
+    this.handlePointerOver = this.handlePointerOver.bind(this);
+    this.handlePointerOut = this.handlePointerOut.bind(this);
+    this.handleFocus = this.handleFocus.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
+    this.handleReposition = this.handleReposition.bind(this);
+  }
+
+  init() {
+    document.addEventListener("pointerover", this.handlePointerOver);
+    document.addEventListener("pointerout", this.handlePointerOut);
+    document.addEventListener("focusin", this.handleFocus);
+    document.addEventListener("focusout", this.handleBlur);
+    window.addEventListener("scroll", this.handleReposition, true);
+    window.addEventListener("resize", this.handleReposition);
+  }
+
+  handlePointerOver(event) {
+    const target = event.target.closest("[data-tooltip]");
+    if (!target) return;
+    if (this.currentTarget === target && this.tooltip.classList.contains("is-visible")) return;
+    this.show(target);
+  }
+
+  handlePointerOut(event) {
+    if (!this.currentTarget) return;
+    const target = event.target.closest("[data-tooltip]");
+    if (!target || target !== this.currentTarget) return;
+    const related = event.relatedTarget;
+    if (related && target.contains(related)) return;
+    this.scheduleHide();
+  }
+
+  handleFocus(event) {
+    const target = event.target.closest("[data-tooltip]");
+    if (!target) return;
+    this.show(target);
+  }
+
+  handleBlur(event) {
+    if (!this.currentTarget) return;
+    if (event.target === this.currentTarget) {
+      this.hide();
+    }
+  }
+
+  handleReposition() {
+    if (!this.tooltip.classList.contains("is-visible")) return;
+    this.positionTooltip();
+  }
+
+  show(target) {
+    if (!target.dataset.tooltip || target.dataset.tooltipDisabled === "true") return;
+    this.currentTarget = target;
+    this.tooltip.textContent = target.dataset.tooltip || "";
+    const placement = target.dataset.tooltipPlacement || "top";
+    this.tooltip.dataset.placement = placement;
+    this.tooltip.classList.add("is-visible");
+    this.positionTooltip();
+    clearTimeout(this.hideTimer);
+  }
+
+  scheduleHide() {
+    clearTimeout(this.hideTimer);
+    this.hideTimer = setTimeout(() => this.hide(), 80);
+  }
+
+  hide() {
+    clearTimeout(this.hideTimer);
+    this.tooltip.classList.remove("is-visible");
+    this.currentTarget = null;
+  }
+
+  positionTooltip() {
+    if (!this.currentTarget) return;
+
+    const rect = this.currentTarget.getBoundingClientRect();
+    const tooltipRect = this.tooltip.getBoundingClientRect();
+    const placement = this.tooltip.dataset.placement || "top";
+    const offset = Number(this.currentTarget.dataset.tooltipOffset || 12);
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
+    const scrollX = window.scrollX || document.documentElement.scrollLeft;
+
+    let top = 0;
+    let left = 0;
+
+    switch (placement) {
+      case "bottom":
+        top = rect.bottom + offset + scrollY;
+        left = rect.left + rect.width / 2 - tooltipRect.width / 2 + scrollX;
+        break;
+      case "left":
+        top = rect.top + rect.height / 2 - tooltipRect.height / 2 + scrollY;
+        left = rect.left - tooltipRect.width - offset + scrollX;
+        break;
+      case "right":
+        top = rect.top + rect.height / 2 - tooltipRect.height / 2 + scrollY;
+        left = rect.right + offset + scrollX;
+        break;
+      case "top":
+      default:
+        top = rect.top - tooltipRect.height - offset + scrollY;
+        left = rect.left + rect.width / 2 - tooltipRect.width / 2 + scrollX;
+        break;
+    }
+
+    const minLeft = scrollX + 8;
+    const maxLeft = scrollX + window.innerWidth - tooltipRect.width - 8;
+    const minTop = scrollY + 8;
+    const maxTop = scrollY + window.innerHeight - tooltipRect.height - 8;
+
+    this.tooltip.style.left = `${Math.min(Math.max(left, minLeft), maxLeft)}px`;
+    this.tooltip.style.top = `${Math.min(Math.max(top, minTop), maxTop)}px`;
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const renderer = new Randerer();
   try {
@@ -376,4 +504,5 @@ document.addEventListener("DOMContentLoaded", () => {
   new ProjectShowcaseHandler().init();
   new AboutMeHandler().init();
   new SkillsHandler().init();
+  new TooltipManager().init();
 });
