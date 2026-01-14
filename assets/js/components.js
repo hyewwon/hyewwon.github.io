@@ -67,6 +67,11 @@ const SKILLS = {
         summary : "텍스트·이미지·멀티모달 모델을 서비스에 녹여내기 위해 파이프라인을 구성하고 프로토타입을 빠르게 검증합니다.",
         items: [
             {
+                img_url: "assets/image/skills_icon/openai.png",
+                name: "OpenAI",
+                note: "GPT/밸류 모델을 이용한 텍스트 자동화·에이전트 시나리오 구현"
+            },
+            {
                 img_url: "assets/image/skills_icon/fal.png",
                 name: "Fal.ai",
                 note: "서버리스 GPU 런으로 이미지 생성/변환 API 구축"
@@ -81,11 +86,6 @@ const SKILLS = {
                 name: "ComfyUI",
                 note: "노드 그래프 기반 파이프라인 설계 및 커스텀 워크플로우 제작"
             },
-            {
-                img_url: "assets/image/skills_icon/openai.png",
-                name: "OpenAI",
-                note: "GPT/밸류 모델을 이용한 텍스트 자동화·에이전트 시나리오 구현"
-            }
         ]
     }
 }

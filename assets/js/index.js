@@ -76,6 +76,15 @@ class FileTabHandler {
     this.pages.forEach((page) =>{
       this.observer.observe(page)
     })
+    this.fileTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const href = tab.getAttribute("href");
+        if (href) this.setActiveLink(href);
+      });
+    });
+    window.addEventListener("hashchange", () => {
+      this.setActiveLink(window.location.hash || "#intro");
+    });
   }
 
   setActiveLink(hash) {
@@ -248,122 +257,6 @@ class SkillsHandler {
   }
 }
 
-class ProjectShowcaseHandler {
-  constructor() {
-    this.section = qs("#portfolio");
-    this.listItems = this.section ? qsa(".portfolio-list-item", this.section) : [];
-    this.title = this.section ? qs("[data-project-title]", this.section) : null;
-    this.stack = this.section ? qs("[data-project-stack]", this.section) : null;
-    this.stackInline = this.section ? qs("[data-project-stack-inline]", this.section) : null;
-    this.stackSecondary = this.section ? qs("[data-project-stack-secondary]", this.section) : null;
-    this.period = this.section ? qs("[data-project-period]", this.section) : null;
-    this.role = this.section ? qs("[data-project-role]", this.section) : null;
-    this.periodInline = this.section ? qs("[data-project-period-inline]", this.section) : null;
-    this.publisher = this.section ? qs("[data-project-publisher]", this.section) : null;
-    this.badge = this.section ? qs("[data-project-badge]", this.section) : null;
-    this.impactCount = this.section ? qs("[data-project-impact-count]", this.section) : null;
-    this.summary = this.section ? qs("[data-project-summary]", this.section) : null;
-    this.impact = this.section ? qs("[data-project-impact]", this.section) : null;
-  }
-
-  init() {
-    if (!this.section || !this.listItems.length) return;
-
-    this.listItems.forEach((item) => {
-      item.addEventListener("click", () => this.selectItem(item));
-      item.addEventListener("keydown", (event) => {
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          this.selectItem(item);
-        }
-      });
-    });
-
-    this.selectItem(this.listItems[0], { silent: true });
-  }
-
-  parseData(item) {
-    try {
-      return JSON.parse(item.dataset.project || "{}");
-    } catch (error) {
-      console.warn("Failed to parse project data", error);
-      return null;
-    }
-  }
-
-  selectItem(target, options = {}) {
-    if (!target) return;
-    const data = this.parseData(target);
-    if (!data) return;
-
-    this.listItems.forEach((item) => {
-      const isActive = item === target;
-      item.classList.toggle("is-active", isActive);
-      item.setAttribute("aria-selected", String(isActive));
-    });
-
-    this.renderDetails(data);
-
-    if (!options.silent) {
-      target.focus();
-    }
-  }
-
-  renderDetails(data) {
-    const fallback = "-";
-    if (this.title) this.title.textContent = data.title || "프로젝트를 선택하세요";
-
-    const stackText = data.stack || "Stack 정보가 곧 업데이트됩니다.";
-    if (this.stack) this.stack.textContent = stackText;
-    if (this.stackInline) this.stackInline.textContent = stackText;
-    if (this.stackSecondary) this.stackSecondary.textContent = stackText;
-
-    const periodText = data.period || fallback;
-    if (this.period) this.period.textContent = periodText;
-    if (this.periodInline) this.periodInline.textContent = periodText;
-
-    const roleText = data.role || fallback;
-    if (this.role) this.role.textContent = roleText;
-    if (this.publisher) this.publisher.textContent = roleText;
-
-    if (this.badge) this.badge.textContent = this.createBadge(data.title);
-
-    if (this.summary) {
-      this.summary.textContent =
-        data.summary || "프로젝트 설명이 준비되는 대로 업데이트할 예정입니다.";
-    }
-
-    if (!this.impact) return;
-    this.impact.innerHTML = "";
-
-    if (Array.isArray(data.impact) && data.impact.length) {
-      if (this.impactCount) {
-        this.impactCount.textContent = `Impact ${data.impact.length}`;
-      }
-      data.impact.forEach((entry) => {
-        const li = document.createElement("li");
-        li.textContent = entry;
-        this.impact.appendChild(li);
-      });
-    } else {
-      if (this.impactCount) {
-        this.impactCount.textContent = "Impact 0";
-      }
-      const li = document.createElement("li");
-      li.textContent = "성과 정보가 곧 추가됩니다.";
-      this.impact.appendChild(li);
-    }
-  }
-
-  createBadge(title = "") {
-    if (!title) return "PR";
-    const words = title.split(" ").filter(Boolean);
-    if (!words.length) return title.slice(0, 2).toUpperCase();
-    const initials = words.slice(0, 2).map((word) => word[0]);
-    return initials.join("").toUpperCase();
-  }
-}
-
 /* ==============================
  *  Tooltip manager
  * ============================== */
@@ -501,7 +394,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   new FileTabHandler().init();
-  new ProjectShowcaseHandler().init();
   new AboutMeHandler().init();
   new SkillsHandler().init();
   new TooltipManager().init();
