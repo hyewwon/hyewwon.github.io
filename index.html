@@ -11,7 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Pretendard:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="assets/css/index.css?v=20260530-6" />
+    <link rel="stylesheet" href="assets/css/index.css?v=20260628-1" />
   </head>
   <body>
     <main class="desktop" aria-label="macOS desktop style portfolio">
@@ -43,7 +43,8 @@
             <span class="result-icon about-result" aria-hidden="true"></span>
             <div>
               <strong>오른쪽 Dock에서 앱을 선택해 포트폴리오를 열어보세요.</strong>
-              <p>About, Career, Projects, Tech Stack, Mail 창이 macOS 앱처럼 열립니다.</p>
+              <p>자기소개, 경력, 포트폴리오, 기술스택 앱을 열어 확인할 수 있습니다.</p>
+              <!-- <p>About, Career, Projects, Tech Stack, Mail 창이 macOS 앱처럼 열립니다.</p> -->
             </div>
           </article>
           <article class="spotlight-result">
@@ -80,25 +81,82 @@
             <div class="browser-address">https://hyewwon.dev/about</div>
           </header>
           <div class="browser-page">
-            <aside class="profile-card">
-              <img src="assets/image/profile.png" alt="김혜원 프로필 이미지" />
-              <strong>Kim Hyewwon</strong>
-              <span>Backend Developer</span>
-            </aside>
-            <div class="about-content">
-              <p class="eyebrow">About Me</p>
-              <h2>서비스가 오래 안정적으로 움직이게 만드는 백엔드 개발자</h2>
-              <p>
-                API 구현에서 끝내지 않고 인증, 권한, 데이터 흐름, 비동기 처리,
-                운영 환경까지 함께 보고 설계합니다. 새로운 기술을 빠르게 검증하고
-                제품 안에서 실제로 쓸 수 있는 구조로 연결하는 일을 좋아합니다.
-              </p>
-              <div class="about-points">
-                <span>API Design</span>
-                <span>Async Workflow</span>
-                <span>AI Integration</span>
-                <span>Operations</span>
+            <header class="search-hero" aria-label="Profile search">
+              <strong class="search-brand">Portfolio Search</strong>
+              <div class="search-box">
+                <span class="search-lens" aria-hidden="true"></span>
+                <span>김혜원 백엔드 개발자</span>
+                <span class="search-actions" aria-hidden="true">⌘ K</span>
               </div>
+            </header>
+
+            <div class="search-results">
+              <section class="result-list" aria-label="Profile search results">
+                <article class="search-result-card featured-result">
+                  <span class="result-source">hyewwon.dev · Backend profile</span>
+                  <h2>김혜원, AI 자동화와 API 운영을 연결하는 백엔드 개발자</h2>
+                  <p>
+                    Django와 DRF 기반 API, 인증/권한, 데이터 모델링, Celery·Redis 비동기 작업을
+                    실제 서비스 요구사항에 맞게 설계하고 운영합니다. 외부 AI API와 장애 가능성이
+                    있는 작업을 사용자가 기다리지 않는 제품 흐름으로 연결하는 일에 강점이 있습니다.
+                  </p>
+                </article>
+
+                <article class="search-result-card">
+                  <span class="result-source">work.hyewwon.dev · Plus X</span>
+                  <h3>AI 생성 파이프라인과 사내 서비스 백엔드 운영</h3>
+                  <p>
+                    이미지·음성 생성 AI 툴, Figma Plugin, Groupware 등에서 API와 비동기 처리,
+                    인증 기반 워크플로우를 개발했습니다.
+                  </p>
+                </article>
+
+                <article class="search-result-card">
+                  <span class="result-source">archive.hyewwon.dev · GNC Solution</span>
+                  <h3>결제, 전자지갑, 예측 자동화 API 경험</h3>
+                  <p>
+                    리워드 결제, 전력 소모 예측 AI, 전자지갑, 예술 플랫폼처럼 데이터 정합성과
+                    운영 안정성이 중요한 백엔드 기능을 다뤘습니다.
+                  </p>
+                </article>
+              </section>
+
+              <aside class="knowledge-panel" aria-label="Kim Hyewwon profile panel">
+                <div class="panel-profile">
+                  <div>
+                    <p class="eyebrow">Profile</p>
+                    <h2>김혜원</h2>
+                    <span>Backend Developer</span>
+                  </div>
+                  <button class="panel-next" type="button" aria-label="프로필 더보기">›</button>
+                </div>
+                <img class="panel-photo" src="assets/image/profile.png" alt="김혜원 프로필 이미지" />
+                <p class="panel-summary">
+                  빠른 구현 이후의 흐름까지 보는 백엔드 개발자입니다. 인증, 권한, 데이터 구조,
+                  비동기 작업, 외부 API 장애 상황을 함께 고려해 서비스가 안정적으로 움직이게 만듭니다.
+                </p>
+                <div class="panel-facts">
+                  <div>
+                    <strong>Primary Stack</strong>
+                    <span>Python · Django · DRF · Celery · Redis</span>
+                  </div>
+                  <div>
+                    <strong>Database</strong>
+                    <span>PostgreSQL · MariaDB · MySQL</span>
+                  </div>
+                  <div>
+                    <strong>Recent Focus</strong>
+                    <span>AI API Integration · Automation Backend</span>
+                  </div>
+                </div>
+                <div class="about-points">
+                  <span>REST API</span>
+                  <span>Auth & Permission</span>
+                  <span>Async Workflow</span>
+                  <span>Data Modeling</span>
+                  <span>Production Ops</span>
+                </div>
+              </aside>
             </div>
           </div>
         </article>
@@ -114,70 +172,208 @@
           </header>
           <div class="finder-body">
             <aside class="finder-sidebar">
-              <button class="is-selected" type="button">Application</button>
-              <button type="button">Data</button>
-              <button type="button">Platform</button>
-              <button type="button">AI Workflow</button>
+              <button class="is-selected" type="button" data-stack-filter="all">
+                <span class="folder-icon all-folder" aria-hidden="true"></span>
+                <span>All</span>
+              </button>
+              <button type="button" data-stack-filter="application">
+                <span class="folder-icon application-folder" aria-hidden="true"></span>
+                <span>Application</span>
+              </button>
+              <button type="button" data-stack-filter="data">
+                <span class="folder-icon data-folder" aria-hidden="true"></span>
+                <span>Data</span>
+              </button>
+              <button type="button" data-stack-filter="platform">
+                <span class="folder-icon platform-folder" aria-hidden="true"></span>
+                <span>Platform & Ops</span>
+              </button>
+              <button type="button" data-stack-filter="ai">
+                <span class="folder-icon ai-folder" aria-hidden="true"></span>
+                <span>AI & Agent</span>
+              </button>
             </aside>
-            <div class="finder-grid">
-              <section>
+            <div class="finder-grid" data-stack-view="all">
+              <section data-stack-panel="application">
                 <h3>Application</h3>
                 <div class="stack-icons">
                   <span><img src="assets/image/skills_icon/python.png" alt="" />Python</span>
                   <span><img src="assets/image/skills_icon/django.png" alt="" />Django</span>
                   <span><img src="assets/image/skills_icon/drf.png" alt="" />DRF</span>
-                  <span><img src="assets/image/skills_icon/swagger.png" alt="" />Swagger</span>
+                  <span><img src="assets/image/skills_icon/graphql.png" alt="" />GraphQL</span>
                 </div>
               </section>
-              <section>
+              <section data-stack-panel="data">
                 <h3>Data & Cache</h3>
                 <div class="stack-icons">
+                  <span><img src="assets/image/skills_icon/redis.png" alt="" />Redis</span>
                   <span><img src="assets/image/skills_icon/postgresql.png" alt="" />PostgreSQL</span>
                   <span><img src="assets/image/skills_icon/mariadb.png" alt="" />MariaDB</span>
-                  <span><img src="assets/image/skills_icon/redis.png" alt="" />Redis</span>
                   <span><img src="assets/image/skills_icon/mysql.png" alt="" />MySQL</span>
                 </div>
               </section>
-              <section>
-                <h3>Platform & AI</h3>
+              <section data-stack-panel="platform">
+                <h3>Platform & Ops</h3>
                 <div class="stack-icons">
                   <span><img src="assets/image/skills_icon/docker.png" alt="" />Docker</span>
                   <span><img src="assets/image/skills_icon/aws.png" alt="" />AWS</span>
                   <span><img src="assets/image/skills_icon/celery.png" alt="" />Celery</span>
+                  <span><img src="assets/image/skills_icon/linux.png" alt="" />Linux</span>
+                  <span><img src="assets/image/skills_icon/github.png" alt="" />GitHub</span>
+                </div>
+              </section>
+              <section data-stack-panel="ai">
+                <h3>AI & Agent</h3>
+                <div class="stack-icons">
+                  <span><img src="assets/image/skills_icon/claude.png" alt="" />Claude</span>
+                  <span><img src="assets/image/skills_icon/codex.png" alt="" />Codex</span>
+                  <span><img src="assets/image/skills_icon/cursor.png" alt="" />Cursor</span>
                   <span><img src="assets/image/skills_icon/openai.png" alt="" />OpenAI</span>
+                  <span><img src="assets/image/skills_icon/replicate.png" alt="" />Replicate</span>
+                  <span><img src="assets/image/skills_icon/fal.png" alt="" />fal ai</span>
+                  <span><img src="assets/image/skills_icon/comfyui.png" alt="" />ComfyUI</span>
                 </div>
               </section>
             </div>
           </div>
         </article>
 
-        <article class="app-window terminal-window" data-window="career" aria-label="Career terminal window">
+        <article class="app-window career-window vscode-window" data-window="career" aria-label="Career VS Code style window">
           <header class="window-titlebar">
             <div class="traffic-lights">
               <button class="traffic-light close-light" type="button" data-close-window="career" aria-label="Career 창 닫기"></button>
               <span></span>
               <span></span>
             </div>
-            <strong>career.log — zsh</strong>
+            <strong>career.code-workspace</strong>
           </header>
-          <div class="terminal-body">
-            <p><span>hyewwon@portfolio ~ %</span> tail -f career.log</p>
-            <section>
-              <time>[2024.09 - now]</time>
-              <strong>Plus X / Backend Engineer</strong>
-              <p>API, 인증/권한, 데이터 구조, AI 생성 파이프라인, 비동기 작업 처리 개발 및 운영</p>
+          <div class="vscode-body">
+            <aside class="vscode-explorer" aria-label="Career explorer">
+              <strong>EXPLORER</strong>
+              <div class="vscode-folder">career</div>
+              <ul>
+                <li class="is-active">career-overview.md</li>
+                <li>plus-x.md</li>
+                <li>gnc-solution.md</li>
+                <li>ai-ocr-course.md</li>
+              </ul>
+            </aside>
+            <section class="vscode-editor" aria-label="Career markdown editor">
+              <div class="vscode-tabs">
+                <span class="is-active">career-overview.md</span>
+                <span>projects.md</span>
+              </div>
+              <div class="vscode-markdown">
+                <header class="career-md-hero">
+                  <p class="md-comment">// experience tree</p>
+                  <h2>Career Path</h2>
+                </header>
+
+                <article class="md-career-block">
+                  <div class="md-line-meta">
+                    <span>2024.09 - now</span>
+                    <strong>Plus X</strong>
+                    <em>Backend Engineer</em>
+                  </div>
+                  <p>API, 인증/권한, 데이터 구조, AI 생성 파이프라인, 비동기 작업 처리 개발 및 운영</p>
+                  <div class="career-projects">
+                    <span>AI 생성 파이프라인</span>
+                    <span>비동기 작업 처리</span>
+                    <span>인증/권한 API</span>
+                    <span>운영 데이터 흐름</span>
+                  </div>
+                  <ul class="md-project-list">
+                    <li>
+                      <strong>[삼성전자] 이미지 생성 AI 툴</strong>
+                      <span>AI 이미지 생성 파이프라인 및 인증 기반 백엔드 API 개발</span>
+                    </li>
+                    <li>
+                      <strong>[플러스엑스] Groupware</strong>
+                      <span>사내 서비스 백엔드 개발 및 알림·자동화 기능 운영</span>
+                    </li>
+                    <li>
+                      <strong>[플러스엑스] GenAI</strong>
+                      <span>AI 이미지 생성 서비스 백엔드 구조 설계 및 운영</span>
+                    </li>
+                    <li>
+                      <strong>[플러스엑스] T Universe Figma Plugin</strong>
+                      <span>AI 이미지 생성 플러그인 백엔드 및 비동기 처리 구조 개발</span>
+                    </li>
+                    <li>
+                      <strong>[플러스엑스] Another Class</strong>
+                      <span>AI 음성 생성 서비스 백엔드 개발 및 실시간 처리 연동</span>
+                    </li>
+                    <li>
+                      <strong>[Deeponde] 이벤트 서비스</strong>
+                      <span>이벤트 서비스 백엔드 아키텍처 설계 및 운영</span>
+                    </li>
+                  </ul>
+                </article>
+
+                <article class="md-career-block">
+                  <div class="md-line-meta">
+                    <span>2022.08 - 2024.08</span>
+                    <strong>GNC Solution</strong>
+                    <em>Backend Engineer</em>
+                  </div>
+                  <p>리워드 결제, 전력 소모 예측 AI, 전자지갑, 예술 플랫폼 백엔드 API 개발</p>
+                  <div class="career-projects">
+                    <span>Reward Payment</span>
+                    <span>Energy Prediction AI</span>
+                    <span>Wallet API</span>
+                    <span>Art Platform</span>
+                  </div>
+                  <ul class="md-project-list">
+                    <li>
+                      <strong>[Pagee] 리워드 결제 서비스</strong>
+                      <span>광고 리워드 기반 포인트 결제 서비스의 설계·개발 및 서버 운영</span>
+                    </li>
+                    <li>
+                      <strong>[GNC Solution] EMAX</strong>
+                      <span>전력 소모 예측 AI 서비스의 데이터 관리·예측 자동화 백엔드 설계</span>
+                    </li>
+                    <li>
+                      <strong>[빌드텍] Build Performance</strong>
+                      <span>대규모 주기성 작업을 위한 비동기 스케줄링 백엔드 구조 구현</span>
+                    </li>
+                    <li>
+                      <strong>[빌드텍] BuildPay</strong>
+                      <span>전자지갑·빌드몰 연동을 위한 결제·정산 백엔드 API 개발</span>
+                    </li>
+                    <li>
+                      <strong>[GNC Solution] Envisager</strong>
+                      <span>JWT 기반 인증 구조를 적용한 예술 플랫폼 백엔드 개발</span>
+                    </li>
+                  </ul>
+                </article>
+
+                <article class="md-career-block">
+                  <div class="md-line-meta">
+                    <span>2022.01 - 2022.06</span>
+                    <strong>AI 기반 챗봇 및 OCR 개발 전문가 과정</strong>
+                    <em>Python / AI Course</em>
+                  </div>
+                  <p>Python 기반 기업 연계 교육 과정, 프로젝트 평가 종합 성적 우수상 수상</p>
+                  <div class="career-projects">
+                    <span>Python</span>
+                    <span>Chatbot</span>
+                    <span>OCR</span>
+                    <span>기업 연계 프로젝트</span>
+                    <span>우수상</span>
+                  </div>
+                  <ul class="md-project-list">
+                    <li>
+                      <strong>이론 및 프로젝트 평가 종합 성적 우수상 수상</strong>
+                      <span>Python 기반 챗봇, OCR, AI 서비스 구현 과정을 학습하고 프로젝트 평가에서 우수한 성과를 기록</span>
+                    </li>
+                    <li>
+                      <strong>기업 참관 1, 2, 3차 팀 프로젝트</strong>
+                      <span>기업 연계 프로젝트를 통해 요구사항 분석, 구현, 발표 과정을 경험</span>
+                    </li>
+                  </ul>
+                </article>
+              </div>
             </section>
-            <section>
-              <time>[2022.08 - 2024.08]</time>
-              <strong>GNC Solution / Backend Engineer</strong>
-              <p>리워드 결제, 전력 소모 예측 AI, 전자지갑, 예술 플랫폼 백엔드 API 개발</p>
-            </section>
-            <section>
-              <time>[2022.01 - 2022.06]</time>
-              <strong>AI 기반 챗봇 및 OCR 개발 전문가 과정</strong>
-              <p>Python 기반 기업 연계 교육 과정, 프로젝트 평가 종합 성적 우수상 수상</p>
-            </section>
-            <p class="terminal-caret"><span>hyewwon@portfolio ~ %</span> _</p>
           </div>
         </article>
 
@@ -240,23 +436,23 @@
       <div class="dock" aria-label="portfolio dock">
         <button type="button" data-open-window="about" aria-label="About 열기">
           <span class="dock-label">About</span>
-          <span class="dock-icon safari-icon"></span>
+          <span class="dock-icon"><img src="assets/image/dock_icon/about.png" alt="" /></span>
         </button>
         <button type="button" data-open-window="stack" aria-label="Tech Stack 열기">
           <span class="dock-label">Tech Stack</span>
-          <span class="dock-icon finder-icon"></span>
+          <span class="dock-icon"><img src="assets/image/dock_icon/stack.png" alt="" /></span>
         </button>
         <button type="button" data-open-window="career" aria-label="Career 열기">
           <span class="dock-label">Career</span>
-          <span class="dock-icon terminal-icon"></span>
+          <span class="dock-icon"><img src="assets/image/dock_icon/career.png" alt="" /></span>
         </button>
         <button type="button" data-open-window="projects" aria-label="Projects 열기">
           <span class="dock-label">Projects</span>
-          <span class="dock-icon preview-icon"></span>
+          <span class="dock-icon"><img src="assets/image/dock_icon/projects.png" alt="" /></span>
         </button>
         <button type="button" data-open-window="mail" aria-label="Mail 열기">
           <span class="dock-label">Mail</span>
-          <span class="dock-icon mail-icon"></span>
+          <span class="dock-icon"><img src="assets/image/dock_icon/mail.png" alt="" /></span>
         </button>
       </div>
 
@@ -269,7 +465,7 @@
       </section>
     </main>
 
-    <script src="assets/js/components.js?v=20260530-6" defer></script>
-    <script src="assets/js/index.js?v=20260530-6" defer></script>
+    <script src="assets/js/components.js?v=20260531-1" defer></script>
+    <script src="assets/js/index.js?v=20260603-1" defer></script>
   </body>
 </html>

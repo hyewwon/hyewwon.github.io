@@ -177,6 +177,31 @@ const bindProjects = () => {
   });
 };
 
+const bindStackFolders = () => {
+  const filters = qsa("[data-stack-filter]");
+  const panels = qsa("[data-stack-panel]");
+  const grid = qs(".finder-grid");
+  if (!filters.length || !panels.length) return;
+
+  filters.forEach((filter) => {
+    filter.addEventListener("click", () => {
+      const key = filter.dataset.stackFilter;
+      if (grid) {
+        grid.dataset.stackView = key;
+      }
+
+      filters.forEach((item) => {
+        item.classList.toggle("is-selected", item === filter);
+      });
+
+      panels.forEach((panel) => {
+        const shouldShow = key === "all" || panel.dataset.stackPanel === key;
+        panel.classList.toggle("is-hidden", !shouldShow);
+      });
+    });
+  });
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   setClock();
   window.setInterval(setClock, 30_000);
@@ -185,4 +210,5 @@ document.addEventListener("DOMContentLoaded", () => {
   bindApps();
   bindScrollOpen();
   bindProjects();
+  bindStackFolders();
 });
