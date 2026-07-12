@@ -1,94 +1,113 @@
-const SKILLS = {
-    application: {
-        label : "Application Layer",
-        summary : "Python 기반으로 RESTful API, 인증 체계, 관리 도구를 설계하고 Django 생태계를 깊게 활용합니다.",
-        items: [
-            {
-                img_url: "assets/image/skills_icon/python.png",
-                name: "Python",
-                note: "서비스 핵심 로직 구현 및 운영·자동화 스크립트 개발"
-            },
-            {
-                img_url: "assets/image/skills_icon/django.png",
-                name: "Django",
-                note: "API 서버 구조 설계, Admin 커스터마이징 및 서비스 운영"
-            },
-            {
-                img_url: "assets/image/skills_icon/drf.png",
-                name: "Django REST framework",
-                note: "REST API 설계, 인증·권한 로직 구현, Swagger 문서화"
-            }
-        ]
-    },
-    data: {
-        label : "Data & Cache",
-        summary : "서비스 특성에 맞춰 데이터 정합성과 조회 성능을 함께 고려한 저장소 구조를 설계했습니다.",
-        items: [
-            {
-                img_url: "assets/image/skills_icon/postgresql.png",
-                name: "PostgreSQL",
-                note: "서비스 데이터 모델링 및 운영 환경에 맞춘 쿼리 튜닝"
-            },
-            {
-                img_url: "assets/image/skills_icon/mariadb.png",
-                name: "MariaDB",
-                note: "인덱스 설계와 슬로우 쿼리 개선을 통한 조회 성능 관리"
-            },
-            {
-                img_url: "assets/image/skills_icon/redis.png",
-                name: "Redis",
-                note: "캐시 및 임시 데이터 관리를 통한 응답 속도 개선"
-            }
-        ]
-    },
+const INSIGHTS = [
+  {
+    title: "Long-running AI jobs",
+    text: "이미지 생성, 음성 생성, 예측 자동화처럼 오래 걸리는 작업은 사용자 요청 흐름과 분리해야 합니다.",
+    tag: "Async"
+  },
+  {
+    title: "External API uncertainty",
+    text: "OpenAI, Fal.ai, Replicate 같은 외부 API는 지연과 실패 가능성을 전제로 연결해야 합니다.",
+    tag: "AI API"
+  },
+  {
+    title: "Auth shapes boundaries",
+    text: "권한과 인증 흐름은 API 구조, 데이터 접근 범위, 운영 도구의 경계를 결정합니다.",
+    tag: "Auth"
+  },
+  {
+    title: "Data integrity matters",
+    text: "결제, 리워드, 정산 흐름에서는 기능보다 먼저 데이터 정합성과 추적 가능성이 중요합니다.",
+    tag: "Data"
+  },
+  {
+    title: "Scheduled work needs visibility",
+    text: "주기성 작업과 배치성 처리는 상태, 실패, 재시도 기준을 운영자가 확인할 수 있어야 합니다.",
+    tag: "Ops"
+  },
+  {
+    title: "Admin reduces operation cost",
+    text: "관리 도구와 자동화 기능은 반복 운영 비용을 줄이고 서비스 대응 속도를 높입니다.",
+    tag: "Admin"
+  }
+];
 
-    platform: {
-        label : "Platform & Ops",
-        summary : "운영 환경을 고려한 배포 구조를 구성해 안정적인 서비스 운영을 지원했습니다.",
-        items: [
-            {
-                img_url: "assets/image/skills_icon/docker.png",
-                name: "Docker",
-                note: "개발·운영 환경을 고려한 컨테이너 구성 및 배포 환경 정리"
-            },
-            {
-                img_url: "assets/image/skills_icon/aws.png",
-                name: "AWS",
-                note: "EC2 기반 서버 운영과 RDS·ElastiCache·S3·CloudFront 연계를 통한 서비스 인프라 구성"
-            },
-            {
-                img_url: "assets/image/skills_icon/celery.png",
-                name: "Celery",
-                note: "비동기 작업 처리를 위한 태스크 구성 및 운영 환경 적용"
-            }
-        ]
-    },
+const STRATEGIES = [
+  {
+    label: "Connect",
+    title: "제품 API와 외부 서비스를 느슨하게 연결합니다.",
+    body: "AI 모델 API, 내부 서비스 API, 인증 흐름을 제품 요구사항에 맞춰 연결하고, 외부 의존성이 제품 전체를 흔들지 않도록 경계를 만듭니다.",
+    stack: ["DRF", "OpenAI", "Fal.ai", "Replicate", "ComfyUI"],
+    metric: "API / Integration"
+  },
+  {
+    label: "Queue",
+    title: "기다려야 하는 작업은 비동기 흐름으로 옮깁니다.",
+    body: "사용자 요청은 빠르게 받고, 긴 처리는 Celery와 Redis 기반 작업 흐름으로 넘깁니다. 상태 확인과 재처리 가능성을 함께 고려합니다.",
+    stack: ["Celery", "Redis", "Scheduler", "Worker", "Status"],
+    metric: "Async / Worker"
+  },
+  {
+    label: "Operate",
+    title: "운영자가 확인하고 다룰 수 있는 구조로 마무리합니다.",
+    body: "Django Admin, 배포 환경, 데이터 관리, 로그와 상태 확인 흐름까지 고려해 기능이 실제 서비스 안에서 유지되도록 만듭니다.",
+    stack: ["Django Admin", "Docker", "AWS", "Linux", "PostgreSQL"],
+    metric: "Admin / Ops"
+  }
+];
 
-    ai: {
-        label : "AI Workflow",
-        summary : "서비스 요구사항에 맞춰 AI 모델을 연계하고, 빠른 검증을 위한 파이프라인을 구성했습니다.",
-        items: [
-            {
-                img_url: "assets/image/skills_icon/openai.png",
-                name: "OpenAI",
-                note: "텍스트 생성·보정 기능 구현을 위한 API 연동 및 활용"
-            },
-            {
-                img_url: "assets/image/skills_icon/fal.png",
-                name: "Fal.ai",
-                note: "이미지 생성·변환 기능을 위한 서버리스 API 연계"
-            },
-            {
-                img_url: "assets/image/skills_icon/replicate.png",
-                name: "Replicate",
-                note: "외부 모델을 API로 연동해 기능 검증 및 서비스 적용"
-            },
-            {
-                img_url: "assets/image/skills_icon/comfyui.png",
-                name: "ComfyUI",
-                note: "이미지 생성 워크플로우 구성 및 커스텀 파이프라인 설계"
-            },
-        ]
-    }
-
-}
+const PROJECTS = [
+  {
+    title: "[Samsung] Image Generation AI Tool",
+    category: "AI Backend",
+    period: "Plus X / 2024 - Present",
+    problem: "AI 이미지 생성 작업을 인증 기반 서비스 흐름 안에서 안정적으로 처리해야 했습니다.",
+    role: "AI 이미지 생성 파이프라인과 백엔드 API 개발",
+    flow: "Request -> Auth -> Generation API -> Async processing -> Result management",
+    stack: ["Python", "Django", "DRF", "Celery", "Redis", "AI API"]
+  },
+  {
+    title: "T Universe Figma Plugin",
+    category: "AI Plugin Backend",
+    period: "Plus X / 2024 - Present",
+    problem: "플러그인에서 발생하는 이미지 생성 요청을 비동기 백엔드 흐름으로 연결해야 했습니다.",
+    role: "플러그인 백엔드 API와 비동기 처리 구조 개발",
+    flow: "Plugin request -> Backend API -> Queue -> Worker -> Generated asset",
+    stack: ["Django", "DRF", "Celery", "Redis", "Fal.ai"]
+  },
+  {
+    title: "Another Class",
+    category: "AI Voice Backend",
+    period: "Plus X / 2024 - Present",
+    problem: "AI 음성 생성 결과를 서비스 흐름에 맞춰 실시간 처리와 연동해야 했습니다.",
+    role: "AI 음성 생성 서비스 백엔드 개발 및 처리 흐름 연동",
+    flow: "Voice request -> External model -> Status tracking -> Service response",
+    stack: ["Python", "Django", "AI API", "Redis"]
+  },
+  {
+    title: "Pagee Reward Payment",
+    category: "Payment API",
+    period: "GNC Solution / 2022 - 2024",
+    problem: "광고 리워드 기반 포인트 결제 흐름에서 데이터 정합성과 서버 운영이 중요했습니다.",
+    role: "리워드 결제 서비스 설계, 개발, 서버 운영",
+    flow: "Reward event -> Point balance -> Payment API -> Settlement data",
+    stack: ["Python", "Django", "MariaDB", "Linux"]
+  },
+  {
+    title: "BuildPay",
+    category: "Payment / Settlement",
+    period: "GNC Solution / 2022 - 2024",
+    problem: "전자지갑과 빌드몰을 연결하는 결제/정산 API가 필요했습니다.",
+    role: "전자지갑 및 빌드몰 연동 API 개발",
+    flow: "Wallet -> Build mall -> Payment -> Settlement",
+    stack: ["Django", "REST API", "MariaDB", "Auth"]
+  },
+  {
+    title: "EMAX",
+    category: "Prediction Automation",
+    period: "GNC Solution / 2022 - 2024",
+    problem: "전력 소모 예측 AI 서비스에서 데이터 관리와 예측 자동화 흐름이 필요했습니다.",
+    role: "데이터 관리 및 예측 자동화 백엔드 설계",
+    flow: "Energy data -> Processing -> Prediction -> Managed result",
+    stack: ["Python", "Django", "MariaDB", "Scheduler"]
+  }
+];
