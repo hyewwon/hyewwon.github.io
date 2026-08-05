@@ -1,304 +1,263 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hyewwon | Backend Developer</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="anonymous"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet"/>
+    <meta
+      name="description"
+      content="AI와 자동화 흐름을 실제 제품 안에서 안정적으로 운영하는 백엔드 엔지니어 김혜원의 포트폴리오"
+    />
+    <meta name="theme-color" content="#102d27" />
+    <title>Kim Hyewwon — Backend Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="assets/css/index.css" />
+    <script src="assets/js/index.js" defer></script>
   </head>
   <body>
-    <div class="app-window">
-      <header class="command-bar">
-        <div class="window-controls">
-          <span class="dot red"></span>
-          <span class="dot yellow"></span>
-          <span class="dot green"></span>
+    <a class="skip-link" href="#selected-work">프로젝트로 바로 이동</a>
+
+    <header class="site-header" data-header>
+      <a class="wordmark" href="#origin" aria-label="포트폴리오 처음으로">
+        <span>KH</span>
+        <span class="wordmark__text">Kim Hyewwon</span>
+      </a>
+      <nav class="chapter-nav" aria-label="성장 단계">
+        <a href="#origin" data-progress-dot="0" aria-label="Origin"></a>
+        <a href="#learn" data-progress-dot="1" aria-label="Learn"></a>
+        <a href="#build" data-progress-dot="2" aria-label="Build"></a>
+        <a href="#operate" data-progress-dot="3" aria-label="Operate"></a>
+        <a href="#beyond" data-progress-dot="4" aria-label="Beyond"></a>
+      </nav>
+      <a class="contact-pill" href="#contact">Contact <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main>
+      <section class="journey" aria-label="개구리의 성장으로 보는 개발 여정" data-journey>
+        <div class="journey-stage" aria-hidden="true">
+          <div class="journey-stage__wash"></div>
+          <div class="light-beams"><span></span><span></span><span></span></div>
+          <div class="particle-field" data-particle-field></div>
+          <canvas class="flow-field" data-flow-field></canvas>
+          <div class="well-mouth">
+            <span class="well-mouth__light"></span>
+            <span class="well-mouth__stone"></span>
+          </div>
+          <div class="character-stage">
+            <video
+              class="journey-video"
+              data-journey-video
+              muted
+              playsinline
+              preload="auto"
+              poster="assets/image/frog-sequence/keyframes/single-egg.png"
+            >
+              <source src="assets/video/frog-journey-alpha.webm" type="video/webm" />
+              <source src="assets/video/frog-journey.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="journey-index">
+            <span data-stage-number>01</span>
+            <span class="journey-index__rule"><i></i></span>
+            <span>05</span>
+          </div>
+          <p class="scroll-cue"><span></span> Scroll to evolve</p>
         </div>
-        <div class="command-badge">~/hyewwon</div>
-        <div class="command-status">backend</div>
-      </header>
 
-      <div class="file-tabs" role="tablist">
-        <a href="#intro" class="file-tab active" role="tab">about.md</a>
-        <a href="#skills" class="file-tab" role="tab">skills.py</a>
-        <a href="#experience" class="file-tab" role="tab">experience.log</a>
-      </div>
-
-      <main class="page-shell">
-        <section id="intro" class="page-section hero" data-file="about.md">
-          <div class="hero-media">
-            <div class="profile-frame">
-              <img src="assets/image/profile.png" alt="프로필 이미지" />
-            </div>
-          </div>
-          <div class="hero-content">
-            <p class="eyebrow">About Me</p>
-            <h1>안녕하세요, 백엔드 개발자 김혜원입니다.</h1>
-            <div class="hero-terminal" aria-label="profile terminal output">
-
-              <div class="terminal-line">
-                <span class="terminal-prompt">hyewwon@portfolio:~$</span>
-                <span class="terminal-command" data-type-text="cat information" data-target="#intro-output"></span>
-                <span class="terminal-cursor" aria-hidden="true"></span>
-              </div>
-              <div class="terminal-output" id="intro-output">
-                개구리는 개울가 속 올챙이에서 육지로 나아가기 위해 성장과 변화를 겪고 더 넓은 환경에 적응하게 되는 동물입니다.
-                저는 이러한 개구리의 성장 과정처럼 나아가고자 합니다.<br>
-                현재에 안주하지 않고, 더 나은 개발자기 되기 위해 기존 시스템을 개선하는 데 끊임 없이 고민하고 적극적으로 다가갑니다. 또한, 새로운 기술을 습득하고
-                적용해보는 도전을 즐깁니다. 복잡한 문제나 난관을 만나면 그것을 성장의 발판으로 삼아 해결 방법을 모색하며 새로운 환경에 차근차근 적응해 갑니다.
-                더 넓은 세계를 탐험하기 위한 개구리의 성장처럼, 변화를 두려워하지 않고 끊임없는 학습과 자기 개발을 통해 항상 발전하는 개발자를 목표로 합니다.
-              </div>
-
-              <div class="terminal-line terminal-line--pending">
-                <span class="terminal-prompt">hyewwon@portfolio:~$</span>
-                <span class="terminal-command" data-type-text="open github" data-target="#github-output"></span>
-                <span class="terminal-cursor" aria-hidden="true"></span>
-              </div>
-              <a href="https://github.com/hyewwon" target="_blank" rel="noopener noreferrer" class="terminal-output has-link" id="github-output">github.com/hyewwon</a>
-
-              <a class="terminal-line terminal-line--pending">
-                <span class="terminal-prompt">hyewwon@portfolio:~$</span>
-                <span class="terminal-command" data-type-text="cat email" data-target="#email-output"></span>
-                <span class="terminal-cursor" aria-hidden="true"></span>
-              </a>
-              <span class="terminal-output has-link" id="email-output">rlagp424@gmail.com</span>
-
-            </div>
-          </div>
-        </section>
-
-        <section id="skills" class="page-section" data-file="skills.py">
-          <header>
-            <p class="eyebrow">Capabilities</p>
-            <h2>Tech Stack &amp; Toolbelt</h2>
-            <p class="lead">
-              현재 백엔드 프로덕션 환경에서 가장 많이 사용 중인 스택과 역할 입니다.
-            </p>
-          </header>
-          <div class="skills-controls" role="toolbar" aria-label="Skill focus">
-            <button class="skill-filter is-active" type="button" data-skill-filter="all" aria-pressed="true">
-              All
-            </button>
-            <button class="skill-filter" type="button" data-skill-filter="application" aria-pressed="false">
-              Application
-            </button>
-            <button class="skill-filter" type="button" data-skill-filter="data" aria-pressed="false">
-              Data
-            </button>
-            <button class="skill-filter" type="button" data-skill-filter="platform" aria-pressed="false">
-              Platform
-            </button>
-            <button class="skill-filter" type="button" data-skill-filter="ai" aria-pressed="false">
-              AI
-            </button>
-          </div>
-          <div class="grid skills-grid" data-skill-grid></div>
-        </section>
-        <section id="experience" class="page-section section-card" data-file="experience.log">
-          <header>
-            <p class="eyebrow">Career Path</p>
-            <h2>Experience Tree</h2>
-          </header>
-          <div class="experience-track">
-            <article class="experience-item">
-              <div class="experience-item__period">
-                <strong>2024.09 - </strong>
+        <div class="journey-steps">
+          <article class="journey-step is-current" id="origin" data-step="0">
+            <div class="journey-copy">
+              <p class="chapter-label"><span>01</span> Origin</p>
+              <h1 class="kinetic-title">
+                <span class="title-line"><span>From a small</span></span>
+                <span class="title-line title-line--accent"><span>beginning.</span></span>
+              </h1>
+              <p class="journey-copy__lead">
+                안녕하세요. 제품의 요청이 실제 결과로 이어지는 과정 전체를 설계하는
+                백엔드 엔지니어 <strong>김혜원</strong>입니다.
+              </p>
+              <div class="hero-meta">
                 <span>Backend Engineer</span>
+                <span>Seoul, KR</span>
+                <span>2022 — Now</span>
               </div>
-              <div class="experience-item__content">
-                <h3>플러스엑스</h3>
-                <p class="experience-item__subtitle">
-                  백엔드 개발자로서 API, 인증/권한, 데이터 구조 등 서비스 운영을 위한 서버 구조 전반을 설계·구현했습니다.
-                </p>
-                <ul class="experience-skills" aria-label="사용 기술">
-                  <li data-tooltip="Python">
-                    <img src="assets/image/skills_icon/python.png" alt="Python" title="Python" loading="lazy" />
-                  </li>
-                  <li data-tooltip="Django">
-                    <img src="assets/image/skills_icon/django.png" alt="Docker" title="Docker" loading="lazy" />
-                  </li>
-                  <li data-tooltip="PostgreSQL">
-                    <img src="assets/image/skills_icon/postgresql.png" alt="Docker" title="Docker" loading="lazy" />
-                  </li>
-                  <li data-tooltip="Docker">
-                    <img src="assets/image/skills_icon/docker.png" alt="Docker" title="Docker" loading="lazy" />
-                  </li>
-                  <li data-tooltip="Linux">
-                    <img src="assets/image/skills_icon/linux.png" alt="Linux" title="Linux" loading="lazy" />
-                  </li>
-                  <li data-tooltip="Celery">
-                    <img src="assets/image/skills_icon/celery.png" alt="Celery" title="Celery" loading="lazy" />
-                  </li>
-                  <li data-tooltip="Redis">
-                    <img src="assets/image/skills_icon/redis.png" alt="Celery" title="Celery" loading="lazy" />
-                  </li>
-                  <li data-tooltip="AWS">
-                    <img src="assets/image/skills_icon/aws.png" alt="AWS" title="AWS" loading="lazy" />
-                  </li>
-                  <li data-tooltip="Github">
-                    <img src="assets/image/skills_icon/github.png" alt="Celery" title="Celery" loading="lazy" />
-                  </li>
-                </ul>
-                <div class="experience-details" aria-label="주요 업무 내용">
-                  <p class="experience-details__title">주요 업무 내용</p>
-                  <ul class="experience-detail-list">
-                    <li>
-                      <span class="detail-title">[삼성전자] 이미지 생성 AI 툴</span>
-                      <span class="detail-text">AI 이미지 생성 파이프라인 및 인증 기반 백엔드 API 개발</span>
-                    </li>
-                    <li>
-                      <span class="detail-title">[플러스엑스] Groupware</span>
-                      <span class="detail-text">사내 서비스 백엔드 개발 및 알림·자동화 기능 운영</span>
-                    </li>
-                    <li>
-                      <span class="detail-title">[플러스엑스] GenAI</span>
-                      <span class="detail-text">AI 이미지 생성 서비스 백엔드 구조 설계 및 운영</span>
-                    </li>
-                    <li>
-                      <span class="detail-title">[플러스엑스] T Universe Figma Plugin</span>
-                      <span class="detail-text">AI 이미지 생성 플러그인 백엔드 및 비동기 처리 구조 개발</span>
-                    </li>
-                    <li>
-                      <span class="detail-title">[플러스엑스] Another Class</span>
-                      <span class="detail-text">AI 음성 생성 서비스 백엔드 개발 및 실시간 처리 연동</span>
-                    </li>
-                    <li>
-                      <span class="detail-title">[Deeponde] 이벤트 서비스</span>
-                      <span class="detail-text">이벤트 서비스 백엔드 아키텍처 설계 및 운영</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </article>
-            <article class="experience-item">
-              <div class="experience-item__period">
-                <strong>2022.08 - 2024.08</strong>
-                <span>Backend Engineer</span>
-              </div>
-              <div class="experience-item__content">
-                <h3>GNC Solution</h3>
-                <p class="experience-item__subtitle">
-                  Backend Engineer
-                </p>
-                <ul class="experience-skills" aria-label="사용 기술">
-                  <li data-tooltip="Python · 사내 자동화 스크립트">
-                    <img src="assets/image/skills_icon/python.png" alt="Python" title="Python" loading="lazy" />
-                  </li>
-                  <li data-tooltip="Django">
-                    <img src="assets/image/skills_icon/django.png" alt="Docker" title="Docker" loading="lazy" />
-                  </li>
-                  <li data-tooltip="GraphQL">
-                    <img src="assets/image/skills_icon/graphql.png" alt="Docker" title="Docker" loading="lazy" />
-                  </li>
-                  <li data-tooltip="MariaDB">
-                    <img src="assets/image/skills_icon/mariadb.png" alt="Docker" title="Docker" loading="lazy" />
-                  </li>
-                  <li data-tooltip="Linux">
-                    <img src="assets/image/skills_icon/linux.png" alt="Linux" title="Linux" loading="lazy" />
-                  </li>
-                  <li data-tooltip="Celery">
-                    <img src="assets/image/skills_icon/celery.png" alt="Celery" title="Celery" loading="lazy" />
-                  </li>
-                  <li data-tooltip="Github">
-                    <img src="assets/image/skills_icon/github.png" alt="Celery" title="Celery" loading="lazy" />
-                  </li>
-                </ul>
-                <div class="experience-details" aria-label="주요 업무 내용">
-                  <p class="experience-details__title">주요 업무 내용</p>
-                  <ul class="experience-detail-list">
-                    <li>
-                      <span class="detail-title">[Pagee] 리워드 결제 서비스</span>
-                      <span class="detail-text">
-                        광고 리워드 기반 포인트 결제 서비스의 설계·개발 및 서버 운영
-                      </span>
-                    </li>
-                    <li>
-                      <span class="detail-title">[GNC Solution] EMAX</span>
-                      <span class="detail-text">
-                        전력 소모 예측 AI 서비스의 데이터 관리·예측 자동화 백엔드 설계
-                      </span>
-                    </li>
-                    <li>
-                      <span class="detail-title">[빌드텍] Build Performance</span>
-                      <span class="detail-text">
-                        대규모 주기성 작업을 위한 비동기 스케줄링 백엔드 구조 구현
-                      </span>
-                    </li>
-                    <li>
-                      <span class="detail-title">[빌드텍] BuildPay</span>
-                      <span class="detail-text">
-                        전자지갑·빌드몰 연동을 위한 결제·정산 백엔드 API 개발
-                      </span>
-                    </li>
-                    <li>
-                      <span class="detail-title">[GNC Solution] Envisager</span>
-                      <span class="detail-text">
-                        JWT 기반 인증 구조를 적용한 예술 플랫폼 백엔드 개발
-                      </span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </article>
-            <article class="experience-item">
-              <div class="experience-item__period">
-                <strong>2022.06.17</strong>
-                <span>Backend Study</span>
-              </div>
-              <div class="experience-item__content">
-                <h3>정보처리기사 취득</h3>
-                <p class="experience-item__subtitle"></p>
-              </div>
-            </article>
-            <article class="experience-item">
-              <div class="experience-item__period">
-                <strong>2022.01 - 2022.06</strong>
-                <span>Backend & AI Study</span>
-              </div>
-              <div class="experience-item__content">
-                <h3>AI 기반 챗봇 및 OCR 개발 전문가 과정</h3>
-                <p class="experience-item__subtitle">
-                  기업 연계 Python 기반 국가 교육 과정
-                </p>
-                <ul class="experience-skills" aria-label="사용 기술">
-                  <li data-tooltip="Python">
-                    <img src="assets/image/skills_icon/python.png" alt="Python" title="Python" loading="lazy" />
-                  </li>
-                  <li data-tooltip="Django">
-                    <img src="assets/image/skills_icon/django.png" alt="Linux" title="Linux" loading="lazy" />
-                  </li>
-                  <li data-tooltip="MySQL">
-                    <img src="assets/image/skills_icon/mysql.png" alt="Docker" title="Docker" loading="lazy" />
-                  </li>
-                </ul>
-                <div class="experience-details" aria-label="주요 내용">
-                  <p class="experience-details__title">주요 내용</p>
-                  <ul class="experience-detail-list">
-                    <li>
-                      <span class="detail-title">이론 및 프로젝트 평가 종합 성적 우수상 수상 🏆</span>
-                    </li>
-                    <li>
-                      <span class="detail-title">기업 참관 1, 2, 3차 팀 프로젝트</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </article>
-          </div>
-        </section>
-      </main>
+            </div>
+          </article>
 
-      <footer class="status-bar">
-        <div>UTF-8 | Spaces: 2</div>
-        <div>Hyewwon Kim © <span id="year"></span></div>
-        <div>Last deploy: stable</div>
-      </footer>
-    </div>
+          <article class="journey-step" id="learn" data-step="1">
+            <div class="journey-copy">
+              <p class="chapter-label"><span>02</span> Learn</p>
+              <h2 class="kinetic-title">
+                <span class="title-line"><span>Learn the</span></span>
+                <span class="title-line title-line--accent"><span>current.</span></span>
+              </h2>
+              <p class="journey-copy__lead">
+                Python과 Django로 출발해 결제, 데이터 자동화, 인증과 권한처럼 제품의
+                기반이 되는 흐름을 실무에서 익혔습니다.
+              </p>
+              <dl class="chapter-facts">
+                <div><dt>Foundation</dt><dd>API · Data · Auth</dd></div>
+                <div><dt>First field</dt><dd>GNC Solution</dd></div>
+              </dl>
+            </div>
+          </article>
 
-    <script src="assets/js/components.js" defer></script>
-    <script src="assets/js/index.js" defer></script>
+          <article class="journey-step" id="build" data-step="2">
+            <div class="journey-copy">
+              <p class="chapter-label"><span>03</span> Build</p>
+              <h2 class="kinetic-title">
+                <span class="title-line"><span>Build beyond</span></span>
+                <span class="title-line title-line--accent"><span>the request.</span></span>
+              </h2>
+              <p class="journey-copy__lead">
+                기능 하나보다 실패와 지연까지 포함한 전체 흐름을 봅니다. 오래 걸리는 AI
+                작업을 큐로 분리하고, 사용자가 진행 상태를 알 수 있는 구조를 설계했습니다.
+              </p>
+              <div class="proof-note">
+                <span>Representative work</span>
+                <strong>AI 생성 파이프라인과 비동기 처리 구조</strong>
+                <p>API 경계 · 작업 큐 · 상태 조회 · 외부 서비스 실패 대응</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="journey-step" id="operate" data-step="3">
+            <div class="journey-copy">
+              <p class="chapter-label"><span>04</span> Operate</p>
+              <h2 class="kinetic-title">
+                <span class="title-line"><span>Make it run.</span></span>
+                <span class="title-line title-line--accent"><span>Keep it running.</span></span>
+              </h2>
+              <p class="journey-copy__lead">
+                외부 AI 서비스와 제품 API를 연결하고, 비동기 작업을 처리하며, 운영자가
+                상태를 확인하고 대응할 수 있는 지점까지 만듭니다.
+              </p>
+              <ol class="flow-list" aria-label="백엔드 운영 흐름">
+                <li><span>01</span><strong>Connect</strong><small>API · Auth · AI services</small></li>
+                <li><span>02</span><strong>Queue</strong><small>Celery · Redis · Retry</small></li>
+                <li><span>03</span><strong>Operate</strong><small>Admin · AWS · Visibility</small></li>
+              </ol>
+            </div>
+          </article>
+
+          <article class="journey-step journey-step--final" id="beyond" data-step="4">
+            <div class="journey-copy">
+              <p class="chapter-label"><span>05</span> Beyond</p>
+              <h2 class="kinetic-title">
+                <span class="title-line"><span>Beyond</span></span>
+                <span class="title-line title-line--accent"><span>the well.</span></span>
+              </h2>
+              <p class="journey-copy__lead">
+                익숙한 방식에 머물지 않고 더 넓은 제품 환경으로 뛰어갑니다. 기술을
+                도입하는 것보다, 실제 서비스 안에서 안정적으로 굴러가게 만드는 일을 좋아합니다.
+              </p>
+              <a class="text-link" href="#selected-work">프로젝트 증거 보기 <span>↓</span></a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="work-section" id="selected-work" aria-labelledby="work-title">
+        <header class="section-heading reveal">
+          <p class="chapter-label"><span>Selected</span> Work</p>
+          <h2 id="work-title">Proof, not<br /><em>decoration.</em></h2>
+          <p>
+            공개 가능한 범위 안에서 문제, 역할, 기술 선택과 구현 결과를 중심으로 정리했습니다.
+          </p>
+        </header>
+
+        <div class="case-list">
+          <article class="case-study reveal">
+            <div class="case-study__number">01</div>
+            <div class="case-study__title">
+              <p>AI Product Backend</p>
+              <h3>Samsung Image<br />Generation Tool</h3>
+            </div>
+            <div class="case-study__body">
+              <dl>
+                <div><dt>Problem</dt><dd>생성 시간이 긴 AI 작업과 사용자 요청의 분리</dd></div>
+                <div><dt>Role</dt><dd>인증 기반 API와 이미지 생성 파이프라인 개발</dd></div>
+                <div><dt>Choice</dt><dd>비동기 작업 처리와 상태 중심 응답 구조</dd></div>
+                <div><dt>Delivery</dt><dd>실제 제품에서 사용할 수 있는 생성 흐름 구현</dd></div>
+              </dl>
+              <ul class="tag-list"><li>Python</li><li>Django</li><li>Celery</li><li>Redis</li></ul>
+            </div>
+          </article>
+
+          <article class="case-study reveal">
+            <div class="case-study__number">02</div>
+            <div class="case-study__title">
+              <p>Plugin &amp; AI Workflow</p>
+              <h3>T Universe<br />Figma Plugin</h3>
+            </div>
+            <div class="case-study__body">
+              <dl>
+                <div><dt>Problem</dt><dd>플러그인 안에서 외부 AI 생성을 안정적으로 연결</dd></div>
+                <div><dt>Role</dt><dd>백엔드 API, 인증과 비동기 처리 구조 개발</dd></div>
+                <div><dt>Choice</dt><dd>외부 모델 호출과 제품 요청 사이의 명확한 경계</dd></div>
+                <div><dt>Delivery</dt><dd>플러그인에서 호출 가능한 AI 생성 백엔드 제공</dd></div>
+              </dl>
+              <ul class="tag-list"><li>REST API</li><li>AI API</li><li>Async</li><li>AWS</li></ul>
+            </div>
+          </article>
+
+          <article class="case-study reveal">
+            <div class="case-study__number">03</div>
+            <div class="case-study__title">
+              <p>Payment &amp; Automation</p>
+              <h3>BuildPay &amp;<br />EMAX</h3>
+            </div>
+            <div class="case-study__body">
+              <dl>
+                <div><dt>Problem</dt><dd>결제·정산 연동과 반복되는 예측 작업의 운영</dd></div>
+                <div><dt>Role</dt><dd>전자지갑 API와 예측 자동화 백엔드 설계</dd></div>
+                <div><dt>Choice</dt><dd>데이터 정합성, 스케줄링과 실패 재처리 중심 구조</dd></div>
+                <div><dt>Delivery</dt><dd>서비스 운영에 필요한 API와 주기 작업 구현</dd></div>
+              </dl>
+              <ul class="tag-list"><li>Django</li><li>MariaDB</li><li>Scheduler</li><li>Linux</li></ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="experience-section" aria-labelledby="experience-title">
+        <div class="section-heading section-heading--compact reveal">
+          <p class="chapter-label"><span>Field</span> Experience</p>
+          <h2 id="experience-title">Built in the<br /><em>real world.</em></h2>
+        </div>
+        <div class="timeline reveal">
+          <article>
+            <time>2024.09 — Present</time>
+            <div><h3>Plus X</h3><p>Backend Engineer · AI generation, automation, product API</p></div>
+          </article>
+          <article>
+            <time>2022.08 — 2024.08</time>
+            <div><h3>GNC Solution</h3><p>Backend Engineer · payment, data automation, scheduled jobs</p></div>
+          </article>
+          <article>
+            <time>2022.01 — 2022.06</time>
+            <div><h3>AI &amp; Backend Program</h3><p>Python 기반 국가 교육 과정 · 종합 성적 우수상</p></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="contact-section" id="contact" aria-labelledby="contact-title">
+        <p class="chapter-label"><span>Next</span> Expedition</p>
+        <h2 id="contact-title">Let’s build<br /><em>beyond.</em></h2>
+        <p>새로운 제품과 더 넓은 문제를 향해 뛸 준비가 되어 있습니다.</p>
+        <div class="contact-links">
+          <a href="mailto:rlagp424@gmail.com">Email <span>↗</span></a>
+          <a href="https://github.com/hyewwon" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span></a>
+        </div>
+        <footer>
+          <span>Kim Hyewwon · Backend Engineer</span>
+          <span>© <span data-year></span></span>
+        </footer>
+      </section>
+    </main>
   </body>
 </html>
