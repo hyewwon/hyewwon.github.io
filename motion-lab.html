@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="포트폴리오 개구리 캐릭터의 점프, 입수, 수영 동작을 검증하는 모션 랩"
+    />
+    <title>Frog Motion Lab | Hyewwon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/motion-lab.css" />
+  </head>
+  <body>
+    <nav class="lab-nav" aria-label="모션 랩 내비게이션">
+      <a class="lab-brand" href="motion-lab.html" aria-label="Frog Motion Lab 홈">
+        <span class="lab-brand__dot" aria-hidden="true"></span>
+        Frog Motion Lab
+      </a>
+      <div class="lab-nav__actions">
+        <span class="lab-nav__status" data-nav-status>Sprite ready</span>
+        <a class="lab-nav__link" href="index.html">포트폴리오로 돌아가기</a>
+      </div>
+    </nav>
+
+    <main class="lab-main">
+      <section class="lab-hero" aria-labelledby="lab-title">
+        <header class="lab-heading">
+          <p class="lab-kicker">Character motion study</p>
+          <h1 id="lab-title">
+            선택한 개구리의
+            <span class="lab-heading__inline-image" aria-hidden="true">
+              <img src="assets/image/character/frog-mascot-final.png" alt="" />
+            </span>
+            움직임을 확정하는 공간
+          </h1>
+          <p>
+            같은 캐릭터를 기준으로 대기·점프·입수·수영을 각각 6프레임으로
+            다시 그렸습니다. 아래에서 24개의 원화가 이어지는 움직임을 직접 비교할 수 있습니다.
+          </p>
+        </header>
+
+        <div class="lab-workbench">
+          <section class="motion-stage-card" aria-label="캐릭터 모션 스테이지">
+            <div class="stage-toolbar">
+              <span>Live preview</span>
+              <span class="stage-toolbar__readout" data-stage-readout>대기</span>
+            </div>
+
+            <div class="motion-stage" data-motion-stage>
+              <div class="stage-sky" aria-hidden="true"></div>
+              <div class="stage-water" aria-hidden="true">
+                <span class="bubble bubble--one"></span>
+                <span class="bubble bubble--two"></span>
+                <span class="bubble bubble--three"></span>
+              </div>
+              <div class="waterline" aria-hidden="true">
+                <span></span><span></span><span></span>
+              </div>
+
+              <div class="splash-effect" aria-hidden="true">
+                <span class="splash-ring splash-ring--one"></span>
+                <span class="splash-ring splash-ring--two"></span>
+                <span class="splash-drop splash-drop--one"></span>
+                <span class="splash-drop splash-drop--two"></span>
+                <span class="splash-drop splash-drop--three"></span>
+              </div>
+
+              <div class="frog-shell" data-frog-shell>
+                <div class="frog-mount" data-frog-mount aria-live="polite">
+                  <div
+                    class="frog-sprite"
+                    data-frog-sprite
+                    role="img"
+                    aria-label="초록색 개구리 캐릭터"
+                  ></div>
+                </div>
+              </div>
+
+              <p class="stage-hint">버튼으로 동작을 재생하거나 아래 사이클을 스크롤하세요.</p>
+            </div>
+          </section>
+
+          <aside class="motion-controls" aria-label="동작 제어판">
+            <div class="motion-controls__header">
+              <div>
+                <p class="motion-controls__title">동작 선택</p>
+                <p class="motion-controls__copy">한 번에 하나의 사이클을 비교합니다.</p>
+              </div>
+              <button class="icon-button" type="button" data-action="reset" aria-label="동작 초기화">
+                Reset
+              </button>
+            </div>
+
+            <div class="motion-button-grid" role="group" aria-label="기본 동작">
+              <button class="motion-button is-active" type="button" data-motion="idle">
+                <span>01</span>
+                대기
+              </button>
+              <button class="motion-button" type="button" data-motion="anticipation">
+                <span>02</span>
+                점프 준비
+              </button>
+              <button class="motion-button" type="button" data-motion="hop">
+                <span>03</span>
+                점프
+              </button>
+              <button class="motion-button" type="button" data-motion="dive">
+                <span>04</span>
+                입수
+              </button>
+              <button class="motion-button motion-button--wide" type="button" data-motion="swim">
+                <span>05</span>
+                수영 루프
+              </button>
+              <button class="motion-button motion-button--wide motion-button--primary" type="button" data-motion="cycle">
+                <span>Full</span>
+                전체 사이클
+              </button>
+            </div>
+
+            <label class="speed-control" for="motion-speed">
+              <span>재생 속도</span>
+              <output for="motion-speed" data-speed-output>1.0×</output>
+              <input
+                id="motion-speed"
+                data-speed-control
+                type="range"
+                min="0.5"
+                max="1.5"
+                step="0.1"
+                value="1"
+              />
+            </label>
+
+            <div class="part-list" aria-label="제작된 스프라이트 세트">
+              <p>Sprite sheets · 24 frames</p>
+              <ul>
+                <li><span></span>대기 인사 6프레임</li>
+                <li><span></span>점프 6프레임</li>
+                <li><span></span>입수 6프레임</li>
+                <li><span></span>수영 6프레임</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="cycle-section" aria-labelledby="cycle-title">
+        <div class="cycle-section__intro">
+          <p class="lab-kicker">Scroll cycle</p>
+          <h2 id="cycle-title">한 번의 입수 사이클</h2>
+          <p>
+            스크롤할수록 카드가 쌓이고 캐릭터의 동작도 같은 단계로 전환됩니다.
+            최종 사이트에서는 이 구조를 콘텐츠 챕터와 연결합니다.
+          </p>
+            <div class="cycle-mini-stage" aria-label="스크롤 동작 미리보기">
+              <div class="cycle-mini-stage__water" aria-hidden="true"></div>
+              <div class="cycle-mini-frog" data-cycle-frog-mount>
+                <div class="frog-sprite frog-sprite--mini" data-cycle-frog-sprite aria-hidden="true"></div>
+              </div>
+            </div>
+        </div>
+
+        <div class="cycle-stack" data-cycle-stack>
+          <article class="cycle-card" data-cycle-step="anticipation">
+            <span class="cycle-card__index">01</span>
+            <div>
+              <h3>준비</h3>
+              <p>점프 시트 1–2번 프레임에서 자세를 낮추며 힘을 모읍니다.</p>
+            </div>
+          </article>
+          <article class="cycle-card" data-cycle-step="hop">
+            <span class="cycle-card__index">02</span>
+            <div>
+              <h3>도약</h3>
+              <p>점프 시트 3–6번 프레임이 도약·정점·착지 실루엣을 만듭니다.</p>
+            </div>
+          </article>
+          <article class="cycle-card" data-cycle-step="dive">
+            <span class="cycle-card__index">03</span>
+            <div>
+              <h3>입수</h3>
+              <p>전용 입수 시트가 사선에서 수직까지 각도를 단계적으로 연결합니다.</p>
+            </div>
+          </article>
+          <article class="cycle-card" data-cycle-step="swim">
+            <span class="cycle-card__index">04</span>
+            <div>
+              <h3>수영</h3>
+              <p>접기·킥·글라이드·회수 6프레임을 반복하며 앞으로 부유합니다.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="motion-decision" aria-labelledby="decision-title">
+        <div>
+          <p class="lab-kicker">Next checkpoint</p>
+          <h2 id="decision-title">사이클이 확정되면 스크롤 무대로 연결합니다.</h2>
+        </div>
+        <p>
+          이 페이지에서 프레임 속도와 동작 강도를 조정한 뒤, 스플래시 페이지와
+          중앙 콘텐츠 전환 타임라인에 동일한 스프라이트 세트를 재사용합니다.
+        </p>
+      </section>
+    </main>
+
+    <footer class="lab-footer">
+      <span>Hyewwon Frog Motion System</span>
+      <a href="#lab-title">맨 위로</a>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <script src="assets/js/motion-lab.js"></script>
+  </body>
+</html>
