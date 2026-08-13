@@ -14,7 +14,6 @@
   --scene-progress: 0;
   --water-shift: 0dvh;
   --copy-opacity: 1;
-  --underwater-opacity: 0;
 }
 
 *,
@@ -229,12 +228,19 @@ a {
   position: absolute;
   top: 43%;
   left: 50%;
-  z-index: 3;
+  z-index: 9;
   width: min(760px, calc(100% - 48px));
   transform: translate(-50%, -50%);
+  color: var(--surface-ink);
   text-align: center;
-  opacity: var(--copy-opacity);
-  will-change: transform, opacity;
+  opacity: 1;
+  transition: color 420ms ease, text-shadow 420ms ease;
+  will-change: transform;
+}
+
+.splash-scene.is-copy-underwater .splash-copy {
+  color: #eff7ee;
+  text-shadow: 0 2px 18px rgba(16, 83, 111, 0.18);
 }
 
 .splash-copy__eyebrow,
@@ -253,10 +259,11 @@ a {
 }
 
 .splash-copy h1 {
-  font-family: "Gowun Batang", "Batang", serif;
-  font-size: clamp(3.9rem, 7.8vw, 8rem);
-  line-height: 0.98;
-  letter-spacing: -0.075em;
+  font-family: "Outfit", "Pretendard", sans-serif;
+  font-size: clamp(3rem, 5.7vw, 5.75rem);
+  font-weight: 600;
+  line-height: 0.92;
+  letter-spacing: -0.055em;
   text-wrap: balance;
 }
 
@@ -265,6 +272,24 @@ a {
   color: var(--surface-muted);
   font-size: clamp(0.9rem, 1.1vw, 1.04rem);
   line-height: 1.65;
+}
+
+.splash-copy__progress {
+  display: block;
+  min-width: 3.2ch;
+  margin-top: 9px;
+  color: var(--surface-muted);
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.65;
+}
+
+.splash-scene.is-copy-underwater .splash-copy__eyebrow,
+.splash-scene.is-copy-underwater .splash-copy__body,
+.splash-scene.is-copy-underwater .splash-copy__progress {
+  color: rgba(239, 247, 238, 0.78);
 }
 
 .cliff {
@@ -513,39 +538,6 @@ a {
 .water-bubble--two { top: 23%; right: 23%; width: 13px; height: 13px; }
 .water-bubble--three { top: 48%; right: 11%; width: 5px; height: 5px; }
 
-.underwater-message {
-  position: absolute;
-  top: 32dvh;
-  left: 50%;
-  width: min(760px, calc(100% - 48px));
-  transform: translateX(-50%);
-  color: #eff7ee;
-  text-align: center;
-  opacity: var(--underwater-opacity);
-}
-
-.underwater-message p,
-.underwater-message h2,
-.underwater-message span {
-  margin: 0;
-}
-
-.underwater-message p,
-.underwater-message span {
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  opacity: 0.64;
-}
-
-.underwater-message h2 {
-  margin: 18px 0 24px;
-  font-family: "Gowun Batang", "Batang", serif;
-  font-size: clamp(3.2rem, 6.5vw, 6.8rem);
-  line-height: 1;
-  letter-spacing: -0.065em;
-}
-
 .scroll-cue {
   position: absolute;
   bottom: 4.2dvh;
@@ -558,33 +550,6 @@ a {
   font-size: 0.68rem;
   letter-spacing: 0.08em;
   opacity: var(--copy-opacity);
-}
-
-.splash-progress {
-  position: absolute;
-  right: clamp(22px, 4vw, 68px);
-  bottom: 3.4dvh;
-  z-index: 14;
-  display: flex;
-  align-items: baseline;
-  gap: 12px;
-  color: rgba(239, 247, 238, 0.88);
-  font-variant-numeric: tabular-nums;
-}
-
-.splash-progress span {
-  font-size: 0.66rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  opacity: 0.66;
-}
-
-.splash-progress strong {
-  min-width: 3ch;
-  font-size: clamp(1.35rem, 2.1vw, 2.2rem);
-  font-weight: 500;
-  letter-spacing: -0.045em;
-  text-align: right;
 }
 
 .scroll-cue i {
@@ -695,7 +660,7 @@ a {
   }
 
   .splash-copy h1 {
-    font-size: clamp(3.5rem, 13vw, 5.8rem);
+    font-size: clamp(2.75rem, 11.2vw, 4.35rem);
   }
 
   .cliff {
@@ -760,11 +725,6 @@ a {
 
   .scroll-cue span {
     display: none;
-  }
-
-  .splash-progress {
-    right: 18px;
-    bottom: 18px;
   }
 
   .concept-notes dl div {

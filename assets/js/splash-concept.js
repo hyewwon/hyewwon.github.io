@@ -122,9 +122,8 @@
 
   const setWater = (elapsed) => {
     const waterProgress = smooth(range(elapsed, TIMING.entryEnd - 180, TIMING.waterEnd));
-    const underwaterOpacity = smooth(range(elapsed, TIMING.entryEnd + 220, TIMING.waterEnd - 80));
     scene?.style.setProperty("--water-shift", `${(-78 * waterProgress).toFixed(3)}dvh`);
-    scene?.style.setProperty("--underwater-opacity", underwaterOpacity.toFixed(4));
+    scene?.classList.toggle("is-copy-underwater", waterProgress > 0.42);
     header?.classList.toggle("is-underwater", waterProgress > 0.55);
   };
 
@@ -173,8 +172,8 @@
     if (sceneLabel) sceneLabel.textContent = "Intro · Loading";
     if (progressOutput) progressOutput.textContent = "0%";
     scene?.style.setProperty("--copy-opacity", "1");
-    scene?.style.setProperty("--underwater-opacity", "0");
     scene?.style.setProperty("--water-shift", "0dvh");
+    scene?.classList.remove("is-copy-underwater");
     header?.classList.remove("is-underwater");
     if (entrySplash) entrySplash.style.opacity = "0";
     setFrame(0);
