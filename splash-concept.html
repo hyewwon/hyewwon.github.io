@@ -14,16 +14,17 @@
       href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="assets/css/splash-concept.css?v=copy-progress-2" />
+    <link rel="preconnect" href="https://api.fontshare.com" />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@500,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/splash-concept.css?v=skills-flow-5" />
   </head>
   <body class="is-intro-playing">
     <a class="skip-link" href="#splash-title">인사말로 바로가기</a>
 
     <header class="scene-header" data-scene-header>
-      <a class="scene-brand" href="splash-concept.html" aria-label="스플래시 컨셉 홈">
-        <span class="scene-brand__mark" aria-hidden="true"></span>
-        Kim Hyewwon
-      </a>
       <div class="scene-header__meta">
         <span data-scene-label>Intro · Loading</span>
         <button class="guide-toggle" type="button" data-replay-intro hidden>
@@ -137,28 +138,188 @@
         </div>
       </section>
 
-      <section class="concept-notes" data-portfolio-content aria-labelledby="concept-notes-title">
-        <div>
-          <p class="concept-notes__eyebrow">Kim Hyewwon · Portfolio 2026</p>
-          <h2 id="concept-notes-title">물속에서 이어지는<br />김혜원의 이야기.</h2>
+      <section
+        class="chapter-scroll"
+        data-chapter-scroll
+        aria-label="소개에서 기술 스택으로 이어지는 스크롤 장면"
+      >
+        <div class="chapter-stage" data-chapter-stage>
+      <section class="about-section" data-about-section aria-labelledby="about-title">
+        <div class="about-water" aria-hidden="true">
+          <span class="about-water__glow"></span>
+          <span class="about-water__ray about-water__ray--one"></span>
+          <span class="about-water__ray about-water__ray--two"></span>
+          <span class="about-water__ray about-water__ray--three"></span>
+          <span class="about-water__current about-water__current--one"></span>
+          <span class="about-water__current about-water__current--two"></span>
+          <span class="about-water__bubble about-water__bubble--one"></span>
+          <span class="about-water__bubble about-water__bubble--two"></span>
+          <span class="about-water__bubble about-water__bubble--three"></span>
+          <span class="about-water__bubble about-water__bubble--four"></span>
+          <span class="about-water__plant about-water__plant--left"></span>
+          <span class="about-water__plant about-water__plant--right"></span>
         </div>
-        <dl>
-          <div>
-            <dt>01 · About</dt>
-            <dd>문제를 이해하고 구조를 설계하는 방식</dd>
+
+        <div class="about-section__content">
+          <div class="about-copy-layer" data-about-heading-layer>
+            <header class="about-heading">
+              <p class="about-heading__eyebrow">01 · ABOUT</p>
+              <p class="about-heading__greeting">
+                <span>HELLO,</span>
+                <strong>NICE TO MEET YOU.</strong>
+              </p>
+            </header>
           </div>
-          <div>
-            <dt>02 · Work</dt>
-            <dd>서비스를 만들고 운영하며 쌓은 경험</dd>
+
+          <div class="about-profile-stage" data-about-profile-stage>
+            <div class="about-profile" aria-label="물방울 안에서 인사하는 개구리 프로필">
+              <span class="about-profile__orbit" aria-hidden="true"></span>
+              <span class="about-profile__highlight" aria-hidden="true"></span>
+              <div class="about-frog" data-about-frog>
+                <div
+                  class="about-frog__sprite"
+                  data-about-frog-sprite
+                  role="img"
+                  aria-label="왼쪽에서 헤엄쳐 와 물방울 안에서 손을 흔드는 초록색 개구리"
+                ></div>
+              </div>
+            </div>
           </div>
-          <div>
-            <dt>03 · Projects</dt>
-            <dd>기술적 판단과 해결 과정을 담은 프로젝트</dd>
+
+          <div class="about-copy-layer" data-about-intro-layer>
+            <div class="about-intro">
+              <h2 id="about-title">안녕하세요, 백엔드 개발자 김혜원입니다.</h2>
+              <p>
+                사용자가 마주하는 화면 아래에는<br />
+                데이터와 로직, 수많은 연결이 흐르고 있습니다.<br />
+                저는 문제의 표면에 머무르지 않고 그 안의 흐름을 이해해,<br />
+                안정적이고 오래 유지할 수 있는 구조로 만드는 백엔드 개발자입니다.
+              </p>
+            </div>
           </div>
-        </dl>
+        </div>
+
+        <p class="about-depth" aria-hidden="true">
+          <span>SHALLOW WATER</span>
+          <strong>01</strong>
+        </p>
+
+        <div class="about-grain" aria-hidden="true"></div>
+      </section>
+
+          <section
+            class="skills-intro"
+            data-skills-intro
+            aria-labelledby="skills-intro-title"
+          >
+            <div class="skills-intro__bubbles" aria-hidden="true">
+              <span class="skills-intro__bubble skills-intro__bubble--one"></span>
+              <span class="skills-intro__bubble skills-intro__bubble--two"></span>
+              <span class="skills-intro__bubble skills-intro__bubble--three"></span>
+              <span class="skills-intro__bubble skills-intro__bubble--four"></span>
+              <span class="skills-intro__bubble skills-intro__bubble--five"></span>
+              <span class="skills-intro__bubble skills-intro__bubble--six"></span>
+              <span class="skills-intro__bubble skills-intro__bubble--seven"></span>
+            </div>
+
+            <div class="skills-intro__copy" data-skills-title>
+              <p>02 · SKILLS</p>
+              <h2 id="skills-intro-title">
+                <span>THE STACK</span>
+                <span>BEHIND THE FLOW.</span>
+              </h2>
+            </div>
+
+            <div class="skills-current" data-skills-current aria-label="기술 스택 인터랙션">
+              <nav class="skills-current__nav" aria-label="기술군 바로가기">
+                <button type="button" data-skill-nav="0" aria-current="true">
+                  <span>Backend Core</span>
+                </button>
+                <button type="button" data-skill-nav="1">
+                  <span>Data &amp; Cache</span>
+                </button>
+                <button type="button" data-skill-nav="2">
+                  <span>Infrastructure</span>
+                </button>
+                <button type="button" data-skill-nav="3">
+                  <span>AI Integration</span>
+                </button>
+                <button type="button" data-skill-nav="4">
+                  <span>AI Workflow</span>
+                </button>
+              </nav>
+
+              <div class="skills-flow" data-skills-flow>
+                <div class="skills-flow__wash" aria-hidden="true"></div>
+
+                <div class="skills-guide" data-skills-frog aria-label="물살 위를 헤엄치는 개구리">
+                  <div
+                    class="skills-guide__sprite"
+                    data-skills-frog-sprite
+                    role="img"
+                    aria-label="오른쪽에서 진입해 왼쪽을 바라보며 제자리에서 헤엄치는 초록색 개구리"
+                  ></div>
+                </div>
+
+                <div class="skills-flow__current" data-skills-current-track aria-hidden="true">
+                  <svg class="skills-flow__current-svg" viewBox="0 0 1920 420" preserveAspectRatio="none">
+                    <defs>
+                      <linearGradient id="skills-current-stroke" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0" stop-color="#ecfff9" stop-opacity="0" />
+                        <stop offset="0.18" stop-color="#dff8f2" stop-opacity="0.42" />
+                        <stop offset="0.52" stop-color="#f5fffb" stop-opacity="0.72" />
+                        <stop offset="0.84" stop-color="#d5f2ee" stop-opacity="0.34" />
+                        <stop offset="1" stop-color="#ecfff9" stop-opacity="0" />
+                      </linearGradient>
+                      <filter id="skills-current-blur" x="-10%" y="-40%" width="120%" height="180%">
+                        <feGaussianBlur stdDeviation="8" />
+                      </filter>
+                    </defs>
+
+                    <g class="skills-flow__current-layer skills-flow__current-layer--glow" data-current-layer>
+                      <path d="M-120 210 C180 76 392 326 712 188 S1280 76 2040 216" />
+                      <path d="M-180 286 C170 176 468 376 824 270 S1460 172 2100 286" />
+                    </g>
+                    <g class="skills-flow__current-layer skills-flow__current-layer--main" data-current-layer>
+                      <path d="M-120 184 C190 58 404 310 724 174 S1290 62 2040 202" />
+                      <path d="M-160 252 C196 136 454 352 816 244 S1442 134 2080 258" />
+                    </g>
+                    <g class="skills-flow__current-layer skills-flow__current-layer--threads" data-current-layer>
+                      <path d="M-150 126 C186 30 422 236 760 130 S1380 28 2070 142" />
+                      <path d="M-150 326 C176 238 448 398 798 318 S1420 238 2070 332" />
+                    </g>
+                  </svg>
+
+                  <div class="skills-flow__particles" data-current-particles>
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                  </div>
+                </div>
+
+              </div>
+
+              <p class="skills-current__count" aria-live="polite">
+                <span data-skill-count>01</span>
+                <i></i>
+                <span>05</span>
+              </p>
+
+            </div>
+
+            <p class="skills-intro__depth" aria-hidden="true">
+              <span>ACROSS THE CURRENT</span>
+              <strong>02</strong>
+            </p>
+
+            <div class="skills-intro__grain" aria-hidden="true"></div>
+          </section>
+        </div>
       </section>
     </main>
 
-    <script src="assets/js/splash-concept.js?v=copy-progress-1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <script src="assets/js/splash-concept.js?v=skills-flow-5"></script>
   </body>
 </html>

@@ -14,7 +14,7 @@
     idle: "assets/image/character/sprites/frog-idle-wave-sheet.png?v=2",
     jump: "assets/image/character/sprites/frog-jump-sheet.png",
     dive: "assets/image/character/sprites/frog-dive-sheet.png",
-    swim: "assets/image/character/sprites/frog-swim-sheet.png",
+    swim: "assets/image/character/shared/swim/sprites/frog-swim-sheet.png",
   };
 
   const FRAME_COLUMNS = 3;
