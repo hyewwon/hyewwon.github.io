@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Hyewwon 개구리 파비콘</title>
+  <rect width="64" height="64" rx="13" fill="#281957" />
+  <path
+    fill="#fff"
+    d="M32 13.1c2.7-3.8 6.5-6 10.9-6 6.7 0 12.1 5.4 12.1 12.1 0 2.7-.8 5.2-2.2 7.2 3.6 3 5.7 7.3 5.7 12.1C58.5 49.7 48.2 56 32 56S5.5 49.7 5.5 38.5c0-4.8 2.1-9.1 5.7-12.1A12.8 12.8 0 0 1 9 19.2C9 12.5 14.4 7.1 21.1 7.1c4.4 0 8.2 2.2 10.9 6Z"
+  />
+</svg>

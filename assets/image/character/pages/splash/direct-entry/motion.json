@@ -1,0 +1,40 @@
+{
+  "id": "frog-direct-entry",
+  "page": "splash",
+  "version": 7,
+  "sprite": "sprites/frog-direct-entry-sheet-v7.png",
+  "grid": {
+    "columns": 4,
+    "rows": 3,
+    "frameWidth": 320,
+    "frameHeight": 320,
+    "frameCount": 12
+  },
+  "playback": {
+    "entryDurationMs": 2000,
+    "iterationCount": 1,
+    "fillMode": "forwards"
+  },
+  "phases": [
+    {
+      "name": "wave",
+      "from": 1,
+      "to": 4
+    },
+    {
+      "name": "settle",
+      "from": 5,
+      "to": 5
+    },
+    {
+      "name": "crouch-and-jump",
+      "from": 6,
+      "to": 8
+    },
+    {
+      "name": "portal-entry",
+      "from": 9,
+      "to": 12
+    }
+  ]
+}

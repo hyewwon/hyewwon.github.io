@@ -1,0 +1,19 @@
+{
+  "id": "frog-walk",
+  "page": "splash",
+  "version": 6,
+  "sprite": "sprites/frog-walk-sheet-v6.png",
+  "grid": {
+    "columns": 4,
+    "rows": 2,
+    "frameWidth": 320,
+    "frameHeight": 320,
+    "frameCount": 8
+  },
+  "playback": {
+    "frameDurationMs": 135,
+    "cycles": 2,
+    "runtimeFrameCount": 16,
+    "durationMs": 2160
+  }
+}

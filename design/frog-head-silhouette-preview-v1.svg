@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title description">
+  <title id="title">흰색 개구리 얼굴 로고 미리보기</title>
+  <desc id="description">짙은 보라색 바탕 중앙에 눈코입 없이 얼굴 윤곽만 표현한 흰색 개구리 심벌</desc>
+  <rect width="512" height="512" rx="92" fill="#241650" />
+  <g transform="translate(64 64) scale(6)">
+    <path
+      fill="#fff"
+      d="M32 14c2.7-3.9 6.7-6.2 11.3-6.2 6.9 0 12.5 5.6 12.5 12.5 0 2.8-.8 5.4-2.3 7.5 3.5 3 5.5 7.3 5.5 12 0 10.8-10.5 16.5-27 16.5S5 50.6 5 39.8c0-4.7 2-9 5.5-12a13.2 13.2 0 0 1-2.3-7.5c0-6.9 5.6-12.5 12.5-12.5 4.6 0 8.6 2.3 11.3 6.2Z"
+    />
+  </g>
+</svg>

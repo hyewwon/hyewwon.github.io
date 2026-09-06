@@ -1,0 +1,22 @@
+{
+  "id": "frog-wave",
+  "page": "splash",
+  "version": 5,
+  "sprite": "sprites/frog-wave-sheet-v5.png",
+  "grid": {
+    "columns": 4,
+    "rows": 2,
+    "frameWidth": 320,
+    "frameHeight": 320,
+    "frameCount": 8
+  },
+  "playback": {
+    "frameDurationMs": 180,
+    "iterationCount": "infinite"
+  },
+  "constraints": {
+    "anchor": "belly-center",
+    "bodyMovement": "locked",
+    "movingPart": "viewer-left-arm"
+  }
+}

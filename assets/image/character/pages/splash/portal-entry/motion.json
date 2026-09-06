@@ -1,0 +1,36 @@
+{
+  "id": "frog-portal-entry",
+  "page": "splash",
+  "version": 6,
+  "sprite": "sprites/frog-portal-entry-sheet-v6.png",
+  "grid": {
+    "columns": 3,
+    "rows": 2,
+    "frameWidth": 320,
+    "frameHeight": 320,
+    "frameCount": 6
+  },
+  "playback": {
+    "frameDurationMs": 160,
+    "durationMs": 960,
+    "iterationCount": 1,
+    "fillMode": "forwards"
+  },
+  "phases": [
+    {
+      "name": "contact",
+      "from": 1,
+      "to": 2
+    },
+    {
+      "name": "occlusion",
+      "from": 3,
+      "to": 5
+    },
+    {
+      "name": "portal-close",
+      "from": 6,
+      "to": 6
+    }
+  ]
+}
