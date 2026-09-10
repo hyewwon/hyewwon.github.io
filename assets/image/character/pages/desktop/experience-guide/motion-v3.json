@@ -1,0 +1,10 @@
+{
+  "id": "frog-experience-walk",
+  "version": 3,
+  "sprite": "sprites/frog-experience-walk-sheet-v3.png",
+  "grid": { "columns": 4, "rows": 4, "frameWidth": 384, "frameHeight": 384, "frameCount": 16 },
+  "phases": { "lowerHand": [1,2,3], "sideStepLoop": [5,6,7,8], "rest": [13], "blink": [14,15,14,13] },
+  "handoff": "../skills-guide/frames-v3/frame-skills-jump-v3-16.png",
+  "restFrame": 13,
+  "notes": ["Original Skills pixels are the base, not a regenerated character.", "Only right-arm masks, local leg movement and small eyelid patches change.", "No face flipping during travel; sample positions align to device pixels.", "Each frame contains a single connected frog, safe padding and no adjacent-cell fragments."]
+}

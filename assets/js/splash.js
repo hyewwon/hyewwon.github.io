@@ -1,3 +1,9 @@
+// Frames 4–7 prepare the jump, 8–12 fly/turn, 13–15 enter the portal.
+// Share one clock so sprite changes and spatial movement stay in sync.
+const FROG_ENTRY_DURATIONS = [180, 220, 220, 260, 220, 180, 170, 170, 180, 180, 180, 180];
+const FROG_ENTRY_DURATION = FROG_ENTRY_DURATIONS.reduce((sum, duration) => sum + duration, 0);
+const FOCUS_TIMING = { afterEntry: 100, camera: 3400, handoffAt: 3000, expand: 620 };
+
 class SplashSequence {
   constructor(root) {
     this.root = root;
@@ -17,7 +23,7 @@ class SplashSequence {
     this.skillCards = [...root.querySelectorAll("[data-skill-card]")];
     this.skillsTitle = root.querySelector("[data-skills-title]");
     this.skillsCount = root.querySelector("[data-skills-count]");
-    this.replayButton = root.querySelector("[data-replay]");
+    this.skipButton = root.querySelector("[data-splash-skip]");
     this.reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     this.runToken = 0;
     this.activeAnimations = [];
@@ -26,7 +32,7 @@ class SplashSequence {
   init() {
     this.updateClock();
     window.setInterval(() => this.updateClock(), 30000);
-    this.replayButton.addEventListener("click", () => this.run());
+    this.skipButton.addEventListener("click", () => this.skip());
     this.batteryTrigger.addEventListener("click", () => {
       this.setBatteryPopover(
         !this.batteryTrigger.classList.contains("is-active")
@@ -57,7 +63,7 @@ class SplashSequence {
       if (!this.root.classList.contains("is-running")) this.reset();
     });
 
-    window.setTimeout(() => this.run(), 420);
+    this.startTimer = window.setTimeout(() => this.run(), 420);
   }
 
   updateClock() {
@@ -155,6 +161,7 @@ class SplashSequence {
 
   reset() {
     this.cancelAnimations();
+    this.skipButton.disabled = false;
     if (this.screen.parentElement !== this.screenHome) {
       this.screenHome.append(this.screen);
     }
@@ -209,17 +216,29 @@ class SplashSequence {
     }
   }
 
-  async playDirectEntryFrames(token) {
-    const durations = [180, 220, 220, 260, 220, 180, 170, 170, 180, 180, 180, 180];
-
-    for (let frame = 4; frame < 16; frame += 1) {
-      if (token !== this.runToken) return false;
-      this.setFrame(frame);
-      const isCurrent = await this.sleep(durations[frame - 4], token);
-      if (!isCurrent) return false;
+  async playDirectEntryFrames(token, pathAnimation) {
+    let previousFrame = -1;
+    while (token === this.runToken) {
+      // Read the actual animation clock, not a parallel chain of setTimeouts.
+      // Otherwise a busy browser can show the portal before travel has ended.
+      const elapsed = Number(pathAnimation.currentTime) || 0;
+      let end = 0;
+      let frame = 15;
+      for (let index = 0; index < FROG_ENTRY_DURATIONS.length; index += 1) {
+        end += FROG_ENTRY_DURATIONS[index];
+        if (elapsed < end) {
+          frame = index + 4;
+          break;
+        }
+      }
+      if (frame !== previousFrame) {
+        this.setFrame(frame);
+        previousFrame = frame;
+      }
+      if (elapsed >= FROG_ENTRY_DURATION) return true;
+      await new Promise((resolve) => window.requestAnimationFrame(resolve));
     }
-
-    return true;
+    return false;
   }
 
   animateFrogPath() {
@@ -231,38 +250,35 @@ class SplashSequence {
     const frogY = frogRect.top + frogRect.height * 0.5;
     const deltaX = targetX - frogX;
     const deltaY = targetY - frogY;
+    const takeoffAt = FROG_ENTRY_DURATIONS.slice(0, 4).reduce((sum, value) => sum + value, 0);
+    const portalAt = FROG_ENTRY_DURATIONS.slice(0, 9).reduce((sum, value) => sum + value, 0);
+    const arcHeight = Math.min(44, frogRect.width * 0.35);
+    const keyframes = [
+      { transform: "translate3d(0, 0, 0)", offset: 0 },
+      { transform: "translate3d(0, 0, 0)", offset: takeoffAt / FROG_ENTRY_DURATION },
+    ];
+
+    // Sample a continuous arc instead of globally easing a set of holds. Global
+    // easing made the frog leave the shelf while it was still crouching.
+    for (let step = 1; step <= 48; step += 1) {
+      const time = step / 48;
+      const progress = time * time * (3 - 2 * time);
+      const x = deltaX * progress;
+      const y = deltaY * progress - arcHeight * Math.sin(Math.PI * progress);
+      keyframes.push({
+        transform: `translate3d(${x}px, ${y}px, 0)`,
+        offset: (takeoffAt + (portalAt - takeoffAt) * time) / FROG_ENTRY_DURATION,
+      });
+    }
+    // Once the portal appears, anchor it to the monitor while the drawn frog
+    // passes through it. Do not translate the portal across the screen as well.
+    keyframes.push({ transform: `translate3d(${deltaX}px, ${deltaY}px, 0)`, offset: 1 });
 
     const animation = this.frog.animate(
-      [
-        { transform: "translate3d(0, 0, 0) scale(1) rotate(0deg)", offset: 0 },
-        {
-          transform: "translate3d(0, 0, 0) scale(1) rotate(0deg)",
-          offset: 0.31,
-        },
-        {
-          transform: `translate3d(${deltaX * 0.12}px, ${deltaY * 0.12 - 28}px, 0) scale(1) rotate(-1deg)`,
-          offset: 0.38,
-        },
-        {
-          transform: `translate3d(${deltaX * 0.36}px, ${deltaY * 0.36 - 40}px, 0) scale(1) rotate(-1deg)`,
-          offset: 0.56,
-        },
-        {
-          transform: `translate3d(${deltaX * 0.62}px, ${deltaY * 0.66 - 44}px, 0) scale(1) rotate(0deg)`,
-          offset: 0.72,
-        },
-        {
-          transform: `translate3d(${deltaX * 0.82}px, ${deltaY * 0.86 - 26}px, 0) scale(0.99) rotate(0deg)`,
-          offset: 0.86,
-        },
-        {
-          transform: `translate3d(${deltaX}px, ${deltaY}px, 0) scale(0.96) rotate(0deg)`,
-          offset: 1,
-        },
-      ],
+      keyframes,
       {
-        duration: 2340,
-        easing: "cubic-bezier(0.3, 0.08, 0.16, 1)",
+        duration: FROG_ENTRY_DURATION,
+        easing: "linear",
         fill: "forwards",
       }
     );
@@ -313,7 +329,7 @@ class SplashSequence {
         { transform: targetTransform, offset: 1 },
       ],
       {
-        duration: 4000,
+        duration: FOCUS_TIMING.camera,
         easing: "cubic-bezier(0.65, 0, 0.35, 1)",
         fill: "forwards",
       }
@@ -325,45 +341,61 @@ class SplashSequence {
 
   async promoteLockScreenToFullscreen(animate = true) {
     const fromRect = this.screen.getBoundingClientRect();
+    const cameraScale = fromRect.width / this.screen.offsetWidth;
+    const specs = [
+      ['.lock-screen__clock', ['top']],
+      ['.lock-screen__date', ['fontSize']],
+      ['.lock-screen__time', ['fontSize', 'marginTop']],
+      ['.lock-screen__profile', ['bottom', 'width']],
+      ['.profile-avatar', ['width', 'borderWidth']],
+      ['.profile-name', ['fontSize', 'marginTop']],
+      ['.lock-loader', ['width', 'marginTop']],
+      ['.loader-track', ['height', 'borderWidth']],
+      ['.loader-track__value', ['inset']],
+      ['.lock-loader__value', ['fontSize', 'minWidth']],
+    ];
+    const elements = animate ? specs.map(([selector, properties]) => {
+      const element = this.screen.querySelector(selector), style = getComputedStyle(element);
+      return { element, properties, from: Object.fromEntries(properties.map(property => [property, `${parseFloat(style[property]) * cameraScale}px`])) };
+    }) : [];
     this.root.append(this.screen);
     this.screen.classList.add("monitor-screen--fullscreen");
 
     if (!animate) return;
 
     const toRect = this.screen.getBoundingClientRect();
-    const x = fromRect.left - toRect.left;
-    const y = fromRect.top - toRect.top;
-    const scaleX = fromRect.width / toRect.width;
-    const scaleY = fromRect.height / toRect.height;
+    // Measure the final layout before starting any animation. Animate actual
+    // bounds and type sizes, not nonuniform scaleX/scaleY on the whole screen:
+    // the wallpaper crops continuously and the avatar always stays circular.
+    const targets = elements.map(item => ({ ...item, to: Object.fromEntries(item.properties.map(property => [property, getComputedStyle(item.element)[property]])) }));
+    const options = { duration: FOCUS_TIMING.expand, easing: 'cubic-bezier(.25, .15, .2, 1)', fill: 'both' };
     const animation = this.screen.animate(
       [
         {
-          transform: `translate3d(${x}px, ${y}px, 0) scale(${scaleX}, ${scaleY})`,
-          transformOrigin: "top left",
-          borderRadius: "0.65rem",
+          left: `${fromRect.left}px`, top: `${fromRect.top}px`,
+          width: `${fromRect.width}px`, height: `${fromRect.height}px`,
+          borderRadius: "10px",
         },
         {
-          transform: "translate3d(0, 0, 0) scale(1, 1)",
-          transformOrigin: "top left",
+          left: `${toRect.left}px`, top: `${toRect.top}px`,
+          width: `${toRect.width}px`, height: `${toRect.height}px`,
           borderRadius: "0",
         },
       ],
-      {
-        duration: 880,
-        easing: "cubic-bezier(0.65, 0, 0.35, 1)",
-        fill: "both",
-      }
+      options
     );
-
-    this.activeAnimations.push(animation);
-    await animation.finished;
-    animation.cancel();
+    const contents = targets.map(({ element, from, to }) => element.animate([from, to], options));
+    const animations = [animation, ...contents];
+    this.activeAnimations.push(...animations);
+    await Promise.all(animations.map(item => item.finished.catch(() => {})));
+    animations.forEach(item => item.cancel());
+    this.activeAnimations = this.activeAnimations.filter(item => !animations.includes(item));
   }
 
   async runReducedMotion(token) {
     this.setFrame(0);
     this.setProgress(100);
-    await this.sleep(80, token);
+    if (!await this.sleep(80, token)) return;
     await this.promoteLockScreenToFullscreen(false);
     this.root.classList.remove("is-running");
     this.root.classList.add("is-complete", "is-focused");
@@ -415,22 +447,22 @@ class SplashSequence {
     if (!loadingComplete || token !== this.runToken) return;
 
     const pathAnimation = this.animateFrogPath();
-    const framesPromise = this.playDirectEntryFrames(token);
+    const framesPromise = this.playDirectEntryFrames(token, pathAnimation);
     const progressPromise = this.finishProgress(token);
 
-    await Promise.all([pathAnimation.finished, framesPromise, progressPromise]);
+    await Promise.all([pathAnimation.finished.catch(() => {}), framesPromise, progressPromise]);
     if (token !== this.runToken) return;
 
     this.frog.style.opacity = "0";
-    const canFocus = await this.sleep(320, token);
+    const canFocus = await this.sleep(FOCUS_TIMING.afterEntry, token);
     if (!canFocus) return;
 
     this.root.classList.add("is-zooming");
-    const { animation: cameraAnimation, targetTransform } = this.animateCameraFocus();
-    await cameraAnimation.finished;
-    if (token !== this.runToken) return;
+    const { animation: cameraAnimation } = this.animateCameraFocus();
+    // Hand off before the camera ease has come to a complete stop.
+    if (!await this.sleep(FOCUS_TIMING.handoffAt, token)) return;
 
-    this.camera.style.transform = targetTransform;
+    this.camera.style.transform = getComputedStyle(this.camera).transform;
     cameraAnimation.cancel();
     this.root.classList.add("is-handoff");
     await this.promoteLockScreenToFullscreen();
@@ -439,6 +471,23 @@ class SplashSequence {
     this.root.classList.remove("is-running", "is-zooming", "is-handoff");
     this.root.classList.add("is-complete", "is-focused");
     await this.scheduleUnlock(token);
+  }
+
+  skip() {
+    if (this.skipButton.disabled || this.root.classList.contains("is-unlocked")) return;
+    // Invalidate every pending sequence task before cancelling its animations.
+    this.runToken += 1;
+    window.clearTimeout(this.startTimer);
+    this.skipButton.disabled = true;
+    this.cancelAnimations();
+    this.setProgress(100);
+    this.frog.style.opacity = "0";
+    this.promoteLockScreenToFullscreen(false);
+    this.root.classList.remove("is-running", "is-zooming", "is-handoff", "is-unlocking");
+    this.root.classList.add("is-complete", "is-focused", "is-unlocked");
+    // The normal unlock observer opens About and starts the guide unchanged.
+    this.screen.setAttribute("tabindex", "-1");
+    this.screen.focus({ preventScroll: true });
   }
 }
 

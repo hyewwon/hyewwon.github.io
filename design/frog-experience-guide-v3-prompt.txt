@@ -1,0 +1,6 @@
+Use case: identity-preserve, precise-object-edit. Image1 is the EDIT TARGET: the established original frog. Return a 2 by 2 sheet with large safe padding in each quadrant. No text or grid or props. Transparent RGBA background, not drawn checkerboard. Each of the FOUR copies has the EXACT same head, small dark pupils, peach cheeks, small smile, short chunky body, yellow belly, muted yellow-green palette, softly textured original illustration and thin olive outline as the reference. Do NOT enlarge eyes, do NOT redraw face into a new style. Keep the same three-quarter-right orientation. No outline thickening.
+Top left: same frog, only pointing right arm lowered halfway toward its side.
+Top right: same frog, pointing arm fully lowered relaxed alongside torso, open relaxed small hand. Other arm and both feet exactly original.
+Bottom left: exact same relaxed pose as top right, eyes half closed in a gentle blink, no other changes.
+Bottom right: exact same relaxed pose as top right, both eyes closed into small simple curved eyelids, no other changes.
+All feet planted, not seated, no walking or jumping in this sheet. Keep original face and limb sizes. 20 percent blank safe margin around EACH frog to avoid any cross-cell contamination. These are supporting arm and eyelid patches for compositing onto the exact original artwork, not a redesigned character.

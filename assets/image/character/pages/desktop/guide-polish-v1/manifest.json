@@ -1,0 +1,30 @@
+{
+  "sets": {
+    "about": {
+      "count": 17,
+      "width": 384,
+      "height": 384,
+      "blinkFrame": 17
+    },
+    "skills": {
+      "count": 17,
+      "width": 384,
+      "height": 384,
+      "blinkFrame": 17
+    },
+    "experience": {
+      "count": 16,
+      "width": 384,
+      "height": 384,
+      "blinkFrame": 15
+    },
+    "projects": {
+      "count": 16,
+      "width": 384,
+      "height": 384,
+      "blinkFrame": 15
+    }
+  },
+  "exactHandoffs": true,
+  "method": "Original RGB retained in opaque interiors; fringe alpha cleaned; generated eyelids only"
+}

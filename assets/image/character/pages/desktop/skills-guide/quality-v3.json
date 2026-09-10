@@ -1,0 +1,86 @@
+{
+  "source": "assets/image/character/pages/desktop/skills-guide/source/frog-skills-jump-generated-v2.png",
+  "restoredDarkPixels": 17616,
+  "frames": 16,
+  "paletteAnchors": [
+    [
+      [
+        0,
+        0
+      ],
+      [
+        36,
+        57
+      ],
+      [
+        174,
+        163
+      ],
+      [
+        244,
+        243
+      ],
+      [
+        250,
+        250
+      ],
+      [
+        255,
+        255
+      ]
+    ],
+    [
+      [
+        0,
+        0
+      ],
+      [
+        45,
+        84
+      ],
+      [
+        156,
+        150
+      ],
+      [
+        202,
+        199
+      ],
+      [
+        245,
+        240
+      ],
+      [
+        255,
+        255
+      ]
+    ],
+    [
+      [
+        0,
+        0
+      ],
+      [
+        3,
+        0
+      ],
+      [
+        42,
+        20
+      ],
+      [
+        112,
+        102
+      ],
+      [
+        181,
+        165
+      ],
+      [
+        255,
+        255
+      ]
+    ]
+  ],
+  "firstFrameExact": true
+}

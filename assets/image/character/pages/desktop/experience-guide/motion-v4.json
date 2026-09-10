@@ -1,0 +1,11 @@
+{
+  "id": "frog-experience-turn-walk",
+  "version": 4,
+  "sprite": "sprites/frog-experience-turn-walk-sheet-v4.png",
+  "grid": { "columns": 4, "rows": 4, "frameWidth": 384, "frameHeight": 384, "frameCount": 16 },
+  "phases": { "lowerHand": [1,2,3], "turnAway": [4,5,6], "rearWalkLoop": [7,8,9,10], "turnToWindow": [11,12,13,14], "rest": [14], "blink": [15,14] },
+  "runtime": { "lowerHandMs": 360, "turnAwayMs": 360, "walkMinMs": 560, "walkMaxMs": 1800, "walkFrameMs": 140, "turnToWindowMs": 480, "blinkIntervalMs": 4200, "blinkMs": 180 },
+  "handoff": "../skills-guide/frames-v3/frame-skills-jump-v3-16.png",
+  "restFrame": 14,
+  "notes": ["Spatial travel begins only after rear view is reached; stops before turning back.", "Original start and right-looking rest are preserved byte-for-byte.", "Rear/profile poses are newly generated using approved front and splash rear-view references, then palette-registered and uniformly scaled.", "No window/layout/content changes. No climbing. Reduced motion skips travel and shows the original rest."]
+}

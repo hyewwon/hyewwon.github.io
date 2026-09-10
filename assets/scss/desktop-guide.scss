@@ -1,0 +1,269 @@
+// Tour chrome is separate from the existing windows' content styles.
+.desktop-guide {
+  position: absolute;
+  z-index: 6;
+  display: grid;
+  grid-template-columns: 5.25rem minmax(0, 1fr);
+  align-items: end;
+  gap: .6rem;
+  width: min(21rem, calc(100% - 2rem));
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
+  color: #373638;
+  visibility: hidden;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(.45rem);
+  transition: opacity 240ms ease, transform 280ms ease, visibility 0s linear 240ms;
+}
+.desktop-guide[hidden] { display: none; }
+.splash.is-unlocked .desktop-guide.is-guide-visible { visibility: visible; opacity: 1; transform: translateY(0); pointer-events: auto; transition-delay: 0s; }
+.desktop-guide__frog { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; margin-bottom: -.15rem; }
+.desktop-guide.has-animated-frog .desktop-guide__frog { visibility: hidden; }
+.desktop-guide-actor {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 4;
+  pointer-events: none;
+  background: none;
+  image-rendering: auto;
+  will-change: transform;
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--guide-frame) center / 100% 100% no-repeat;
+    transform: none;
+  }
+  &[data-motion='skills'], &[data-motion='experience'], &[data-motion='projects'],
+  &.is-travelling { z-index: 6; }
+  &.is-mirrored::before { transform: scaleX(-1); }
+  &.has-canvas-frame::before { display: none; }
+  &.is-mirrored .desktop-guide-actor__canvas { transform: scaleX(-1); }
+}
+.desktop-guide-actor__canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.desktop-guide-actor[hidden] { display: none; }
+// Skills: restore the frog beside the upper-left side of the window. Reserve
+// its column so the left bubble cannot cover it. Compact layout stays separate.
+.desktop-guide[data-step='1'] {
+  grid-template-columns: minmax(0, 1fr) 5.25rem;
+  align-items: start;
+  .desktop-guide__frog { grid-column: 2; grid-row: 1; width: 5.25rem; }
+  .desktop-guide__bubble { grid-column: 1; grid-row: 1; }
+}
+.desktop-guide__bubble {
+  position: relative;
+  padding: 1rem;
+  border: 1px solid #ffffff66;
+  border-radius: 1.1rem;
+  background: linear-gradient(145deg, #ffffff52, #e5ddf421), #f2edfbb3;
+  color: #302839;
+  -webkit-backdrop-filter: blur(24px) saturate(165%) brightness(1.06);
+  backdrop-filter: blur(24px) saturate(165%) brightness(1.06);
+  box-shadow: 0 .6rem 1.8rem #24113924, inset 0 1px #ffffffe0, inset 0 -1px #78658926;
+}
+.desktop-guide__bubble::before { content: ""; position: absolute; left: -.55rem; bottom: 1.35rem; width: .6rem; height: .9rem; background: #f2edfbcc; clip-path: polygon(100% 0, 100% 100%, 0 80%); pointer-events: none; }
+.desktop-guide__bubble::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(145deg, #ffffffed, #ffffff0f 45%, #dccdef80);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .desktop-guide__bubble { background: #f4f0faf5; }
+}
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  .desktop-guide__bubble { background: #f4f0fa; -webkit-backdrop-filter: none; backdrop-filter: none; }
+}
+.desktop-guide__heading { display: flex; justify-content: space-between; gap: .8rem; align-items: baseline; }
+.desktop-guide__heading strong { font-size: .82rem; font-weight: 650; }
+.desktop-guide__heading > span { font-size: .65rem; color: #68606f; font-variant-numeric: tabular-nums; }
+.desktop-guide__bubble p { margin: .6rem 0 .85rem; font-size: .8rem; line-height: 1.65; word-break: keep-all; text-wrap: pretty; white-space: pre-line; }
+.desktop-guide__actions { display: flex; align-items: center; justify-content: space-between; gap: .6rem; }
+.desktop-guide__actions button { min-height: 2rem; border: 0; border-radius: .45rem; padding: .3rem .55rem; cursor: pointer; font: inherit; font-size: .75rem; transition: background 150ms ease; }
+[data-guide-skip] { color: #62596d; background: transparent; margin-left: -.55rem; }
+[data-guide-next] { color: #fff; background: #57505f; }
+[data-guide-previous] { color: #57505f; background: #ffffff55; box-shadow: inset 0 1px #ffffff73; margin-left: auto; }
+[data-guide-previous]:disabled { opacity: .3; cursor: default; }
+.desktop-guide[data-step="3"] .desktop-guide__actions { flex-wrap: wrap; }
+.desktop-guide[data-step="3"] [data-guide-next] { width: 100%; }
+[data-guide-next] span { margin-left: .5rem; }
+[data-guide-skip]:hover { background: #eae8ed; }
+[data-guide-next]:hover { background: #403948; }
+.desktop-guide button:focus-visible, .skills-launcher:focus-visible, [data-skills-close]:focus-visible { outline: 2px solid #087aff; outline-offset: 3px; }
+
+// Narrow viewports reserve a stable area below the centered windows.
+.is-guide-compact .desktop-guide { grid-template-columns: 4.25rem minmax(0, 1fr); width: min(24rem, calc(100% - 2rem)); }
+.is-guide-compact .desktop-guide[data-step='1'] {
+  grid-template-columns: minmax(0, 1fr);
+  .desktop-guide__frog { position: absolute; width: 4.25rem; }
+  .desktop-guide__bubble { grid-column: 1; }
+}
+.desktop-guide[data-step='2'], .is-guide-compact .desktop-guide[data-step='2'] {
+  grid-template-columns: minmax(0, 1fr);
+  .desktop-guide__frog { position: absolute; width: 5.25rem; right: 0; bottom: calc(100% + 12px); }
+}
+.is-guide-compact .desktop-guide[data-step='2'] .desktop-guide__frog { width: 4.25rem; }
+@media (min-width: 1180px) {
+  .desktop-guide[data-step='3'] {
+    grid-template-columns: minmax(0, 1fr);
+    .desktop-guide__frog { position: absolute; width: 5.25rem; right: 0; bottom: calc(100% + 12px); }
+  }
+}
+@media (min-width: 700px) and (max-width: 899px) {
+  .desktop-guide[data-step='2'] .desktop-guide__bubble {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0 1rem;
+    padding: .75rem 1rem;
+    .desktop-guide__heading, p { grid-column: 1; }
+    p { margin: .35rem 0 0; }
+    .desktop-guide__actions { grid-column: 2; grid-row: 1 / 3; align-self: center; }
+  }
+}
+.is-guide-compact .desktop-guide__bubble { padding: .8rem 1rem; }
+// The pointer follows the actual frog, not a fixed tour-step corner.
+.desktop-guide .desktop-guide__bubble[data-tail]::before {
+  display: block;
+  width: 16px;
+  height: 12px;
+  left: auto; right: auto; top: auto; bottom: auto;
+  background: #f2edfbcc;
+  clip-path: polygon(0 100%, 50% 0, 100% 100%);
+  transform-origin: center;
+}
+.desktop-guide .desktop-guide__bubble[data-tail='top']::before {
+  width: 14px; height: 10px; top: -11px; left: calc(var(--tail-offset) - 7px);
+  transform-origin: center bottom; transform: skewX(var(--tail-skew));
+}
+.desktop-guide .desktop-guide__bubble[data-tail='bottom']::before {
+  width: 14px; height: 10px; bottom: -11px; left: calc(var(--tail-offset) - 7px);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: center top; transform: skewX(var(--tail-skew));
+}
+.desktop-guide .desktop-guide__bubble[data-tail='left']::before {
+  width: 10px; height: 14px; left: -11px; top: calc(var(--tail-offset) - 7px);
+  clip-path: polygon(100% 0, 100% 100%, 0 50%);
+  transform-origin: right center; transform: skewY(var(--tail-skew));
+}
+.desktop-guide .desktop-guide__bubble[data-tail='right']::before {
+  width: 10px; height: 14px; right: -11px; top: calc(var(--tail-offset) - 7px);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+  transform-origin: left center; transform: skewY(var(--tail-skew));
+}
+// About's nearby frog needs a flush, outward-only tail. Rotating the old
+// triangle around its center put its translucent base inside the glass panel.
+.desktop-guide[data-step='0'] .desktop-guide__bubble[data-tail]::before {
+  width: 10px;
+  height: 14px;
+  background: #f2edfbc2;
+  transform: none;
+}
+.desktop-guide[data-step='0'] .desktop-guide__bubble[data-tail='left']::before {
+  left: -11px;
+  top: calc(var(--tail-offset) - 7px);
+  clip-path: polygon(100% 0, 100% 100%, 0 50%);
+}
+.desktop-guide[data-step='0'] .desktop-guide__bubble[data-tail='right']::before {
+  right: -11px;
+  top: calc(var(--tail-offset) - 7px);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+.desktop-guide[data-step='0'] .desktop-guide__bubble[data-tail='top']::before {
+  width: 14px; height: 10px;
+  top: -11px; left: calc(var(--tail-offset) - 7px);
+  clip-path: polygon(0 100%, 50% 0, 100% 100%);
+}
+.desktop-guide[data-step='0'] .desktop-guide__bubble[data-tail='bottom']::before {
+  width: 14px; height: 10px;
+  bottom: -11px; left: calc(var(--tail-offset) - 7px);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+.is-guide-compact .desktop-guide__bubble p { margin: .4rem 0 .6rem; }
+.is-guide-compact .desktop-guide__actions button { min-height: 2.25rem; }
+.is-guide-active .experience-launcher, .is-guide-active .projects-launcher, .is-guide-active .skills-launcher { visibility: hidden !important; }
+
+.splash.is-unlocked [data-screen] .is-tour-positioned {
+  left: var(--tour-left);
+  top: var(--tour-top);
+  width: var(--tour-width);
+  height: var(--tour-height);
+  max-width: calc(100% - 2rem);
+  transform: none;
+  transition: none;
+  transform-origin: top left;
+}
+.splash.is-unlocked .about-window.is-tour-positioned {
+  width: min(clamp(20rem, min(20vw, 30.7vh), 38rem), calc(57.8dvh - 2.6rem), var(--tour-width));
+  height: auto;
+  max-height: var(--tour-height);
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+.splash.is-unlocked .is-tour-positioned.is-tour-leaving { visibility: visible !important; pointer-events: none; }
+.is-guide-active .is-tour-background { visibility: hidden !important; opacity: 0 !important; pointer-events: none !important; }
+.splash.is-unlocked [data-screen] .is-closed { visibility: hidden !important; opacity: 0 !important; pointer-events: none !important; }
+.splash.is-unlocked [data-screen] .is-tour-entering { opacity: 0; }
+.is-guide-active :is(.preview-light, .store-light, .skills-window__control, .about-window__control) {
+  background: #c5c4c7;
+  border-color: #b9b8bd;
+  cursor: default;
+}
+.is-guide-compact .is-tour-background { visibility: hidden !important; }
+.is-tour-positioned .skills-window__grid {
+  // Match Database's five-card row; retain empty tracks when filtering so
+  // card and icon dimensions depend on window width, never item count.
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, max(4.8rem, calc((100% - 4 * var(--skill-column-gap)) / 5))), 1fr));
+}
+.is-tour-positioned .store-project-list { grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr)); }
+.guide-restart { position: absolute; z-index: 6; left: 1rem; bottom: 1rem; display: flex; align-items: center; gap: .25rem; padding: .25rem .7rem .25rem .25rem; border: 1px solid #ffffff60; border-radius: 2rem; background: #f9f9fbe8; color: #514855; font: .72rem -apple-system, BlinkMacSystemFont, sans-serif; cursor: pointer; box-shadow: 0 .2rem 1rem #24113918; }
+.guide-restart[hidden] { display: none; }
+.guide-restart img { width: 2.5rem; height: 2.5rem; object-fit: contain; }
+.guide-restart:focus-visible { outline: 2px solid #087aff; outline-offset: 3px; }
+@media (max-height: 500px) and (min-width: 600px) {
+  .is-guide-compact .desktop-guide { width: min(42rem, calc(100% - 2rem)); }
+  .is-guide-compact .desktop-guide[data-step='1'] .desktop-guide__bubble {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 1rem;
+    .desktop-guide__heading, p { grid-column: 1; }
+    .desktop-guide__actions { grid-column: 2; grid-row: 1 / 3; align-self: center; }
+  }
+  .is-guide-compact .desktop-guide[data-step="3"] .desktop-guide__actions { flex-wrap: nowrap; }
+  .is-guide-compact .desktop-guide[data-step="3"] [data-guide-next] { width: auto; }
+}
+
+.skills-launcher { position: absolute; z-index: 4; top: 17.6rem; right: 1.5rem; width: 7rem; padding: .5rem; border: 0; border-radius: .5rem; background: transparent; color: #fff; font: .75rem -apple-system, BlinkMacSystemFont, sans-serif; text-shadow: 0 1px 3px #25113e75; visibility: hidden; cursor: pointer; }
+.splash.is-unlocked .skills-launcher { visibility: visible; }
+.skills-launcher svg { display: block; width: 3.3rem; height: 3.3rem; margin: 0 auto .4rem; }
+.skills-launcher:hover { background: #ffffff18; }
+[data-skills-close] { padding: 0; cursor: pointer; }
+// On smaller desktops, use the space reserved below the windows for launchers
+// after the guide ends; windows must not cover the only way to reopen an app.
+@media (max-width: 1179px) {
+  .splash.is-unlocked :is(.experience-launcher, .projects-launcher, .skills-launcher) {
+    top: auto;
+    bottom: 4.5rem;
+    right: auto;
+    width: 5.25rem;
+    padding: .25rem;
+  }
+  .experience-launcher { left: calc(50% - 8.875rem); }
+  .projects-launcher { left: calc(50% - 2.625rem); }
+  .skills-launcher { left: calc(50% + 3.625rem); }
+}
+@media (prefers-reduced-motion: reduce) { .desktop-guide, .desktop-guide *, .is-guide-compact .about-window { transition: none !important; } }

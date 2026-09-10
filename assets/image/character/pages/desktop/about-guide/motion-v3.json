@@ -1,0 +1,13 @@
+{
+  "id": "frog-about-greeting",
+  "version": 3,
+  "method": "lossless-original-frame-packing",
+  "sprite": "sprites/frog-about-greeting-sheet-v3.png",
+  "grid": { "columns": 4, "rows": 2, "frameWidth": 320, "frameHeight": 320, "frameCount": 8 },
+  "originalPoseCount": 3,
+  "sourceFrames": [1, 2, 3, 2, 3, 2, 1, 1],
+  "sourceDirectory": "../../splash/seamless-entry/frames-v12",
+  "durationsMs": [350, 180, 220, 180, 220, 200, 250, 600],
+  "playback": { "iterations": 1, "restFrame": 1, "loopWhileReading": false },
+  "notes": "Greeting only. Reveal and short next-button translation belong to the wrapper, not these pixels. No newly drawn blink, peek, jump or landing poses. Not yet applied to the live desktop guide."
+}

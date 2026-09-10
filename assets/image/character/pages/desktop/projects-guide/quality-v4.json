@@ -1,0 +1,47 @@
+{
+  "count": 16,
+  "unchangedFrames": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "walkingHead": "frame 1, translation only",
+  "walkingOffsets": [
+    [
+      6,
+      -6
+    ],
+    [
+      10,
+      -9
+    ],
+    [
+      6,
+      -6
+    ],
+    [
+      10,
+      -9
+    ]
+  ],
+  "walkingBodyUnchangedBelow": 190,
+  "downwardFaceUnchangedAbove": 175,
+  "feetUnchangedBelow": 281,
+  "identicalBlinkBody": true,
+  "identicalRestLoop": true,
+  "skinSource": [
+    170,
+    214,
+    17
+  ],
+  "skinTarget": [
+    163,
+    199,
+    20
+  ]
+}

@@ -4,8 +4,8 @@
   z-index: 4;
   top: calc(50% + 1.1rem);
   left: 50%;
-  width: min(72rem, calc(100% - 3rem));
-  height: min(53rem, calc(100% - 5rem));
+  width: min(80rem, calc(100% - 3rem));
+  height: min(54rem, calc(100% - 4rem));
   display: grid;
   grid-template-columns: var(--preview-sidebar) minmax(0, 1fr);
   grid-template-rows: 4.6rem minmax(0, 1fr);

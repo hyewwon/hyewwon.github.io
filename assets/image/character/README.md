@@ -1,46 +1,24 @@
-# Character assets
+# Current character assets
 
-Character images are grouped by scope so that every page can own one continuous
-motion sheet without mixing source art and runtime assets.
+## Runtime and editable masters
 
-```text
-character/
-├── shared/
-│   └── base/                    # Canonical reusable stills
-└── pages/
-    └── <page>/
-        └── <motion>/
-            ├── source/          # Original/generated master image
-            ├── sprites/         # Normalized runtime sprite sheet
-            ├── frames/          # Extracted cells for inspection and iteration
-            ├── previews/        # Animated QA previews
-            └── motion.json      # Grid and playback metadata
-```
+- Splash: `pages/splash/seamless-entry/sprites/frog-seamless-entry-sheet-v12.png`
+  (4 × 4, 16 frames). The matching `frames-v12/` set is retained for editing;
+  frame 01 also supplies the guide's fallback still and restart button.
+- Desktop guide: `pages/desktop/guide-polish-v1/` contains the actual runtime
+  PNG frames: About 17, Skills 17, Experience 16, Projects 16. Its sheets,
+  blink source and manifest are retained as the current editable masters.
+- Character reference: `shared/base/frog-default-standing.png`.
+- Lock screen / About profile: `shared/profile/frog-profile-avatar-v4.svg`
+  contains its raster image inline; no external profile PNG is required.
 
-## Naming
+## Cleanup — 2026-09-10
 
-- Page motion: `frog-<motion>-sheet.png`
-- Extracted cells: `frame-01.png`, `frame-02.png`, ...
-- Preview: `frog-<motion>-preview.webp`
-- Keep one complete narrative motion in one sheet. Do not mix frames from other
-  pages into the same runtime sheet.
+Superseded sprite sheets, intermediate images and animated preview HTML pages
+were removed. Old motion/quality JSON, design notes and one-off generation
+scripts are historical records, not runtime dependencies. Their old image
+inputs are archived; restore the relevant inputs before rerunning those recipes.
 
-## Current splash motion
-
-- Runtime sheet: `pages/splash/seamless-entry/sprites/frog-seamless-entry-sheet-v11.png`
-- Grid: 4 columns × 4 rows, 16 frames at 320 × 320 pixels
-- Sequence: anchored greeting → neutral settle → front-right three-quarter turn →
-  two compact crouches → short-limbed push-off → airborne from row three →
-  gradual 20°/50°/rear turn → cyan portal entry
-- Frames 1–5 use the same canonical standing face and repeat the stable peak-wave
-  frame instead of the taller V5 pose, removing the apparent face pulsing. Frames
-  9–10 keep both arms and both hind legs fully extended through takeoff and
-  flight while preserving one identical large-head ratio. Frames 11–13 rotate
-  through three airborne angles at a consistent scale, replacing the abrupt
-  front-to-back flip. Generated frames are palette-matched to the greeting
-  source before composition. The proven V8 portal-entry frames remain the basis
-  of frames 14–16 and are uniformly enlarged to soften the size transition.
-- The launch anatomy references `feature/frog-motion` while changing its
-  downward water dive into a short, shallow rightward jump. The target is the
-  left 28% of the monitor screen rather than its center. Earlier sheets remain
-  available for comparison but are no longer used at runtime.
+See `design/asset-cleanup-20260910.md` for the archive and restore instructions.
+Run `node scripts/audit-unused-assets.mjs` for a read-only audit. It explicitly
+preserves dynamically loaded guide frames and current editable masters.

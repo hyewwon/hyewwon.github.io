@@ -1,0 +1,22 @@
+Use case: identity-preserve. Project-bound transparent sprite atlas, 16 frames, strict 4 columns x 4 rows, square canvas, every equal square cell has one complete frog with large safe empty margins.
+Reference 1 is the EXACT character identity and neutral pose. Reference 2 is only supporting joint/shape reference, NOT a portal instruction.
+Create a continuous animation: neutral stance -> anticipate a jump toward SCREEN LEFT -> launch LEFT and upward -> airborne leftward -> land -> turn to SCREEN RIGHT and present with frog's anatomical RIGHT ARM.
+Preserve reference 1 absolutely: plump lime-yellow-green frog, wide large head, dark olive outline, dark round pupils, orange circular cheeks, pale cream-yellow belly, short thick limbs, same simple mildly textured 2D artwork. Do NOT make the face narrower, limbs longer, or change saturation. All faces stay same head volume.
+Frame choreography, row major:
+1 exact reference neutral front view, arms down.
+2 small glance/three-quarter turn toward left, both eyes still visible.
+3 bend knees, round body, arms draw back to prepare left jump.
+4 deeper crouch facing left, retain huge round face.
+5 push off both feet, arms extend toward upper left, toes leaving ground.
+6 airborne leftward stretch, BOTH arms and legs extend, keep thick limbs and big head.
+7 airborne near apex, still traveling left, legs begin bending.
+8 descending leftward, feet prepare landing.
+9 feet stretch down for contact, body upright again.
+10 soft low landing crouch, feet together under body.
+11 rise halfway, look back toward screen right.
+12 upright and gently turn three-quarter toward screen RIGHT.
+13 right shoulder rotates toward viewer, right arm starts rising toward screen right.
+14 anatomical RIGHT hand opens towards screen right, friendly demonstration gesture (not wave). Show the character's right side so its RIGHT arm is the near arm visible to viewer.
+15 anatomical RIGHT arm extends toward screen right, pointing with finger/hand toward the Skills window that will be on its right. Left arm relaxed.
+16 same final rightward pointing pose, settled. Facing gently right, visible round cheek and smiling face, short plump body.
+Each sprite same head scale; feet baseline stable on standing frames at about 85% of cell height. Character body height around 70% of cell; airborne poses fit within 82% cell width. No per-cell global travel; runtime moves the sprite. Real transparent alpha background ONLY: NO white, black, gray or checkerboard backdrop, NO grid lines, labels, shadows, portals, props, floor, motion streaks, decorations. No clipped toes/hands. Output a clean usable PNG sprite atlas.

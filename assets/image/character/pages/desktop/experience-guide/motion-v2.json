@@ -1,0 +1,11 @@
+{
+  "id": "frog-experience-walk",
+  "version": 2,
+  "sprite": "sprites/frog-experience-walk-sheet-v2.png",
+  "grid": { "columns": 4, "rows": 4, "frameWidth": 384, "frameHeight": 384, "frameCount": 16 },
+  "phases": { "lowerHand": [1,2,3], "walkLeftLoop": [5,6,7,8], "turnRight": [10,11,12,13], "blink": [14,15,14,13] },
+  "handoff": "../skills-guide/frames-v3/frame-skills-jump-v3-16.png",
+  "restFrame": 13,
+  "runtime": { "lowerHandMs": 360, "walkMinMs": 480, "walkMaxMs": 1500, "turnMs": 400, "blinkIntervalMs": 4200 },
+  "notes": ["No climbing or seating: stand outside the left window edge.", "Frame 1 exactly matches Skills; frames 13 and 16 are identical.", "Blink frames only replace the eye band, preserving the rest of frame 13 byte-for-byte.", "Stationary sprites use physical-pixel alignment; reduced motion shows the resting pose immediately."]
+}

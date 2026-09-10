@@ -1,0 +1,31 @@
+{
+  "unchangedFramesOneBased": [
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "faceDetailsPreserved": true,
+  "localRepairBox": [
+    230,
+    174,
+    298,
+    294
+  ],
+  "oldSkin": [
+    168,
+    203,
+    22
+  ],
+  "newSkin": [
+    168,
+    204,
+    24
+  ],
+  "frameCount": 16,
+  "cellSize": 384
+}

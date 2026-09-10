@@ -3,3 +3,6 @@ assets/css/*.map
 .DS_Store
 npm-debug.log*
 tmp/pdfs/
+
+# Local design research and agent work notes (keep project READMEs tracked).
+/design/**/*.md

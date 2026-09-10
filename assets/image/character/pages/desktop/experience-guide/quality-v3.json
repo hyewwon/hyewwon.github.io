@@ -1,0 +1,9 @@
+{
+  "firstFrameExact": true,
+  "originalFaceExactOutsideBlinkAndArmMask": true,
+  "centralTorsoExact": true,
+  "blinkOnlyWithinEyeEllipses": true,
+  "singleConnectedCharacter": true,
+  "frames": 16,
+  "cellSize": 384
+}
