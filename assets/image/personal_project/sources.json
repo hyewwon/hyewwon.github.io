@@ -1,0 +1,15 @@
+{
+  "retrieved": "2026-09-11",
+  "assets": {
+    "finalsay-icon.png": {
+      "source": "Owner-authorized original FinalSay Android launcher icon (192 × 192)",
+      "note": "Private repository URL and implementation details intentionally omitted. Original image reused without alteration."
+    },
+    "enjo-eat-icon.png": {
+      "source": "https://github.com/hyewwon/Enjo_eat/blob/master/static/assets/img/food/home.png",
+      "usageEvidence": "https://github.com/hyewwon/Enjo_eat/blob/master/templates/home.html",
+      "note": "Original main-page food illustration reused as the project icon, not the Bootstrap template favicon."
+    }
+  },
+  "content": "FinalSay description is based on the owner's backend source and app configuration. No release date, usage metrics, or ownership of the full Flutter frontend is inferred."
+}

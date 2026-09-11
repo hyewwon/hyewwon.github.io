@@ -1,8 +1,41 @@
 node_modules/
 assets/css/*.map
 .DS_Store
-npm-debug.log*
-tmp/pdfs/
 
-# Local design research and agent work notes (keep project READMEs tracked).
-/design/**/*.md
+# Local agent instructions and session state (not website content).
+AGENTS.md
+AGENTS.override.md
+CLAUDE.md
+GEMINI.md
+/CAREER_START.md
+/.codex/
+/.agents/
+/.claude/
+
+# Research notes, image-generation prompts and one-off production/QA scripts.
+# Website runtime scripts live in assets/js; package.json uses Sass directly.
+/design/
+/scripts/
+
+# Local renders, screenshots, test reports and scratch exports.
+/tmp/
+/output/
+/test-results/
+/playwright-report/
+/coverage/
+/.cache/
+/assets/image/character/**/previews/
+/assets/image/character/**/quality-*.json
+
+# Local credentials and debug logs; keep example configuration files available.
+.env
+.env.*
+!.env.example
+!.env.sample
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Do not ignore all Markdown or assets: READMEs, credits, runtime artwork,
+# SCSS sources, package files and GitHub deployment workflows stay trackable.

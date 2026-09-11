@@ -1,0 +1,19 @@
+{
+  "retrieved": "2026-09-11",
+  "usage": "Original assets from the user's public team-project repositories, reused at their request. No generated replacement logos.",
+  "assets": {
+    "mango-logo.png": "https://github.com/hyewwon/MANGO/blob/main/MANGO_ROOT/static/images/MANGO.png",
+    "mango-features.png": "https://github.com/hyewwon/MANGO/blob/main/MANGO_ROOT/static/images/func.png",
+    "akbocado-logo.png": "https://github.com/hyewwon/Akbocado/blob/main/static/icon.png",
+    "reshop-logo.png": "https://github.com/hyewwon/Reshop/blob/master/WebContent/images/logo3.png",
+    "twith-logo.png": "https://github.com/hyewwon/Twith/blob/master/src/main/webapp/resources/images/mainLogo.png"
+  },
+  "contentEvidence": {
+    "OPD": ["https://github.com/hyewwon/OPD_Project2/blob/main/project/views.py", "https://github.com/hyewwon/OPD_Project2/blob/main/project/models.py"],
+    "MANGO": ["https://github.com/hyewwon/MANGO/blob/main/MANGO_ROOT/bot.py", "https://github.com/hyewwon/MANGO/blob/main/MANGO_ROOT/music/views.py"],
+    "Akbocado": ["https://github.com/hyewwon/Akbocado/blob/main/music/views.py", "https://github.com/hyewwon/Akbocado/blob/main/music/templates/home.html"],
+    "Reshop": ["https://github.com/hyewwon/Reshop/tree/master/src/com/reshop/app", "https://github.com/hyewwon/Reshop/blob/master/src/com/reshop/app/admin/product/ProductOrderOkAction.java"],
+    "Twith": ["https://github.com/hyewwon/Twith/blob/master/README.md", "https://github.com/hyewwon/Twith/blob/master/src/main/java/com/twith/controller/MoimController.java"]
+  },
+  "notes": ["OPD contains no project image or logo asset; its tile uses text initials.", "Personal responsibility and unverified development dates are not inferred from repository ownership.", "Image captions distinguish repository logos/feature guides from actual application screenshots."]
+}

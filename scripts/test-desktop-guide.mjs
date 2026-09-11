@@ -6,7 +6,7 @@ const { chromium } = createRequire(import.meta.url)(process.argv[2] || 'playwrig
 const screenshots = await mkdtemp(join(tmpdir(), 'guide-polish-'));
 import assert from 'node:assert/strict';
 const browser=await chromium.launch({channel:'chrome',headless:true});
-const url=new URL('../splash.html',import.meta.url).href;
+const url=new URL('../index.html',import.meta.url).href;
 const ready=(p,n)=>p.waitForFunction(n=>{const g=document.querySelector('[data-desktop-guide]');return g.dataset.step===String(n)&&g.classList.contains('is-guide-visible')&&!g.inert;},n);
 const selectors=['.about-window','[data-skills-window]','[data-experience-window]','[data-projects-window]'];
 const controls='[data-skills-close], [data-preview-action="close"], [data-preview-action="expand"], [data-store-action="close"], [data-store-action="expand"]';

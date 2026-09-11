@@ -16,6 +16,7 @@
   transition: opacity 240ms ease, transform 280ms ease, visibility 0s linear 240ms;
 }
 .desktop-guide[hidden] { display: none; }
+.desktop-guide.is-outro-preparing { visibility: hidden !important; opacity: 0 !important; transition: none; }
 .splash.is-unlocked .desktop-guide.is-guide-visible { visibility: visible; opacity: 1; transform: translateY(0); pointer-events: auto; transition-delay: 0s; }
 .desktop-guide__frog { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; margin-bottom: -.15rem; }
 .desktop-guide.has-animated-frog .desktop-guide__frog { visibility: hidden; }
@@ -99,8 +100,14 @@
 [data-guide-next] { color: #fff; background: #57505f; }
 [data-guide-previous] { color: #57505f; background: #ffffff55; box-shadow: inset 0 1px #ffffff73; margin-left: auto; }
 [data-guide-previous]:disabled { opacity: .3; cursor: default; }
-.desktop-guide[data-step="3"] .desktop-guide__actions { flex-wrap: wrap; }
-.desktop-guide[data-step="3"] [data-guide-next] { width: 100%; }
+.desktop-guide[data-step='outro'] {
+  grid-template-columns: minmax(0, 1fr);
+  .desktop-guide__frog { display: none; }
+  .desktop-guide__actions { flex-wrap: wrap; gap: .5rem; }
+  [data-guide-skip] { margin-left: 0; background: #ffffff55; }
+  [data-guide-next] { margin-left: auto; }
+}
+.desktop-guide__actions [hidden] { display: none; }
 [data-guide-next] span { margin-left: .5rem; }
 [data-guide-skip]:hover { background: #eae8ed; }
 [data-guide-next]:hover { background: #403948; }
@@ -230,10 +237,6 @@
   grid-template-columns: repeat(auto-fill, minmax(min(100%, max(4.8rem, calc((100% - 4 * var(--skill-column-gap)) / 5))), 1fr));
 }
 .is-tour-positioned .store-project-list { grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr)); }
-.guide-restart { position: absolute; z-index: 6; left: 1rem; bottom: 1rem; display: flex; align-items: center; gap: .25rem; padding: .25rem .7rem .25rem .25rem; border: 1px solid #ffffff60; border-radius: 2rem; background: #f9f9fbe8; color: #514855; font: .72rem -apple-system, BlinkMacSystemFont, sans-serif; cursor: pointer; box-shadow: 0 .2rem 1rem #24113918; }
-.guide-restart[hidden] { display: none; }
-.guide-restart img { width: 2.5rem; height: 2.5rem; object-fit: contain; }
-.guide-restart:focus-visible { outline: 2px solid #087aff; outline-offset: 3px; }
 @media (max-height: 500px) and (min-width: 600px) {
   .is-guide-compact .desktop-guide { width: min(42rem, calc(100% - 2rem)); }
   .is-guide-compact .desktop-guide[data-step='1'] .desktop-guide__bubble {

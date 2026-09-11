@@ -8,7 +8,7 @@ try {
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
     page.on('requestfailed', request => { if (request.url().startsWith('file:')) errors.push(`Missing local resource: ${request.url()}`); });
-    await page.goto(new URL('../splash.html', import.meta.url).href, { waitUntil: 'domcontentloaded' });
+    await page.goto(new URL('../index.html', import.meta.url).href, { waitUntil: 'domcontentloaded' });
     if (phase === 'loading') await page.waitForFunction(() => +document.querySelector('[data-progress-track]').getAttribute('aria-valuenow') >= 11);
     if (phase === 'jump') await page.waitForFunction(() => +document.querySelector('[data-progress-track]').getAttribute('aria-valuenow') > 50);
     if (phase === 'zoom' || phase === 'handoff') await page.waitForFunction(name => document.querySelector('[data-splash]').classList.contains(name), phase === 'zoom' ? 'is-zooming' : 'is-handoff');

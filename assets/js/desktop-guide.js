@@ -9,15 +9,18 @@
   const projects = screen.querySelector('[data-projects-window]');
   const windows = [about, skills, experience, projects];
   const steps = [
-    { title: 'About me', text: '안녕하세요!\n혜원의 작업 공간에 오신 걸 환영해요.\n먼저 간단한 소개부터 살펴볼까요?' },
-    { title: 'Skills', text: '서비스를 만들 때 사용하는 기술과 도구예요.\n왼쪽 앨범을 눌러 분야별로 살펴보세요.' },
-    { title: 'Experience', text: '경력과 담당 업무를 소개할게요.\n왼쪽 페이지를 선택해 자세히 살펴보세요.' },
+    { title: 'About me', text: '안녕하세요!\n저의 포트폴리오에 오신 걸 환영해요.\n제가 하나씩 소개해 드릴게요.\n먼저, 저에 대한 소개부터 시작하겠습니다!' },
+    { title: 'Skills', text: '지금까지 경험한 기술과 도구를 정리했어요.\n왼쪽 카테고리를 눌러 하나씩 살펴보세요!' },
+    { title: 'Experience', text: '지금까지의 경력과 어떤 경험을 쌓아왔는지 정리했어요.\n왼쪽 페이지를 선택해 하나씩 살펴보세요.' },
     { title: 'Projects', text: '직접 참여한 프로젝트들이에요.\n관심 있는 프로젝트를 눌러 자세히 살펴보세요.' },
   ];
   const nextButton = guide.querySelector('[data-guide-next]');
   const previousButton = guide.querySelector('[data-guide-previous]');
-  const restart = screen.querySelector('[data-guide-restart]');
+  const dock = screen.querySelector('[data-desktop-dock]');
+  const finderLauncher = screen.querySelector('[data-about-open]');
   const skillsLauncher = screen.querySelector('[data-skills-open]');
+  const desktopItems = [dock];
+  const dockApps = [finderLauncher, skillsLauncher, screen.querySelector('[data-experience-open]'), screen.querySelector('[data-projects-open]')];
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   const actor = screen.querySelector('[data-guide-actor]');
   // Reuse one painted surface instead of replacing a CSS image/texture on
@@ -34,7 +37,7 @@
   let paintedFrame = null;
   const guideFrog = guide.querySelector('.desktop-guide__frog');
   const bubble = guide.querySelector('.desktop-guide__bubble');
-  const windowControlSelector = '[data-skills-close], [data-preview-action="close"], [data-preview-action="expand"], [data-store-action="close"], [data-store-action="expand"]';
+  const windowControlSelector = '[data-about-close], [data-skills-close], [data-preview-action="close"], [data-preview-action="expand"], [data-store-action="close"], [data-store-action="expand"]';
   const windowControls = windows.flatMap(panel => [...panel.querySelectorAll(windowControlSelector)]);
   const originalDisabled = new Map(windowControls.map(button => [button, button.disabled]));
   const loadFrames = (path, count = 16) => Array.from({ length: count }, (_, index) => {
@@ -56,6 +59,9 @@
     return image;
   });
   const projectsReady = Promise.all(projectsFrames.map(image => image.decode())).then(() => true, () => false);
+  const outroFrames = loadFrames('assets/image/character/pages/desktop/outro-guide/frames-v2/frame-', 8);
+  outroFrames.push(aboutFrames[16]); // Exact neutral blink, not a newly resized face.
+  const outroReady = Promise.all(outroFrames.map(image => image.decode())).then(() => true, () => false);
   const introDurations = [100,120,120,140,260,130,130,180,160,180,160,180,180,140,400];
   const introTotal = introDurations.reduce((sum, value) => sum + value, 0);
   const introGreetingAt = 1180;
@@ -64,14 +70,65 @@
   let travelRaf, travel = null;
   let experienceRaf, experienceMotion = null;
   let projectsRaf, projectsMotion = null;
+  let outroRaf, outroMotion = null, ending = false;
   let idleTimer, returnRest = false;
   let unlocked = false, active = false, busy = false, step = 0;
   let revealTimer, generation = 0, layoutQueued = false;
   const visited = new Set();
+  const windowStack = [...windows];
+  // Keep the relative order of background apps instead of resetting them all
+  // to one z-index (which lets DOM order hide the previously focused window).
+  function focusWindow(panel) {
+    const index = windowStack.indexOf(panel);
+    if (index < 0) return;
+    windowStack.splice(index, 1);
+    windowStack.push(panel);
+    windowStack.forEach((item, position) => { item.style.zIndex = String(3 + position); });
+  }
   const motions = new Set();
+  // Dock launches are independent of guide transitions and of other apps.
+  const dockMotions = new Map();
+  function cancelDockMotion(panel) {
+    const pending = dockMotions.get(panel);
+    if (!pending) return;
+    dockMotions.delete(panel);
+    pending.forEach(animation => animation.cancel());
+    panel.classList.remove('is-dock-opening');
+  }
+  function animateDockOpen(panel, launcher) {
+    if (reducedMotion.matches) return;
+    cancelDockMotion(panel);
+    panel.classList.add('is-dock-opening');
+    const target = panel.getBoundingClientRect();
+    const source = launcher.getBoundingClientRect();
+    const dx = source.left + source.width / 2 - target.left - target.width / 2;
+    const dy = source.top + source.height / 2 - target.top - target.height / 2;
+    const base = getComputedStyle(panel).transform;
+    const transform = base === 'none' ? '' : `${base} `;
+    const scale = Math.max(.08, Math.min(.22, source.width / target.width));
+    const entrance = panel.animate([
+      { opacity: 0, transform: `${transform}translate(${dx}px, ${dy}px) scale(${scale})` },
+      { opacity: 1, offset: .35 },
+      { opacity: 1, transform: base },
+    ], { duration: 480, easing: 'cubic-bezier(.16, 1, .3, 1)', fill: 'both' });
+    const animations = [entrance];
+    const icon = launcher.querySelector('img');
+    if (icon) {
+      const pose = getComputedStyle(icon).transform;
+      animations.push(icon.animate([
+        { transform: pose },
+        { transform: `${pose === 'none' ? '' : pose} translateY(-10px)`, offset: .38 },
+        { transform: pose },
+      ], { duration: 400, easing: 'ease-in-out' }));
+    }
+    dockMotions.set(panel, animations);
+    entrance.finished.catch(() => {}).then(() => {
+      if (dockMotions.get(panel) === animations) cancelDockMotion(panel);
+    });
+  }
   const snapPixel = value => Math.round(value * (window.devicePixelRatio || 1)) / (window.devicePixelRatio || 1);
   function setFrame(motion, frame) {
-    const images = { about: aboutFrames, skills: skillsFrames, experience: experienceFrames, projects: projectsFrames }[motion];
+    const images = { about: aboutFrames, skills: skillsFrames, experience: experienceFrames, projects: projectsFrames, outro: outroFrames }[motion];
     frame = Math.max(0, Math.min(images.length - 1, Math.floor(frame) || 0));
     const image = images[frame];
     // Never replace the last valid pose with an empty/unavailable image.
@@ -166,6 +223,7 @@
     }).catch(() => {});
   }
   function actorTarget() {
+    if (ending) return outroTarget();
     const size = snapPixel(guideFrog.offsetWidth * 384 / 320);
     const inset = (size - guideFrog.offsetWidth) / 2;
     if (step === 3) {
@@ -392,6 +450,8 @@
   }
 
   function syncAccessibility() {
+    dock.hidden = !unlocked || active;
+    dock.inert = dock.hidden || splash.dataset.exploreTransition === 'revealing';
     windowControls.forEach(button => {
       button.disabled = active || originalDisabled.get(button);
       if (active) button.setAttribute('aria-disabled', 'true'); else button.removeAttribute('aria-disabled');
@@ -400,6 +460,7 @@
       const hidden = !unlocked || panel.classList.contains('is-closed') || panel.classList.contains('is-tour-leaving') || (active && index !== step);
       panel.inert = hidden;
       panel.setAttribute('aria-hidden', String(hidden));
+      dockApps[index].setAttribute('aria-expanded', String(!hidden));
     });
   }
   function paintActor() {
@@ -443,6 +504,7 @@
   }
   function layout() {
     if (!unlocked || visited.size === 0) return;
+    if (ending) { layoutOutro(); return; }
     const width = screen.clientWidth, height = screen.clientHeight;
     // Every window shares a center, regardless of its size or tour step.
     // Reserve guide space without adding an offset for successive windows.
@@ -450,14 +512,14 @@
     const shortLandscape = height <= 500 && width >= 600;
     const experienceActive = active && step === 2;
     const guideWidth = experienceActive ? (width >= 900 ? 208 : Math.min(640,width-32)) : active && step === 3 ? (compact ? Math.min(shortLandscape?672:384,width-32) : 208)
-      : compact ? Math.min(shortLandscape ? 672 : 384, width - 32) : 304;
+      : compact ? Math.min(shortLandscape ? 672 : 384, width - 32) : step === 0 ? 352 : 304;
     const guideReserve = compact ? (shortLandscape ? 164 : width < 360 ? 236 : 216) : 0;
-    const frameWidth = Math.min(1000, width - (compact ? 32 : 2 * (guideWidth + 40)));
+    const frameWidth = Math.min(1000, width - (!active || compact ? 32 : 2 * (guideWidth + 40)));
     const perchReserve = active && step === 1 && compact ? 76 : 0;
-    const availableHeight = Math.max(120, height - (compact ? 80 + guideReserve + perchReserve : 96));
+    const availableHeight = Math.max(120, height - (!active ? 148 : compact ? 80 + guideReserve + perchReserve : 96));
     const frameHeight = active && step === 1 && !compact ? Math.min(640, height - 168) : Math.min(640, availableHeight);
     const centerX = width / 2;
-    const centerY = compact ? 48 + perchReserve + availableHeight / 2 : active && step === 1
+    const centerY = !active ? 48 + availableHeight / 2 : compact ? 48 + perchReserve + availableHeight / 2 : active && step === 1
       ? Math.max(height / 2, 120 + frameHeight / 2) : height / 2;
     if (active) splash.classList.toggle('is-guide-compact', compact);
     guide.style.width = `${guideWidth}px`;
@@ -470,7 +532,7 @@
         const rail=experienceActive?(width>=900?232:80):16;
         const ew=Math.min(1280,width-rail-24);
         const et=48;
-        const bottom=experienceActive&&width<900?guide.offsetHeight+28:24;
+        const bottom=!active?100:experienceActive&&width<900?guide.offsetHeight+28:24;
         const eh=Math.max(120,height-et-bottom);
         panel.style.setProperty('--tour-width',`${ew}px`);
         panel.style.setProperty('--tour-height',`${eh}px`);
@@ -485,7 +547,7 @@
         // Reserve only the frog's top-edge perch, never the whole guide.
         const perchTop = active && step===3 ? (width>=900?126:88) : 48;
         const pt=compact?perchTop:Math.max(perchTop,(height-Math.min(720,availableHeight))/2);
-        const bottom=compact?48+availableHeight:height-24;
+        const bottom=!active?height-100:compact?48+availableHeight:height-24;
         const ph=Math.min(720,Math.max(120,bottom-pt));
         panel.style.setProperty('--tour-width',`${pw}px`);
         panel.style.setProperty('--tour-height',`${ph}px`);
@@ -538,6 +600,11 @@
     queueMicrotask(() => { layoutQueued = false; layout(); });
   }
   function cancelReveal(preserveActor = false) {
+    desktopItems.forEach(item => { item.inert = false; });
+    delete splash.dataset.exploreTransition;
+    cancelAnimationFrame(outroRaf);
+    outroMotion = null;
+    ending = false;
     clearTimeout(idleTimer);
     returnRest = false;
     clearTimeout(revealTimer);
@@ -563,6 +630,7 @@
     generation += 1;
     busy = false;
     guide.classList.remove('is-guide-visible');
+    guide.classList.remove('is-outro-preparing');
     guide.inert = true;
   }
   async function showStep(index, initial = false, focus = true) {
@@ -574,7 +642,7 @@
     const token = generation;
     active = true; busy = true;
     splash.classList.add('is-guide-active');
-    restart.hidden = true;
+    dock.hidden = true;
     syncAccessibility();
 
     // Exit first, then change the active index. Never expose the previous
@@ -612,8 +680,10 @@
     count.textContent = `${index + 1} / ${steps.length}`;
     count.setAttribute('aria-label', `전체 ${steps.length}단계 중 ${index + 1}단계`);
     previousButton.disabled = index === 0;
-    nextButton.textContent = index === 3 ? '자유롭게 둘러보기' : '다음 →';
-    nextButton.setAttribute('aria-label', index === 3 ? '가이드 마치고 자유롭게 둘러보기' : `다음: ${steps[index + 1].title}`);
+    previousButton.hidden = false;
+    guide.querySelector('[data-guide-skip]').textContent = '건너뛰기';
+    nextButton.textContent = '다음 →';
+    nextButton.setAttribute('aria-label', index === 3 ? '다음: 마무리 안내' : `다음: ${steps[index + 1].title}`);
     syncAccessibility(); layout();
     const entering = animatePanel(windows[index], [
       { opacity: 0, transform: 'translate3d(0,8px,0) scale(.985)' },
@@ -683,6 +753,144 @@
       revealGuide();
     }, 0);
   }
+  function outroTarget() {
+    const width = screen.clientWidth, height = screen.clientHeight;
+    const size = width >= 900 ? 101 : 84;
+    const stacked = width < 900;
+    const total = size + 18 + guide.offsetHeight;
+    return { x: (width - size) / 2,
+      y: stacked ? Math.max(48, (height - total) / 2) : (height - size) / 2, size };
+  }
+  function layoutOutro() {
+    const width = screen.clientWidth, height = screen.clientHeight;
+    splash.classList.remove('is-guide-compact');
+    guide.style.width = `${Math.min(360, width - 32)}px`;
+    const target = outroTarget();
+    guide.style.left = `${snapPixel(width < 900 ? (width - guide.offsetWidth) / 2 : target.x + target.size + 20)}px`;
+    guide.style.top = `${snapPixel(width < 900 ? target.y + target.size + 18 : Math.max(48, Math.min(height - guide.offsetHeight - 16, height / 2 - guide.offsetHeight / 2)))}px`;
+    paintOutro();
+    pointBubble();
+  }
+  function paintOutro() {
+    if (!outroMotion) return;
+    const { from, viewport, elapsed } = outroMotion, target = outroTarget();
+    const t = Math.max(0, Math.min(1, (elapsed - 280) / 780));
+    const ease = t * t * (3 - 2 * t);
+    const size = from.size + (target.size - from.size) * ease;
+    const startX = from.x * screen.clientWidth / viewport.width;
+    const startY = from.y * screen.clientHeight / viewport.height;
+    const x = startX + (target.x - startX) * ease;
+    // Constant anatomical scale per frame; only the stage moves. A short
+    // upward impulse flows into a longer fall, with no mid-flight hold.
+    const y = startY + (target.y - startY) * t * t - Math.sin(Math.PI * t) * Math.min(48, screen.clientHeight * .07);
+    actor.style.width = actor.style.height = `${snapPixel(size)}px`;
+    actor.style.transform = `translate3d(${snapPixel(x)}px, ${snapPixel(y)}px, 0)`;
+    if (elapsed < 1460) {
+      const frame = elapsed < 100 ? 0 : elapsed < 280 ? 1 : elapsed < 420 ? 2 : elapsed < 740 ? 3 : elapsed < 1060 ? 4 : elapsed < 1230 ? 5 : elapsed < 1360 ? 6 : 7;
+      if (elapsed < 100 && from.motion) setFrame(from.motion, from.frame);
+      else setFrame(outroMotion.ready ? 'outro' : 'about', outroMotion.ready ? frame : 15);
+    }
+    pointBubble();
+  }
+  async function showOutro() {
+    const from = snapshotActor() || actorTarget();
+    cancelReveal(true);
+    const token = generation;
+    active = true; busy = true;
+    // Fade the old Projects bubble in place before replacing its contents.
+    // Otherwise the conclusion briefly flashes at its new position mid-jump.
+    const bubbleExit = animatePanel(guide, [{ opacity: 1 }, { opacity: 0 }], 160);
+    await bubbleExit.finished.catch(() => {});
+    if (token !== generation || !active || !unlocked) return;
+    guide.classList.add('is-outro-preparing');
+    motions.delete(bubbleExit); bubbleExit.cancel();
+    ending = true;
+    guide.dataset.step = 'outro';
+    guide.querySelector('#desktop-guide-title').textContent = '안내가 끝났어요!';
+    guide.querySelector('[data-guide-message]').textContent = '이제 자유롭게 둘러보세요!\n자유롭게 둘러보기를 누르면 원하는 창을 열어볼 수 있어요.\n처음부터 다시 보려면 다시 보기를 눌러주세요.';
+    const count = guide.querySelector('[data-guide-count]');
+    count.textContent = '완료'; count.setAttribute('aria-label', '포트폴리오 안내 완료');
+    previousButton.hidden = true;
+    guide.querySelector('[data-guide-skip]').textContent = '다시 보기';
+    nextButton.textContent = '자유롭게 둘러보기';
+    nextButton.setAttribute('aria-label', '안내를 마치고 자유롭게 둘러보기');
+    // Reset the bubble's layout before measuring the new centered scene.
+    layoutOutro();
+    let timeout;
+    const ready = await Promise.race([outroReady, new Promise(resolve => { timeout = setTimeout(() => resolve(false), 350); })]);
+    clearTimeout(timeout);
+    if (token !== generation || !active || !unlocked) return;
+    outroMotion = { from, ready, elapsed: 0, viewport: { width: screen.clientWidth, height: screen.clientHeight } };
+    actor.hidden = false; actor.classList.remove('is-mirrored');
+    guide.classList.add('has-animated-frog');
+    setFrame(from.motion || (ready ? 'outro' : 'about'), from.motion ? from.frame : ready ? 0 : 15);
+    const started = performance.now();
+    let closing = false;
+    const closeWindows = () => {
+      closing = true;
+      projects.classList.add('is-tour-leaving'); projects.inert = true;
+      const exit = animatePanel(projects, [{ opacity: 1, transform: 'translateY(0) scale(1)' }, { opacity: 0, transform: 'translateY(8px) scale(.985)' }], 240);
+      exit.finished.then(() => {
+        if (token !== generation || !ending) return;
+        windows.forEach(panel => { panel.classList.add('is-closed', 'is-tour-background'); panel.classList.remove('is-tour-leaving', 'is-tour-entering'); });
+        motions.delete(exit); exit.cancel(); syncAccessibility();
+      }).catch(() => {});
+    };
+    function tick(now) {
+      if (token !== generation || !active || !unlocked || !ending) return;
+      outroMotion.elapsed = reducedMotion.matches ? 1460 : Math.min(1460, now - started);
+      if (!closing && outroMotion.elapsed >= 280) closeWindows();
+      paintOutro();
+      actor.dataset.phase = outroMotion.elapsed < 280 ? 'anticipation' : outroMotion.elapsed < 1060 ? 'airborne' : 'landing';
+      if (outroMotion.elapsed < 1460) { outroRaf = requestAnimationFrame(tick); return; }
+      setFrame(ready ? 'outro' : 'about', ready ? 7 : 15);
+      actor.dataset.phase = 'rest';
+      guide.classList.remove('is-outro-preparing');
+      guide.classList.add('is-guide-visible'); guide.inert = false; busy = false;
+      layoutOutro(); nextButton.focus({ preventScroll: true });
+      idleBlink(token, ready ? 'outro' : 'about', ready ? 7 : 15, ready ? 8 : 16);
+    }
+    outroRaf = requestAnimationFrame(tick);
+  }
+  async function enterFreeExplore(focus = false) {
+    if (busy || !active || !ending) return;
+    busy = true;
+    guide.inert = true;
+    clearTimeout(idleTimer);
+    const token = ++generation;
+    splash.dataset.exploreTransition = 'leaving';
+    // Keep the current pose and position throughout the fade. Hiding the
+    // actor or clearing its canvas first would create a one-frame disappearance.
+    const actorTransform = getComputedStyle(actor).transform;
+    const exits = [
+      animatePanel(guide, [{ opacity: 1, transform: 'translateY(0)' }, { opacity: 0, transform: 'translateY(5px)' }], 300),
+      animatePanel(actor, [{ opacity: 1, transform: actorTransform }, { opacity: 0, transform: `${actorTransform} translateY(6px)` }], 340),
+    ];
+    await Promise.all(exits.map(animation => animation.finished.catch(() => {})));
+    if (token !== generation || !active || !unlocked) return;
+
+    // Commit hidden guide state and create filled entrance animations in the
+    // same task, so launchers never paint fully visible before their first frame.
+    finish(false);
+    const revealToken = generation;
+    splash.dataset.exploreTransition = 'revealing';
+    const entrances = desktopItems.filter(item => !item.hidden).map((item, index) => {
+      item.inert = true;
+      const animation = item.animate([
+        { opacity: 0, transform: 'translateY(10px)' },
+        { opacity: 1, transform: 'translateY(0)' },
+      ], { duration: reducedMotion.matches ? 1 : 400, delay: reducedMotion.matches ? 0 : index * 65,
+        easing: 'cubic-bezier(.22, 1, .36, 1)', fill: 'both' });
+      motions.add(animation);
+      return animation;
+    });
+    await Promise.all(entrances.map(animation => animation.finished.catch(() => {})));
+    if (revealToken !== generation || !unlocked || active) return;
+    desktopItems.forEach(item => { item.inert = false; });
+    entrances.forEach(animation => { motions.delete(animation); animation.cancel(); });
+    delete splash.dataset.exploreTransition;
+    if (focus) finderLauncher.focus({ preventScroll: true });
+  }
   function finish(focus = false) {
     cancelReveal();
     active = false;
@@ -690,22 +898,27 @@
     splash.classList.remove('is-guide-compact', 'is-guide-active');
     screen.style.removeProperty('--desktop-guide-height');
     windows.forEach(panel => panel.classList.remove('is-tour-background', 'is-tour-leaving', 'is-tour-entering'));
-    restart.hidden = !unlocked;
+    layout();
     syncAccessibility();
-    if (focus) restart.focus({ preventScroll: true });
+    if (focus) finderLauncher.focus({ preventScroll: true });
   }
   function open(panel) {
-    finish();
+    const wasClosed = panel.classList.contains('is-closed');
+    if (active) finish();
+    if (wasClosed) cancelDockMotion(panel);
     panel.classList.remove('is-closed');
     visited.add(windows.indexOf(panel));
     if (!panel.classList.contains('is-expanded')) panel.classList.add('is-tour-positioned');
     layout();
-    windows.forEach(item => item.style.zIndex = item === panel ? '5' : '3');
+    focusWindow(panel);
     syncAccessibility();
+    if (wasClosed) animateDockOpen(panel, dockApps[windows.indexOf(panel)]);
   }
   function resetWindows() {
     visited.clear();
+    windowStack.splice(0, windowStack.length, ...windows);
     windows.forEach((panel, index) => {
+      cancelDockMotion(panel);
       panel.classList.remove('is-tour-positioned', 'is-tour-leaving', 'is-tour-background', 'is-tour-entering', 'is-expanded');
       panel.querySelectorAll('[aria-pressed]').forEach(button => {
         if (button.matches(windowControlSelector)) button.setAttribute('aria-pressed', 'false');
@@ -722,14 +935,34 @@
     else { finish(); resetWindows(); }
     syncAccessibility();
   }
-  guide.querySelector('[data-guide-skip]').addEventListener('click', () => finish(true));
-  previousButton.addEventListener('click', () => { if (!busy && step > 0) showStep(step - 1); });
-  nextButton.addEventListener('click', () => {
+  guide.querySelector('[data-guide-skip]').addEventListener('click', () => {
     if (busy) return;
-    if (step === steps.length - 1) finish(true);
+    if (ending) { resetWindows(); showStep(0, true); }
+    else finish(true);
+  });
+  previousButton.addEventListener('click', () => { if (!busy && step > 0) showStep(step - 1); });
+  nextButton.addEventListener('click', event => {
+    if (busy) return;
+    if (ending) enterFreeExplore(event.detail === 0);
+    else if (step === steps.length - 1) showOutro();
     else showStep(step + 1);
   });
-  restart.addEventListener('click', () => { resetWindows(); showStep(0, true); });
+  finderLauncher.addEventListener('click', () => open(about));
+  about.querySelector('[data-about-close]').addEventListener('click', () => {
+    if (active) return;
+    cancelDockMotion(about);
+    about.classList.add('is-closed');
+    syncAccessibility();
+    finderLauncher.focus({ preventScroll: true });
+  });
+  dock.addEventListener('keydown', event => {
+    const buttons = [...dock.querySelectorAll('button')];
+    const index = buttons.indexOf(document.activeElement);
+    if (index < 0 || !['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+    event.preventDefault();
+    const next = event.key === 'Home' ? 0 : event.key === 'End' ? buttons.length - 1 : (index + (event.key === 'ArrowRight' ? 1 : -1) + buttons.length) % buttons.length;
+    buttons[next].focus();
+  });
   skillsLauncher.addEventListener('click', () => {
     open(skills);
     skills.querySelector('[data-skill-filter]').focus({ preventScroll: true });
@@ -745,15 +978,17 @@
   }
   for (const panel of windows) {
     panel.addEventListener('pointerdown', () => {
-      if (!active) windows.forEach(item => item.style.zIndex = item === panel ? '5' : '3');
+      if (!active) focusWindow(panel);
     });
     panel.addEventListener('click', event => {
       if (event.target.closest('[data-preview-action="expand"], [data-store-action="expand"]')) {
         if (active) return;
+        cancelDockMotion(panel);
         panel.classList.remove('is-tour-positioned');
       }
     }, { capture: true });
     new MutationObserver(() => {
+      if (panel.classList.contains('is-closed')) cancelDockMotion(panel);
       syncAccessibility();
     }).observe(panel, { attributes: true, attributeFilter: ['class'] });
     new ResizeObserver(scheduleLayout).observe(panel);
@@ -770,6 +1005,8 @@
   });
   new ResizeObserver(scheduleLayout).observe(screen);
   window.addEventListener('resize', scheduleLayout);
+  window.addEventListener('resize', () => windows.forEach(cancelDockMotion));
+  reducedMotion.addEventListener('change', () => windows.forEach(cancelDockMotion));
   window.addEventListener('keydown', event => { if (event.key === 'Escape' && active) finish(true); });
   syncAccessibility();
   onStateChange();

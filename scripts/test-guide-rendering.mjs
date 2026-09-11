@@ -22,7 +22,7 @@ try {
   await Promise.all([[1440,900],[390,844]].map(async ([width,height]) => {
     const page=await browser.newPage({viewport:{width,height},reducedMotion:'reduce'}), errors=[];
     page.on('pageerror', e=>errors.push(e.message));
-    await page.goto(`http://127.0.0.1:${server.address().port}/splash.html`);
+    await page.goto(`http://127.0.0.1:${server.address().port}/index.html`);
     await page.locator('.desktop-guide.is-guide-visible').waitFor();
     await page.emulateMedia({reducedMotion:'no-preference'});
     await page.evaluate(()=>{

@@ -1,0 +1,209 @@
+// Translucent glass with a single rim. Icons stay sharp above the blur layer.
+// macOS traffic-light glyphs share geometry across the four window styles.
+$window-controls: '.about-window__control, .skills-window__control, .preview-light, .store-light';
+$control-groups: '.about-window__controls, .skills-window__controls, .preview-lights, .store-lights';
+// Fixed chrome geometry: never derive button sizes from a hidden/resized window.
+[data-screen] {
+  --window-control-size: 14px;
+  --window-control-gap: 8px;
+  --window-control-top: 16px;
+  --window-control-left: 16px;
+}
+:is(#{$window-controls}) {
+  width: var(--window-control-size);
+  height: var(--window-control-size);
+  min-width: var(--window-control-size);
+  min-height: var(--window-control-size);
+  box-sizing: border-box;
+}
+:is(#{$control-groups}) {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  top: calc(var(--window-control-top) - var(--controls-panel-inset, .5rem) - var(--controls-panel-border, 1px));
+  left: calc(var(--window-control-left) - var(--controls-panel-inset, .5rem) - var(--controls-panel-border, 1px));
+  gap: var(--window-control-gap);
+  padding: 0;
+  margin: 0;
+}
+.about-window__controls {
+  --controls-panel-inset: 0px;
+  --controls-panel-border: 0px;
+}
+.store-sidebar { padding-top: 3.8rem; }
+:is(.skills-window, .experience-window, .projects-window) {
+  --window-control-top: 20px;
+  --window-control-left: 20px;
+}
+.experience-window {
+  // Lower the PDF's lights and sidebar toggle together, including collapsed mode.
+  --window-control-top: 26px;
+}
+.preview-toolbar__navigation .preview-sidebar-toggle {
+  position: absolute;
+  // The sidebar tool is independent of traffic lights: 20px icon, 32px target.
+  // Match their centerline without shrinking this separate toolbar control.
+  top: calc(var(--window-control-top) - var(--controls-panel-inset, .5rem) - var(--controls-panel-border, 1px) + 7px - 16px);
+  right: .5rem;
+  width: 36px;
+  height: 32px;
+  padding: 0;
+  border-radius: .25rem;
+  svg { width: 20px; height: 20px; }
+  .preview-chevron { width: 8px; height: 8px; }
+}
+.experience-window.is-sidebar-hidden .preview-sidebar {
+  --controls-panel-inset: 0px;
+  --controls-panel-border: 0px;
+}
+@media (max-width: 600px) {
+  .store-sidebar {
+    --controls-panel-inset: 0px;
+    --controls-panel-border: 0px;
+    padding-top: .75rem;
+    grid-template-columns: calc(3 * var(--window-control-size) + 2 * var(--window-control-gap) + var(--window-control-left)) minmax(0, 1fr);
+  }
+  .store-search { grid-column: 2; }
+}
+:is(#{$window-controls}) {
+  position: relative;
+  padding: 0;
+  flex-shrink: 0;
+  &::before {
+    content: '';
+    position: absolute;
+    // Each SVG includes its own optical padding in a shared 12×12 viewport.
+    // Avoid resizing a tiny gradient/crop into fractional inset dimensions.
+    inset: 0;
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+:is(.about-window__control--close, .skills-window__control--close, .preview-light--close, .store-light--close)::before {
+  background-image: url('../image/desktop/window-controls/close.svg');
+}
+:is(.skills-window__control--minimize, .preview-light--minimize, .store-light--minimize)::before {
+  background-image: url('../image/desktop/window-controls/minimize.svg');
+}
+:is(.skills-window__control--expand, .preview-light--expand, .store-light--expand)::before {
+  background-image: url('../image/desktop/window-controls/expand.svg');
+}
+// Only an actual circle triggers its group, not the window or gaps between dots.
+.splash:not(.is-guide-active) :is(#{$control-groups}):has(> :is(#{$window-controls}):is(:hover, :focus-visible)) :is(#{$window-controls}):not(:disabled)::before { opacity: 1; }
+button:is(#{$window-controls}) {
+  cursor: pointer;
+  &:disabled { cursor: default; }
+  &:focus-visible { outline: 2px solid #087aff; outline-offset: 3px; }
+}
+
+.splash.is-unlocked [data-screen] .is-dock-opening {
+  // WAAPI owns the entrance; legacy splash delays must not animate underneath.
+  transition: none !important;
+  transform-origin: center center;
+  will-change: transform, opacity;
+}
+
+.desktop-dock {
+  --dock-icon: clamp(52px, 5vw, 64px);
+  position: absolute;
+  z-index: 12;
+  inset: auto 0 max(12px, env(safe-area-inset-bottom));
+  display: flex;
+  align-items: end;
+  gap: 5px;
+  width: max-content;
+  max-width: calc(100% - 24px);
+  margin-inline: auto;
+  padding: 6px 9px 12px;
+  border-radius: 25px;
+  isolation: isolate;
+  &[hidden] { display: none; }
+}
+
+.desktop-dock__glass {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  border: 1px solid #ffffff65;
+  background: linear-gradient(150deg, #ffffff32, #ffffff0d 45%, #ffffff26);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  backdrop-filter: blur(16px) saturate(160%);
+  box-shadow: 0 8px 26px #170b3329;
+}
+
+.desktop-dock__app {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: var(--dock-icon);
+  height: var(--dock-icon);
+  flex: 0 0 var(--dock-icon);
+  border: 0;
+  padding: 0;
+  border-radius: 15px;
+  background: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 2px #1c12321a);
+    transform-origin: center bottom;
+    transition: transform 220ms cubic-bezier(.22, 1, .36, 1), filter 180ms;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #ffffffd9;
+    opacity: 0;
+    transition: opacity 180ms;
+  }
+  &[aria-expanded='true']::after { opacity: 1; }
+  &:focus-visible { outline: 2px solid white; outline-offset: 3px; }
+  &:focus-visible .desktop-dock__label { opacity: 1; transform: translate(-50%, 0); }
+  &:active img { transform: translateY(-3px) scale(.96); filter: brightness(.9); }
+}
+
+.desktop-dock__label {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 16px);
+  width: max-content;
+  padding: 7px 12px;
+  border: 1px solid #ffffff80;
+  border-radius: 10px;
+  background: #f4eef6e6;
+  color: #332c3b;
+  box-shadow: 0 3px 12px #1c143324;
+  font: 500 12px/1.4 -apple-system, BlinkMacSystemFont, sans-serif;
+  text-align: center;
+  opacity: 0;
+  transform: translate(-50%, 4px);
+  transition: opacity 160ms, transform 160ms;
+  pointer-events: none;
+  small { display: block; font-size: 10px; color: #6b6074; }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .desktop-dock__app:hover {
+    img { transform: translateY(-7px) scale(1.14); }
+    .desktop-dock__label { opacity: 1; transform: translate(-50%, 0); }
+  }
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .desktop-dock__glass { background: #d8cdebd9; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .desktop-dock__app img, .desktop-dock__app::after, .desktop-dock__label { transition: none; }
+}

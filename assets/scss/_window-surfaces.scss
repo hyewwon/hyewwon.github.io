@@ -1,0 +1,19 @@
+// Shared inset sidebar material, referenced from gucduck's Finder and Photos.
+// Relative stacking keeps the soft edge visible above adjacent content panes.
+@mixin frame-shadow {
+  box-shadow:
+    0 1.8rem 5rem rgba(43, 27, 76, .24),
+    0 .25rem 1rem rgba(43, 27, 76, .12),
+    inset 0 1px rgba(255, 255, 255, .92);
+}
+
+@mixin sidebar {
+  position: relative;
+  z-index: 1;
+  border: 1px solid rgba(255, 255, 255, .3);
+  border-radius: 1rem;
+  background: rgba(245, 245, 247, .9);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, .1);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}

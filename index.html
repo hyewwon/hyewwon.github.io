@@ -3,302 +3,613 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="백엔드 개발자 김혜원의 포트폴리오. 소개, 기술, 경력과 프로젝트를 데스크탑에서 살펴보세요."
+    />
     <title>Hyewwon | Backend Developer</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="anonymous"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="assets/css/index.css" />
+    <link rel="canonical" href="https://hyewwon.github.io/" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      sizes="any"
+      href="assets/image/brand/favicon/frog-favicon-v1.svg?v=1"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="assets/image/environment/splash/monitor-wallpaper/tahoe-violet-layered-lock-wallpaper-v2.png"
+    />
+    <link rel="stylesheet" href="assets/css/splash.css?v=20260911-window-stack" />
+    <link rel="stylesheet" href="assets/css/experience.css?v=20260911-sidebar-shadow-3" />
+    <script src="assets/js/splash.js?v=20260910-skip-1" defer></script>
+    <script src="assets/js/experience.js?v=20260906-1" defer></script>
+    <link rel="stylesheet" href="assets/css/projects.css?v=20260911-skills-shadow-match-3" />
+    <script src="assets/js/projects.js?v=20260911-opd-pink" defer></script>
+    <link rel="stylesheet" href="assets/css/desktop-guide.css?v=20260911-guide-outro-1" />
+    <link rel="stylesheet" href="assets/css/desktop-dock.css?v=20260911-controls-inset-10" />
+    <script src="assets/js/desktop-guide.js?v=20260911-window-stack" defer></script>
   </head>
   <body>
-    <div class="app-window">
-      <header class="command-bar">
-        <div class="window-controls">
-          <span class="dot red"></span>
-          <span class="dot yellow"></span>
-          <span class="dot green"></span>
-        </div>
-        <div class="command-badge">~/hyewwon</div>
-        <div class="command-status">backend</div>
+    <a class="skip-link" href="#sequence-controls">시퀀스 제어로 건너뛰기</a>
+
+    <main class="splash" data-splash>
+      <header class="scene-meta" aria-label="장면 정보">
+        <span>HW—PORTFOLIO / BOOT STUDY 01</span>
       </header>
 
-      <div class="file-tabs" role="tablist">
-        <a href="#intro" class="file-tab active" role="tab">about.md</a>
-        <a href="#skills" class="file-tab" role="tab">skills.py</a>
-        <a href="#experience" class="file-tab" role="tab">experience.log</a>
-      </div>
+      <section class="workspace" aria-label="모니터와 키보드, 마우스가 놓인 작업 책상">
+        <div class="workspace__canvas">
+        <div class="workspace__camera" data-camera>
+        <img
+          class="workspace__background"
+          src="assets/image/environment/splash/workspace-background/workspace-background-v6.png"
+          alt=""
+          width="1537"
+          height="1023"
+          fetchpriority="high"
+          aria-hidden="true"
+        />
 
-      <main class="page-shell">
-        <section id="intro" class="page-section hero" data-file="about.md">
-          <div class="hero-media">
-            <div class="profile-frame">
-              <img src="assets/image/profile.png" alt="프로필 이미지" />
+        <div class="desktop-stage" data-desktop>
+          <img
+            class="desktop-stage__hardware desktop-stage__hardware--monitor"
+            src="assets/image/environment/splash/desktop-workstation/desktop-monitor-v2.png"
+            alt="정면형 알루미늄 모니터"
+            width="1491"
+            height="1055"
+            fetchpriority="high"
+          />
+
+          <div class="monitor-screen" data-screen>
+            <div class="screen-grain" aria-hidden="true"></div>
+            <div class="lock-screen">
+              <div class="lock-screen__clock">
+                <span class="lock-screen__date" data-lock-date>8월 31일 일요일</span>
+                <time class="lock-screen__time" data-lock-time>11:24</time>
+              </div>
+
+              <div class="lock-screen__profile">
+                <div class="profile-avatar frog-profile-avatar" aria-hidden="true">
+                  <img
+                    src="assets/image/character/shared/profile/frog-profile-avatar-v4.svg"
+                    alt=""
+                    width="1024"
+                    height="1024"
+                  />
+                </div>
+                <strong class="profile-name">hyewwon</strong>
+
+                <div class="lock-loader">
+                  <div
+                    class="loader-track"
+                    role="progressbar"
+                    aria-label="포트폴리오 로딩"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-valuenow="0"
+                    data-progress-track
+                  >
+                    <span class="loader-track__value" data-progress-value></span>
+                  </div>
+                  <strong class="lock-loader__value" data-progress-label>0%</strong>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="hero-content">
-            <p class="eyebrow">About Me</p>
-            <h1>안녕하세요, 백엔드 개발자 김혜원입니다.</h1>
-            <div class="hero-terminal" aria-label="profile terminal output">
 
-              <div class="terminal-line">
-                <span class="terminal-prompt">hyewwon@portfolio:~$</span>
-                <span class="terminal-command" data-type-text="cat information" data-target="#intro-output"></span>
-                <span class="terminal-cursor" aria-hidden="true"></span>
+            <header class="desktop-menu-bar" aria-label="데스크톱 메뉴 막대">
+              <nav class="desktop-menu-bar__left" aria-label="현재 앱 메뉴">
+                <img
+                  class="desktop-menu-bar__frog"
+                  src="assets/image/brand/logo/frog-head-silhouette-white-v1.svg"
+                  alt=""
+                  width="64"
+                  height="64"
+                  aria-hidden="true"
+                />
+                <strong class="desktop-menu-bar__app">hyewwon</strong>
+                <span class="desktop-menu-bar__menu">파일</span>
+                <span class="desktop-menu-bar__menu">편집</span>
+                <span class="desktop-menu-bar__menu">보기</span>
+                <span class="desktop-menu-bar__menu">이동</span>
+                <span class="desktop-menu-bar__menu">윈도우</span>
+                <span class="desktop-menu-bar__menu">도움말</span>
+              </nav>
+
+              <div class="desktop-menu-bar__status" aria-label="시스템 상태">
+                <button
+                  class="desktop-status desktop-status--battery"
+                  type="button"
+                  aria-label="배터리 상태 열기"
+                  aria-controls="battery-popover"
+                  aria-expanded="false"
+                  data-battery-trigger
+                >
+                  <svg viewBox="0 0 28 24" aria-hidden="true">
+                    <rect x="2" y="6" width="21" height="12" rx="3" />
+                    <path d="M25 10v4" />
+                    <path class="desktop-status__fill" d="M5 9h12.5v6H5Z" />
+                  </svg>
+                </button>
+                <span class="desktop-status" aria-label="와이파이 연결됨">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M3.5 8.8a13.2 13.2 0 0 1 17 0M6.5 12a8.8 8.8 0 0 1 11 0M9.6 15.1a4.4 4.4 0 0 1 4.8 0" />
+                    <circle cx="12" cy="18" r="1" />
+                  </svg>
+                </span>
+                <span class="desktop-status" aria-label="제어 센터">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M5 7h14M5 17h14" />
+                    <circle cx="9" cy="7" r="2" />
+                    <circle cx="15" cy="17" r="2" />
+                  </svg>
+                </span>
+                <time class="desktop-menu-bar__time" data-desktop-time>
+                  8월 31일 (월) 오후 3:50
+                </time>
               </div>
-              <div class="terminal-output" id="intro-output">
-                개구리는 개울가 속 올챙이에서 육지로 나아가기 위해 성장과 변화를 겪고 더 넓은 환경에 적응하게 되는 동물입니다.
-                저는 이러한 개구리의 성장 과정처럼 나아가고자 합니다.<br>
-                현재에 안주하지 않고, 더 나은 개발자기 되기 위해 기존 시스템을 개선하는 데 끊임 없이 고민하고 적극적으로 다가갑니다. 또한, 새로운 기술을 습득하고
-                적용해보는 도전을 즐깁니다. 복잡한 문제나 난관을 만나면 그것을 성장의 발판으로 삼아 해결 방법을 모색하며 새로운 환경에 차근차근 적응해 갑니다.
-                더 넓은 세계를 탐험하기 위한 개구리의 성장처럼, 변화를 두려워하지 않고 끊임없는 학습과 자기 개발을 통해 항상 발전하는 개발자를 목표로 합니다.
+            </header>
+
+            <section
+              class="battery-popover"
+              id="battery-popover"
+              role="dialog"
+              aria-label="배터리 상태"
+              aria-hidden="true"
+              inert
+              data-battery-popover
+            >
+              <div class="battery-popover__heading">
+                <strong>배터리</strong>
+                <strong class="battery-popover__percentage">87%</strong>
               </div>
+              <p class="battery-popover__source">전원 공급원: 배터리</p>
 
-              <div class="terminal-line terminal-line--pending">
-                <span class="terminal-prompt">hyewwon@portfolio:~$</span>
-                <span class="terminal-command" data-type-text="open github" data-target="#github-output"></span>
-                <span class="terminal-cursor" aria-hidden="true"></span>
-              </div>
-              <a href="https://github.com/hyewwon" target="_blank" rel="noopener noreferrer" class="terminal-output has-link" id="github-output">github.com/hyewwon</a>
+              <div class="battery-popover__divider" aria-hidden="true"></div>
 
-              <a class="terminal-line terminal-line--pending">
-                <span class="terminal-prompt">hyewwon@portfolio:~$</span>
-                <span class="terminal-command" data-type-text="cat email" data-target="#email-output"></span>
-                <span class="terminal-cursor" aria-hidden="true"></span>
-              </a>
-              <span class="terminal-output has-link" id="email-output">rlagp424@gmail.com</span>
-
-            </div>
-          </div>
-        </section>
-
-        <section id="skills" class="page-section" data-file="skills.py">
-          <header>
-            <p class="eyebrow">Capabilities</p>
-            <h2>Tech Stack &amp; Toolbelt</h2>
-            <p class="lead">
-              현재 백엔드 프로덕션 환경에서 가장 많이 사용 중인 스택과 역할 입니다.
-            </p>
-          </header>
-          <div class="skills-controls" role="toolbar" aria-label="Skill focus">
-            <button class="skill-filter is-active" type="button" data-skill-filter="all" aria-pressed="true">
-              All
-            </button>
-            <button class="skill-filter" type="button" data-skill-filter="application" aria-pressed="false">
-              Application
-            </button>
-            <button class="skill-filter" type="button" data-skill-filter="data" aria-pressed="false">
-              Data
-            </button>
-            <button class="skill-filter" type="button" data-skill-filter="platform" aria-pressed="false">
-              Platform
-            </button>
-            <button class="skill-filter" type="button" data-skill-filter="ai" aria-pressed="false">
-              AI
-            </button>
-          </div>
-          <div class="grid skills-grid" data-skill-grid></div>
-        </section>
-        <section id="experience" class="page-section section-card" data-file="experience.log">
-          <header>
-            <p class="eyebrow">Career Path</p>
-            <h2>Experience Tree</h2>
-          </header>
-          <div class="experience-track">
-            <article class="experience-item">
-              <div class="experience-item__period">
-                <strong>2024.09 - </strong>
-                <span>Backend Engineer</span>
-              </div>
-              <div class="experience-item__content">
-                <h3>플러스엑스</h3>
-                <p class="experience-item__subtitle">
-                  백엔드 개발자로서 API, 인증/권한, 데이터 구조 등 서비스 운영을 위한 서버 구조 전반을 설계·구현했습니다.
-                </p>
-                <ul class="experience-skills" aria-label="사용 기술">
-                  <li data-tooltip="Python">
-                    <img src="assets/image/skills_icon/python.png" alt="Python" title="Python" loading="lazy" />
-                  </li>
-                  <li data-tooltip="Django">
-                    <img src="assets/image/skills_icon/django.png" alt="Docker" title="Docker" loading="lazy" />
-                  </li>
-                  <li data-tooltip="PostgreSQL">
-                    <img src="assets/image/skills_icon/postgresql.png" alt="Docker" title="Docker" loading="lazy" />
-                  </li>
-                  <li data-tooltip="Docker">
-                    <img src="assets/image/skills_icon/docker.png" alt="Docker" title="Docker" loading="lazy" />
-                  </li>
-                  <li data-tooltip="Linux">
-                    <img src="assets/image/skills_icon/linux.png" alt="Linux" title="Linux" loading="lazy" />
-                  </li>
-                  <li data-tooltip="Celery">
-                    <img src="assets/image/skills_icon/celery.png" alt="Celery" title="Celery" loading="lazy" />
-                  </li>
-                  <li data-tooltip="Redis">
-                    <img src="assets/image/skills_icon/redis.png" alt="Celery" title="Celery" loading="lazy" />
-                  </li>
-                  <li data-tooltip="AWS">
-                    <img src="assets/image/skills_icon/aws.png" alt="AWS" title="AWS" loading="lazy" />
-                  </li>
-                  <li data-tooltip="Github">
-                    <img src="assets/image/skills_icon/github.png" alt="Celery" title="Celery" loading="lazy" />
-                  </li>
-                </ul>
-                <div class="experience-details" aria-label="주요 업무 내용">
-                  <p class="experience-details__title">주요 업무 내용</p>
-                  <ul class="experience-detail-list">
-                    <li>
-                      <span class="detail-title">[삼성전자] 이미지 생성 AI 툴</span>
-                      <span class="detail-text">AI 이미지 생성 파이프라인 및 인증 기반 백엔드 API 개발</span>
-                    </li>
-                    <li>
-                      <span class="detail-title">[플러스엑스] Groupware</span>
-                      <span class="detail-text">사내 서비스 백엔드 개발 및 알림·자동화 기능 운영</span>
-                    </li>
-                    <li>
-                      <span class="detail-title">[플러스엑스] GenAI</span>
-                      <span class="detail-text">AI 이미지 생성 서비스 백엔드 구조 설계 및 운영</span>
-                    </li>
-                    <li>
-                      <span class="detail-title">[플러스엑스] T Universe Figma Plugin</span>
-                      <span class="detail-text">AI 이미지 생성 플러그인 백엔드 및 비동기 처리 구조 개발</span>
-                    </li>
-                    <li>
-                      <span class="detail-title">[플러스엑스] Another Class</span>
-                      <span class="detail-text">AI 음성 생성 서비스 백엔드 개발 및 실시간 처리 연동</span>
-                    </li>
-                    <li>
-                      <span class="detail-title">[Deeponde] 이벤트 서비스</span>
-                      <span class="detail-text">이벤트 서비스 백엔드 아키텍처 설계 및 운영</span>
-                    </li>
-                  </ul>
+              <div class="battery-popover__section">
+                <strong class="battery-popover__label">에너지 모드</strong>
+                <div class="battery-popover__mode">
+                  <span class="battery-popover__mode-icon" aria-hidden="true">
+                    <svg viewBox="0 0 30 20">
+                      <rect x="2" y="3" width="22" height="14" rx="3.5" />
+                      <path d="M27 7v6" />
+                      <rect x="5" y="6" width="7" height="8" rx="1.5" />
+                    </svg>
+                  </span>
+                  <span>저전력</span>
                 </div>
               </div>
-            </article>
-            <article class="experience-item">
-              <div class="experience-item__period">
-                <strong>2022.08 - 2024.08</strong>
-                <span>Backend Engineer</span>
-              </div>
-              <div class="experience-item__content">
-                <h3>GNC Solution</h3>
-                <p class="experience-item__subtitle">
-                  Backend Engineer
-                </p>
-                <ul class="experience-skills" aria-label="사용 기술">
-                  <li data-tooltip="Python · 사내 자동화 스크립트">
-                    <img src="assets/image/skills_icon/python.png" alt="Python" title="Python" loading="lazy" />
-                  </li>
-                  <li data-tooltip="Django">
-                    <img src="assets/image/skills_icon/django.png" alt="Docker" title="Docker" loading="lazy" />
-                  </li>
-                  <li data-tooltip="GraphQL">
-                    <img src="assets/image/skills_icon/graphql.png" alt="Docker" title="Docker" loading="lazy" />
-                  </li>
-                  <li data-tooltip="MariaDB">
-                    <img src="assets/image/skills_icon/mariadb.png" alt="Docker" title="Docker" loading="lazy" />
-                  </li>
-                  <li data-tooltip="Linux">
-                    <img src="assets/image/skills_icon/linux.png" alt="Linux" title="Linux" loading="lazy" />
-                  </li>
-                  <li data-tooltip="Celery">
-                    <img src="assets/image/skills_icon/celery.png" alt="Celery" title="Celery" loading="lazy" />
-                  </li>
-                  <li data-tooltip="Github">
-                    <img src="assets/image/skills_icon/github.png" alt="Celery" title="Celery" loading="lazy" />
-                  </li>
-                </ul>
-                <div class="experience-details" aria-label="주요 업무 내용">
-                  <p class="experience-details__title">주요 업무 내용</p>
-                  <ul class="experience-detail-list">
-                    <li>
-                      <span class="detail-title">[Pagee] 리워드 결제 서비스</span>
-                      <span class="detail-text">
-                        광고 리워드 기반 포인트 결제 서비스의 설계·개발 및 서버 운영
-                      </span>
-                    </li>
-                    <li>
-                      <span class="detail-title">[GNC Solution] EMAX</span>
-                      <span class="detail-text">
-                        전력 소모 예측 AI 서비스의 데이터 관리·예측 자동화 백엔드 설계
-                      </span>
-                    </li>
-                    <li>
-                      <span class="detail-title">[빌드텍] Build Performance</span>
-                      <span class="detail-text">
-                        대규모 주기성 작업을 위한 비동기 스케줄링 백엔드 구조 구현
-                      </span>
-                    </li>
-                    <li>
-                      <span class="detail-title">[빌드텍] BuildPay</span>
-                      <span class="detail-text">
-                        전자지갑·빌드몰 연동을 위한 결제·정산 백엔드 API 개발
-                      </span>
-                    </li>
-                    <li>
-                      <span class="detail-title">[GNC Solution] Envisager</span>
-                      <span class="detail-text">
-                        JWT 기반 인증 구조를 적용한 예술 플랫폼 백엔드 개발
-                      </span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </article>
-            <article class="experience-item">
-              <div class="experience-item__period">
-                <strong>2022.06.17</strong>
-                <span>Backend Study</span>
-              </div>
-              <div class="experience-item__content">
-                <h3>정보처리기사 취득</h3>
-                <p class="experience-item__subtitle"></p>
-              </div>
-            </article>
-            <article class="experience-item">
-              <div class="experience-item__period">
-                <strong>2022.01 - 2022.06</strong>
-                <span>Backend & AI Study</span>
-              </div>
-              <div class="experience-item__content">
-                <h3>AI 기반 챗봇 및 OCR 개발 전문가 과정</h3>
-                <p class="experience-item__subtitle">
-                  기업 연계 Python 기반 국가 교육 과정
-                </p>
-                <ul class="experience-skills" aria-label="사용 기술">
-                  <li data-tooltip="Python">
-                    <img src="assets/image/skills_icon/python.png" alt="Python" title="Python" loading="lazy" />
-                  </li>
-                  <li data-tooltip="Django">
-                    <img src="assets/image/skills_icon/django.png" alt="Linux" title="Linux" loading="lazy" />
-                  </li>
-                  <li data-tooltip="MySQL">
-                    <img src="assets/image/skills_icon/mysql.png" alt="Docker" title="Docker" loading="lazy" />
-                  </li>
-                </ul>
-                <div class="experience-details" aria-label="주요 내용">
-                  <p class="experience-details__title">주요 내용</p>
-                  <ul class="experience-detail-list">
-                    <li>
-                      <span class="detail-title">이론 및 프로젝트 평가 종합 성적 우수상 수상 🏆</span>
-                    </li>
-                    <li>
-                      <span class="detail-title">기업 참관 1, 2, 3차 팀 프로젝트</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </article>
-          </div>
-        </section>
-      </main>
+            </section>
 
-      <footer class="status-bar">
-        <div>UTF-8 | Spaces: 2</div>
-        <div>Hyewwon Kim © <span id="year"></span></div>
-        <div>Last deploy: stable</div>
+            <section
+              class="about-window"
+              aria-labelledby="about-window-title"
+              aria-describedby="about-window-description"
+            >
+              <div class="about-window__controls" role="group" aria-label="소개 창 제어">
+                <button type="button" class="about-window__control about-window__control--close" data-about-close aria-label="소개 창 닫기"></button>
+                <span class="about-window__control" aria-hidden="true"></span>
+                <span class="about-window__control" aria-hidden="true"></span>
+              </div>
+
+              <div class="about-window__content">
+                <figure
+                  class="about-profile__portrait frog-profile-avatar"
+                  aria-label="개구리 프로필"
+                >
+                  <img
+                    src="assets/image/character/shared/profile/frog-profile-avatar-v4.svg"
+                    alt="웃고 있는 초록색 개구리 캐릭터 얼굴"
+                    width="1024"
+                    height="1024"
+                  />
+                </figure>
+
+                <header class="about-profile__identity">
+                  <h1 id="about-window-title">KimHyeWon</h1>
+                  <p>Backend Developer</p>
+                </header>
+
+                <dl class="about-profile__facts">
+                  <div>
+                    <dt>관심 영역</dt>
+                    <dd>System Design · AI · DevOps</dd>
+                  </div>
+                  <div>
+                    <dt>개발 방식</dt>
+                    <dd>Design · Validate · Improve</dd>
+                  </div>
+                  <div>
+                    <dt>개발 경력</dt>
+                    <dd>2022.08 — 현재</dd>
+                  </div>
+                </dl>
+
+                <p class="about-profile__intro" id="about-window-description">
+                  서비스의 전체 흐름을 이해하고, 요구사항을 안정적으로 구현할 수 있는 구조로 설계하는 백엔드 개발자입니다.
+                  <br />
+                  API와 데이터뿐 아니라 서비스가 만들어지고 운영되는 과정까지 함께 고민하며,
+                  새로운 기술과 도구를 활용해 문제를 더 효율적으로 해결하고 지속적으로 개선하고자 합니다.
+                </p>
+              </div>
+            </section>
+
+            <section
+              class="skills-window is-closed"
+              aria-labelledby="skills-window-title"
+              data-skills-window
+            >
+              <aside class="skills-window__sidebar" aria-label="기술 앨범">
+                <div class="skills-window__controls">
+                  <button type="button" class="skills-window__control skills-window__control--close" data-skills-close aria-label="Skills 창 닫기"></button>
+                  <span class="skills-window__control skills-window__control--minimize" aria-hidden="true"></span>
+                  <span class="skills-window__control skills-window__control--expand" aria-hidden="true"></span>
+                </div>
+
+                <div class="skills-sidebar__group">
+                  <p class="skills-sidebar__label">고정됨</p>
+                  <button
+                    class="skills-sidebar__item is-active"
+                    type="button"
+                    data-skill-filter="all"
+                    data-skill-title="모든 기술"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M8.2 3.5 15.8 3.5 20.5 8.2 20.5 15.8 15.8 20.5 8.2 20.5 3.5 15.8 3.5 8.2Z" />
+                      <circle cx="12" cy="12" r="3.1" />
+                    </svg>
+                    <span>모든 기술</span>
+                  </button>
+                </div>
+                <div class="skills-sidebar__group">
+                  <p class="skills-sidebar__label">앨범</p>
+                  <button
+                    class="skills-sidebar__item"
+                    type="button"
+                    data-skill-filter="backend"
+                    data-skill-title="Backend"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M3.5 7.5h6l1.8 2h9.2v9.7H3.5Z" />
+                    </svg>
+                    <span>Backend</span>
+                  </button>
+                  <button
+                    class="skills-sidebar__item"
+                    type="button"
+                    data-skill-filter="data"
+                    data-skill-title="Data"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <ellipse cx="12" cy="6" rx="7.7" ry="3.1" />
+                      <path d="M4.3 6v6c0 1.7 3.4 3.1 7.7 3.1s7.7-1.4 7.7-3.1V6M4.3 12v6c0 1.7 3.4 3.1 7.7 3.1s7.7-1.4 7.7-3.1v-6" />
+                    </svg>
+                    <span>Data</span>
+                  </button>
+                  <button
+                    class="skills-sidebar__item"
+                    type="button"
+                    data-skill-filter="cloud"
+                    data-skill-title="Cloud &amp; DevOps"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M7.2 18.5h10a4.1 4.1 0 0 0 .6-8.2A6.2 6.2 0 0 0 6.1 8.9a4.8 4.8 0 0 0 1.1 9.6Z" />
+                    </svg>
+                    <span>Cloud &amp; DevOps</span>
+                  </button>
+                  <button
+                    class="skills-sidebar__item"
+                    type="button"
+                    data-skill-filter="integrations"
+                    data-skill-title="Integrations"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="m12 3 1.6 5.4L19 10l-5.4 1.6L12 17l-1.6-5.4L5 10l5.4-1.6ZM18.5 16l.7 2.3 2.3.7-2.3.7-.7 2.3-.7-2.3-2.3-.7 2.3-.7Z" />
+                    </svg>
+                    <span>Integrations</span>
+                  </button>
+                  <button
+                    class="skills-sidebar__item"
+                    type="button"
+                    data-skill-filter="tools"
+                    data-skill-title="Developer Tools"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M4.5 7.5h15v11h-15zM8 4.5h8v3H8zM9.5 12h5M12 9.5v5" />
+                    </svg>
+                    <span>Developer Tools</span>
+                  </button>
+                  <button
+                    class="skills-sidebar__item"
+                    type="button"
+                    data-skill-filter="frontend"
+                    data-skill-title="Frontend"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M3.5 7.5h6l1.8 2h9.2v9.7H3.5Z" />
+                    </svg>
+                    <span>Frontend</span>
+                  </button>
+                </div>
+              </aside>
+
+              <div class="skills-window__library">
+                <header class="skills-window__header">
+                  <div>
+                    <h2 id="skills-window-title" data-skills-title>모든 기술</h2>
+                    <p><span data-skills-count>25</span>개의 기술</p>
+                  </div>
+                  <button class="skills-window__search" type="button" aria-label="기술 검색">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <circle cx="10.5" cy="10.5" r="5.8" />
+                      <path d="m15 15 4.7 4.7" />
+                    </svg>
+                  </button>
+                </header>
+
+                <div class="skills-window__grid" data-skills-grid>
+                  <button class="skill-photo skill-photo--python" type="button" data-skill-card data-categories="backend">
+                    <span class="skill-photo__image"><img src="assets/image/skills_icon/python.png" alt="Python" /></span>
+                    <span class="skill-photo__name">Python</span>
+                  </button>
+                  <button class="skill-photo skill-photo--django" type="button" data-skill-card data-categories="backend">
+                    <span class="skill-photo__image"><img src="assets/image/skills_icon/django.png" alt="Django" /></span>
+                    <span class="skill-photo__name">Django</span>
+                  </button>
+                  <button class="skill-photo skill-photo--drf" type="button" data-skill-card data-categories="backend">
+                    <span class="skill-photo__image"><img src="assets/image/skills_icon/drf.png" alt="DRF" /></span>
+                    <span class="skill-photo__name">DRF</span>
+                  </button>
+                  <button class="skill-photo skill-photo--graphql" type="button" data-skill-card data-categories="backend">
+                    <span class="skill-photo__image"><img src="assets/image/skills_icon/graphql.png" alt="GraphQL" /></span>
+                    <span class="skill-photo__name">GraphQL</span>
+                  </button>
+                  <button class="skill-photo skill-photo--celery" type="button" data-skill-card data-categories="backend">
+                    <span class="skill-photo__image"><img src="assets/image/skills_icon/celery.png" alt="Celery" /></span>
+                    <span class="skill-photo__name">Celery</span>
+                  </button>
+                  <button class="skill-photo skill-photo--postgresql" type="button" data-skill-card data-categories="data">
+                    <span class="skill-photo__image"><img src="assets/image/skills_icon/postgresql.png" alt="PostgreSQL" /></span>
+                    <span class="skill-photo__name">PostgreSQL</span>
+                  </button>
+                  <button class="skill-photo skill-photo--mysql" type="button" data-skill-card data-categories="data">
+                    <span class="skill-photo__image"><img src="assets/image/skills_icon/mysql.png" alt="MySQL" /></span>
+                    <span class="skill-photo__name">MySQL</span>
+                  </button>
+                  <button class="skill-photo skill-photo--mariadb" type="button" data-skill-card data-categories="data">
+                    <span class="skill-photo__image"><img src="assets/image/skills_icon/mariadb.png" alt="MariaDB" /></span>
+                    <span class="skill-photo__name">MariaDB</span>
+                  </button>
+                  <button class="skill-photo skill-photo--redis" type="button" data-skill-card data-categories="data">
+                    <span class="skill-photo__image"><img src="assets/image/skills_icon/redis.png" alt="Redis" /></span>
+                    <span class="skill-photo__name">Redis</span>
+                  </button>
+                  <button class="skill-photo skill-photo--aws" type="button" data-skill-card data-categories="cloud">
+                    <span class="skill-photo__image"><img src="assets/image/skills_icon/aws.png" alt="AWS" /></span>
+                    <span class="skill-photo__name">AWS</span>
+                  </button>
+                  <button class="skill-photo skill-photo--docker" type="button" data-skill-card data-categories="cloud">
+                    <span class="skill-photo__image"><img src="assets/image/skills_icon/docker.png" alt="Docker" /></span>
+                    <span class="skill-photo__name">Docker</span>
+                  </button>
+                  <button class="skill-photo skill-photo--nginx" type="button" data-skill-card data-categories="cloud">
+                    <span class="skill-photo__image"><img src="assets/image/skills_icon/ngnix.png" alt="Nginx" /></span>
+                    <span class="skill-photo__name">Nginx</span>
+                  </button>
+                  <button class="skill-photo skill-photo--gunicorn" type="button" data-skill-card data-categories="cloud">
+                    <span class="skill-photo__image"><img src="assets/image/skills_icon/gunicorn.png" alt="Gunicorn" /></span>
+                    <span class="skill-photo__name">Gunicorn</span>
+                  </button>
+                  <button class="skill-photo skill-photo--linux" type="button" data-skill-card data-categories="cloud">
+                    <span class="skill-photo__image"><img src="assets/image/skills_icon/linux.png" alt="Linux" /></span>
+                    <span class="skill-photo__name">Linux</span>
+                  </button>
+                  <button class="skill-photo skill-photo--github-actions" type="button" data-skill-card data-categories="cloud">
+                    <span class="skill-photo__image"><img src="assets/image/skills_icon/github_actions.svg" alt="GitHub Actions" /></span>
+                    <span class="skill-photo__name">GitHub Actions</span>
+                  </button>
+                  <button class="skill-photo skill-photo--openai" type="button" data-skill-card data-categories="integrations">
+                    <span class="skill-photo__image"><img src="assets/image/skills_icon/openai.png" alt="OpenAI" /></span>
+                    <span class="skill-photo__name">OpenAI</span>
+                  </button>
+                  <button class="skill-photo skill-photo--replicate" type="button" data-skill-card data-categories="integrations">
+                    <span class="skill-photo__image"><img src="assets/image/skills_icon/replicate.png" alt="Replicate" /></span>
+                    <span class="skill-photo__name">Replicate</span>
+                  </button>
+                  <button class="skill-photo skill-photo--fal" type="button" data-skill-card data-categories="integrations">
+                    <span class="skill-photo__image"><img src="assets/image/skills_icon/fal.png" alt="FAL" /></span>
+                    <span class="skill-photo__name">FAL</span>
+                  </button>
+                  <button class="skill-photo skill-photo--comfyui" type="button" data-skill-card data-categories="integrations">
+                    <span class="skill-photo__image"><img src="assets/image/skills_icon/comfyui.png" alt="ComfyUI" /></span>
+                    <span class="skill-photo__name">ComfyUI</span>
+                  </button>
+                  <button class="skill-photo skill-photo--slack" type="button" data-skill-card data-categories="integrations">
+                    <span class="skill-photo__image"><img src="assets/image/skills_icon/slack.webp" alt="Slack API" /></span>
+                    <span class="skill-photo__name">Slack API</span>
+                  </button>
+                  <button class="skill-photo skill-photo--github" type="button" data-skill-card data-categories="tools">
+                    <span class="skill-photo__image"><img src="assets/image/skills_icon/github.png" alt="GitHub" /></span>
+                    <span class="skill-photo__name">GitHub</span>
+                  </button>
+                  <button class="skill-photo skill-photo--claude" type="button" data-skill-card data-categories="tools">
+                    <span class="skill-photo__image"><img src="assets/image/skills_icon/claude.webp" alt="Claude" /></span>
+                    <span class="skill-photo__name">Claude</span>
+                  </button>
+                  <button class="skill-photo skill-photo--codex" type="button" data-skill-card data-categories="tools">
+                    <span class="skill-photo__image"><img src="assets/image/skills_icon/codex.png" alt="Codex" /></span>
+                    <span class="skill-photo__name">Codex</span>
+                  </button>
+                  <button class="skill-photo skill-photo--javascript" type="button" data-skill-card data-categories="frontend">
+                    <span class="skill-photo__image"><img src="assets/image/skills_icon/javascript.png" alt="JavaScript" /></span>
+                    <span class="skill-photo__name">JavaScript</span>
+                  </button>
+                  <button class="skill-photo skill-photo--html-css" type="button" data-skill-card data-categories="frontend">
+                    <span class="skill-photo__image"><img src="assets/image/skills_icon/html-css.svg" alt="HTML · CSS" /></span>
+                    <span class="skill-photo__name">HTML · CSS</span>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <section class="experience-window is-closed" aria-label="Experience.pdf 미리보기" data-experience-window>
+              <aside class="preview-sidebar" aria-label="미리보기 사이드바">
+                <div class="preview-toolbar__navigation">
+                  <div class="preview-lights">
+                    <button type="button" class="preview-light preview-light--close" data-preview-action="close" aria-label="경력 창 닫기" title="닫기"></button>
+                    <button type="button" class="preview-light preview-light--minimize" data-preview-action="close" aria-label="경력 창 최소화" title="최소화"></button>
+                    <button type="button" class="preview-light preview-light--expand" data-preview-action="expand" aria-label="경력 창 크기 전환" title="창 크기 전환" aria-pressed="false"></button>
+                  </div>
+                  <button class="preview-tool preview-sidebar-toggle" type="button" data-preview-action="sidebar" aria-label="페이지 썸네일 표시 전환" aria-expanded="true" aria-controls="experience-thumbnails" title="사이드바">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16M5.5 8h1M5.5 11h1M5.5 14h1"/></svg>
+                    <svg class="preview-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg>
+                  </button>
+                </div>
+                <nav class="preview-thumbnails" id="experience-thumbnails" aria-label="경력기술서 페이지">
+                  <button class="preview-thumbnail is-current" type="button" data-preview-page="1" aria-current="page" aria-label="1페이지: 경력 요약"><img src="assets/documents/thumbnails/experience-1.png?v=20260910" width="210" height="297" alt="경력 요약 페이지 미리보기"><span>1</span></button>
+                  <button class="preview-thumbnail" type="button" data-preview-page="2" aria-label="2페이지: 플러스엑스"><img src="assets/documents/thumbnails/experience-2.png?v=20260910" width="210" height="297" alt="플러스엑스 경력 페이지 미리보기"><span>2</span></button>
+                  <button class="preview-thumbnail" type="button" data-preview-page="3" aria-label="3페이지: 플러스엑스 계속"><img src="assets/documents/thumbnails/experience-3.png?v=20260910" width="210" height="297" alt="플러스엑스 경력 두 번째 페이지 미리보기"><span>3</span></button>
+                  <button class="preview-thumbnail" type="button" data-preview-page="4" aria-label="4페이지: GNC Solution"><img src="assets/documents/thumbnails/experience-4.png?v=20260910" width="210" height="297" alt="GNC Solution 경력 페이지 미리보기"><span>4</span></button>
+                </nav>
+              </aside>
+              <header class="preview-toolbar">
+                <div class="preview-title"><h2>Experience.pdf</h2><p data-preview-status aria-live="polite">1/4페이지</p></div>
+                <div class="preview-toolbar__actions">
+                  <div class="preview-tool-group" aria-label="문서 확대 및 축소">
+                    <button class="preview-tool" type="button" data-preview-action="zoom-out" aria-label="문서 축소" title="축소"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 5.5 5.5M7 10h6"/></svg></button>
+                    <button class="preview-tool" type="button" data-preview-action="fit" aria-label="문서를 창 너비에 맞추기" title="너비에 맞추기"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 5.5 5.5M9 8l1.5-1v6"/></svg></button>
+                    <button class="preview-tool" type="button" data-preview-action="zoom-in" aria-label="문서 확대" title="확대"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 5.5 5.5M7 10h6M10 7v6"/></svg></button>
+                  </div>
+                  <div class="preview-tool-group preview-edit-tools" aria-label="마크업 도구">
+                    <button class="preview-tool" type="button" disabled aria-label="마크업 (읽기 전용 문서)" title="읽기 전용 문서"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 16-1 5 5-1L20 9l-4-4ZM14 7l4 4M3 23h18"/></svg></button>
+                    <button class="preview-tool" type="button" disabled aria-label="마크업 옵션 (읽기 전용 문서)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg></button>
+                  </div>
+                  <div class="preview-tool-group preview-secondary-tools" aria-label="문서 편집 도구">
+                    <button class="preview-tool" type="button" disabled aria-label="선택 (읽기 전용 문서)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="m4 12 8-8M4 19 15 4M10 20l10-11M17 20l4-4"/></svg></button>
+                    <button class="preview-tool" type="button" disabled aria-label="회전 (읽기 전용 문서)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="8" width="14" height="13" rx="2"/><path d="M12 8V3h8m-3-3 3 3-3 3"/></svg></button>
+                  </div>
+                  <div class="preview-tool-group">
+                    <button class="preview-tool" type="button" data-preview-action="info" aria-label="문서 정보" title="문서 정보" aria-expanded="false" aria-controls="experience-info"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 10h2v10M9 20h6"/><circle cx="12" cy="5" r=".9" fill="currentColor"/></svg></button>
+                    <button class="preview-tool" type="button" disabled aria-label="공유 (준비 중)" title="공유 준비 중"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 9H4v12h16V9h-3M12 15V2m-4 4 4-4 4 4"/></svg></button>
+                  </div>
+                  <button class="preview-tool preview-search" type="button" disabled aria-label="검색 (준비 중)" title="검색 준비 중"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="m15.5 15.5 5 5"/></svg></button>
+                </div>
+              </header>
+              <div class="preview-content"><iframe class="preview-document" src="assets/documents/experience.html?v=20260910-works" title="김혜원 경력기술서 · 4페이지" data-preview-document></iframe></div>
+              <aside class="preview-info" id="experience-info" aria-label="문서 정보" hidden><strong>Experience.pdf</strong><dl><dt>작성자</dt><dd>김혜원</dd><dt>페이지</dt><dd>4페이지 · A4</dd><dt>내용</dt><dd>경력 요약 및 회사별 상세 경력</dd></dl></aside>
+            </section>
+            <section class="projects-window is-closed" data-projects-window aria-label="프로젝트 App Store">
+              <aside class="store-sidebar" aria-label="프로젝트 탐색">
+                <div class="store-lights">
+                  <button type="button" class="store-light store-light--close" data-store-action="close" aria-label="프로젝트 창 닫기"></button>
+                  <button type="button" class="store-light store-light--minimize" data-store-action="close" aria-label="프로젝트 창 최소화"></button>
+                  <button type="button" class="store-light store-light--expand" data-store-action="expand" aria-label="프로젝트 창 크기 전환" aria-pressed="false"></button>
+                </div>
+                <label class="store-search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 5 5"/></svg><input type="search" placeholder="검색" aria-label="프로젝트 검색" data-store-search autocomplete="off"></label>
+                <nav class="store-nav" aria-label="프로젝트 카테고리">
+                  <button type="button" data-store-category="featured" class="is-selected" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg><span>주요 프로젝트</span></button>
+                  <button type="button" data-store-category="plusx" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2.5"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12a25 25 0 0 0 18 0M10 13h4"/></svg><span>PlusX</span></button>
+                  <button type="button" data-store-category="gnc" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 10h18M6 15h5"/></svg><span>GNC Solution</span></button>
+                  <button type="button" data-store-category="team" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3M16 5a3 3 0 0 1 0 6M18 14a5 5 0 0 1 3 4v3"/></svg><span>Team Project</span></button>
+                  <button type="button" data-store-category="personal" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 20 3-7L18 2l4 4-11 11-7 3ZM15 5l4 4M7 13l4 4"/></svg><span>Personal Project</span></button>
+                </nav>
+                <div class="store-account"><img src="assets/image/character/shared/profile/frog-profile-avatar-v4.svg" width="42" height="42" alt="개구리 프로필"><div><strong>김혜원</strong><span>Backend Developer</span></div></div>
+              </aside>
+              <div class="store-viewport" data-store-viewport tabindex="-1">
+              <div class="store-content" data-store-content>
+                <div data-store-discovery>
+                  <header class="store-heading"><h2 data-store-heading>주요 프로젝트</h2><span data-store-count aria-live="polite"></span></header>
+                  <div class="store-editorial" data-store-editorial>
+                    <button type="button" class="store-feature store-feature--kb" data-project-id="kb">
+                      <span class="store-feature__copy"><span class="store-kicker">PlusX · 금융 서비스</span><strong>KB 자산운용<br>웹사이트 통합 개편</strong><span class="store-feature__description">회원 인증 · CMS · 금융상품 API<br>폐쇄망 인프라 배포</span><span class="store-feature__link">프로젝트 살펴보기 <span aria-hidden="true">↗</span></span></span>
+                      <span class="store-kb-cover" aria-hidden="true"><span class="store-kb-cover__eyebrow">ASSET MANAGEMENT</span><span class="store-kb-cover__name">KB<span>×</span>RISE</span><span class="store-kb-cover__caption">두 웹사이트를 연결하는<br>하나의 백엔드.</span><span class="store-kb-cover__footer">INTEGRATED WEB PLATFORM</span></span>
+                    </button>
+                    <div class="store-highlights">
+                      <button type="button" class="store-highlight store-highlight--geni" data-project-id="samsung-ai"><span class="store-highlight__cover" aria-hidden="true"><span class="store-geni-wordmark">GENI<span>IMAGE GENERATION</span></span></span><span class="store-highlight__copy"><span class="store-kicker">PlusX · AI 서비스</span><strong>Samsung GENI</strong><span>디자인 R&amp;D를 위한 이미지 생성.<br>서비스·CMS 개발과 온프레미스 배포.</span><span class="store-highlight__link">살펴보기 ↗</span></span></button>
+                      <button type="button" class="store-highlight store-highlight--station" data-project-id="developers-station"><span class="store-highlight__cover" aria-hidden="true"><span class="store-station-wordmark">Developers<span>↘</span>Station</span></span><span class="store-highlight__copy"><span class="store-kicker">PlusX · 인프라 자동화</span><strong>Developers · Station</strong><span>인프라 생성부터 프로젝트 공개까지.<br>AWS·승인·SSO·서비스 연동.</span><span class="store-highlight__link">살펴보기 ↗</span></span></button>
+                      <button type="button" class="store-highlight store-highlight--emax" data-project-id="emax"><span class="store-highlight__cover"><img src="assets/image/work_project/emax.png" width="604" height="272" alt="EMAX 전력 예측 그래프와 관리 대시보드"></span><span class="store-highlight__copy"><span class="store-kicker">GNC Solution · 데이터</span><strong>EMAX</strong><span>전력 데이터를 예측 서비스로.<br>데이터 관리와 예측 스케줄링.</span><span class="store-highlight__link">살펴보기 ↗</span></span></button>
+                    </div>
+                  </div>
+                  <section class="store-library" aria-label="프로젝트 목록"><div class="store-project-list" data-store-list></div><p class="store-empty" data-store-empty hidden>검색 결과가 없습니다. 다른 프로젝트명이나 기술로 검색해 보세요.</p></section>
+                </div>
+                <article class="store-detail" data-store-detail hidden aria-label="프로젝트 상세"></article>
+              </div>
+              </div>
+            </section>
+            <div class="desktop-guide-actor" data-guide-actor aria-hidden="true" hidden></div>
+            <aside class="desktop-guide" data-desktop-guide aria-labelledby="desktop-guide-title" hidden>
+              <img class="desktop-guide__frog" src="assets/image/character/pages/splash/seamless-entry/frames-v12/frame-seamless-v12-01.png" width="320" height="320" alt="인사하는 개구리 가이드" />
+              <div class="desktop-guide__bubble">
+                <div class="desktop-guide__heading"><strong id="desktop-guide-title">About me</strong><span data-guide-count aria-label="전체 4단계 중 1단계">1 / 4</span></div>
+                <p data-guide-message aria-live="polite">안녕하세요!
+저의 포트폴리오에 오신 걸 환영해요.
+제가 하나씩 소개해 드릴게요.
+먼저, 저에 대한 소개부터 시작하겠습니다!</p>
+                <div class="desktop-guide__actions">
+                  <button type="button" data-guide-skip>건너뛰기</button>
+                  <button type="button" data-guide-previous aria-label="이전 안내" disabled>←</button>
+                  <button type="button" data-guide-next aria-label="다음: Skills">다음 →</button>
+                </div>
+              </div>
+            </aside>
+            <nav class="desktop-dock" data-desktop-dock aria-label="앱 Dock" hidden>
+              <div class="desktop-dock__glass" aria-hidden="true"></div>
+              <button class="desktop-dock__app" type="button" data-about-open aria-label="Finder · 내 소개 열기" aria-expanded="false">
+                <img src="assets/image/desktop/dock/finder.png" width="256" height="256" alt="" draggable="false" />
+                <span class="desktop-dock__label">Finder <small>내 소개</small></span>
+              </button>
+              <button class="desktop-dock__app" type="button" data-skills-open aria-label="사진 · Skills 열기" aria-expanded="false">
+                <img src="assets/image/desktop/dock/photos.png" width="256" height="256" alt="" draggable="false" />
+                <span class="desktop-dock__label">사진 <small>Skills</small></span>
+              </button>
+              <button class="desktop-dock__app" type="button" data-projects-open aria-label="App Store · Projects 열기" aria-expanded="false">
+                <img src="assets/image/desktop/dock/app-store.png" width="256" height="256" alt="" draggable="false" />
+                <span class="desktop-dock__label">App Store <small>Projects</small></span>
+              </button>
+              <button class="desktop-dock__app" type="button" data-experience-open aria-label="미리보기 · Experience 열기" aria-expanded="false">
+                <img src="assets/image/desktop/dock/preview.png" width="256" height="256" alt="" draggable="false" />
+                <span class="desktop-dock__label">미리보기 <small>Experience</small></span>
+              </button>
+            </nav>
+          </div>
+        </div>
+
+        <div class="input-stage">
+          <img
+            class="input-stage__hardware input-stage__hardware--keyboard"
+            src="assets/image/environment/splash/desktop-workstation/desktop-keyboard-v1.png"
+            alt=""
+            width="1491"
+            height="1055"
+            aria-hidden="true"
+          />
+
+          <img
+            class="input-stage__hardware input-stage__hardware--mouse"
+            src="assets/image/environment/splash/desktop-workstation/desktop-mouse-v1.png"
+            alt=""
+            width="1491"
+            height="1055"
+            aria-hidden="true"
+          />
+        </div>
+
+        <div
+          class="frog-actor"
+          data-frog
+          aria-hidden="true"
+        ></div>
+        </div>
+        </div>
+
+      </section>
+
+      <footer class="sequence-controls" id="sequence-controls">
+        <button type="button" class="splash-skip-button" data-splash-skip aria-label="스플래시 건너뛰고 포트폴리오 보기">
+          skip intro →
+        </button>
       </footer>
-    </div>
-
-    <script src="assets/js/components.js" defer></script>
-    <script src="assets/js/index.js" defer></script>
+    </main>
   </body>
 </html>
