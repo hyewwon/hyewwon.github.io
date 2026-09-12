@@ -5,7 +5,6 @@
   "sources": {
     "about-this-mac.png": "/System/Library/CoreServices/Applications/About This Mac.app/Contents/Resources/Assets.car (AppIcon, exported with AppKit Bundle image resource)",
     "apps.png": "/System/Applications/Apps.app/Contents/Resources/AppIcon.icns",
-    "finder.png": "/System/Library/CoreServices/Finder.app/Contents/Resources/Finder.icns",
     "photos.png": "/System/Applications/Photos.app/Contents/Resources/AppIcon.icns",
     "app-store.png": "/System/Applications/App Store.app/Contents/Resources/AppIcon.icns",
     "preview.png": "/System/Applications/Preview.app/Contents/Resources/AppIcon.icns"

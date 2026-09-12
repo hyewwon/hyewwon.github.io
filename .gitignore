@@ -1,4 +1,5 @@
 node_modules/
+/dist/
 assets/css/*.map
 .DS_Store
 

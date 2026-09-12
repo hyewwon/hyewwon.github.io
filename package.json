@@ -5,9 +5,12 @@
   "description": "Interactive desktop-style backend developer portfolio",
   "scripts": {
     "dev:styles": "sass --watch assets/scss:assets/css --style=expanded --source-map",
-    "build": "npm run build:styles",
+    "build": "npm run build:styles && node tools/site.mjs build",
     "build:styles": "sass assets/scss:assets/css --style=compressed --no-source-map",
-    "check": "npm run check:js && npm run check:styles",
+    "check": "npm run check:js && npm run check:styles && npm run check:site && npm test",
+    "test": "node tools/test-window-stack.mjs && node tools/test-dock-motion.mjs",
+    "check:site": "node tools/site.mjs check",
+    "audit:assets": "node tools/site.mjs audit",
     "check:js": "node --check assets/js/splash.js && node --check assets/js/experience.js && node --check assets/documents/experience.js && node --check assets/js/projects.js && node --check assets/js/desktop-guide.js && node --check assets/js/desktop-rest-frog.js && node --check assets/js/desktop-apps.js && node --check assets/js/desktop-menu.js && node --check assets/js/desktop-wifi.js",
     "check:styles": "sass assets/scss:assets/css --style=compressed --no-source-map --stop-on-error"
   },
