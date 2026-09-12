@@ -17,9 +17,58 @@
   const nextButton = guide.querySelector('[data-guide-next]');
   const previousButton = guide.querySelector('[data-guide-previous]');
   const dock = screen.querySelector('[data-desktop-dock]');
-  const finderLauncher = screen.querySelector('[data-about-open]');
+  const finderLauncher = dock.querySelector('[data-about-open]');
+  const aboutLaunchers = [...screen.querySelectorAll('[data-about-open]')];
+  const appsLauncher = screen.querySelector('[data-apps-open]');
   const skillsLauncher = screen.querySelector('[data-skills-open]');
-  const desktopItems = [dock];
+  const restartFrog = screen.querySelector('[data-guide-restart]');
+  const desktopItems = [dock, screen.querySelector('[data-desktop-widgets]'), restartFrog].filter(Boolean);
+  const calendar = screen.querySelector('[data-desktop-calendar]');
+  let calendarDateKey = '';
+  function renderCalendar(now = new Date()) {
+    if (!calendar) return;
+    const year = now.getFullYear(), month = now.getMonth(), today = now.getDate();
+    const key = `${year}-${month}-${today}`;
+    if (key === calendarDateKey) return;
+    calendarDateKey = key;
+    const firstDay = new Date(year, month, 1).getDay();
+    const days = new Date(year, month + 1, 0).getDate();
+    const weeks = Math.ceil((firstDay + days) / 7);
+    calendar.dataset.weeks = String(weeks);
+    const rows = Array.from({ length: weeks }, (_, week) => '<tr>' + Array.from({ length: 7 }, (_, weekday) => {
+      const day = week * 7 + weekday - firstDay + 1;
+      if (day < 1 || day > days) return '<td></td>';
+      const current = day === today ? ' aria-current="date"' : '';
+      return `<td><span${current}>${day}</span></td>`;
+    }).join('') + '</tr>').join('');
+    calendar.setAttribute('aria-label', `${year}년 ${month + 1}월 달력`);
+    calendar.innerHTML = `<table><caption>${month + 1}월</caption><thead><tr>${['일', '월', '화', '수', '목', '금', '토'].map(day => `<th scope="col">${day}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table>`;
+  }
+  renderCalendar();
+  // Refresh after midnight, including when returning from a sleeping tab.
+  setInterval(() => { if (!document.hidden) renderCalendar(); }, 60000);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) renderCalendar(); });
+  const clockWidget = screen.querySelector('[data-desktop-clock]');
+  const clockHour = clockWidget?.querySelector('[data-clock-hour]');
+  const clockMinute = clockWidget?.querySelector('[data-clock-minute]');
+  const clockSecond = clockWidget?.querySelector('[data-clock-second]');
+  function renderDesktopClock(now = new Date()) {
+    if (!clockWidget) return;
+    const seconds = now.getSeconds();
+    const minutes = now.getMinutes() + seconds / 60;
+    const hours = now.getHours() % 12 + minutes / 60;
+    clockHour.setAttribute('transform', `rotate(${hours * 30} 100 100)`);
+    clockMinute.setAttribute('transform', `rotate(${minutes * 6} 100 100)`);
+    clockSecond.setAttribute('transform', `rotate(${seconds * 6} 100 100)`);
+    clockWidget.setAttribute('aria-label', `현재 시간 ${now.toLocaleTimeString('ko-KR', { hour: 'numeric', minute: '2-digit' })}`);
+  }
+  if (clockWidget) {
+    clockWidget.querySelector('[data-clock-ticks]').innerHTML = Array.from({ length: 12 }, (_, hour) =>
+      `<line x1="100" y1="21" x2="100" y2="38" transform="rotate(${hour * 30} 100 100)" />`).join('');
+    renderDesktopClock();
+    setInterval(() => { if (!document.hidden) renderDesktopClock(); }, 1000);
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) renderDesktopClock(); });
+  }
   const dockApps = [finderLauncher, skillsLauncher, screen.querySelector('[data-experience-open]'), screen.querySelector('[data-projects-open]')];
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   const actor = screen.querySelector('[data-guide-actor]');
@@ -84,6 +133,7 @@
     windowStack.splice(index, 1);
     windowStack.push(panel);
     windowStack.forEach((item, position) => { item.style.zIndex = String(3 + position); });
+    if (unlocked && !active) document.dispatchEvent(new CustomEvent('desktop-app-used', { detail: { index: windows.indexOf(panel) } }));
   }
   const motions = new Set();
   // Dock launches are independent of guide transitions and of other apps.
@@ -450,8 +500,10 @@
   }
 
   function syncAccessibility() {
-    dock.hidden = !unlocked || active;
-    dock.inert = dock.hidden || splash.dataset.exploreTransition === 'revealing';
+    desktopItems.forEach(item => {
+      item.hidden = !unlocked || active;
+      item.inert = item.hidden || splash.dataset.exploreTransition === 'revealing';
+    });
     windowControls.forEach(button => {
       button.disabled = active || originalDisabled.get(button);
       if (active) button.setAttribute('aria-disabled', 'true'); else button.removeAttribute('aria-disabled');
@@ -461,6 +513,10 @@
       panel.inert = hidden;
       panel.setAttribute('aria-hidden', String(hidden));
       dockApps[index].setAttribute('aria-expanded', String(!hidden));
+      if (index === 0) aboutLaunchers.forEach(button => {
+        button.setAttribute('aria-expanded', String(!hidden));
+        button.disabled = !unlocked || active;
+      });
     });
   }
   function paintActor() {
@@ -889,7 +945,7 @@
     desktopItems.forEach(item => { item.inert = false; });
     entrances.forEach(animation => { motions.delete(animation); animation.cancel(); });
     delete splash.dataset.exploreTransition;
-    if (focus) finderLauncher.focus({ preventScroll: true });
+    if (focus) appsLauncher.focus({ preventScroll: true });
   }
   function finish(focus = false) {
     cancelReveal();
@@ -900,9 +956,9 @@
     windows.forEach(panel => panel.classList.remove('is-tour-background', 'is-tour-leaving', 'is-tour-entering'));
     layout();
     syncAccessibility();
-    if (focus) finderLauncher.focus({ preventScroll: true });
+    if (focus) appsLauncher.focus({ preventScroll: true });
   }
-  function open(panel) {
+  function open(panel, launcher = dockApps[windows.indexOf(panel)]) {
     const wasClosed = panel.classList.contains('is-closed');
     if (active) finish();
     if (wasClosed) cancelDockMotion(panel);
@@ -912,7 +968,7 @@
     layout();
     focusWindow(panel);
     syncAccessibility();
-    if (wasClosed) animateDockOpen(panel, dockApps[windows.indexOf(panel)]);
+    if (wasClosed) animateDockOpen(panel, launcher);
   }
   function resetWindows() {
     visited.clear();
@@ -931,6 +987,12 @@
     const next = splash.classList.contains('is-unlocked');
     if (next === unlocked) return;
     unlocked = next;
+    // Manual locking preserves the user's windows and free-explore state.
+    if (splash.dataset.desktopLocked === 'true') {
+      if (unlocked) delete splash.dataset.desktopLocked;
+      syncAccessibility();
+      return;
+    }
     if (unlocked) { resetWindows(); showStep(0, true, false); }
     else { finish(); resetWindows(); }
     syncAccessibility();
@@ -947,7 +1009,37 @@
     else if (step === steps.length - 1) showOutro();
     else showStep(step + 1);
   });
-  finderLauncher.addEventListener('click', () => open(about));
+  let restartingGuide = false;
+  restartFrog?.addEventListener('click', async event => {
+    if (!unlocked || active || restartingGuide) return;
+    restartingGuide = true;
+    restartFrog.inert = true;
+    const visibleWindows = windows.filter(panel => !panel.classList.contains('is-closed'));
+    visibleWindows.forEach(cancelDockMotion);
+    const exits = [...visibleWindows, restartFrog].map(panel => animatePanel(panel, [{ opacity: 1 }, { opacity: 0 }], 180));
+    await Promise.all(exits.map(animation => animation.finished.catch(() => {})));
+    if (unlocked && !active) {
+      resetWindows();
+      showStep(0, true, event.detail === 0);
+    }
+    restartingGuide = false;
+  });
+  aboutLaunchers.forEach(button => button.addEventListener('click', () => {
+    if (!unlocked || active) return;
+    open(about, button);
+  }));
+  document.addEventListener('desktop-menu-action', event => {
+    if (!unlocked || active) return;
+    const { action, index } = event.detail;
+    if (action === 'open' && windows[index]) {
+      open(windows[index], screen.querySelector('[data-system-menu-trigger]'));
+      windows[index].querySelector('button:not(:disabled)')?.focus({ preventScroll: true });
+    }
+    if (action === 'close') {
+      const panel = [...windowStack].reverse().find(item => !item.classList.contains('is-closed'));
+      panel?.querySelector('[data-about-close], [data-skills-close], [data-preview-action="close"], [data-store-action="close"]')?.click();
+    }
+  });
   about.querySelector('[data-about-close]').addEventListener('click', () => {
     if (active) return;
     cancelDockMotion(about);

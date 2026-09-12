@@ -448,34 +448,8 @@ a {
 }
 
 .desktop-status--battery {
-  isolation: isolate;
   width: 1.45rem;
   cursor: pointer;
-}
-
-.desktop-status--battery::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  inset: -0.4rem -0.62rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 999px;
-  background: rgba(247, 244, 255, 0.055);
-  opacity: 0;
-  transform: scale(0.82);
-  -webkit-backdrop-filter: blur(0.72rem) saturate(150%) brightness(1.06);
-  backdrop-filter: blur(0.72rem) saturate(150%) brightness(1.06);
-  box-shadow:
-    inset 0 1px rgba(255, 255, 255, 0.2),
-    inset 0 -1px rgba(63, 39, 119, 0.08);
-  transition:
-    opacity 170ms ease,
-    transform 230ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.desktop-status--battery.is-active::before {
-  opacity: 1;
-  transform: scale(1);
 }
 
 .desktop-status--battery:focus-visible {
@@ -503,69 +477,27 @@ a {
   top: 2.42rem;
   right: 0.85rem;
   z-index: 11;
-  width: min(19.5rem, calc(100vw - 1.7rem));
-  padding: 1rem 1.1rem 0.72rem;
+  box-sizing: border-box;
+  width: min(270px, calc(100% - 1.7rem));
+  padding: 12px 15px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 1.45rem;
-  background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.18), rgba(226, 216, 253, 0.09)),
-    rgba(239, 234, 255, 0.09);
-  color: rgba(36, 27, 67, 0.94);
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue",
-    "Apple SD Gothic Neo", sans-serif;
+  border: 1px solid rgba(255, 255, 255, 0.48);
+  border-radius: 15px;
+  background: rgba(239, 230, 255, 0.72);
+  color: #302639;
+  font: 400 13px/1.35 -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
   opacity: 0;
   transform: translateY(-0.45rem) scale(0.96);
   transform-origin: calc(100% - 9.5rem) top;
   visibility: hidden;
   pointer-events: none;
-  -webkit-backdrop-filter: blur(1.8rem) saturate(175%) brightness(1.08);
-  backdrop-filter: blur(1.8rem) saturate(175%) brightness(1.08);
-  box-shadow:
-    0 1.2rem 3.6rem rgba(34, 15, 77, 0.2),
-    inset 0 1px rgba(255, 255, 255, 0.74),
-    inset 0 -1px rgba(98, 70, 151, 0.14);
+  -webkit-backdrop-filter: blur(22px) saturate(140%);
+  backdrop-filter: blur(22px) saturate(140%);
+  box-shadow: 0 12px 30px rgba(28, 15, 55, 0.19);
   transition:
     opacity 170ms ease,
     transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
     visibility 0s linear 260ms;
-}
-
-.battery-popover::before,
-.battery-popover::after {
-  content: "";
-  position: absolute;
-  pointer-events: none;
-}
-
-.battery-popover::before {
-  inset: 0;
-  padding: 1px;
-  border-radius: inherit;
-  background: linear-gradient(
-    145deg,
-    rgba(255, 255, 255, 0.86),
-    rgba(255, 255, 255, 0.12) 45%,
-    rgba(205, 190, 239, 0.42)
-  );
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-}
-
-.battery-popover::after {
-  top: -45%;
-  right: -18%;
-  width: 70%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.15), transparent 66%);
-  mix-blend-mode: screen;
 }
 
 .battery-popover.is-open {
@@ -583,36 +515,35 @@ a {
   align-items: baseline;
   justify-content: space-between;
   gap: 1rem;
-  font-size: 0.9rem;
-  letter-spacing: -0.035em;
+  font-size: inherit;
+  letter-spacing: normal;
 }
 
 .battery-popover__heading strong {
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .battery-popover__percentage {
-  color: rgba(50, 36, 91, 0.82);
+  color: inherit;
   font-variant-numeric: tabular-nums;
 }
 
 .battery-popover__source {
   position: relative;
   z-index: 1;
-  margin: 0.62rem 0 0;
-  color: rgba(55, 42, 91, 0.72);
-  font-size: 0.78rem;
-  font-weight: 540;
-  letter-spacing: -0.03em;
+  margin: 6px 0 0;
+  color: #6f6379;
+  font-size: inherit;
+  font-weight: 400;
+  letter-spacing: normal;
 }
 
 .battery-popover__divider {
   position: relative;
   z-index: 1;
   height: 1px;
-  margin: 0.82rem 0;
-  background: rgba(75, 52, 119, 0.17);
-  box-shadow: 0 1px rgba(255, 255, 255, 0.24);
+  margin: 9px 0;
+  background: #49345425;
 }
 
 .battery-popover__section {
@@ -1095,35 +1026,35 @@ a {
 
 .battery-popover__label {
   display: block;
-  font-size: 0.8rem;
-  font-weight: 670;
-  letter-spacing: -0.03em;
+  font-size: inherit;
+  font-weight: 500;
+  letter-spacing: normal;
 }
 
 .battery-popover__mode {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  margin-top: 0.72rem;
-  font-size: 0.82rem;
-  font-weight: 580;
-  letter-spacing: -0.025em;
+  gap: 9px;
+  min-height: 32px;
+  margin-top: 6px;
+  font-size: inherit;
+  font-weight: 400;
+  letter-spacing: normal;
 }
 
 .battery-popover__mode-icon {
   display: grid;
-  width: 2.15rem;
-  height: 2.15rem;
+  width: 28px;
+  height: 28px;
   flex: 0 0 auto;
   place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.28);
+  border: 0;
   border-radius: 50%;
   background: rgba(74, 52, 125, 0.12);
-  box-shadow: inset 0 1px rgba(255, 255, 255, 0.26);
 }
 
 .battery-popover__mode-icon svg {
-  width: 1.45rem;
+  width: 19px;
   height: auto;
   fill: none;
   stroke: rgba(56, 40, 98, 0.82);

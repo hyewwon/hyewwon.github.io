@@ -8,7 +8,7 @@
     "build": "npm run build:styles",
     "build:styles": "sass assets/scss:assets/css --style=compressed --no-source-map",
     "check": "npm run check:js && npm run check:styles",
-    "check:js": "node --check assets/js/splash.js && node --check assets/js/experience.js && node --check assets/documents/experience.js && node --check assets/js/projects.js && node --check assets/js/desktop-guide.js",
+    "check:js": "node --check assets/js/splash.js && node --check assets/js/experience.js && node --check assets/documents/experience.js && node --check assets/js/projects.js && node --check assets/js/desktop-guide.js && node --check assets/js/desktop-rest-frog.js && node --check assets/js/desktop-apps.js && node --check assets/js/desktop-menu.js && node --check assets/js/desktop-wifi.js",
     "check:styles": "sass assets/scss:assets/css --style=compressed --no-source-map --stop-on-error"
   },
   "devDependencies": {

@@ -1,0 +1,99 @@
+.desktop-system-menu,
+.desktop-system-menu__submenu,
+.wifi-popover {
+  box-sizing: border-box;
+  padding: 6px;
+  border: 1px solid rgba(255,255,255,.48);
+  border-radius: 15px;
+  background: rgba(239,230,255,.72);
+  -webkit-backdrop-filter: blur(22px) saturate(140%);
+  backdrop-filter: blur(22px) saturate(140%);
+  box-shadow: 0 12px 30px rgba(28,15,55,.19);
+  color: #302639;
+  font: 400 13px/1.35 -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
+  [hidden], &[hidden] { display: none !important; }
+  button {
+    display: flex; align-items: center; gap: 9px;
+    width: 100%; min-height: 32px; padding: 6px 9px;
+    border: 0; border-radius: 7px; background: transparent;
+    color: inherit; font: inherit; text-align: left; cursor: pointer;
+    &:hover:not(:disabled), &:focus-visible { background: #ffffff58; outline: none; }
+    &:disabled { opacity: .42; cursor: default; }
+  }
+  svg { width: 16px; height: 16px; flex: 0 0 auto; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+  img { width: 20px; height: 20px; flex: 0 0 auto; object-fit: contain; }
+  [role="separator"] { height: 1px; margin: 4px 9px; background: #49345425; }
+}
+.desktop-system-menu {
+  position: absolute; z-index: 13; top: 36px; left: 8px;
+  width: min(270px, calc(100% - 16px));
+  transform-origin: top left;
+  &__recent { position: relative; }
+  &__chevron { margin-left: auto; width: 13px !important; }
+  &__submenu { position: absolute; z-index: 13; width: min(230px, calc(100% - 16px)); }
+  &__empty { display: block; padding: 9px 10px; color: #6f6379; font-size: 13px; }
+}
+[data-system-menu-trigger],
+[data-battery-trigger],
+[data-wifi-trigger] {
+  // Keep the highlight inside the bar; an outer spread shadow was clipped by nav overflow.
+  width: 32px; height: 26px; border-radius: 13px; margin-inline: -6px;
+  transition: background-color 140ms ease;
+  cursor: pointer;
+  &:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+  &[aria-expanded="true"] { background: #ffffff26; box-shadow: none; border-radius: 13px; }
+}
+[data-battery-trigger] svg { width: 23px; height: 20px; }
+[data-wifi-trigger] svg { width: 19px; height: 19px; }
+[data-wifi-trigger].is-off svg { opacity: .55; }
+.wifi-popover {
+  position: absolute; top: 36px; right: .85rem; z-index: 11;
+  width: min(270px, calc(100% - 1.7rem));
+  &__collapse {
+    display: grid; grid-template-rows: 0fr;
+    visibility: hidden;
+    transition: grid-template-rows 240ms cubic-bezier(.22,1,.36,1), visibility 0s linear 240ms;
+    > .wifi-popover__collapse-inner {
+      min-height: 0; overflow: hidden;
+      opacity: 0; transform: translateY(-4px);
+      transition: opacity 180ms ease, transform 240ms cubic-bezier(.22,1,.36,1);
+    }
+    &.is-expanded {
+      grid-template-rows: 1fr; visibility: visible; transition-delay: 0s;
+      > .wifi-popover__collapse-inner { opacity: 1; transform: translateY(0); }
+    }
+  }
+  &__heading { display: flex; align-items: center; justify-content: space-between; padding: 5px 9px 8px; }
+  &__heading strong { font-weight: 600; }
+  .wifi-popover__switch {
+    position: relative; width: 32px; min-height: 19px; height: 19px; padding: 0;
+    border-radius: 12px; background: #8c8298;
+    &::after { content: ''; position: absolute; left: 2px; top: 2px; width: 15px; height: 15px; border-radius: 50%; background: white; transition: transform 140ms ease; }
+    &:hover:not(:disabled) { background: #8c8298; }
+    &[aria-checked="true"], &[aria-checked="true"]:hover:not(:disabled) { background: #1682f8; &::after { transform: translateX(13px); } }
+    &:focus-visible { outline: 2px solid #1682f8; outline-offset: 3px; }
+  }
+  &__label { margin: 5px 9px; font-size: 12px; color: #6f6379; font-weight: 500; }
+  &__network span { flex: 1; }
+  &__network[aria-pressed="true"] { background: #ffffff38; }
+  &__network[aria-pressed="true"] > svg:first-child { color: #1682f8; }
+  &__disclosure svg { margin-left: auto; transition: transform 140ms ease; }
+  &__disclosure[aria-expanded="true"] svg { transform: rotate(90deg); }
+  &__note, &__settings { margin: 7px 9px; color: #6f6379; font-size: 11px; line-height: 1.5; }
+  &__status { margin: 4px 9px 7px; font-size: 12px; color: #6f6379; }
+}
+.desktop-unlock {
+  margin-top: 16px; padding: 9px 22px; border: 1px solid #ffffff85;
+  border-radius: 24px; background: #ffffff70; color: #302639; font: 500 14px/1.4 -apple-system, sans-serif;
+  cursor: pointer; backdrop-filter: blur(16px);
+  &[hidden] { display: none; }
+  &:focus-visible { outline: 2px solid white; outline-offset: 3px; }
+}
+.splash[data-desktop-locked="true"] .lock-loader { display: none; }
+.splash[data-desktop-locked="true"]:not(.is-unlocked) {
+  .about-window, .skills-window, [data-experience-window], [data-projects-window] { visibility: hidden; pointer-events: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .desktop-unlock, .wifi-popover__collapse, .wifi-popover__collapse-inner,
+  .wifi-popover__switch::after, .wifi-popover__disclosure svg { transition: none !important; }
+}

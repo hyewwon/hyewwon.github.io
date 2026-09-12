@@ -20,15 +20,21 @@
       as="image"
       href="assets/image/environment/splash/monitor-wallpaper/tahoe-violet-layered-lock-wallpaper-v2.png"
     />
-    <link rel="stylesheet" href="assets/css/splash.css?v=20260911-window-stack" />
+    <link rel="stylesheet" href="assets/css/splash.css?v=20260912-wifi" />
     <link rel="stylesheet" href="assets/css/experience.css?v=20260911-sidebar-shadow-3" />
-    <script src="assets/js/splash.js?v=20260910-skip-1" defer></script>
+    <script src="assets/js/splash.js?v=20260912-wifi" defer></script>
     <script src="assets/js/experience.js?v=20260906-1" defer></script>
     <link rel="stylesheet" href="assets/css/projects.css?v=20260911-skills-shadow-match-3" />
     <script src="assets/js/projects.js?v=20260911-opd-pink" defer></script>
     <link rel="stylesheet" href="assets/css/desktop-guide.css?v=20260911-guide-outro-1" />
-    <link rel="stylesheet" href="assets/css/desktop-dock.css?v=20260911-controls-inset-10" />
-    <script src="assets/js/desktop-guide.js?v=20260911-window-stack" defer></script>
+    <link rel="stylesheet" href="assets/css/desktop-dock.css?v=20260912-about-launchers" />
+    <script src="assets/js/desktop-rest-frog.js?v=20260912-restart-frog-v2" defer></script>
+    <script src="assets/js/desktop-guide.js?v=20260912-system-menu" defer></script>
+    <link rel="stylesheet" href="assets/css/desktop-menu.css?v=20260912-wifi-motion" />
+    <script src="assets/js/desktop-menu.js?v=20260912-wifi" defer></script>
+    <script src="assets/js/desktop-wifi.js?v=20260912-motion" defer></script>
+    <link rel="stylesheet" href="assets/css/desktop-apps.css?v=20260912-apps-v3" />
+    <script src="assets/js/desktop-apps.js?v=20260912-apps-v2" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#sequence-controls">시퀀스 제어로 건너뛰기</a>
@@ -79,6 +85,7 @@
                   />
                 </div>
                 <strong class="profile-name">hyewwon</strong>
+                <button type="button" class="desktop-unlock" data-desktop-unlock hidden>잠금 해제</button>
 
                 <div class="lock-loader">
                   <div
@@ -99,14 +106,9 @@
 
             <header class="desktop-menu-bar" aria-label="데스크톱 메뉴 막대">
               <nav class="desktop-menu-bar__left" aria-label="현재 앱 메뉴">
-                <img
-                  class="desktop-menu-bar__frog"
-                  src="assets/image/brand/logo/frog-head-silhouette-white-v1.svg"
-                  alt=""
-                  width="64"
-                  height="64"
-                  aria-hidden="true"
-                />
+                <button class="desktop-status desktop-status--about" type="button" data-system-menu-trigger aria-label="데스크톱 메뉴 열기" aria-haspopup="menu" aria-controls="desktop-system-menu" aria-expanded="false" title="데스크톱 메뉴">
+                  <img class="desktop-menu-bar__frog" src="assets/image/brand/logo/frog-head-silhouette-white-v1.svg" width="24" height="24" alt="" />
+                </button>
                 <strong class="desktop-menu-bar__app">hyewwon</strong>
                 <span class="desktop-menu-bar__menu">파일</span>
                 <span class="desktop-menu-bar__menu">편집</span>
@@ -131,12 +133,12 @@
                     <path class="desktop-status__fill" d="M5 9h12.5v6H5Z" />
                   </svg>
                 </button>
-                <span class="desktop-status" aria-label="와이파이 연결됨">
+                <button type="button" class="desktop-status" data-wifi-trigger aria-label="Wi-Fi 메뉴 열기" aria-controls="wifi-popover" aria-haspopup="dialog" aria-expanded="false">
                   <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M3.5 8.8a13.2 13.2 0 0 1 17 0M6.5 12a8.8 8.8 0 0 1 11 0M9.6 15.1a4.4 4.4 0 0 1 4.8 0" />
                     <circle cx="12" cy="18" r="1" />
                   </svg>
-                </span>
+                </button>
                 <span class="desktop-status" aria-label="제어 센터">
                   <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M5 7h14M5 17h14" />
@@ -149,6 +151,34 @@
                 </time>
               </div>
             </header>
+
+            <div class="desktop-system-menu" id="desktop-system-menu" data-system-menu role="menu" aria-label="데스크톱 메뉴" hidden>
+              <button role="menuitem" type="button" data-system-action="about"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v12H4zM2 19h20M9 17v2m6-2v2"/></svg>Hyewon에 관하여</button>
+              <div role="separator"></div>
+              <button role="menuitem" type="button" data-system-action="projects"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 3 11 18M16 3 5 21M3 16h18"/></svg>App Store</button>
+              <div class="desktop-system-menu__recent">
+                <button role="menuitem" type="button" data-system-recent-toggle aria-haspopup="menu" aria-expanded="false" aria-controls="desktop-recent-menu"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 6v6H7"/></svg>최근 사용 항목<svg class="desktop-system-menu__chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
+                <div id="desktop-recent-menu" class="desktop-system-menu__submenu" data-system-recent role="menu" aria-label="최근 사용 항목" hidden></div>
+              </div>
+              <div role="separator"></div>
+              <button role="menuitem" type="button" data-system-action="close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 3-5 5v8l5 5h8l5-5V8l-5-5zM9 9l6 6m0-6-6 6"/></svg>앱 닫기</button>
+              <div role="separator"></div>
+              <button role="menuitem" type="button" data-system-action="lock"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V6a4 4 0 0 1 8 0v4"/></svg>잠금화면</button>
+              <button role="menuitem" type="button" data-system-action="restart"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 9a8 8 0 1 0 0 7M20 3v6h-6"/></svg>재시동</button>
+            </div>
+
+            <section class="wifi-popover" id="wifi-popover" data-wifi-popover role="dialog" aria-label="Wi-Fi 메뉴" hidden>
+              <header class="wifi-popover__heading"><strong>Wi-Fi</strong><button type="button" class="wifi-popover__switch" data-wifi-toggle role="switch" aria-label="Wi-Fi" aria-checked="true"></button></header>
+              <p class="wifi-popover__status" data-wifi-status role="status">Hyewon Wi-Fi에 연결됨</p>
+              <div class="wifi-popover__collapse is-expanded" data-wifi-networks><div class="wifi-popover__collapse-inner">
+                <div role="separator"></div>
+                <p class="wifi-popover__label">알려진 네트워크</p>
+                <div data-wifi-known></div>
+                <div role="separator"></div>
+                <button type="button" class="wifi-popover__disclosure" data-wifi-other-toggle aria-expanded="false" aria-controls="wifi-other">다른 네트워크<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
+                <div class="wifi-popover__collapse" id="wifi-other" data-wifi-other aria-hidden="true" inert><div class="wifi-popover__collapse-inner" data-wifi-other-list></div></div>
+              </div></div>
+            </section>
 
             <section
               class="battery-popover"
@@ -553,11 +583,47 @@
                 </div>
               </div>
             </aside>
+            <div class="desktop-widgets" data-desktop-widgets hidden>
+              <div class="desktop-widgets__row">
+                <section class="desktop-calendar" data-desktop-calendar aria-label="이번 달 달력"></section>
+                <div class="desktop-clock" data-desktop-clock role="img" aria-label="현재 시간">
+                  <svg viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+                    <circle cx="100" cy="100" r="87" fill="#fff" />
+                    <g data-clock-ticks stroke="#8e8e8e" stroke-width="4.5" stroke-linecap="round"></g>
+                    <line data-clock-hour x1="100" y1="105" x2="100" y2="54" stroke="#262626" stroke-width="6" stroke-linecap="round" />
+                    <line data-clock-minute x1="100" y1="106" x2="100" y2="24" stroke="#262626" stroke-width="5" stroke-linecap="round" />
+                    <circle cx="100" cy="100" r="4.5" fill="#262626" />
+                    <line data-clock-second x1="100" y1="113" x2="100" y2="18" stroke="#ff9500" stroke-width="1.2" stroke-linecap="round" />
+                    <circle cx="100" cy="100" r="2" fill="#ff9500" />
+                  </svg>
+                </div>
+              </div>
+            <aside class="desktop-sticky" data-desktop-sticky aria-labelledby="sticky-contact-title">
+              <div class="desktop-sticky__bar" aria-hidden="true"></div>
+              <div class="desktop-sticky__content">
+                <h2 id="sticky-contact-title">Contact</h2>
+                <dl>
+                  <dt>Email</dt>
+                  <dd><a href="mailto:rlagp424@gmail.com">rlagp424@gmail.com</a></dd>
+                  <dt>GitHub</dt>
+                  <dd><a href="https://github.com/hyewwon" target="_blank" rel="noopener noreferrer">github.com/hyewwon</a></dd>
+                </dl>
+              </div>
+            </aside>
+            </div>
+            <button class="desktop-rest-frog" data-guide-restart type="button" aria-label="개구리 가이드 처음부터 다시 보기" hidden>
+              <span class="desktop-rest-frog__hint" aria-hidden="true">다시 안내해 드릴까요?</span>
+              <canvas width="384" height="384" aria-hidden="true"></canvas>
+            </button>
             <nav class="desktop-dock" data-desktop-dock aria-label="앱 Dock" hidden>
               <div class="desktop-dock__glass" aria-hidden="true"></div>
-              <button class="desktop-dock__app" type="button" data-about-open aria-label="Finder · 내 소개 열기" aria-expanded="false">
-                <img src="assets/image/desktop/dock/finder.png" width="256" height="256" alt="" draggable="false" />
-                <span class="desktop-dock__label">Finder <small>내 소개</small></span>
+              <button class="desktop-dock__app" type="button" data-apps-open aria-label="앱 목록 열기" aria-expanded="false" aria-controls="desktop-apps" aria-haspopup="dialog">
+                <img src="assets/image/desktop/dock/apps.png" width="256" height="256" alt="" draggable="false" />
+                <span class="desktop-dock__label">앱 <small>모든 앱 보기</small></span>
+              </button>
+              <button class="desktop-dock__app" type="button" data-about-open aria-label="Hyewon에 관하여 · About me 열기" aria-expanded="false">
+                <img src="assets/image/desktop/dock/about-this-mac.png" width="256" height="256" alt="" draggable="false" />
+                <span class="desktop-dock__label">Hyewon에 관하여 <small>About me</small></span>
               </button>
               <button class="desktop-dock__app" type="button" data-skills-open aria-label="사진 · Skills 열기" aria-expanded="false">
                 <img src="assets/image/desktop/dock/photos.png" width="256" height="256" alt="" draggable="false" />
@@ -572,6 +638,41 @@
                 <span class="desktop-dock__label">미리보기 <small>Experience</small></span>
               </button>
             </nav>
+            <section class="desktop-apps" id="desktop-apps" data-apps-panel role="dialog" aria-labelledby="desktop-apps-title" hidden>
+              <header class="desktop-apps__header">
+                <h2 class="desktop-apps__sr-only" id="desktop-apps-title">응용 프로그램</h2>
+                <label class="desktop-apps__search">
+                  <svg viewBox="0 0 32 32" aria-hidden="true"><path d="m11 5 15 23M21 5 6 28M4 21h15m5 0h4"/></svg>
+                  <input type="search" data-apps-search placeholder="응용 프로그램" aria-label="앱 검색" autocomplete="off" spellcheck="false" />
+                </label>
+                <div class="desktop-apps__options">
+                  <button class="desktop-apps__more" data-apps-more type="button" aria-label="앱 목록 옵션" aria-expanded="false" aria-controls="desktop-apps-options"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M7.5 12h.01M12 12h.01M16.5 12h.01"/></svg></button>
+                  <div class="desktop-apps__options-list" id="desktop-apps-options" data-apps-options hidden><button data-apps-close type="button">앱 목록 닫기</button></div>
+                </div>
+              </header>
+              <nav class="desktop-apps__categories" aria-label="앱 카테고리">
+                <button type="button" data-apps-category="all" aria-pressed="true">전체</button>
+                <button type="button" data-apps-category="profile" aria-pressed="false">소개 · 역량</button>
+                <button type="button" data-apps-category="work" aria-pressed="false">경력 · 프로젝트</button>
+              </nav>
+              <div class="desktop-apps__sr-only"><h3 data-apps-heading>모든 앱</h3><span data-apps-count role="status" aria-live="polite">4개의 앱</span></div>
+              <div class="desktop-apps__grid">
+                <button type="button" class="desktop-apps__item" data-apps-item="about" data-category="profile" data-search="Hyewon에 관하여 내 소개 about me hyewwon 김혜원 프로필" data-about-open aria-expanded="false">
+                  <img src="assets/image/desktop/dock/about-this-mac.png" width="64" height="64" alt="" draggable="false" />
+                  <span>Hyewon에 관하여</span><small>About me</small>
+                </button>
+                <button type="button" class="desktop-apps__item" data-apps-item="skills" data-category="profile" data-search="기술 역량 사진 skills photo">
+                  <img src="assets/image/desktop/dock/photos.png" width="64" height="64" alt="" draggable="false" /><span>사진</span><small>Skills</small>
+                </button>
+                <button type="button" class="desktop-apps__item" data-apps-item="experience" data-category="work" data-search="경력 미리보기 experience preview pdf">
+                  <img src="assets/image/desktop/dock/preview.png" width="64" height="64" alt="" draggable="false" /><span>미리보기</span><small>Experience</small>
+                </button>
+                <button type="button" class="desktop-apps__item" data-apps-item="projects" data-category="work" data-search="프로젝트 앱스토어 app store projects">
+                  <img src="assets/image/desktop/dock/app-store.png" width="64" height="64" alt="" draggable="false" /><span>App Store</span><small>Projects</small>
+                </button>
+              </div>
+              <p class="desktop-apps__empty" data-apps-empty hidden>일치하는 앱이 없어요.</p>
+            </section>
           </div>
         </div>
 

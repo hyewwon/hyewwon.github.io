@@ -33,10 +33,29 @@ class SplashSequence {
     this.updateClock();
     window.setInterval(() => this.updateClock(), 30000);
     this.skipButton.addEventListener("click", () => this.skip());
+    const unlockButton = this.root.querySelector('[data-desktop-unlock]');
+    document.addEventListener('desktop-lock', () => {
+      if (!this.root.classList.contains('is-unlocked') || this.root.classList.contains('is-guide-active')) return;
+      this.setBatteryPopover(false);
+      this.root.dataset.desktopLocked = 'true';
+      unlockButton.hidden = false;
+      this.root.classList.remove('is-unlocked');
+      unlockButton.focus({ preventScroll: true });
+    });
+    unlockButton.addEventListener('click', async () => {
+      unlockButton.disabled = true;
+      await this.unlock();
+      unlockButton.hidden = true;
+      unlockButton.disabled = false;
+      this.root.querySelector('[data-system-menu-trigger]').focus({ preventScroll: true });
+    });
     this.batteryTrigger.addEventListener("click", () => {
       this.setBatteryPopover(
         !this.batteryTrigger.classList.contains("is-active")
       );
+    });
+    document.addEventListener('desktop-popover-open', event => {
+      if (event.detail !== 'battery') this.setBatteryPopover(false);
     });
     this.skillFilters.forEach((filter) => {
       filter.addEventListener("click", () => this.setSkillsFilter(filter));
@@ -128,6 +147,7 @@ class SplashSequence {
   }
 
   setBatteryPopover(isOpen) {
+    if (isOpen) document.dispatchEvent(new CustomEvent('desktop-popover-open', { detail: 'battery' }));
     this.batteryTrigger.classList.toggle("is-active", isOpen);
     this.batteryTrigger.setAttribute("aria-expanded", String(isOpen));
     this.batteryPopover.classList.toggle("is-open", isOpen);

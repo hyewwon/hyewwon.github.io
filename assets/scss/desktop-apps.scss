@@ -1,0 +1,82 @@
+.desktop-apps {
+  position: absolute;
+  z-index: 9;
+  left: 50%;
+  top: 44%;
+  transform: translate(-50%, -50%);
+  width: min(clamp(560px, 42vw, 760px), calc(100% - 32px));
+  max-height: calc(100% - 160px);
+  overflow: auto;
+  padding: 14px 18px 22px;
+  box-sizing: border-box;
+  border: 1px solid #ffffff65;
+  border-radius: 28px;
+  background: linear-gradient(135deg, #eee6ff9e, #f4eaff8a);
+  -webkit-backdrop-filter: blur(18px) saturate(135%);
+  backdrop-filter: blur(18px) saturate(135%);
+  box-shadow: 0 14px 32px #20133736;
+  color: #332c3b;
+  font: 400 14px/1.4 -apple-system, BlinkMacSystemFont, sans-serif;
+  &[hidden], [hidden] { display: none !important; }
+  button, input { font: inherit; color: inherit; }
+  button { cursor: pointer; }
+  button:focus-visible { outline: 2px solid #007aff; outline-offset: 3px; }
+}
+.desktop-apps__sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+.desktop-apps__header {
+  display: flex; align-items: center; gap: 14px;
+  padding: 0 0 13px; border-bottom: 1px solid #66527626;
+}
+.desktop-apps__search {
+  display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0;
+  color: #625275;
+  svg { flex: 0 0 28px; width: 28px; height: 28px; fill: none; stroke: currentColor; stroke-width: 3.1; stroke-linecap: round; }
+  input { flex: 1; width: 100%; min-width: 0; border: 0; padding: 0; background: none; font-size: 26px; font-weight: 400; letter-spacing: -.035em; line-height: 1.45; caret-color: #625275; }
+  input:focus { outline: none; }
+  input::placeholder { color: #625275; opacity: .9; }
+}
+.desktop-apps__options { position: relative; flex-shrink: 0; }
+.desktop-apps__more {
+  display: grid; place-items: center; width: 32px; height: 32px;
+  border: 0; border-radius: 50%; padding: 4px; background: transparent; color: #6b6074 !important;
+  svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; }
+  svg path { stroke-width: 2.6; }
+  &:hover, &[aria-expanded='true'] { background: #ffffff45; }
+}
+.desktop-apps__options-list {
+  position: absolute; z-index: 1; right: 0; top: calc(100% + 8px); width: max-content;
+  padding: 5px; border: 1px solid #ffffff75; border-radius: 10px; background: #eee8f8f5; box-shadow: 0 6px 18px #20133724;
+  button { display: block; width: 100%; padding: 7px 14px; border: 0; border-radius: 6px; background: none; font-size: 13px; }
+  button:hover { color: #fff; background: #007aff; }
+}
+.desktop-apps__categories {
+  display: flex; gap: 7px; padding: 11px 0 4px; overflow-x: auto; scrollbar-width: none;
+  button { flex-shrink: 0; border: 0; border-radius: 9px; padding: 3px 10px; background: #ffffff3d; color: #75677f; font-size: 13px; transition: background 160ms; }
+  button:hover { background: #ffffff65; }
+  [aria-pressed='true'] { color: #625275; background: #ffffff80; }
+}
+.desktop-apps__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; padding-top: 13px; }
+.desktop-apps__item {
+  position: relative;
+  display: flex; flex-direction: column; align-items: center;
+  border: 0; background: transparent; border-radius: 13px; padding: 7px 4px;
+  transition: background 160ms, transform 180ms;
+  img { display: block; width: 76px; height: 76px; object-fit: contain; margin-bottom: 5px; filter: drop-shadow(0 2px 3px #20133720); }
+  .desktop-apps__profile { padding: 7px; box-sizing: border-box; border-radius: 18px; background: #f0e7ff; }
+  span { font-size: 13px; font-weight: 400; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  small { display: block; margin-top: 3px; font-size: 11px; line-height: 1.4; color: #6b6074; }
+  &:hover { background: #ffffff30; transform: translateY(-2px); }
+  &:active { transform: scale(.96); }
+}
+.desktop-apps__empty { text-align: center; padding: 26px 0; color: #6b6074; }
+@media (max-width: 480px) {
+  .desktop-apps { padding: 14px; top: 45%; border-radius: 24px; }
+  .desktop-apps__search { gap: 8px; input { font-size: 23px; } svg { width: 24px; height: 24px; flex-basis: 24px; } }
+  .desktop-apps__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .desktop-apps__categories button { padding-inline: 9px; font-size: 12px; }
+}
+@media (prefers-reduced-motion: reduce) { .desktop-apps * { transition: none; } }
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .desktop-apps { background: #e0d6f1f0; } }

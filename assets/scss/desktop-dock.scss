@@ -106,6 +106,101 @@ button:is(#{$window-controls}) {
   will-change: transform, opacity;
 }
 
+.desktop-widgets {
+  position: absolute;
+  z-index: 2; // Desktop surface, below all app windows (3–6).
+  top: 4rem;
+  left: 1.75rem;
+  width: min(21.25rem, calc(100% - 3.5rem));
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-height: calc(100% - 11rem);
+  overflow-y: auto;
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+  &[hidden] { display: none; }
+  > * { flex-shrink: 0; }
+}
+
+.desktop-widgets__row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.desktop-clock,
+.desktop-calendar {
+  position: relative;
+  box-shadow: 0 2px 6px rgba(35, 24, 55, .08);
+}
+
+.desktop-clock {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 18%;
+  background: #262626;
+  overflow: hidden;
+  svg { display: block; width: 100%; height: 100%; }
+}
+
+.desktop-calendar {
+  position: relative;
+  width: min(10rem, 100%);
+  aspect-ratio: 1;
+  container-type: inline-size;
+  border-radius: 18%;
+  background: #f6f6f6;
+  color: #292929;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  // Bound the entire calendar, including its caption, to equal outer insets.
+  // Native table height excludes the caption and can push the final week down.
+  table { position: absolute; inset: 10%; display: grid; grid-template-rows: auto auto minmax(0, 1fr); margin: 0; font-size: 6.1cqw; font-weight: 600; }
+  caption { text-align: left; padding: 0 0 2.5cqw 2cqw; font-size: 6.4cqw; font-weight: 700; line-height: 1.2; }
+  thead tr, tbody tr { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); }
+  tbody { display: grid; grid-auto-rows: minmax(0, 1fr); min-height: 0; }
+  th, td { display: grid; place-items: center; min-height: 0; padding: 0; text-align: center; line-height: 1; }
+  th { height: 10cqw; font-weight: 650; }
+  th:first-child, th:last-child, td:first-child, td:last-child { color: #808080; }
+  td span { display: inline-grid; place-items: center; width: 9.4cqw; height: 9.4cqw; font-variant-numeric: tabular-nums; }
+  [aria-current="date"] { border-radius: 50%; background: #292929; color: #fff; font-size: 5.2cqw; font-weight: 650; }
+  &[data-weeks="6"] td span { width: 8.6cqw; height: 8.6cqw; }
+}
+
+.desktop-sticky {
+  width: min(17rem, 100%);
+  background: #fff8ad;
+  color: #413b23;
+  border: 1px solid rgba(115, 98, 36, .25);
+  border-radius: 2px;
+  box-shadow: 0 7px 18px rgba(45, 24, 78, .17), 0 1px 3px rgba(45, 24, 78, .13);
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  &[hidden] { display: none; }
+}
+
+.desktop-sticky__bar {
+  height: .875rem;
+  border-bottom: 1px solid rgba(136, 117, 45, .2);
+  background: #f2e88b;
+  box-shadow: inset 0 1px rgba(255, 255, 255, .45);
+}
+
+.desktop-sticky__content {
+  padding: 1rem 1.15rem 1.5rem;
+  h2 { margin: 0 0 1.1rem; font-size: 1.125rem; font-weight: 650; letter-spacing: -.025em; }
+  dl { margin: 0; }
+  dt { margin-top: .9rem; font-size: .75rem; font-weight: 600; color: #756838; }
+  dd { margin: .2rem 0 0; font-size: .875rem; line-height: 1.5; }
+  a {
+    color: inherit;
+    text-decoration-color: #a1955b;
+    text-underline-offset: 3px;
+    overflow-wrap: anywhere;
+    &:hover { text-decoration-color: currentColor; }
+    &:focus-visible { outline: 2px solid #655020; outline-offset: 4px; border-radius: 1px; }
+  }
+}
+
 .desktop-dock {
   --dock-icon: clamp(52px, 5vw, 64px);
   position: absolute;
@@ -121,6 +216,62 @@ button:is(#{$window-controls}) {
   border-radius: 25px;
   isolation: isolate;
   &[hidden] { display: none; }
+}
+
+.desktop-status--about {
+  cursor: pointer;
+  border-radius: 4px;
+  &:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+  &:disabled { cursor: default; opacity: .55; }
+}
+
+@media (max-width: 420px) {
+  .desktop-dock { --dock-icon: clamp(38px, 11vw, 46px); }
+}
+
+.desktop-rest-frog {
+  position: absolute;
+  z-index: 7;
+  right: max(1.5rem, env(safe-area-inset-right));
+  bottom: max(1.25rem, env(safe-area-inset-bottom));
+  width: 5.5rem;
+  height: 5.5rem;
+  padding: 0;
+  border: 0;
+  border-radius: 1.5rem;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  &[hidden] { display: none; }
+  canvas { display: block; width: 100%; height: 100%; pointer-events: none; }
+  &:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+  &:hover .desktop-rest-frog__hint,
+  &:focus-visible .desktop-rest-frog__hint { opacity: 1; transform: translateY(0); }
+}
+
+.desktop-rest-frog__hint {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + .35rem);
+  width: max-content;
+  padding: .6rem .8rem;
+  border-radius: .8rem;
+  background: #f7f7f8;
+  color: #303032;
+  box-shadow: 0 3px 12px #23183718;
+  font: 500 .8rem/1.4 -apple-system, BlinkMacSystemFont, sans-serif;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+@media (max-width: 600px) {
+  .desktop-rest-frog { right: .75rem; bottom: 7rem; width: 4.75rem; height: 4.75rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .desktop-rest-frog__hint { transition: none; }
 }
 
 .desktop-dock__glass {
