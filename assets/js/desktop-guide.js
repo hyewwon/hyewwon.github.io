@@ -9,9 +9,9 @@
   const projects = screen.querySelector('[data-projects-window]');
   const windows = [about, skills, experience, projects];
   const steps = [
-    { title: 'About me', text: '안녕하세요!\n저의 포트폴리오에 오신 걸 환영해요.\n제가 하나씩 소개해 드릴게요.\n먼저, 저에 대한 소개부터 시작하겠습니다!' },
-    { title: 'Skills', text: '지금까지 경험한 기술과 도구를 정리했어요.\n왼쪽 카테고리를 눌러 하나씩 살펴보세요!' },
-    { title: 'Experience', text: '지금까지의 경력과 어떤 경험을 쌓아왔는지 정리했어요.\n왼쪽 페이지를 선택해 하나씩 살펴보세요.' },
+    { title: 'About me', text: '안녕하세요!\n저의 포트폴리오에 오신 것을 환영합니다.\n먼저, 저에 대해 간단히 소개드릴게요.\n저를 따라와 주세요!' },
+    { title: 'Skills', text: '다음으로, 제가 경험한 기술과 도구를 정리했어요.\n왼쪽 카테고리를 눌러 하나씩 살펴보세요!' },
+    { title: 'Experience', text: '지금까지의 경력과 어떤 경험을 쌓아왔는지 정리했어요.\n왼쪽 페이지를 선택해 하나씩 살펴보세요!' },
     { title: 'Projects', text: '직접 참여한 프로젝트들이에요.\n관심 있는 프로젝트를 눌러 자세히 살펴보세요.' },
   ];
   const nextButton = guide.querySelector('[data-guide-next]');
@@ -863,7 +863,7 @@
     ending = true;
     guide.dataset.step = 'outro';
     guide.querySelector('#desktop-guide-title').textContent = '안내가 끝났어요!';
-    guide.querySelector('[data-guide-message]').textContent = '이제 자유롭게 둘러보세요!\n자유롭게 둘러보기를 누르면 원하는 창을 열어볼 수 있어요.\n처음부터 다시 보려면 다시 보기를 눌러주세요.';
+    guide.querySelector('[data-guide-message]').textContent = '끝까지 봐주셔서 감사합니다!\n[자유롭게 둘러보기]를 누르면 사이트를 자유롭게 탐색하실 수 있습니다.\n[다시 보기]를 누르면 가이드를 처음부터 다시 보실 수 있어요.';
     const count = guide.querySelector('[data-guide-count]');
     count.textContent = '완료'; count.setAttribute('aria-label', '포트폴리오 안내 완료');
     previousButton.hidden = true;
