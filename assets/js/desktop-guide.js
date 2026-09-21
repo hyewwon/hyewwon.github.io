@@ -970,12 +970,44 @@
     syncAccessibility();
     if (wasClosed) animateDockOpen(panel, launcher);
   }
+  // Resize actual layout bounds without reusing the delayed entrance transform.
+  const windowSizeMotions = new Map();
+  function cancelWindowSizeMotion(panel) {
+    const animation = windowSizeMotions.get(panel);
+    if (!animation) return;
+    windowSizeMotions.delete(panel);
+    animation.cancel();
+  }
+  function toggleWindowSize(panel, control) {
+    cancelDockMotion(panel);
+    const bounds = () => {
+      const style = getComputedStyle(panel);
+      return Object.fromEntries(['left', 'top', 'width', 'height'].map(key => [key, style[key]]));
+    };
+    // Preserve the visual position when reversing an animation in progress.
+    const from = bounds();
+    cancelWindowSizeMotion(panel);
+    panel.classList.add('is-tour-positioned');
+    const expanded = panel.classList.toggle('is-expanded');
+    control.setAttribute('aria-pressed', String(expanded));
+    layout();
+    const to = bounds();
+    if (reducedMotion.matches || !panel.animate) return;
+    const animation = panel.animate([from, to], {
+      duration: 360, easing: 'cubic-bezier(.22, .7, .2, 1)', fill: 'both'
+    });
+    windowSizeMotions.set(panel, animation);
+    animation.finished.then(() => {
+      if (windowSizeMotions.get(panel) === animation) cancelWindowSizeMotion(panel);
+    }, () => {});
+  }
   function resetWindows() {
     visited.clear();
     windowStack.splice(0, windowStack.length, ...windows);
     windows.forEach((panel, index) => {
       cancelDockMotion(panel);
       panel.classList.remove('is-tour-positioned', 'is-tour-leaving', 'is-tour-background', 'is-tour-entering', 'is-expanded');
+      cancelWindowSizeMotion(panel);
       panel.querySelectorAll('[aria-pressed]').forEach(button => {
         if (button.matches(windowControlSelector)) button.setAttribute('aria-pressed', 'false');
       });
@@ -1073,14 +1105,19 @@
       if (!active) focusWindow(panel);
     });
     panel.addEventListener('click', event => {
-      if (event.target.closest('[data-preview-action="expand"], [data-store-action="expand"]')) {
+      const control = event.target.closest('[data-preview-action="expand"], [data-store-action="expand"]');
+      if (control) {
         if (active) return;
-        cancelDockMotion(panel);
-        panel.classList.remove('is-tour-positioned');
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        toggleWindowSize(panel, control);
       }
     }, { capture: true });
     new MutationObserver(() => {
-      if (panel.classList.contains('is-closed')) cancelDockMotion(panel);
+      if (panel.classList.contains('is-closed')) {
+        cancelDockMotion(panel);
+        cancelWindowSizeMotion(panel);
+      }
       syncAccessibility();
     }).observe(panel, { attributes: true, attributeFilter: ['class'] });
     new ResizeObserver(scheduleLayout).observe(panel);
@@ -1099,6 +1136,8 @@
   window.addEventListener('resize', scheduleLayout);
   window.addEventListener('resize', () => windows.forEach(cancelDockMotion));
   reducedMotion.addEventListener('change', () => windows.forEach(cancelDockMotion));
+  window.addEventListener('resize', () => windows.forEach(cancelWindowSizeMotion));
+  reducedMotion.addEventListener('change', () => windows.forEach(cancelWindowSizeMotion));
   window.addEventListener('keydown', event => { if (event.key === 'Escape' && active) finish(true); });
   syncAccessibility();
   onStateChange();

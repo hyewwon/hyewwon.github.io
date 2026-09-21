@@ -80,3 +80,59 @@ assert.equal(focusCount, 1);
 assert.equal(syncCount, 1);
 assert.match(source, /const windowControlSelector = '[^']*\[data-about-close\]/);
 console.log('PASS: About close, guide lock, Dock focus and accessibility sync');
+
+const markup = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+for (const className of ['about-window__control--expand', 'skills-window__control--expand']) {
+  const control = markup.match(new RegExp(`<button[^>]*class="[^"]*${className}[^>]*>`))?.[0];
+  assert.ok(control, `${className}: missing disabled button`);
+  assert.match(control, /\sdisabled[\s>]/);
+  assert.ok(!/data-(?:preview|store)-action/.test(control));
+}
+for (const action of ['preview', 'store']) {
+  const control = markup.match(new RegExp(`<button[^>]*data-${action}-action="expand"[^>]*>`))?.[0];
+  assert.ok(control);
+  assert.ok(!/\sdisabled[\s>]/.test(control));
+}
+console.log('PASS: About/Skills expansion disabled, Experience/Projects expansion retained');
+
+const resizePanel = element({});
+resizePanel.classList.toggle = name => {
+  const enabled = !resizePanel.classList.contains(name);
+  resizePanel.classList[enabled ? 'add' : 'remove'](name);
+  return enabled;
+};
+const normalBounds = { left: '80px', top: '48px', width: '1100px', height: '720px' };
+const expandedBounds = { left: '8px', top: '40px', width: '1240px', height: '820px' };
+let visualBounds = null;
+let pressed;
+const resizeReducedMotion = { matches: false };
+const resizeApi = runInNewContext(`${source.slice(source.indexOf('  const windowSizeMotions ='), source.indexOf('  function resetWindows()'))}\n({toggleWindowSize, cancelWindowSizeMotion, windowSizeMotions})`, {
+  cancelDockMotion() {}, layout() {}, reducedMotion: resizeReducedMotion,
+  getComputedStyle: panel => visualBounds || (panel.classList.contains('is-expanded') ? expandedBounds : normalBounds),
+});
+const resizeControl = { setAttribute: (_, value) => { pressed = value; } };
+resizeApi.toggleWindowSize(resizePanel, resizeControl);
+let resizeAnimation = resizePanel.animations.at(-1);
+assert.deepEqual(JSON.parse(JSON.stringify(resizeAnimation.frames)), [normalBounds, expandedBounds]);
+assert.equal(pressed, 'true');
+resizeAnimation.complete();
+await new Promise(resolve => setImmediate(resolve));
+assert.equal(resizeApi.windowSizeMotions.size, 0);
+resizeApi.toggleWindowSize(resizePanel, resizeControl);
+resizeAnimation = resizePanel.animations.at(-1);
+assert.deepEqual(JSON.parse(JSON.stringify(resizeAnimation.frames)), [expandedBounds, normalBounds]);
+assert.equal(pressed, 'false');
+const midBounds = { left: '40px', top: '44px', width: '1170px', height: '770px' };
+visualBounds = midBounds;
+const priorCancel = resizeAnimation.cancel.bind(resizeAnimation);
+resizeAnimation.cancel = () => { visualBounds = null; priorCancel(); };
+resizeApi.toggleWindowSize(resizePanel, resizeControl);
+assert(resizeAnimation.cancelled);
+assert.deepEqual(JSON.parse(JSON.stringify(resizePanel.animations.at(-1).frames)), [midBounds, expandedBounds]);
+resizeApi.cancelWindowSizeMotion(resizePanel);
+resizeReducedMotion.matches = true;
+const resizeCount = resizePanel.animations.length;
+resizeApi.toggleWindowSize(resizePanel, resizeControl);
+assert.equal(resizePanel.animations.length, resizeCount);
+assert.equal(pressed, 'false');
+console.log('PASS: expand/restore bounds, interrupted reversal, animation cleanup, reduced motion');

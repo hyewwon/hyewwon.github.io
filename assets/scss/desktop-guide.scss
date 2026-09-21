@@ -214,6 +214,15 @@
   transition: none;
   transform-origin: top left;
 }
+.splash.is-unlocked [data-screen] :is(.experience-window, .projects-window).is-tour-positioned.is-expanded {
+  left: .5rem;
+  top: 2.5rem;
+  width: calc(100% - 1rem);
+  height: calc(100% - 3rem);
+  max-width: none;
+  transform: none;
+  transition: none;
+}
 .splash.is-unlocked .about-window.is-tour-positioned {
   width: min(clamp(20rem, min(20vw, 30.7vh), 38rem), calc(57.8dvh - 2.6rem), var(--tour-width));
   height: auto;

@@ -102,7 +102,9 @@
 .store-highlight--station .store-highlight__cover { background: #000; color: #fff; }
 .store-station-wordmark { display: grid; grid-template-columns: 1fr auto; font-size: 1.45rem; letter-spacing: -.05em; font-weight: 650; line-height: 1.2; }
 .store-station-wordmark > span { grid-column: 2; grid-row: span 2; align-self: center; margin-left: .6rem; font-weight: 400; }
-.store-highlight--emax .store-highlight__cover { background: #e1e9ee; padding: 1rem .8rem; }
+.store-highlight--tuniverse .store-highlight__cover { background: #a259ff; color: #fff; }
+.store-tuniverse-wordmark { font-size: 1.8rem; font-weight: 750; letter-spacing: -.055em; line-height: 1; }
+.store-tuniverse-wordmark > span { display: block; font-size: .48rem; font-weight: 550; letter-spacing: .16em; margin-top: .7rem; }
 .store-highlight__cover img { display: block; max-width: 100%; height: auto; border-radius: .3rem; box-shadow: 0 .4rem 1rem #294e6118; }
 @media (prefers-reduced-motion: reduce) { .store-highlight { transition: none; } .store-highlight:hover { transform: none; } }
 .store-library { margin-top: 2.15rem; }
@@ -173,6 +175,51 @@
 .store-detail p, .store-detail li { color: #63636c; font-size: .88rem; line-height: 1.85; word-break: keep-all; }
 .store-detail p { margin: 0; }
 .store-detail ul { margin: 0; padding-left: 1.1rem; }
+.store-detail--editorial {
+  max-width: 64rem;
+  margin-inline: auto;
+  .store-detail__heading h2 { text-wrap: balance; line-height: 1.35; }
+  .store-detail__section { padding-bottom: 2rem; margin-bottom: 2rem; }
+  .store-detail__section > p { max-width: 65ch; }
+  .store-facts { font-variant-numeric: tabular-nums; }
+}
+.store-preview-track { display: flex; gap: .9rem; overflow-x: auto; scroll-snap-type: x proximity; padding: .25rem .15rem .85rem; }
+.store-preview-card {
+  flex: 1 0 16rem; min-width: 0; max-width: 22rem; display: flex; flex-direction: column;
+  padding: 1.15rem; border: 0; border-radius: 1.1rem; background: #f5f5f7; color: #252529;
+  text-align: left; font: inherit; cursor: pointer; scroll-snap-align: start;
+  transition: background .2s;
+  &:hover { background: #ededf1; }
+  &:active { background: #e5e5eb; }
+  strong { font-size: 1.3rem; line-height: 1.45; letter-spacing: -.035em; margin: .8rem 0; text-wrap: balance; word-break: keep-all; }
+}
+.store-preview-card__label { color: #797981; font-size: .7rem; font-weight: 600; }
+.store-preview-card__description { color: #66666e; font-size: .82rem; line-height: 1.75; word-break: keep-all; margin-bottom: 1rem; }
+.store-preview-card__link { margin-top: auto; color: #0874d7; font-size: .75rem; font-weight: 600; }
+.store-implementation { padding: 1.5rem 0; border-bottom: 1px solid #ededf0; scroll-margin-top: 1.5rem; }
+.store-implementation:last-child { border-bottom: 0; padding-bottom: 0; }
+.store-implementation h4 { font-size: 1.15rem; letter-spacing: -.025em; margin: .5rem 0 1.2rem; text-wrap: balance; }
+.store-implementation dl { margin: 0; }
+.store-implementation dl > div { display: grid; grid-template-columns: 1fr; gap: .4rem; margin-top: 1.2rem; }
+.store-implementation dt { font-size: .78rem; font-weight: 600; color: #34343a; line-height: 1.85; }
+.store-implementation dd { margin: 0; color: #63636c; font-size: .88rem; line-height: 1.85; word-break: keep-all; max-width: 65ch; }
+.store-implementation li + li { margin-top: .6rem; }
+.store-implementation p.store-implementation__note { margin-top: 1rem; font-size: .75rem; color: #818189; }
+.store-work-group { border-bottom: 1px solid #ededf0; padding: 1rem 0; }
+.store-work-group:last-child { border: 0; }
+.store-work-group summary { cursor: pointer; color: #0874d7; }
+.store-work-group summary > span { display: inline; }
+.store-work-group summary strong { color: #34343a; font-size: .9rem; }
+.store-work-group summary span span { display: block; color: #777780; font-size: .82rem; line-height: 1.7; margin: .4rem 0 0 1rem; }
+.store-work-group ul { margin: 1rem 0 0 1rem; }
+.store-work-group li + li { margin-top: .7rem; }
+.store-preview-card:focus-visible, .store-work-group summary:focus-visible, .store-implementation:focus-visible { outline: 2px solid #087ff1; outline-offset: 3px; border-radius: .3rem; }
+@media (max-width: 650px) {
+  .store-preview-card { flex-basis: 85%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .store-preview-card { transition: none; }
+}
 .store-case { margin-bottom: 1.8rem; }
 .store-case > div { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 1rem; padding-block: 1rem; border-bottom: 1px solid #ededf0; }
 .store-case h4 { margin: .3rem 0 0; font-size: .77rem; color: #454551; }

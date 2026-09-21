@@ -99,6 +99,14 @@ button:is(#{$window-controls}) {
   &:focus-visible { outline: 2px solid #087aff; outline-offset: 3px; }
 }
 
+// About and Photos have fixed layouts; only Preview and Projects can expand.
+:is(.about-window__control--expand, .skills-window__control--expand):disabled {
+  background: #d7d7d7;
+  border-color: rgba(0, 0, 0, .09);
+  box-shadow: none;
+  &::before { display: none; }
+}
+
 .splash.is-unlocked [data-screen] .is-dock-opening {
   // WAAPI owns the entrance; legacy splash delays must not animate underneath.
   transition: none !important;
