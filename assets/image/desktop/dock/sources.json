@@ -7,6 +7,7 @@
     "apps.png": "/System/Applications/Apps.app/Contents/Resources/AppIcon.icns",
     "photos.png": "/System/Applications/Photos.app/Contents/Resources/AppIcon.icns",
     "app-store.png": "/System/Applications/App Store.app/Contents/Resources/AppIcon.icns",
-    "preview.png": "/System/Applications/Preview.app/Contents/Resources/AppIcon.icns"
+    "preview.png": "/System/Applications/Preview.app/Contents/Resources/AppIcon.icns",
+    "mail.png": "/System/Applications/Mail.app/Contents/Resources/ApplicationIcon.icns"
   }
 }

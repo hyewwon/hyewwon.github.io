@@ -23,11 +23,14 @@
     categories.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.appsCategory === category)));
   }
   function animate(show) {
+    const style = getComputedStyle(panel);
+    const from = motion || !show
+      ? { opacity: style.opacity, transform: style.transform }
+      : { opacity: 0, transform: 'translate(-50%, -46%) scale(.94)' };
     motion?.cancel();
-    const animation = panel.animate(show ? [
-      { opacity: 0, transform: 'translate(-50%, -46%) scale(.94)' },
-      { opacity: 1, transform: 'translate(-50%, -50%) scale(1)' },
-    ] : [{ opacity: 1 }, { opacity: 0, transform: 'translate(-50%, -48%) scale(.97)' }],
+    const animation = panel.animate([from, show
+      ? { opacity: 1, transform: 'translate(-50%, -50%) scale(1)' }
+      : { opacity: 0, transform: 'translate(-50%, -48%) scale(.97)' }],
     { duration: reduced.matches ? 1 : show ? 240 : 160, easing: 'cubic-bezier(.22,1,.36,1)', fill: 'both' });
     motion = animation;
     animation.finished.then(() => {
@@ -38,6 +41,9 @@
     }).catch(() => {});
   }
   function close(restore = true, immediate = false) {
+    // pointerdown and a menu's click can both request closing. Never restart
+    // an exit animation or steal focus from the menu on the second request.
+    if (!opened && !immediate) return;
     if (!opened && panel.hidden) return;
     opened = false;
     setOptions(false);
@@ -49,6 +55,7 @@
   }
   function show() {
     if (!allowed()) return;
+    document.dispatchEvent(new CustomEvent('desktop-popover-open', { detail: 'apps' }));
     opened = true;
     search.value = ''; category = 'all'; filter();
     panel.hidden = false; panel.inert = false;
@@ -96,4 +103,7 @@
     }
   });
   new MutationObserver(() => { if (!allowed()) close(false, true); }).observe(splash, { attributes: true, attributeFilter: ['class'] });
+  document.addEventListener('desktop-popover-open', event => {
+    if (event.detail !== 'apps') close(false);
+  });
 })();

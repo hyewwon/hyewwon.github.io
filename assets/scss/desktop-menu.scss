@@ -1,22 +1,20 @@
+@use 'menu-glass';
+
 .desktop-system-menu,
 .desktop-system-menu__submenu,
 .wifi-popover {
   box-sizing: border-box;
   padding: 6px;
-  border: 1px solid rgba(255,255,255,.48);
   border-radius: 15px;
-  background: rgba(239,230,255,.72);
-  -webkit-backdrop-filter: blur(22px) saturate(140%);
-  backdrop-filter: blur(22px) saturate(140%);
-  box-shadow: 0 12px 30px rgba(28,15,55,.19);
-  color: #302639;
+  @include menu-glass.surface;
   font: 400 13px/1.35 -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
   [hidden], &[hidden] { display: none !important; }
-  button {
+  button, .desktop-system-menu__link {
     display: flex; align-items: center; gap: 9px;
     width: 100%; min-height: 32px; padding: 6px 9px;
     border: 0; border-radius: 7px; background: transparent;
     color: inherit; font: inherit; text-align: left; cursor: pointer;
+    box-sizing: border-box; text-decoration: none;
     &:hover:not(:disabled), &:focus-visible { background: #ffffff58; outline: none; }
     &:disabled { opacity: .42; cursor: default; }
   }
@@ -24,6 +22,16 @@
   img { width: 20px; height: 20px; flex: 0 0 auto; object-fit: contain; }
   [role="separator"] { height: 1px; margin: 4px 9px; background: #49345425; }
 }
+.desktop-help-tips {
+  display: grid; grid-template-rows: 0fr;
+  transition: grid-template-rows 200ms ease;
+  > div { min-height: 0; overflow: hidden; }
+  ul { margin: 4px 9px 9px; padding-left: 18px; font-size: 12px; line-height: 1.65; color: #63576e; }
+  li + li { margin-top: 5px; }
+  &.is-expanded { grid-template-rows: 1fr; }
+}
+[data-help-toggle] .desktop-system-menu__chevron { transition: transform 200ms ease; }
+[data-help-toggle][aria-expanded="true"] .desktop-system-menu__chevron { transform: rotate(90deg); }
 .desktop-system-menu {
   position: absolute; z-index: 13; top: 36px; left: 8px;
   width: min(270px, calc(100% - 16px));
@@ -43,7 +51,27 @@
   &:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
   &[aria-expanded="true"] { background: #ffffff26; box-shadow: none; border-radius: 13px; }
 }
-[data-battery-trigger] svg { width: 23px; height: 20px; }
+.desktop-menu-bar__left {
+  // Reserve paint space for the edge buttons' negative margins without
+  // removing overflow protection on narrow screens.
+  padding: 3px 8px;
+  margin-inline: -8px;
+}
+[data-battery-trigger] svg {
+  width: 23px; height: 20px;
+  flex: 0 0 auto;
+  // Optical alignment with the adjacent Wi-Fi glyph, whose ink sits lower.
+  transform: translateY(.5px);
+}
+.desktop-go-trigger {
+  border: 0; padding: 5px 8px; margin-inline: -8px;
+  border-radius: 7px; background: transparent; color: inherit;
+  font: inherit; text-shadow: inherit; cursor: pointer;
+  &:hover:not(:disabled), &[aria-expanded="true"] { background: #ffffff26; }
+  &:focus-visible { outline: 2px solid white; outline-offset: -1px; }
+  &:disabled { cursor: default; }
+}
+.desktop-go-menu__hint { margin-left: auto; font-size: 11px; color: #766880; }
 [data-wifi-trigger] svg { width: 19px; height: 19px; }
 [data-wifi-trigger].is-off svg { opacity: .55; }
 .wifi-popover {
@@ -94,6 +122,7 @@
   .about-window, .skills-window, [data-experience-window], [data-projects-window] { visibility: hidden; pointer-events: none; }
 }
 @media (prefers-reduced-motion: reduce) {
+  .desktop-help-tips, [data-help-toggle] .desktop-system-menu__chevron { transition: none !important; }
   .desktop-unlock, .wifi-popover__collapse, .wifi-popover__collapse-inner,
   .wifi-popover__switch::after, .wifi-popover__disclosure svg { transition: none !important; }
 }

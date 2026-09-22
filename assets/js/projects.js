@@ -1271,6 +1271,14 @@
   const list = root.querySelector('[data-store-list]');
   const categories = { featured: '주요 프로젝트', plusx: 'PlusX', gnc: 'GNC Solution', team: 'Team Project', personal: 'Personal Project' };
   const featuredIds = ['kb', 'samsung-ai', 'developers-station', 'tuniverse'];
+  const plusxPriority = ['developers-station', 'kb', 'samsung-ai', 'groupware', 'tuniverse'];
+  function sortPlusxProjects(items) {
+    const rank = project => {
+      const index = plusxPriority.indexOf(project.id);
+      return index < 0 ? plusxPriority.length : index;
+    };
+    return [...items].sort((a, b) => rank(a) - rank(b));
+  }
   let category = 'featured';
   let savedScroll = 0;
   let activeProject = null;
@@ -1327,7 +1335,7 @@
   reducedMotion.addEventListener('change', () => finishSlide(true));
   function renderList() {
     const term = search.value.trim().toLocaleLowerCase();
-    const candidates = category === 'featured' ? featuredIds.map(id => projects.find(p => p.id === id)) : projects.filter(p => p.category === category);
+    const candidates = category === 'featured' ? featuredIds.map(id => projects.find(p => p.id === id)) : category === 'plusx' ? sortPlusxProjects(projects.filter(p => p.category === category)) : projects.filter(p => p.category === category);
     const matches = candidates.filter(p => `${p.name} ${p.company} ${p.summary} ${p.tags.join(' ')}`.toLocaleLowerCase().includes(term));
     const showEditorial = category === 'featured' && !term;
     discovery.hidden = false;

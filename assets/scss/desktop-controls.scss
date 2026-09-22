@@ -1,0 +1,50 @@
+[data-controls-trigger] {
+  width: 32px; height: 26px; margin-inline: -6px; border-radius: 13px; cursor: pointer;
+  svg { width: 19px; height: 19px; }
+  &[aria-expanded="true"], &:hover { background: #ffffff26; }
+  &:focus-visible { outline: 2px solid white; outline-offset: 2px; }
+}
+.desktop-brightness {
+  position: absolute; inset: 0; z-index: 9; pointer-events: none;
+  background: rgba(0, 0, 0, var(--desktop-dim, 0));
+}
+.desktop-controls {
+  position: absolute; top: 40px; right: 12px; z-index: 13;
+  width: min(270px, calc(100% - 24px)); box-sizing: border-box;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 0;
+  color: white; font: 400 12px/1.35 -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
+  text-shadow: 0 1px 3px #00000055;
+  &[hidden] { display: none; }
+  svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+  &__tile, &__slider {
+    position: relative; z-index: 0;
+    min-width: 0; border: 1px solid #ffffff55;
+    background: transparent;
+    border-radius: 19px; padding: 10px;
+    box-shadow: inset 0 1px 0 #ffffff30;
+    // Keep live range repaints separate from the clipped glass surface.
+    &::before {
+      content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+      border-radius: inherit; clip-path: inset(0 round 18px);
+      background: linear-gradient(135deg, #ffffff26, #ffffff0a);
+      backdrop-filter: blur(24px) saturate(120%); -webkit-backdrop-filter: blur(24px) saturate(120%);
+    }
+  }
+  &__tile { display: flex; align-items: center; gap: 7px; color: inherit; font: inherit; text-align: left; cursor: pointer; transition: background 160ms; }
+  &__tile:hover { background: #ffffff26; }
+  &__tile:focus-visible { outline: 2px solid white; outline-offset: 2px; }
+  strong { display: block; font-weight: 600; }
+  small { display: block; margin-top: 2px; font-size: 11px; }
+  &__icon { display: grid; place-items: center; width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; background: #ffffff30; }
+  [aria-checked="true"] &__icon { background: white; color: #0784ff; }
+  &__slider { grid-column: 1 / -1; }
+  &__slider > span { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+  input { appearance: none; min-width: 0; width: 100%; height: 5px; border-radius: 9px; background: linear-gradient(to right, white var(--value, 100%), #00000026 var(--value, 100%)); cursor: pointer; }
+  input::-webkit-slider-thumb { appearance: none; width: 12px; height: 12px; border-radius: 50%; background: white; box-shadow: 0 1px 4px #0003; }
+  input::-moz-range-thumb { width: 12px; height: 12px; border: 0; border-radius: 50%; background: white; }
+  input:focus-visible { outline: 2px solid white; outline-offset: 5px; }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .desktop-controls__tile::before, .desktop-controls__slider::before { background: #484848; backdrop-filter: none; -webkit-backdrop-filter: none; }
+}
+@media (prefers-reduced-motion: reduce) { .desktop-brightness, .desktop-controls__tile { transition: none; } }

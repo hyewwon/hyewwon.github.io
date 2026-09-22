@@ -6,6 +6,12 @@ import { runInNewContext } from 'node:vm';
 const source = readFileSync(new URL('../assets/js/projects.js', import.meta.url), 'utf8');
 const data = source.slice(source.indexOf('  const projects ='), source.indexOf('  const content ='));
 const projects = runInNewContext(`${data}\nprojects`);
+const sortPlusx = runInNewContext(`${source.slice(source.indexOf('  const plusxPriority ='), source.indexOf("  let category ="))}\nsortPlusxProjects`);
+const plusxProjects = projects.filter(p => p.category === 'plusx');
+const priorityIds = ['developers-station', 'kb', 'samsung-ai', 'groupware', 'tuniverse'];
+assert.deepEqual(Array.from(sortPlusx(plusxProjects), p => p.id), [
+  ...priorityIds, ...Array.from(plusxProjects, p => p.id).filter(id => !priorityIds.includes(id)),
+]);
 const escape = value => String(value).replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
 const renderer = source.slice(source.indexOf('  function renderEditorial('), source.indexOf('  function openProject('));
 const render = runInNewContext(`${renderer}\nrenderEditorial`, { escape });

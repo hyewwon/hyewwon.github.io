@@ -30,6 +30,7 @@
     element.setAttribute('aria-hidden', String(!expanded));
   }
   function render() {
+    document.dispatchEvent(new CustomEvent('desktop-wifi-state', { detail: enabled }));
     toggle.setAttribute('aria-checked', String(enabled));
     trigger.classList.toggle('is-off', !enabled);
     setExpanded(networks, enabled);
@@ -53,6 +54,7 @@
   }
   trigger.addEventListener('click', () => panel.hidden ? show() : close(true));
   toggle.addEventListener('click', () => { enabled = !enabled; render(); });
+  document.addEventListener('desktop-wifi-set', event => { if (typeof event.detail === 'boolean') { enabled = event.detail; render(); } });
   otherToggle.addEventListener('click', () => {
     const expanded = otherToggle.getAttribute('aria-expanded') !== 'true';
     otherToggle.setAttribute('aria-expanded', String(expanded));

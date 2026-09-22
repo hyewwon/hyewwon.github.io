@@ -1,12 +1,24 @@
 (() => {
+  for (const kind of ['system', 'go', 'window', 'help']) {
   const splash = document.querySelector('[data-splash]');
-  const trigger = document.querySelector('[data-system-menu-trigger]');
-  const menu = document.querySelector('[data-system-menu]');
-  if (!splash || !trigger || !menu) return;
+  const trigger = document.querySelector(`[data-${kind}-menu-trigger]`);
+  const menu = document.querySelector(`[data-${kind}-menu]`);
+  if (!splash || !trigger || !menu) continue;
   const recentToggle = menu.querySelector('[data-system-recent-toggle]');
   const recentMenu = menu.querySelector('[data-system-recent]');
+  const helpToggle = menu.querySelector('[data-help-toggle]');
+  const helpTips = menu.querySelector('.desktop-help-tips');
+  function setHelpTips(expanded) {
+    if (!helpTips) return;
+    helpToggle.setAttribute('aria-expanded', String(expanded));
+    helpTips.classList.toggle('is-expanded', expanded);
+    helpTips.inert = !expanded;
+    helpTips.setAttribute('aria-hidden', String(!expanded));
+  }
+  helpToggle?.addEventListener('click', () => setHelpTips(helpToggle.getAttribute('aria-expanded') !== 'true'));
+  menu.querySelectorAll('a[role="menuitem"]').forEach(link => link.addEventListener('click', () => close(true)));
   // Sibling surfaces sample the same wallpaper, without nested backdrop-filter compositing.
-  menu.after(recentMenu);
+  if (recentMenu) menu.after(recentMenu);
   const labels = ['Hyewon에 관하여', '사진 · Skills', '미리보기 · Experience', 'App Store · Projects'];
   const icons = ['about-this-mac.png', 'photos.png', 'preview.png', 'app-store.png'];
   const panels = ['.about-window', '[data-skills-window]', '[data-experience-window]', '[data-projects-window]'].map(selector => document.querySelector(selector));
@@ -18,6 +30,7 @@
   } catch { /* Storage may be unavailable for local files/private browsing. */ }
   const allowed = () => splash.classList.contains('is-unlocked') && !splash.classList.contains('is-guide-active');
   function renderRecent() {
+    if (!recentMenu) return;
     recentMenu.replaceChildren();
     if (!recent.length) {
       const empty = document.createElement('span');
@@ -48,30 +61,48 @@
   function close(restoreFocus = false) {
     motion?.cancel();
     menu.hidden = true;
+    setHelpTips(false);
     closeRecent();
     trigger.setAttribute('aria-expanded', 'false');
     if (restoreFocus) trigger.focus({ preventScroll: true });
   }
   function show() {
     if (!allowed()) return;
-    document.dispatchEvent(new CustomEvent('desktop-popover-open', { detail: 'system' }));
-    document.querySelector('[data-apps-close]')?.click();
+    document.dispatchEvent(new CustomEvent('desktop-popover-open', { detail: kind }));
     renderRecent();
-    menu.querySelector('[data-system-action="close"]').disabled = !panels.some(panel => !panel.classList.contains('is-closed'));
+    const closeButton = menu.querySelector('[data-system-action="close"]');
+    if (closeButton) closeButton.disabled = !panels.some(panel => !panel.classList.contains('is-closed'));
+    if (kind === 'window') {
+      const state = { index: -1, canExpand: false };
+      document.dispatchEvent(new CustomEvent('desktop-window-state', { detail: state }));
+      menu.querySelector('[data-system-action="minimize"]').disabled = state.index < 0;
+      closeButton.disabled = state.index < 0;
+      menu.querySelector('[data-system-action="expand"]').disabled = !state.canExpand;
+    }
     menu.hidden = false;
+    positionMenu();
     trigger.setAttribute('aria-expanded', 'true');
     motion = menu.animate([{ opacity: 0, transform: 'translateY(-4px) scale(.98)' }, { opacity: 1, transform: 'none' }], { duration: reducedMotion.matches ? 1 : 160, easing: 'cubic-bezier(.22,1,.36,1)' });
-    menu.querySelector('[role="menuitem"]').focus({ preventScroll: true });
+    menu.querySelector('[role="menuitem"]:not(:disabled)')?.focus({ preventScroll: true });
   }
   function showRecent(focus = false) {
+    if (!recentMenu) return;
     clearTimeout(recentCloseTimer);
     recentMenu.hidden = false;
     recentToggle.setAttribute('aria-expanded', 'true');
     positionRecent();
     if (focus) recentMenu.querySelector('button')?.focus();
   }
+  function positionMenu() {
+    if (kind === 'system' || menu.hidden) return;
+    const host = menu.parentElement;
+    const rect = host.getBoundingClientRect();
+    const scale = rect.width / host.clientWidth || 1;
+    const anchor = trigger.getBoundingClientRect();
+    menu.style.left = `${Math.max(8, Math.min((anchor.left - rect.left) / scale, host.clientWidth - menu.offsetWidth - 8))}px`;
+  }
   function positionRecent() {
-    if (recentMenu.hidden) return;
+    if (!recentMenu || recentMenu.hidden) return;
     const host = menu.parentElement;
     const hostRect = host.getBoundingClientRect();
     const scale = hostRect.width / host.clientWidth || 1;
@@ -84,6 +115,7 @@
   }
   function closeRecent() {
     clearTimeout(recentCloseTimer);
+    if (!recentMenu) return;
     if (recentMenu.contains(document.activeElement)) recentToggle.focus({ preventScroll: true });
     recentMenu.hidden = true;
     recentToggle.setAttribute('aria-expanded', 'false');
@@ -97,48 +129,55 @@
   trigger.addEventListener('keydown', event => {
     if (event.key === 'ArrowDown') { event.preventDefault(); show(); }
   });
-  recentToggle.addEventListener('pointerenter', () => showRecent());
-  recentToggle.addEventListener('pointerleave', scheduleRecentClose);
-  recentMenu.addEventListener('pointerenter', () => clearTimeout(recentCloseTimer));
-  recentMenu.addEventListener('pointerleave', scheduleRecentClose);
+  recentToggle?.addEventListener('pointerenter', () => showRecent());
+  recentToggle?.addEventListener('pointerleave', scheduleRecentClose);
+  recentMenu?.addEventListener('pointerenter', () => clearTimeout(recentCloseTimer));
+  recentMenu?.addEventListener('pointerleave', scheduleRecentClose);
   menu.querySelectorAll('[data-system-action]').forEach(button => button.addEventListener('pointerenter', closeRecent));
-  recentToggle.addEventListener('click', () => showRecent(true));
+  recentToggle?.addEventListener('click', () => showRecent(true));
   function onMenuClick(event) {
     const button = event.target.closest('[data-system-action], [data-recent-app]');
     if (!button || button.disabled || !allowed()) return;
     const action = button.dataset.systemAction;
     close(true);
-    if (action === 'lock') document.dispatchEvent(new Event('desktop-lock'));
+    if (action === 'guide') document.querySelector('[data-guide-restart]')?.click();
+    else if (action === 'lock') document.dispatchEvent(new Event('desktop-lock'));
     else if (action === 'restart') location.reload();
+    else if (action === 'apps') {
+      const launcher = document.querySelector('[data-apps-open]');
+      if (launcher?.getAttribute('aria-expanded') !== 'true') launcher?.click();
+    }
     else document.dispatchEvent(new CustomEvent('desktop-menu-action', { detail: {
-      action: action === 'close' ? 'close' : 'open',
-      index: action === 'about' ? 0 : action === 'projects' ? 3 : Number(button.dataset.recentApp)
+      action: ['close', 'minimize', 'expand', 'desktop'].includes(action) ? action : 'open',
+      index: action === 'about' ? 0 : action === 'photos' ? 1 : action === 'projects' ? 3 : action === 'documents' ? 2 : Number(button.dataset.recentApp),
+      launcher: trigger
     } }));
   }
   function onMenuKeydown(event) {
-    const inRecent = recentMenu.contains(event.target);
+    const inRecent = recentMenu?.contains(event.target);
     if (event.key === 'ArrowRight' && event.target === recentToggle) { event.preventDefault(); showRecent(true); return; }
-    if ((event.key === 'ArrowLeft' || event.key === 'Escape') && !recentMenu.hidden) {
+    if ((event.key === 'ArrowLeft' || event.key === 'Escape') && recentMenu && !recentMenu.hidden) {
       event.preventDefault(); event.stopPropagation(); closeRecent(); recentToggle.focus(); return;
     }
     if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) return;
     event.preventDefault();
-    const items = [...(inRecent ? recentMenu : menu).querySelectorAll('[role="menuitem"]')].filter(item => !item.disabled && (inRecent || !recentMenu.contains(item)));
+    const items = [...(inRecent ? recentMenu : menu).querySelectorAll('[role="menuitem"]')].filter(item => !item.disabled && (inRecent || !recentMenu?.contains(item)));
     const index = items.indexOf(document.activeElement);
     const next = event.key === 'Home' ? 0 : event.key === 'End' ? items.length - 1 : (index + (event.key === 'ArrowDown' ? 1 : -1) + items.length) % items.length;
     items[next]?.focus();
   }
-  [menu, recentMenu].forEach(surface => {
+  [menu, recentMenu].filter(Boolean).forEach(surface => {
     surface.addEventListener('click', onMenuClick);
     surface.addEventListener('keydown', onMenuKeydown);
   });
-  window.addEventListener('resize', positionRecent);
+  window.addEventListener('resize', () => { positionMenu(); positionRecent(); });
   document.addEventListener('pointerdown', event => {
-    if (!menu.hidden && !menu.contains(event.target) && !recentMenu.contains(event.target) && !trigger.contains(event.target)) close();
+    if (!menu.hidden && !menu.contains(event.target) && !recentMenu?.contains(event.target) && !trigger.contains(event.target)) close();
   });
   document.addEventListener('keydown', event => { if (event.key === 'Escape' && !menu.hidden) { event.preventDefault(); close(true); } });
   function sync() { trigger.disabled = !allowed(); if (trigger.disabled) close(); }
-  document.addEventListener('desktop-popover-open', event => { if (event.detail !== 'system') close(); });
+  document.addEventListener('desktop-popover-open', event => { if (event.detail !== kind) close(); });
   new MutationObserver(sync).observe(splash, { attributes: true, attributeFilter: ['class'] });
   sync();
+  }
 })();

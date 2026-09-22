@@ -1060,16 +1060,34 @@
     if (!unlocked || active) return;
     open(about, button);
   }));
+  function frontWindow() {
+    return [...windowStack].reverse().find(panel => !panel.classList.contains('is-closed'));
+  }
+  document.addEventListener('desktop-window-state', event => {
+    const panel = unlocked && !active ? frontWindow() : null;
+    event.detail.index = windows.indexOf(panel);
+    event.detail.canExpand = Boolean(panel?.querySelector('[data-preview-action="expand"], [data-store-action="expand"]'));
+  });
   document.addEventListener('desktop-menu-action', event => {
     if (!unlocked || active) return;
     const { action, index } = event.detail;
     if (action === 'open' && windows[index]) {
-      open(windows[index], screen.querySelector('[data-system-menu-trigger]'));
+      open(windows[index], event.detail.launcher || screen.querySelector('[data-system-menu-trigger]'));
       windows[index].querySelector('button:not(:disabled)')?.focus({ preventScroll: true });
     }
-    if (action === 'close') {
-      const panel = [...windowStack].reverse().find(item => !item.classList.contains('is-closed'));
+    if (action === 'close' || action === 'minimize') {
+      const panel = frontWindow();
       panel?.querySelector('[data-about-close], [data-skills-close], [data-preview-action="close"], [data-store-action="close"]')?.click();
+    }
+    if (action === 'expand') {
+      frontWindow()?.querySelector('[data-preview-action="expand"], [data-store-action="expand"]')?.click();
+    }
+    if (action === 'desktop') {
+      windows.forEach(panel => {
+        if (panel.classList.contains('is-closed')) return;
+        panel.querySelector('[data-about-close], [data-skills-close], [data-preview-action="close"], [data-store-action="close"]')?.click();
+      });
+      appsLauncher.focus({ preventScroll: true });
     }
   });
   about.querySelector('[data-about-close]').addEventListener('click', () => {
